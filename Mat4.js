@@ -526,6 +526,32 @@ function createFromOnB(u, v, w) {
     return createFromOnB9(u[0], u[1], u[2], v[0], v[1], v[2], w[0], w[1], w[2]);
 }
 
+function frustum(a, left, right, bottom, top, near, far){
+    var rl = 1.0 / (right - left);
+    var tb = 1.0 / (top - bottom);
+    var nf = 1.0 / (near - far);
+
+    var near2 = near * 2;
+
+    a[ 0] = near2 * rl;
+    a[ 1] = a[ 2] = 0;
+    a[ 3] = 0;
+    a[ 4] = 0;
+    a[ 5] = near2 * tb;
+    a[ 6] = 0;
+    a[ 7] = 0;
+    a[ 8] = (right + left) * rl;
+    a[ 9] = (top + bottom) * tb;
+    a[10] = (far + near) * nf;
+    a[11] = -1;
+    a[12] = 0;
+    a[13] = 0;
+    a[14] = (far * near2) * nf;
+    a[15] = 0;
+
+    return a;
+}
+
 /**
  * Calculate perspective matrix
  * @param  {Mat4} a        - out matrix
@@ -687,6 +713,7 @@ var Mat4 = {
     createFromRotationXYZ3 : createFromRotationXYZ3,
     createFromOnB9 : createFromOnB9,
     createFromOnB  : createFromOnB,
+    frustum     : frustum,
     perspective : perspective,
     ortho       : ortho,
     lookAt9 : lookAt9,
