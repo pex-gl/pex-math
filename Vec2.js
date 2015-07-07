@@ -33,13 +33,20 @@ function copy(a,out){
     return a.slice(0);
 }
 
+function scale(a,n){
+    a[0] *= n;
+    a[1] *= n;
+    return a;
+}
+
 var Vec2 = {
     create  : create,
     set     : set,
     set2    : set2,
     copy    : copy,
     equals  : equals,
-    equals2 : equals2
+    equals2 : equals2,
+    scale : scale
 };
 
 module.exports = Vec2;
