@@ -39,14 +39,7 @@ function fromVec3(a,b){
     return a;
 }
 
-function copy(a,out){
-    if(out !== undefined){
-        out[0] = a[0];
-        out[1] = a[1];
-        out[2] = a[2];
-        out[3] = a[3];
-        return out;
-    }
+function copy(a){
     return a.slice(0);
 }
 
