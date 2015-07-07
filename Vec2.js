@@ -33,6 +33,12 @@ function copy(a,out){
     return a.slice(0);
 }
 
+function add2(a,x,y){
+    a[0] += x;
+    a[1] += y;
+    return a;
+}
+
 function scale(a,n){
     a[0] *= n;
     a[1] *= n;
@@ -46,6 +52,7 @@ var Vec2 = {
     copy    : copy,
     equals  : equals,
     equals2 : equals2,
+    add2  : add2,
     scale : scale
 };
 
