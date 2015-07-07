@@ -1,5 +1,5 @@
 function create() {
-    return [0, 0, 0, 0];
+    return [0, 0, 0, 1];
 }
 
 function equals(a,b) {
