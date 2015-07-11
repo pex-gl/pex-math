@@ -155,11 +155,11 @@ function fromMat4(a, m){
 }
 
 function setAxes9(a, xx, xy, xz, yx, yy, yz, zx, zy, zz){
-    fromMat39(a, xx, xy, xz, yx, yy, yz, zx, zy, zz);
+    return fromMat39(a, xx, xy, xz, yx, yy, yz, zx, zy, zz);
 }
 
 function setAxes(a, x, y, z){
-    setAxes9(a, x[0], x[1], x[2], y[0], y[1], y[2], z[0], z[1], z[2]);
+    return setAxes9(a, x[0], x[1], x[2], y[0], y[1], y[2], z[0], z[1], z[2]);
 }
 
 function getAngle(a){
