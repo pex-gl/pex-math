@@ -82,6 +82,10 @@ function normalize(a){
     return a;
 }
 
+function dot(a,b){
+    return a[0] * b[0] + a[1] * b[1] + a[2] * b[2] + a[3] * b[3];
+}
+
 function setAxisAngle3(a, angle, x, y, z){
     var angle_2 = angle * 0.5;
     var sin_2   = Math.sin(angle_2);
@@ -206,6 +210,30 @@ function getAxis(a,out){
     return out;
 }
 
+function interpolateTo(a,b,x){
+    var scale,scale_;
+    var dot =  dot(b);
+    var theta = Math.acos(dot);
+    var sinTheta = Math.sin(theta);
+
+    if (sinTheta > 0.001) {
+        scale = Math.sin(theta * (1.0 - x)) / sinTheta;
+        scale_ = Math.sin(theta * x) / sinTheta;
+    } else {
+        scale = 1 - x;
+        scale_ = x;
+    }
+
+    var mult = dot < 0 ? -1 : 1;
+    a[0] = a[0] * scale + b[0] * scale_ * mult;
+    a[1] = a[1] * scale + b[1] * scale_ * mult;
+    a[2] = a[2] * scale + b[2] * scale_ * mult;
+    a[3] = a[3] * scale + b[3] * scale_ * mult;
+
+    normalize(a);
+    return a;
+}
+
 
 var Quat = {
     create : create,
@@ -215,6 +243,7 @@ var Quat = {
     set  : set,
     set4 : set4,
     mult : mult,
+    dot : dot,
     length : length,
     normalize : normalize,
     setAxisAngle3 : setAxisAngle3,
@@ -227,6 +256,7 @@ var Quat = {
     getAxis  : getAxis,
     getAxisAngle : getAxisAngle,
     fromDirection : fromDirection,
+    interpolateTo : interpolateTo,
     lookAt9 : lookAt9,
     lookAt  : lookAt
 };
