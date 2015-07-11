@@ -20,7 +20,7 @@ function equals(a,b) {
 
 function identity(a){
     a[0] = a[1] = a[2] = 0.0;
-    a[1] = 1.0;
+    a[3] = 1.0;
     return a;
 }
 
