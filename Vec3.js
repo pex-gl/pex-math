@@ -214,6 +214,7 @@ function toAbs(a){
     a[0] = Math.abs(a[0]);
     a[1] = Math.abs(a[1]);
     a[2] = Math.abs(a[2]);
+    return a;
 }
 
 function xAxis(){
