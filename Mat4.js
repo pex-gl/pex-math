@@ -376,19 +376,19 @@ function setRotationXYZ3(a, x, y, z){
     var cosz = Math.cos(z);
     var sinz = Math.sin(z);
 
-    // row 1
+    // column 1
     a[ 0] = cosy * cosz;
-    a[ 1] = -cosx * sinz + sinx * siny * cosz;
-    a[ 2] = sinx * sinz + cosx * siny * cosz;
+    a[ 4] = -cosx * sinz + sinx * siny * cosz;
+    a[ 8] = sinx * sinz + cosx * siny * cosz;
 
-    // row 2
-    a[ 4] = cosy * sinz;
+    // column 2
+    a[ 1] = cosy * sinz;
     a[ 5] = cosx * cosz + sinx * siny * sinz;
-    a[ 6] = -sinx * cosz + cosx * siny * sinz;
+    a[ 9] = -sinx * cosz + cosx * siny * sinz;
 
-    // row3
-    a[ 8] = -siny;
-    a[ 9] = sinx * cosy;
+    // column 3
+    a[ 2] = -siny;
+    a[ 6] = sinx * cosy;
     a[10] = cosx * cosy;
 
     return a;
@@ -407,13 +407,15 @@ function rotateXYZ3(a, x, y, z){
     var sinz = Math.sin(z);
 
     var a00 =  cosy * cosz;
-    var a01 = -cosx * sinz + sinx * siny * cosz;
-    var a02 =  sinx * sinz + cosx * siny * cosz;
-    var a10 =  cosy * sinz;
+    var a10 = -cosx * sinz + sinx * siny * cosz;
+    var a20 =  sinx * sinz + cosx * siny * cosz;
+
+    var a01 =  cosy * sinz;
     var a11 =  cosx * cosz + sinx * siny * sinz;
-    var a12 = -sinx * cosz + cosx * siny * sinz;
-    var a20 = -siny;
-    var a21 =  sinx * cosy;
+    var a21 = -sinx * cosz + cosx * siny * sinz;
+
+    var a02 = -siny;
+    var a12 =  sinx * cosy;
     var a22 =  cosx * cosy;
 
     return mult16(a,a00,a01,a02,0,
