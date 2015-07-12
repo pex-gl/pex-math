@@ -1,23 +1,26 @@
-/*
-*  Row major memory layout
-*
-*   0   1   2   3
-*   4   5   6   7
-*   8   9  10  11
-*  12  13  14  15
-*
-*  equivalent to the column major OpenGL spec
-*
-*   0   4   8  12
-*   1   5   9  13
-*   2   6  10  14
-*   3   7  11  15
-*
-*  m00 m10 m20 m30
-*  m01 m11 m21 m31
-*  m02 m12 m22 m32
-*  m03 m13 m23 m33
-*/
+/**
+ * Returns a 4x4 identity matrix.
+ * Row major memory layout
+ *
+ *   0   1   2   3
+ *   4   5   6   7
+ *   8   9  10  11
+ *  12  13  14  15
+ *
+ * equivalent to the column major OpenGL spec
+ *
+ *   0   4   8  12
+ *   1   5   9  13
+ *   2   6  10  14
+ *   3   7  11  15
+ *
+ *  m00 m10 m20 m30
+ *  m01 m11 m21 m31
+ *  m02 m12 m22 m32
+ *  m03 m13 m23 m33
+ *
+ * @returns {Number[]}
+ */
 function create() {
     return [
         1,0,0,0,
@@ -27,6 +30,12 @@ function create() {
     ];
 }
 
+/**
+ * Sets a 4x4 matrix from another 4x4 matrix components.
+ * @param {Number[]|Float32Array} a - Dst Matrix (Array of length 16)
+ * @param {{Number[]|Float32Array} b - Src Matrix (Array of length 16)
+ * @returns {{Number[]|Float32Array}
+ */
 function set(a,b){
     a[ 0] = b[ 0]; a[ 1] = b[ 1]; a[ 2] = b[ 2]; a[ 3] = b[ 3];
     a[ 4] = b[ 4]; a[ 5] = b[ 5]; a[ 6] = b[ 6]; a[ 7] = b[ 7];
@@ -35,6 +44,27 @@ function set(a,b){
     return a;
 }
 
+/**
+ * Sets a 4x4 matrix from single components.
+ * @param {Number[]|Float32Array} a - Dst Matrix (Array of length 16)
+ * @param {Number} a00
+ * @param {Number} a01
+ * @param {Number} a02
+ * @param {Number} a03
+ * @param {Number} a10
+ * @param {Number} a11
+ * @param {Number} a12
+ * @param {Number} a13
+ * @param {Number} a20
+ * @param {Number} a21
+ * @param {Number} a22
+ * @param {Number} a23
+ * @param {Number} a30
+ * @param {Number} a31
+ * @param {Number} a32
+ * @param {Number} a33
+ * @returns {Array|Float32Array
+ */
 function set16(a,a00,a01,a02,a03,
                  a10,a11,a12,a13,
                  a20,a21,a22,a23,
@@ -46,6 +76,12 @@ function set16(a,a00,a01,a02,a03,
     return a;
 }
 
+/**
+ * Returns true if two 4x4 matrices are equal.
+ * @param {Number[]|Float32Array} a - 4x4 matrix (Array of length 16)
+ * @param {Number[]|Float32Array} b - 4x4 matrix (Array of length 16)
+ * @returns {boolean}
+ */
 function equals(a,b) {
     return a[ 0] == b[ 0] &&
            a[ 1] == b[ 1] &&
@@ -65,10 +101,36 @@ function equals(a,b) {
            a[15] == b[15];
 }
 
+/**
+ * Returns a copy of the src 4x4 matrix.
+ * @param {Number[]|Float32Array} a - 4x4 src matrix (Array of length 16)
+ * @returns {Number[]|Float32Array}
+ */
 function copy(a) {
     return a.slice(0);
 }
 
+/**
+ * Multiplies a matrix with single matrix components.
+ * @param {Number[]|Float32Array} a - 4x4 matrix (Array of length 16)
+ * @param {Number} b00
+ * @param {Number} b01
+ * @param {Number} b02
+ * @param {Number} b03
+ * @param {Number} b10
+ * @param {Number} b11
+ * @param {Number} b12
+ * @param {Number} b13
+ * @param {Number} b20
+ * @param {Number} b21
+ * @param {Number} b22
+ * @param {Number} b23
+ * @param {Number} b30
+ * @param {Number} b31
+ * @param {Number} b32
+ * @param {Number} b33
+ * @returns {Number[]|Float32Array}
+ */
 function mult16(a,b00,b01,b02,b03,
                   b10,b11,b12,b13,
                   b20,b21,b22,b23,
@@ -101,6 +163,12 @@ function mult16(a,b00,b01,b02,b03,
     return a;
 }
 
+/**
+ * Multiplies a 4x4 matrix with another 4x4 matrix.
+ * @param {Number[]|Float32Array} a - 4x4 matrix (Array of length 16)
+ * @param {Number[]|Float32Array} b - 4x4 matrix (Array of length 16)
+ * @returns {Number[]|Float32Array}
+ */
 function mult(a,b){
     var a00 = a[ 0], a01 = a[ 1], a02 = a[ 2], a03 = a[ 3];
     var a10 = a[ 4], a11 = a[ 5], a12 = a[ 6], a13 = a[ 7];
@@ -135,6 +203,11 @@ function mult(a,b){
     return a;
 }
 
+/**
+ * Inverts a 4x4 matrix.
+ * @param {Number[]|Float32Array} a - 4x4 matrix (Array of length 16)
+ * @returns {Number[]|Float32Array}
+ */
 function invert(a){
     var a00 = a[ 0], a10 = a[ 1], a20 = a[ 2], a30 = a[ 3];
     var a01 = a[ 4], a11 = a[ 5], a21 = a[ 6], a31 = a[ 7];
@@ -179,6 +252,11 @@ function invert(a){
     return a;
 }
 
+/**
+ * Transposes a 4x4 matrix.
+ * @param {Number[]|Float32Array} a - 4x4 matrix (Array of length 16)
+ * @returns {Number[]|Float32Array}
+ */
 function transpose(a){
     var a01 = a[ 1], a02 = a[ 2], a03 = a[ 3];
     var a12 = a [6], a13 = a[ 7];
@@ -197,12 +275,25 @@ function transpose(a){
     return a;
 }
 
+/**
+ * Sets a 4x4 matrix to its identity.
+ * @param {Number[]|Float32Array} a - 4x4 matrix (Array of length 16)
+ * @returns {Number[]|Float32Array}
+ */
 function identity(a) {
     a[0] = a[5] = a[10] = a[15] = 1;
     a[1] = a[2] = a[3] = a[4] = a[6] = a[7] = a[8] = a[9] = a[11] = a[12] = a[13] = a[14] = 0;
     return a;
 }
 
+/**
+ *
+ * @param {Number[]|Float32Array} a - 4x4 matrix (Array of length 16)
+ * @param x
+ * @param y
+ * @param z
+ * @returns {Number[]|Float32Array}
+ */
 function setScale3(a, x, y, z){
     a[ 0] = x;
     a[ 5] = y;
@@ -210,10 +301,24 @@ function setScale3(a, x, y, z){
     return a;
 }
 
+/**
+ *
+ * @param {Number[]|Float32Array} a - 4x4 matrix (Array of length 16)
+ * @param v
+ * @returns {Number[]|Float32Array}
+ */
 function setScale(a, v){
     return setScale3(a,v[0],v[1],v[2]);
 }
 
+/**
+ *
+ * @param {Number[]|Float32Array} a - 4x4 matrix (Array of length 16)
+ * @param x
+ * @param y
+ * @param z
+ * @returns {Number[]|Float32Array}
+ */
 function scale3(a, x, y, z){
     return mult16(a,x,0,0,0,
                     0,y,0,0,
@@ -221,10 +326,24 @@ function scale3(a, x, y, z){
                     0,0,0,1);
 }
 
+/**
+ *
+ * @param {Number[]|Float32Array} a - 4x4 matrix (Array of length 16)
+ * @param v
+ * @returns {Number[]|Float32Array}
+ */
 function scale(a, v){
     return scale3(a,v[0],v[1],v[2]);
 }
 
+/**
+ *
+ * @param {Number[]|Float32Array} a - 4x4 matrix (Array of length 16)
+ * @param x
+ * @param y
+ * @param z
+ * @returns {Number[]|Float32Array}
+ */
 function setTranslation3(a, x, y, z){
     a[12] = x;
     a[13] = y;
@@ -232,10 +351,24 @@ function setTranslation3(a, x, y, z){
     return a;
 }
 
+/**
+ *
+ * @param {Number[]|Float32Array} a - 4x4 matrix (Array of length 16)
+ * @param v
+ * @returns {Number[]|Float32Array}
+ */
 function setTranslation(a, v){
     return setTranslation3(a, v[0], v[1], v[2]);
 }
 
+/**
+ *
+ * @param {Number[]|Float32Array} a - 4x4 matrix (Array of length 16)
+ * @param x
+ * @param y
+ * @param z
+ * @returns {Number[]|Float32Array}
+ */
 function translate3(a, x, y, z){
     return mult16(a,1,0,0,0,
                     0,1,0,0,
@@ -243,10 +376,25 @@ function translate3(a, x, y, z){
                     x,y,z,1);
 }
 
+/**
+ *
+ * @param {Number[]|Float32Array} a - 4x4 matrix (Array of length 16)
+ * @param v
+ * @returns {Number[]|Float32Array}
+ */
 function translate(a, v){
     return translate3(a, v[0], v[1], v[2]);
 }
 
+/**
+ * Sets the rotation components by angle and axis. (Rotation is counter clockwise.)
+ * @param {Number[]|Float32Array} a - 4x4 matrix (Array of length 16)
+ * @param r
+ * @param x
+ * @param y
+ * @param z
+ * @returns {Number[]|Float32Array}
+ */
 function setRotation3(a, r, x, y, z){
     var len = Math.sqrt(x * x + y * y + z * z);
 
@@ -302,10 +450,26 @@ function setRotation3(a, r, x, y, z){
     return a;
 }
 
+/**
+ * Sets the rotation components by angle and axis. (Rotation is counter clockwise.)
+ * @param {Number[]|Float32Array} a - 4x4 matrix (Array of length 16)
+ * @param r
+ * @param v
+ * @returns {Number[]|Float32Array}
+ */
 function setRotation(a, r, v){
     return setRotation3(a, r, v[0], v[1], v[2]);
 }
 
+/**
+ * Rotates the matrix by angle and axis. (Rotation is counter clockwise.)
+ * @param {Number[]|Float32Array} a - 4x4 matrix (Array of length 16)
+ * @param r
+ * @param x
+ * @param y
+ * @param z
+ * @returns {Number[]|Float32Array}
+ */
 function rotate3(a, r, x, y, z){
     var len = Math.sqrt(x * x + y * y + z * z);
 
@@ -364,10 +528,25 @@ function rotate3(a, r, x, y, z){
                      0,   0,   0,   1);
 }
 
+/**
+ * Rotates the matrix by angle and axis. (Rotation is counter clockwise.)
+ * @param {Number[]|Float32Array} a - 4x4 matrix (Array of length 16)
+ * @param r
+ * @param v
+ * @returns {Number[]|Float32Array}
+ */
 function rotate(a, r, v){
     return rotate3(a, r, v[0], v[1], v[2]);
 }
 
+/**
+ * Sets the rotation components by rotation per axis. (Rotation is counter clockwise.)
+ * @param {Number[]|Float32Array} a - 4x4 matrix (Array of length 16)
+ * @param x
+ * @param y
+ * @param z
+ * @returns {Number[]|Float32Array}
+ */
 function setRotationXYZ3(a, x, y, z){
     var cosx = Math.cos(x);
     var sinx = Math.sin(x);
@@ -394,10 +573,24 @@ function setRotationXYZ3(a, x, y, z){
     return a;
 }
 
+/**
+ *
+ * @param {Number[]|Float32Array} a - 4x4 matrix (Array of length 16)
+ * @param v
+ * @returns {Number[]|Float32Array}
+ */
 function setRotationXYZ(a, v){
     return setRotationXYZ3(a, v[0], v[1], v[2]);
 }
 
+/**
+ *
+ * @param {Number[]|Float32Array} a - 4x4 matrix (Array of length 16)
+ * @param x
+ * @param y
+ * @param z
+ * @returns {Number[]|Float32Array}
+ */
 function rotateXYZ3(a, x, y, z){
     var cosx = Math.cos(x);
     var sinx = Math.sin(x);
@@ -424,6 +617,13 @@ function rotateXYZ3(a, x, y, z){
                     0,  0,  0,  1);
 }
 
+
+/**
+ *
+ * @param {Number[]|Float32Array} a - 4x4 matrix (Array of length 16)
+ * @param v
+ * @returns {Number[]|Float32Array}
+ */
 function rotateXYZ(a, v){
     return rotateXYZ3(a, v[0], v[1], v[2]);
 }
@@ -444,10 +644,24 @@ function setRotationFromOnB9(a, ux, uy, uz, vx, vy, vz, wx, wy, wz){
     return a;
 }
 
+/**
+ *
+ * @param {Number[]|Float32Array} a - 4x4 matrix (Array of length 16)
+ * @param u
+ * @param v
+ * @param w
+ * @returns {Number[]|Float32Array}
+ */
 function setRotationFromOnB(a, u, v, w){
     return setRotationFromOnB9(a, u[0], u[1], u[2], v[0], v[1], v[2], w[0], w[1], w[2]);
 }
 
+/**
+ *
+ * @param {Number[]|Float32Array} a - 4x4 matrix (Array of length 16)
+ * @param b
+ * @returns {Number[]|Float32Array}
+ */
 function fromQuat(a,b){
     var x = b[0];
     var y = b[1];
@@ -488,46 +702,127 @@ function fromQuat(a,b){
     return a;
 }
 
+/**
+ *
+ * @param x
+ * @param y
+ * @param z
+ * @returns {Number[]|Float32Array}
+ */
 function createFromScale3(x,y,z){
     return setScale3(create(),x ,y ,z);
 }
 
+/**
+ *
+ * @param v
+ * @returns {Number[]|Float32Array}
+ */
 function createFromScale(v){
     return createFromScale3(v[0],v[1],v[2]);
 }
 
+/**
+ *
+ * @param x
+ * @param y
+ * @param z
+ * @returns {Number[]|Float32Array}
+ */
 function createFromTranslation3(x,y,z){
     return setTranslation3(create(),x, y, z);
 }
 
+/**
+ *
+ * @param v
+ * @returns {Number[]|Float32Array}
+ */
 function createFromTranslation(v){
     return createFromTranslation3(v[0],v[1],v[2]);
 }
 
+/**
+ *
+ * @param r
+ * @param x
+ * @param y
+ * @param z
+ * @returns {Number[]|Float32Array}
+ */
 function createFromRotation3(r, x, y, z){
     return setRotation3(create(), r, x, y, z);
 }
 
+/**
+ *
+ * @param r
+ * @param v
+ * @returns {Number[]|Float32Array}
+ */
 function createFromRotation(r, v){
     return createFromRotation3(r, v[0], v[1], v[2]);
 }
 
+/**
+ *
+ * @param x
+ * @param y
+ * @param z
+ * @returns {Number[]|Float32Array}
+ */
 function createFromRotationXYZ3(x, y, z) {
     return setRotationXYZ3(create(), x, y, z);
 }
 
+/**
+ *
+ * @param v
+ * @returns {Number[]|Float32Array}
+ */
 function createFromRotationXYZ(v){
     return createFromRotationXYZ3(v[0], v[1], v[2]);
 }
 
+/**
+ *
+ * @param ux
+ * @param uy
+ * @param uz
+ * @param vx
+ * @param vy
+ * @param vz
+ * @param wx
+ * @param wy
+ * @param wz
+ * @returns {Number[]|Float32Array}
+ */
 function createFromOnB9(ux, uy, uz, vx, vy, vz, wx, wy, wz) {
     return setRotationFromOnB9(create(), ux, uy, uz, vx, vy, vz, wx, wy, wz);
 }
 
+/**
+ *
+ * @param u
+ * @param v
+ * @param w
+ * @returns {Number[]|Float32Array}
+ */
 function createFromOnB(u, v, w) {
     return createFromOnB9(u[0], u[1], u[2], v[0], v[1], v[2], w[0], w[1], w[2]);
 }
 
+/**
+ *
+ * @param a - 4x4 matrix (Array of length 16)
+ * @param left
+ * @param right
+ * @param bottom
+ * @param top
+ * @param near
+ * @param far
+ * @returns {Number[]|Float32Array}
+ */
 function frustum(a, left, right, bottom, top, near, far){
     var rl = 1.0 / (right - left);
     var tb = 1.0 / (top - bottom);
@@ -578,6 +873,18 @@ function perspective(a,fov, aspect, near, far) {
     return a;
 }
 
+/**
+ *
+ * @param {Number[]|Float32Array} a - 4x4 matrix (Array of length 16)
+ * @param left
+ * @param right
+ * @param bottom
+ * @param top
+ * @param near
+ * @param far
+ * @returns {Number[]|Float32Array}
+ */
+
 function ortho(a, left, right, bottom, top , near, far) {
     var lr = left - right;
     var bt = bottom - top;
@@ -596,6 +903,21 @@ function ortho(a, left, right, bottom, top , near, far) {
 
     return a;
 }
+
+/**
+ *
+ * @param {Number[]|Float32Array} a - 4x4 matrix (Array of length 16)
+ * @param eyex
+ * @param eyey
+ * @param eyez
+ * @param targetx
+ * @param targety
+ * @param targetz
+ * @param upx
+ * @param upy
+ * @param upz
+ * @returns {Number[]|Float32Array}
+ */
 
 function lookAt9(a, eyex, eyey, eyez, targetx, targety, targetz, upx, upy, upz) {
     var x0, x1, x2, y0, y1, y2, z0, z1, z2, len;
@@ -670,6 +992,15 @@ function lookAt9(a, eyex, eyey, eyez, targetx, targety, targetz, upx, upy, upz) 
 
     return a;
 }
+
+/**
+ *
+ * @param {Number[]|Float32Array} a - 4x4 matrix (Array of length 16)
+ * @param from
+ * @param to
+ * @param up
+ * @returns {Number[]|Float32Array}
+ */
 
 function lookAt(a,from,to,up){
     return lookAt9(a,from[0],from[1],from[2],to[0],to[1],to[2],up[0],up[1],up[2]);
