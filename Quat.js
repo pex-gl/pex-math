@@ -64,6 +64,17 @@ function mult(a,b){
     return a;
 }
 
+function invert(a) {
+    var l = dot(a,a);
+    l = l ? 1.0 / l : 0.0;
+
+    a[0] *= -l;
+    a[1] *= -l;
+    a[2] *= -l;
+    a[3] *=  l;
+    return a;
+}
+
 function length(a){
     var x = a[0];
     var y = a[1];
@@ -268,6 +279,7 @@ var Quat = {
     set  : set,
     set4 : set4,
     mult : mult,
+    invert : invert,
     dot : dot,
     length : length,
     normalize : normalize,
