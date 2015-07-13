@@ -214,27 +214,48 @@ function getAxis(a,out){
     return out;
 }
 
-function interpolateTo(a,b,x){
-    var scale,scale_;
-    var dot =  dot(b);
-    var theta = Math.acos(dot);
-    var sinTheta = Math.sin(theta);
+function slerp(a,b,t){
+    //http://jsperf.com/quaternion-slerp-implementations
+    var ax = a[0];
+    var ay = a[1];
+    var az = a[2];
+    var aw = a[3];
+    var bx = b[0];
+    var by = b[1];
+    var bz = b[2];
+    var bw = b[3];
 
-    if (sinTheta > 0.001) {
-        scale = Math.sin(theta * (1.0 - x)) / sinTheta;
-        scale_ = Math.sin(theta * x) / sinTheta;
-    } else {
-        scale = 1 - x;
-        scale_ = x;
+    var omega, cosom, sinom, scale0, scale1;
+
+    cosom = dot(a,b);
+
+    if ( cosom < 0.0 ) {
+        cosom = -cosom;
+        a[0] = - bx;
+        a[1] = - by;
+        a[2] = - bz;
+        a[3] = - bw;
+    } else  {
+        a[0] = bx;
+        a[1] = by;
+        a[2] = bz;
+        a[3] = bw;
     }
 
-    var mult = dot < 0 ? -1 : 1;
-    a[0] = a[0] * scale + b[0] * scale_ * mult;
-    a[1] = a[1] * scale + b[1] * scale_ * mult;
-    a[2] = a[2] * scale + b[2] * scale_ * mult;
-    a[3] = a[3] * scale + b[3] * scale_ * mult;
+    if ( (1.0 - cosom) > 0.000001 ) {
+        omega = Math.acos(cosom);
+        sinom = Math.sin(omega);
+        scale0 = Math.sin((1.0 - t) * omega) / sinom;
+        scale1 = Math.sin(t * omega) / sinom;
+    } else {
+        scale0 = 1.0 - t;
+        scale1 = t;
+    }
 
-    normalize(a);
+    a[0] = scale0 * ax + scale1 * a[0];
+    a[1] = scale0 * ay + scale1 * a[1];
+    a[2] = scale0 * az + scale1 * a[2];
+    a[3] = scale0 * aw + scale1 * a[3];
     return a;
 }
 
@@ -260,7 +281,7 @@ var Quat = {
     getAxis  : getAxis,
     getAxisAngle : getAxisAngle,
     fromDirection : fromDirection,
-    interpolateTo : interpolateTo,
+    slerp : slerp,
     fromTo9 : fromTo9,
     fromTo  : fromTo
 };
