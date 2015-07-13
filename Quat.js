@@ -117,7 +117,8 @@ function fromMat39(a, m0, m1, m2,
         a[1] = (m6 - m2) * s;
         a[2] = (m1 - m3) * s;
 
-    } else if ((m0 > m4) && (m0 > m8)) {
+    }
+    else if ((m0 > m4) && (m0 > m8)) {
         s = Math.sqrt(1.0 + m0 - m4 - m8);
         a[0] = s * 0.5;
         s = 0.5 / s;
@@ -125,7 +126,8 @@ function fromMat39(a, m0, m1, m2,
         a[2] = (m6 + m2) * s;
         a[3] = (m5 - m7) * s;
 
-    } else if (m4 > m8) {
+    }
+    else if (m4 > m8) {
         s = Math.sqrt(1.0 + m4 - m0 - m8);
         a[1] = s * 0.5;
         s = 0.5 / s;
@@ -133,7 +135,8 @@ function fromMat39(a, m0, m1, m2,
         a[2] = (m5 + m7) * s;
         a[3] = (m6 - m2) * s;
 
-    } else {
+    }
+    else {
         s = Math.sqrt(1.0 + m8 - m0 - m4);
         a[2] = s * 0.5;
         s = 0.5 / s;
@@ -189,7 +192,7 @@ function fromDirection(a, direction, up){
     return setAxes(a, bitangent, normal, tangent);
 }
 
-function lookAt9(a, fromx, fromy, fromz, tox, toy, toz, upx, upy, upz){
+function fromTo9(a, fromx, fromy, fromz, tox, toy, toz, upx, upy, upz){
     var from      = Vec3.set3(TEMP_VEC3_0,fromx,fromy,fromz);
     var to        = Vec3.set3(TEMP_VEC3_1,tox,toy,toz);
     var direction = Vec3.normalize(Vec3.sub(to,from));
@@ -198,8 +201,8 @@ function lookAt9(a, fromx, fromy, fromz, tox, toy, toz, upx, upy, upz){
     return fromDirection(a, direction, up);
 }
 
-function lookAt(a, from, to, up){
-    return lookAt9(a, from[0], from[1], from[2], to[0], to[1], to[2], up[0], up[1], up[2]);
+function fromTo(a, from, to, up){
+    return fromTo9(a, from[0], from[1], from[2], to[0], to[1], to[2], up[0], up[1], up[2]);
 }
 
 function getAxis(a,out){
@@ -258,8 +261,8 @@ var Quat = {
     getAxisAngle : getAxisAngle,
     fromDirection : fromDirection,
     interpolateTo : interpolateTo,
-    lookAt9 : lookAt9,
-    lookAt  : lookAt
+    fromTo9 : fromTo9,
+    fromTo  : fromTo
 };
 
 module.exports = Quat;
