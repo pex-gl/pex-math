@@ -6,6 +6,8 @@ var EPSILON = Math.pow(2, -24);
 var Y_AXIS = [0,1,0];
 var TEMP_VEC3_0 = [0,0,0];
 var TEMP_VEC3_1 = [0,0,0];
+var TEMP_VEC3_2 = [0,0,0];
+var TEMP_VEC3_3 = [0,0,0];
 
 function create() {
     return [0, 0, 0, 1];
@@ -101,8 +103,8 @@ function setAxisAngle(a, angle, v){
 }
 
 function fromMat39(a, m0, m1, m2,
-                  m3, m4, m5,
-                  m6, m7, m8){
+                      m3, m4, m5,
+                      m6, m7, m8){
 
     var trace = m0 + m4 + m8;
     var s;
@@ -111,33 +113,33 @@ function fromMat39(a, m0, m1, m2,
         s = Math.sqrt(trace + 1);
         a[3] = 0.5 * s;
         s = 0.5 / s;
-        a[0] = (m7 - m5) * s;
-        a[1] = (m2 - m6) * s;
-        a[2] = (m3 - m1) * s;
+        a[0] = (m5 - m7) * s;
+        a[1] = (m6 - m2) * s;
+        a[2] = (m1 - m3) * s;
 
     } else if ((m0 > m4) && (m0 > m8)) {
         s = Math.sqrt(1.0 + m0 - m4 - m8);
         a[0] = s * 0.5;
         s = 0.5 / s;
-        a[1] = (m3 + m1) * s;
-        a[2] = (m2 + m6) * s;
-        a[3] = (m7 - m5) * s;
+        a[1] = (m1 + m3) * s;
+        a[2] = (m6 + m2) * s;
+        a[3] = (m5 - m7) * s;
 
     } else if (m4 > m8) {
         s = Math.sqrt(1.0 + m4 - m0 - m8);
         a[1] = s * 0.5;
         s = 0.5 / s;
-        a[0] = (m3 + m1) * s;
-        a[2] = (m7 + m5) * s;
-        a[3] = (m2 - m6) * s;
+        a[0] = (m1 + m3) * s;
+        a[2] = (m5 + m7) * s;
+        a[3] = (m6 - m2) * s;
 
     } else {
         s = Math.sqrt(1.0 + m8 - m0 - m4);
         a[2] = s * 0.5;
         s = 0.5 / s;
-        a[0] = (m2 + m6) * s;
-        a[1] = (m7 + m5) * s;
-        a[3] = (m3 - m1) * s;
+        a[0] = (m6 + m2) * s;
+        a[1] = (m5 + m7) * s;
+        a[3] = (m1 - m3) * s;
     }
     return a;
 }
@@ -173,28 +175,27 @@ function getAxisAngle(a, out){
 }
 
 function fromDirection(a, direction, up){
-    var z = direction;
-    var x = TEMP_VEC3_0;
-    var y = TEMP_VEC3_1;
+    up = Vec3.set(TEMP_VEC3_0,up === undefined ? Y_AXIS : up);
 
-    Vec3.set(x,up || Y_AXIS);
-    Vec3.cross(x,direction);
-    Vec3.normalize(x);
+    var tangent   = TEMP_VEC3_1;
+    var normal    = TEMP_VEC3_2;
+    var bitangent = TEMP_VEC3_3;
 
-    Vec3.set(y,direction);
-    Vec3.cross(y,x);
-    Vec3.normalize(y);
+    tangent   = Vec3.normalize(Vec3.set(tangent,direction));
+    bitangent = Vec3.normalize(Vec3.cross(Vec3.set(bitangent,up),tangent));
 
-    return setAxes(a, x, y, z);
+    normal    = Vec3.cross(Vec3.set(normal,tangent),bitangent);
+
+    return setAxes(a, bitangent, normal, tangent);
 }
 
 function lookAt9(a, fromx, fromy, fromz, tox, toy, toz, upx, upy, upz){
-    Vec3.set3(TEMP_VEC3_0, fromx, fromy, fromz);
-    Vec3.set3(TEMP_VEC3_1, tox, toy, toz);
-    Vec3.sub(TEMP_VEC3_1,TEMP_VEC3_0);
-    Vec3.normalize(TEMP_VEC3_1);
-    Vec3.set3(TEMP_VEC3_0, upx, upy, upz);
-    return fromDirection(a, TEMP_VEC3_1, TEMP_VEC3_0);
+    var from      = Vec3.set3(TEMP_VEC3_0,fromx,fromy,fromz);
+    var to        = Vec3.set3(TEMP_VEC3_1,tox,toy,toz);
+    var direction = Vec3.normalize(Vec3.sub(to,from));
+    var up        = Vec3.set3(TEMP_VEC3_2,upx,upy,upz);
+
+    return fromDirection(a, direction, up);
 }
 
 function lookAt(a, from, to, up){
