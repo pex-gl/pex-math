@@ -461,11 +461,86 @@ assert.deepEqual(Mat4.rotate([
 );
 
 //setRotationXYZ
+assert.deepEqual(Mat4.setRotationXYZ([
+    1, 0, 0, 0,
+    0, 1, 0, 0,
+    0, 0, 1, 0,
+    0, 0, 0, 1
+],[Math.PI * 0.5,0,0]),Mat4.setRotation([
+    1, 0, 0, 0,
+    0, 1, 0, 0,
+    0, 0, 1, 0,
+    0, 0, 0, 1
+],Math.PI * 0.5, [1,0,0])
+);
+
+assert.deepEqual(Mat4.setRotationXYZ([
+    1, 0, 0, 0,
+    0, 1, 0, 0,
+    0, 0, 1, 0,
+    0, 0, 0, 1
+],[0,Math.PI * 0.5,0]),Mat4.setRotation([
+    1, 0, 0, 0,
+    0, 1, 0, 0,
+    0, 0, 1, 0,
+    0, 0, 0, 1
+],Math.PI * 0.5, [0,1,0])
+);
+
+assert.deepEqual(Mat4.setRotationXYZ([
+    1, 0, 0, 0,
+    0, 1, 0, 0,
+    0, 0, 1, 0,
+    0, 0, 0, 1
+],[0,0,Math.PI * 0.5]),Mat4.setRotation([
+    1, 0, 0, 0,
+    0, 1, 0, 0,
+    0, 0, 1, 0,
+    0, 0, 0, 1
+],Math.PI * 0.5, [0,0,1])
+);
 
 //setRotationXYZ3
+assert.deepEqual(Mat4.setRotationXYZ3([
+    1, 0, 0, 0,
+    0, 1, 0, 0,
+    0, 0, 1, 0,
+    0, 0, 0, 1
+],Math.PI * 0.5,0,0),Mat4.setRotation([
+    1, 0, 0, 0,
+    0, 1, 0, 0,
+    0, 0, 1, 0,
+    0, 0, 0, 1
+],Math.PI * 0.5, [1,0,0])
+);
 
 //rotateXYZ
+assert.deepEqual(Mat4.rotateXYZ([
+    1, 0, 0, 0,
+    0, 1, 0, 0,
+    0, 0, 1, 0,
+    0, 0, 0, 1
+],[Math.PI * 0.5,0,0]),Mat4.rotate([
+    1, 0, 0, 0,
+    0, 1 ,0 ,0,
+    0, 0, 1, 0,
+    0, 0, 0, 1
+],Math.PI * 0.5, [1,0,0])
+);
 
 //rotateXYZ3
+assert.deepEqual(Mat4.rotateXYZ3([
+    1, 0, 0, 0,
+    0, 1, 0, 0,
+    0, 0, 1, 0,
+    0, 0, 0, 1
+],Math.PI * 0.5,0,0),Mat4.rotate([
+    1, 0, 0, 0,
+    0, 1 ,0 ,0,
+    0, 0, 1, 0,
+    0, 0, 0, 1
+],Math.PI * 0.5, [1,0,0])
+);
+
 
 //setRotationFromOnB
