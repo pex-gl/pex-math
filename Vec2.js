@@ -63,6 +63,16 @@ function scale(a,n){
     return a;
 }
 
+function toMin(a){
+    a[0] = a[1] = -Number.MAX_VALUE;
+    return a;
+}
+
+function toMax(a){
+    a[0] = a[1] = Number.MAX_VALUE;
+    return a;
+}
+
 var Vec2 = {
     create  : create,
     set     : set,
@@ -74,7 +84,9 @@ var Vec2 = {
     add2  : add2,
     sub   : sub,
     sub2  : sub2,
-    scale : scale
+    scale : scale,
+    toMin : toMin,
+    toMax : toMax
 };
 
 module.exports = Vec2;
