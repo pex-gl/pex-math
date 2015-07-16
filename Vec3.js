@@ -75,6 +75,28 @@ function multMat4(a,m){
     return a;
 }
 
+function multQuat(a,q){
+    var x = a[0];
+    var y = a[1];
+    var z = a[2];
+
+    var qx = q[0];
+    var qy = q[1];
+    var qz = q[2];
+    var qw = q[3];
+
+    var ix =  qw * x + qy * z - qz * y;
+    var iy =  qw * y + qz * x - qx * z;
+    var iz =  qw * z + qx * y - qy * x;
+    var iw = -qx * x - qy * y - qz * z;
+
+    a[0] = ix * qw + iw * -qx + iy * -qz - iz * -qy;
+    a[1] = iy * qw + iw * -qy + iz * -qx - ix * -qz;
+    a[2] = iz * qw + iw * -qz + ix * -qy - iy * -qx;
+
+    return a;
+}
+
 function dot(a,b){
     return a[0] * b[0] + a[1] * b[1] + a[2] * b[2];
 }
@@ -239,7 +261,6 @@ function copy(a,out){
     return a.slice(0);
 }
 
-
 var Vec3 = {
     create  : create,
     set     : set,
@@ -253,6 +274,7 @@ var Vec3 = {
     sub3 : sub3,
     scale : scale,
     multMat4 : multMat4,
+    multQuat : multQuat,
     dot : dot,
     cross  : cross,
     cross3 : cross3,
