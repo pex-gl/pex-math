@@ -75,6 +75,13 @@ function invert(a) {
     return a;
 }
 
+function conjugate(a){
+    a[0] *= -1;
+    a[1] *= -1;
+    a[2] *= -1;
+    return a;
+}
+
 function length(a){
     var x = a[0];
     var y = a[1];
@@ -203,6 +210,28 @@ function fromDirection(a, direction, up){
     return setAxes(a, bitangent, normal, tangent);
 }
 
+function setEuler(q,yaw,pitch,roll){
+    pitch *= 0.5;
+    yaw   *= 0.5;
+    roll  *= 0.5;
+
+    var spitch       = Math.sin(pitch);
+    var cpitch       = Math.cos(pitch);
+    var syaw         = Math.sin(yaw);
+    var cyaw         = Math.cos(yaw);
+    var sroll        = Math.sin(roll);
+    var croll        = Math.cos(roll);
+    var cpitchCosYaw = cpitch * cyaw;
+    var spitchSinYaw = spitch * syaw;
+
+    q[0] = sroll * cpitchCosYaw - croll * spitchSinYaw;
+    q[1] = croll * spitch * cyaw + sroll * cpitch * syaw;
+    q[2] = croll * cpitch * syaw - sroll * spitch * cyaw;
+    q[3] = croll * cpitchCosYaw + sroll * spitchSinYaw;
+
+    return q;
+}
+
 function fromTo9(a, fromx, fromy, fromz, tox, toy, toz, upx, upy, upz){
     var from      = Vec3.set3(TEMP_VEC3_0,fromx,fromy,fromz);
     var to        = Vec3.set3(TEMP_VEC3_1,tox,toy,toz);
@@ -270,6 +299,10 @@ function slerp(a,b,t){
     return a;
 }
 
+function createFromEuler(yaw,pitch,roll){
+    return setEuler(create(),yaw,pitch,roll);
+}
+
 
 var Quat = {
     create : create,
@@ -280,6 +313,7 @@ var Quat = {
     set4 : set4,
     mult : mult,
     invert : invert,
+    conjugate : conjugate,
     dot : dot,
     length : length,
     normalize : normalize,
@@ -292,10 +326,12 @@ var Quat = {
     getAngle : getAngle,
     getAxis  : getAxis,
     getAxisAngle : getAxisAngle,
+    setEuler : setEuler,
     fromDirection : fromDirection,
     slerp : slerp,
     fromTo9 : fromTo9,
-    fromTo  : fromTo
+    fromTo  : fromTo,
+    createFromEuler : createFromEuler
 };
 
 module.exports = Quat;
