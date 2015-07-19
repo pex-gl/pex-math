@@ -73,6 +73,11 @@ function toMax(a){
     return a;
 }
 
+function toZero(a){
+    a[0] = a[1] = 0;
+    return a;
+}
+
 var Vec2 = {
     create  : create,
     set     : set,
@@ -86,7 +91,8 @@ var Vec2 = {
     sub2  : sub2,
     scale : scale,
     toMin : toMin,
-    toMax : toMax
+    toMax : toMax,
+    toZero : toZero
 };
 
 module.exports = Vec2;
