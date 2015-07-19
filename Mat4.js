@@ -703,6 +703,32 @@ function fromQuat(a,b){
 }
 
 /**
+ * Sets a 4x4 matrix from a 3x3 rotation matrix.
+ * @param {Number[]|Float32Array} a - 4x4 matrix (Array of length 16)
+ * @param {Number[]|Float32Array} b - 3x3 matrix (Array of length 9)
+ * @returns {Number[]|Float32Array}
+ */
+function fromMat3(a,b){
+    a[ 0] = b[ 0];
+    a[ 1] = b[ 1];
+    a[ 2] = b[ 2];
+
+    a[ 4] = b[ 3];
+    a[ 5] = b[ 4];
+    a[ 6] = b[ 5];
+
+    a[ 8] = b[ 6];
+    a[ 9] = b[ 7];
+    a[10] = b[ 8];
+
+    a[ 3] = a[ 7] = a[11] =
+    a[12] = a[13] = a[14] = 0;
+    a[15] = 1.0;
+
+    return a;
+}
+
+/**
  *
  * @param x
  * @param y
@@ -906,7 +932,7 @@ function ortho(a, left, right, bottom, top , near, far) {
 
 /**
  *
- * @param {Number[]|Float32Array} a - 4x4 matrix (Array of length 16)
+ * @param {Number[]|Float32Array} a
  * @param eyex
  * @param eyey
  * @param eyez
@@ -995,7 +1021,7 @@ function lookAt9(a, eyex, eyey, eyez, targetx, targety, targetz, upx, upy, upz) 
 
 /**
  *
- * @param {Number[]|Float32Array} a - 4x4 matrix (Array of length 16)
+ * @param {Number[]|Float32Array} a
  * @param from
  * @param to
  * @param up
@@ -1035,6 +1061,7 @@ var Mat4 = {
     setRotationFromOnB9 : setRotationFromOnB9,
     setRotationFromOnB  : setRotationFromOnB,
     fromQuat : fromQuat,
+    fromMat3 : fromMat3,
     identity : identity,
     createFromScale3 : createFromScale3,
     createFromScale  : createFromScale,
