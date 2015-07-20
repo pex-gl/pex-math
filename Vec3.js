@@ -285,6 +285,7 @@ var Vec3 = {
     distance3   : distance3,
     distanceSq  : distanceSq,
     distanceSq3 : distanceSq3,
+    limit : limit,
     invert : invert,
     lerp : lerp,
     toZero : toZero,
