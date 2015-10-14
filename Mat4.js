@@ -398,7 +398,7 @@ function translate(a, v){
 function setRotation3(a, r, x, y, z){
     var len = Math.sqrt(x * x + y * y + z * z);
 
-    if (Math.sqrt(x * x + y * y + z * z) < 0.0001) {
+    if (len < 0.0001) {
         return null;
     }
 
@@ -473,7 +473,7 @@ function setRotation(a, r, v){
 function rotate3(a, r, x, y, z){
     var len = Math.sqrt(x * x + y * y + z * z);
 
-    if (Math.sqrt(x * x + y * y + z * z) < 0.0001) {
+    if (len < 0.0001) {
         return null;
     }
 
