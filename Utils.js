@@ -23,7 +23,7 @@ function toRadians(degrees){
     return degrees * Math.PI / 180.0;
 }
 
-function toDegree(radians){
+function toDegrees(radians){
     return radians * 180 / Math.PI;
 }
 
@@ -46,7 +46,7 @@ var Utils = {
     normalize : normalize,
     map       : map,
     toRadians : toRadians,
-    toDegree  : toDegree,
+    toDegree  : toDegrees,
     frac : frac,
     sgn  : sgn,
     isPOT : isPOT
