@@ -3,7 +3,7 @@ function lerp(a,b,t){
 }
 
 function clamp(a,min,max){
-    return max === undefined ? Math.max(a,min) : Math.max(min,Math.min(a,max));
+    return Math.max(min,Math.min(a,max));
 }
 
 function smoothstep(min, max, x){
