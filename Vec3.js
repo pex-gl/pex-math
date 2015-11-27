@@ -251,6 +251,15 @@ function zAxis(){
     return [0,0,1];
 }
 
+function toString(a, precision) {
+    precision = precision || Math.pow(10, 4);
+    var s = "[";
+    s += Math.floor(a[0]*precision)/precision + ",";
+    s += Math.floor(a[1]*precision)/precision + ",";
+    s += Math.floor(a[2]*precision)/precision + "]";
+    return s;
+}
+
 function copy(a,out){
     if(out !== undefined){
         out[0] = a[0];
@@ -295,7 +304,8 @@ var Vec3 = {
     toAbs  : toAbs,
     xAxis : xAxis,
     yAxis : yAxis,
-    zAxis : zAxis
+    zAxis : zAxis,
+    toString: toString
 };
 
 module.exports = Vec3;
