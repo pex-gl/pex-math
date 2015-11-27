@@ -3,7 +3,7 @@ function lerp(a,b,t){
 }
 
 function clamp(a,min,max){
-    return max === undefined ? Math.max(a,min) : Math.max(min,Math.min(a,max));
+    return Math.max(min,Math.min(a,max));
 }
 
 function smoothstep(min, max, x){
@@ -23,7 +23,7 @@ function toRadians(degrees){
     return degrees * Math.PI / 180.0;
 }
 
-function toDegree(radians){
+function toDegrees(radians){
     return radians * 180 / Math.PI;
 }
 
@@ -46,7 +46,7 @@ var Utils = {
     normalize : normalize,
     map       : map,
     toRadians : toRadians,
-    toDegree  : toDegree,
+    toDegree  : toDegrees,
     frac : frac,
     sgn  : sgn,
     isPOT : isPOT

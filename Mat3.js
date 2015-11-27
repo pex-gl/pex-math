@@ -37,6 +37,28 @@ function equals(a,b) {
            a[ 9] == b[ 9];
 }
 
+function set9(a,b00,b01,b02,
+                b10,b11,b12,
+                b20,b21,b22){
+    a[0] = b00; a[1] = b01; a[2] = b02;
+    a[3] = b10; a[4] = b11; a[5] = b12;
+    a[6] = b20; a[7] = b21; a[8] = b22;
+    return a;
+}
+
+function set(a,b){
+    a[0] = b[0]; a[1] = b[1]; a[2] = b[2];
+    a[3] = b[3]; a[4] = b[4]; a[5] = b[5];
+    a[6] = b[6]; a[7] = b[7]; a[8] = b[8];
+    return a;
+}
+
+function identity(a){
+    a[0] = a[4] = a[8] = 1;
+    a[1] = a[2] = a[3] = a[5] = a[6] = a[7] = 0;
+    return a;
+}
+
 function fromMat4(a,b){
     a[ 0] = b[ 0]; a[ 1] = b[ 1]; a[ 2] = b[ 2];
     a[ 3] = b[ 4]; a[ 4] = b[ 5]; a[ 5] = b[ 6];
@@ -91,6 +113,9 @@ var Mat3 = {
      * @type {[type]}
      */
     create : create,
+    set  : set,
+    set9 : set9,
+    identity : identity,
     /**
      * [equals description]
      * @type {[type]}
