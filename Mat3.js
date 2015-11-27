@@ -81,10 +81,30 @@ function fromQuat(a,b){
     return a;
 }
 
+/**
+ * [Mat3 description]
+ * @type {Object}
+ */
 var Mat3 = {
+    /**
+     * [create description]
+     * @type {[type]}
+     */
     create : create,
+    /**
+     * [equals description]
+     * @type {[type]}
+     */
     equals : equals,
+    /**
+     * [fromMat4 description]
+     * @type {[type]}
+     */
     fromMat4 : fromMat4,
+    /**
+     * [fromQuat description]
+     * @type {[type]}
+     */
     fromQuat : fromQuat
 };
 
