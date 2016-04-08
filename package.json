@@ -1,6 +1,6 @@
 {
   "name": "pex-math",
-  "version": "1.0.0-beta.1",
+  "version": "1.0.0",
   "description": "Array based vector, qaternion and matrix math for the pex library",
   "main": "index.js",
   "scripts": {
@@ -20,11 +20,13 @@
     "email": "hwollik@hotmail.com",
     "url": "http://henrykwollik.com"
   },
-  "contributors": [{
+  "contributors": [
+    {
       "name": "Marcin Ignac",
       "email": "marcin.ignac@gmail.com",
       "url": "http://marcinignac.com"
-  }],
+    }
+  ],
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/pex-gl/pex-math/issues"
