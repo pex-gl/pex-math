@@ -46,16 +46,10 @@ var Utils = {
     normalize : normalize,
     map       : map,
     toRadians : toRadians,
-    toDegree  : toDegrees,
+    toDegrees  : toDegrees,
     frac : frac,
     sgn  : sgn,
     isPOT : isPOT
 };
 
 module.exports = Utils;
-
-
-
-
-
-
