@@ -1,6 +1,6 @@
 {
   "name": "pex-math",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Array based vector, qaternion and matrix math for the pex library",
   "main": "index.js",
   "scripts": {
