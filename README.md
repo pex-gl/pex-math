@@ -285,3 +285,58 @@ Sets matrix to a quaternion.
 - `q`: quat
 
 Returns `m`.
+
+## vec4
+
+`var vec4 = require('pex-math/vec4')`
+
+### `vec4.create()`
+Returns a new vec4 at 0, 0, 0.
+
+### `vec4.equals(v, w)`
+Compares two vectors.
+
+- `v`: vec4
+- `w`: vec4
+
+Returns a `bool`.
+
+### `vec4.set(v, w)`
+Sets a vector to another vector.
+
+- `v`:  vec4 - the vector being set
+- `w`:  vec4 - the vector used as template
+
+Returns `v`.
+
+### `vec4.fromVec3(v4, v3)`
+Create a vec4 from vec3.
+
+- `v4`:  vec4
+- `v3`:  vec3
+
+Returns `v4`.
+
+### `vec4.multMat4(v, m)`
+Multiplies a vector with a matrix.
+
+- `v`:  vec4
+- `m`:  mat4
+
+Returns `v`.
+
+### `vec4.copy(v)`
+Returns a copy of a vector.
+
+- `v`:  vec4
+
+Returns `v`.
+
+### `vec4.lerp(v, w, n)`
+Lerps between to vectors.
+
+- `v`:  vec4
+- `w`:  vec4
+- `n`:  Number - lerp value
+
+Returns `a` lerped.
