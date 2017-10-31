@@ -99,7 +99,7 @@ Transposes a matrix.
 Returns `m` transposed.
 
 ### `mat4.identity(m)`
-Sets a matrix to its identity.
+Sets a matrix to the identity matrix.
 
 - `m`: mat4
 
@@ -256,7 +256,7 @@ Sets a matrix from another matrix.
 Returns the newly set `a`.
 
 ### `mat3.identity(m)`
-Sets a matrix to its identity.
+Sets a matrix to the identity matrix.
 
 - `m`: mat3
 
