@@ -8,23 +8,10 @@ function equals (a, b) {
     a[2] === b[2]
 }
 
-function equals3 (a, x, y, z) {
-  return a[0] === x &&
-    a[1] === y &&
-    a[2] === z
-}
-
 function set (a, b) {
   a[0] = b[0]
   a[1] = b[1]
   a[2] = b[2]
-  return a
-}
-
-function set3 (a, x, y, z) {
-  a[0] = x
-  a[1] = y
-  a[2] = z
   return a
 }
 
@@ -35,24 +22,10 @@ function add (a, b) {
   return a
 }
 
-function add3 (a, x, y, z) {
-  a[0] += x
-  a[1] += y
-  a[2] += z
-  return a
-}
-
 function sub (a, b) {
   a[0] -= b[0]
   a[1] -= b[1]
   a[2] -= b[2]
-  return a
-}
-
-function sub3 (a, x, y, z) {
-  a[0] -= x
-  a[1] -= y
-  a[2] -= z
   return a
 }
 
@@ -115,17 +88,6 @@ function cross (a, b) {
   return a
 }
 
-function cross3 (a, x, y, z) {
-  var _x = a[0]
-  var _y = a[1]
-  var _z = a[2]
-
-  a[0] = _y * z - y * _z
-  a[1] = _z * x - z * _x
-  a[2] = _x * y - x * _y
-  return a
-}
-
 function length (a) {
   var x = a[0]
   var y = a[1]
@@ -157,22 +119,8 @@ function distance (a, b) {
   return distance3(a, b[0], b[1], b[2])
 }
 
-function distance3 (a, x, y, z) {
-  var dx = x - a[0]
-  var dy = y - a[1]
-  var dz = z - a[2]
-  return Math.sqrt(dx * dx + dy * dy + dz * dz)
-}
-
 function distanceSq (a, b) {
   return distanceSq3(a, b[0], b[1], b[2])
-}
-
-function distanceSq3 (a, x, y, z) {
-  var dx = x - a[0]
-  var dy = y - a[1]
-  var dz = z - a[2]
-  return dx * dx + dy * dy + dz * dz
 }
 
 function limit (a, n) {
@@ -212,99 +160,39 @@ function lerp (a, b, n) {
   return a
 }
 
-function toZero (a) {
-  a[0] = a[1] = a[2] = 0
-  return a
-}
-
-function toOne (a) {
-  a[0] = a[1] = a[2] = 1
-  return a
-}
-
-function toMax (a) {
-  a[0] = a[1] = a[2] = Number.MAX_VALUE
-  return a
-}
-
-function toMin (a) {
-  a[0] = a[1] = a[2] = -Number.MAX_VALUE
-  return a
-}
-
-function toAbs (a) {
-  a[0] = Math.abs(a[0])
-  a[1] = Math.abs(a[1])
-  a[2] = Math.abs(a[2])
-  return a
-}
-
-function xAxis () {
-  return [1, 0, 0]
-}
-
-function yAxis () {
-  return [0, 1, 0]
-}
-
-function zAxis () {
-  return [0, 0, 1]
-}
-
 function toString (a, precision) {
-  precision = precision || Math.pow(10, 4)
+  var scale = Math.pow(10, precision !== undefined ? precision : 4)
   var s = '['
-  s += Math.floor(a[0] * precision) / precision + ', '
-  s += Math.floor(a[1] * precision) / precision + ', '
-  s += Math.floor(a[2] * precision) / precision + ']'
+  s += Math.floor(a[0] * scale) / scale + ', '
+  s += Math.floor(a[1] * scale) / scale + ', '
+  s += Math.floor(a[2] * scale) / scale + ']'
   return s
 }
 
-function copy (a, out) {
-  if (out !== undefined) {
-    out[0] = a[0]
-    out[1] = a[1]
-    out[2] = a[2]
-    return out
-  }
+function copy (a) {
   return a.slice(0)
 }
 
 var Vec3 = {
   create: create,
   set: set,
-  set3: set3,
   copy: copy,
   equals: equals,
-  equals3: equals3,
   add: add,
-  add3: add3,
   sub: sub,
-  sub3: sub3,
   scale: scale,
   multMat4: multMat4,
   multQuat: multQuat,
   dot: dot,
   cross: cross,
-  cross3: cross3,
   length: length,
   lengthSq: lengthSq,
   normalize: normalize,
   distance: distance,
-  distance3: distance3,
   distanceSq: distanceSq,
-  distanceSq3: distanceSq3,
   limit: limit,
   invert: invert,
   lerp: lerp,
-  toZero: toZero,
-  toOne: toOne,
-  toMin: toMin,
-  toMax: toMax,
-  toAbs: toAbs,
-  xAxis: xAxis,
-  yAxis: yAxis,
-  zAxis: zAxis,
   toString: toString
 }
 

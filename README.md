@@ -304,39 +304,193 @@ Returns a `bool`.
 ### `vec4.set(v, w)`
 Sets a vector to another vector.
 
-- `v`:  vec4 - the vector being set
-- `w`:  vec4 - the vector used as template
+- `v`: vec4 - the vector being set
+- `w`: vec4 - the vector used as template
 
 Returns `v`.
 
 ### `vec4.fromVec3(v4, v3)`
 Create a vec4 from vec3.
 
-- `v4`:  vec4
-- `v3`:  vec3
+- `v4`: vec4
+- `v3`: vec3
 
 Returns `v4`.
 
 ### `vec4.multMat4(v, m)`
 Multiplies a vector with a matrix.
 
-- `v`:  vec4
-- `m`:  mat4
+- `v`: vec4
+- `m`: mat4
 
 Returns `v`.
 
 ### `vec4.copy(v)`
 Returns a copy of a vector.
 
-- `v`:  vec4
+- `v`: vec4
 
-Returns `v`.
+Returns a new instance of `v`.
 
 ### `vec4.lerp(v, w, n)`
 Lerps between to vectors.
 
-- `v`:  vec4
-- `w`:  vec4
-- `n`:  Number - lerp value
+- `v`: vec4
+- `w`: vec4
+- `n`: Number - lerp value
 
 Returns `a` lerped.
+
+## vec3
+`var vec3 = require('pex-math/vec3')`
+
+### `vec3.create()`
+Returns a new vec3 at 0, 0, 0.
+
+### `vec3.set(v, w)`
+Sets a vector to another vector.
+
+- `v`: vec3 - the vector being set
+- `w`: vec3 - the vector used as template
+
+Returns `v`.
+
+### `vec3.copy(v)`
+Returns a copy of a vector.
+
+- `v`: vec3
+
+Returns a new instance of `v`.
+
+### `vec3.equals(v, w)`
+Compares two vectors.
+
+- `v`: vec3
+- `w`: vec3
+
+Returns a `bool`.
+
+### `vec3.add(v, w)`
+Add a vector with another.
+
+- `v`: vec3
+- `w`: vec3
+
+Returns `v` after addition.
+
+### `vec3.sub(v, w)`
+Substracts a vector with another.
+
+- `v`: vec3
+- `w`: vec3
+
+Returns `v` after substraction.
+
+### `vec3.scale(v, n)`
+Scales a vector by a number.
+
+- `v`: vec3
+- `n`: Number
+
+Returns `v` scales.
+
+### `vec3.multMat4(v, m)`
+Multiplies a vector by a matrix.
+
+- `v`: vec3
+- `m`: mat4
+
+Returns `v` after multiplication.
+
+### `vec3.multQuat(v, q)`
+Multiplies a vector by a quaternion.
+
+- `v`: vec3
+- `q`: quat
+
+Returns `v` after multiplication.
+
+### `vec3.dot(v, w)`
+Calculates the dot product of two vectors.
+
+- `v`: vec3
+- `w`: vec3
+
+Returns `v` after calculation.
+
+### `vec3.dot(v, w)`
+Calculates the cross product of two vectors.
+
+- `v`: vec3
+- `w`: vec3
+
+Returns `v` after calculation.
+
+### `vec3.length(v)`
+Calculates the length of a vector.
+
+- `v`: vec3
+
+Returns the length of `v`.
+
+### `vec3.lengthSq(v)`
+Calculates the squared length of a vector.
+
+- `v`: vec3
+
+Returns the squared length of `v`.
+
+### `vec3.normalize(v)`
+Normalises a vector.
+
+- `v`: vec3
+
+Returns `v` normalised.
+
+### `vec3.distance(v, w)`
+Calculates the distance between two vectors.
+
+- `v`: vec3
+- `w`: vec3
+
+Returns the distance betweeen `v` and `w`.
+
+### `vec3.distanceSq(v, w)`
+Calculates the squared distance between two vectors.
+
+- `v`: vec3
+- `w`: vec3
+
+Returns the squared distance betweeen `v` and `w`.
+
+### `vec3.limit(v, n)`
+Limits a vector to a length.
+
+- `v`: vec3
+- `n`: Number
+
+Returns `v` scaled.
+
+### `vec3.invert(v)`
+Inverts a vector.
+
+- `v`: vec3
+
+Returns `v` inverted.
+
+### `vec3.lerp(v, w, n)`
+Lerps between to vectors.
+
+- `v`: vec3
+- `w`: vec3
+- `n`: Number - lerp value
+
+Returns `v` lerped.
+
+### `vec3.toString(v, precision)`
+Prints a vector to a string.
+
+- `v`: vec3
+- `precision`: number
+
+Returns a `String`.
