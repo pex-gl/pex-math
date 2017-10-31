@@ -333,7 +333,7 @@ Returns a copy of a vector.
 Returns a new instance of `v`.
 
 ### `vec4.lerp(v, w, n)`
-Lerps between to vectors.
+Linearly interpolates between two vectors.
 
 - `v`: vec4
 - `w`: vec4
@@ -418,7 +418,7 @@ Calculates the dot product of two vectors.
 
 Returns `v` after calculation.
 
-### `vec3.dot(v, w)`
+### `vec3.cross(v, w)`
 Calculates the cross product of two vectors.
 
 - `v`: vec3
@@ -479,7 +479,7 @@ Inverts a vector.
 Returns `v` inverted.
 
 ### `vec3.lerp(v, w, n)`
-Lerps between to vectors.
+Linearly interpolates between two vectors.
 
 - `v`: vec3
 - `w`: vec3
@@ -491,6 +491,136 @@ Returns `v` lerped.
 Prints a vector to a string.
 
 - `v`: vec3
+- `precision`: number
+
+Returns a `String`.
+
+## vec2
+`var vec2 = require('pex-math/vec2')`
+
+### `vec2.create()`
+Returns a new vec2 at 0, 0, 0.
+
+### `vec2.set(v, w)`
+Sets a vector to another vector.
+
+- `v`: vec2 - the vector being set
+- `w`: vec2 - the vector used as template
+
+Returns `v`.
+
+### `vec2.copy(v)`
+Returns a copy of a vector.
+
+- `v`: vec2
+
+Returns a new instance of `v`.
+
+### `vec2.equals(v, w)`
+Compares two vectors.
+
+- `v`: vec2
+- `w`: vec2
+
+Returns a `bool`.
+
+### `vec2.add(v, w)`
+Add a vector with another.
+
+- `v`: vec2
+- `w`: vec2
+
+Returns `v` after addition.
+
+### `vec2.sub(v, w)`
+Substracts a vector with another.
+
+- `v`: vec2
+- `w`: vec2
+
+Returns `v` after substraction.
+
+### `vec2.scale(v, n)`
+Scales a vector by a number.
+
+- `v`: vec2
+- `n`: Number
+
+Returns `v` scales.
+
+### `vec2.dot(v, w)`
+Calculates the dot product of two vectors.
+
+- `v`: vec2
+- `w`: vec2
+
+Returns `v` after calculation.
+
+### `vec2.length(v)`
+Calculates the length of a vector.
+
+- `v`: vec2
+
+Returns the length of `v`.
+
+### `vec2.lengthSq(v)`
+Calculates the squared length of a vector.
+
+- `v`: vec2
+
+Returns the squared length of `v`.
+
+### `vec2.normalize(v)`
+Normalises a vector.
+
+- `v`: vec2
+
+Returns `v` normalised.
+
+### `vec2.distance(v, w)`
+Calculates the distance between two vectors.
+
+- `v`: vec2
+- `w`: vec2
+
+Returns the distance betweeen `v` and `w`.
+
+### `vec2.distanceSq(v, w)`
+Calculates the squared distance between two vectors.
+
+- `v`: vec2
+- `w`: vec2
+
+Returns the squared distance betweeen `v` and `w`.
+
+### `vec2.limit(v, n)`
+Limits a vector to a length.
+
+- `v`: vec2
+- `n`: Number
+
+Returns `v` scaled.
+
+### `vec2.invert(v)`
+Inverts a vector.
+
+- `v`: vec2
+
+Returns `v` inverted.
+
+### `vec2.lerp(v, w, n)`
+Linearly interpolates between two vectors.
+
+- `v`: vec2
+- `w`: vec2
+- `n`: Number - lerp value
+
+Returns `v` lerped.
+
+### `vec2.toString(v, precision)`
+Prints a vector to a string.
+
+- `v`: vec2
 - `precision`: number
 
 Returns a `String`.

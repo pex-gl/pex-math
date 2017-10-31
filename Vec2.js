@@ -8,28 +8,12 @@ function set (a, b) {
   return a
 }
 
-function set2 (a, x, y) {
-  a[0] = x
-  a[1] = y
-  return a
-}
-
 function equals (a, b) {
   return a[0] === b[0] &&
     a[1] === b[1]
 }
 
-function equals2 (a, x, y) {
-  return a[0] === x &&
-    a[1] === y
-}
-
-function copy (a, out) {
-  if (out !== undefined) {
-    out[0] = a[0]
-    out[1] = a[1]
-    return out
-  }
+function copy (a) {
   return a.slice(0)
 }
 
@@ -39,21 +23,9 @@ function add (a, b) {
   return a
 }
 
-function add2 (a, x, y) {
-  a[0] += x
-  a[1] += y
-  return a
-}
-
 function sub (a, b) {
   a[0] -= b[0]
   a[1] -= b[1]
-  return a
-}
-
-function sub2 (a, x, y) {
-  a[0] -= x
-  a[1] -= y
   return a
 }
 
@@ -94,20 +66,8 @@ function distance (a, b) {
   return distance2(a, b[0], b[1])
 }
 
-function distance2 (a, x, y) {
-  var dx = x - a[0]
-  var dy = y - a[1]
-  return Math.sqrt(dx * dx + dy * dy)
-}
-
 function distanceSq (a, b) {
   return distanceSq2(a, b[0], b[1], b[2])
-}
-
-function distanceSq2 (a, x, y) {
-  var dx = x - a[0]
-  var dy = y - a[1]
-  return dx * dx + dy * dy
 }
 
 function limit (a, n) {
@@ -142,47 +102,32 @@ function lerp (a, b, n) {
   return a
 }
 
-function toMin (a) {
-  a[0] = a[1] = -Number.MAX_VALUE
-  return a
-}
-
-function toMax (a) {
-  a[0] = a[1] = Number.MAX_VALUE
-  return a
-}
-
-function toZero (a) {
-  a[0] = a[1] = 0
-  return a
+function toString (a, precision) {
+  var scale = Math.pow(10, precision !== undefined ? precision : 4)
+  var s = '['
+  s += Math.floor(a[0] * scale) / scale + ', '
+  s += Math.floor(a[1] * scale) / scale + ']'
+  return s
 }
 
 var Vec2 = {
   create: create,
   set: set,
-  set2: set2,
   copy: copy,
   equals: equals,
-  equals2: equals2,
   add: add,
-  add2: add2,
   sub: sub,
-  sub2: sub2,
   scale: scale,
   dot: dot,
   length: length,
   lengthSq: lengthSq,
   normalize: normalize,
   distance: distance,
-  distance2: distance2,
   distanceSq: distanceSq,
-  distanceSq2: distanceSq2,
   limit: limit,
   invert: invert,
   lerp: lerp,
-  toMin: toMin,
-  toMax: toMax,
-  toZero: toZero
+  toString: toString
 }
 
 module.exports = Vec2
