@@ -21,7 +21,7 @@ var identityMatrix = mat4.create()
 
 # API
 
-## Mat4
+## mat4
 
 `var mat4 = require('pex-math/mat4')`
 
@@ -218,7 +218,7 @@ Sets a 4x4 matrix to a 3x3 matrix.
 
 Returns `m4`.
 
-## Mat3
+## mat3
 
 `var mat3 = require('pex-math/mat3')`
 
