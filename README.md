@@ -253,7 +253,7 @@ Sets a matrix from another matrix.
 - `m`:  mat3 - the matrix being set
 - `n`:  mat3 - the matrix used as template
 
-Returns the newly set `a`.
+Returns `m`.
 
 ### `mat3.identity(m)`
 Sets a matrix to the identity matrix.
@@ -633,3 +633,155 @@ Prints a vector to a string.
 - `precision`: number
 
 Returns a `String`.
+
+## quat
+
+`var quat = require('pex-math/quat')`
+
+### `quat.create()`
+Create a new quaternion.
+
+### `quat.equals(q, p)`
+Create a new quaternion.
+
+- `q`: quat
+- `p`: quat
+
+Returns `bool`.
+
+### `quat.identity(q)`
+Sets a quaternion to the identity quaternion.
+
+- `q`: quat
+
+Returns `q`.
+
+### `quat.copy(q)`
+Returns a copy of a quaternion.
+
+- `q`: quat
+
+Returns a new instance of `q`.
+
+### `quat.set(q, p)`
+Sets one quaternion to another.
+
+- `q`: quat
+- `p`: quat
+
+Returns `q`.
+
+### `quat.mult(q, p)`
+Multiplies one quaternion by another.
+
+- `q`: quat
+- `p`: quat
+
+Returns `q` after multiplication.
+
+### `quat.invert(q)`
+Inverts a quaternion.
+
+- `q`: quat
+
+Returns `q` inverted.
+
+### `quat.conjugate(q)`
+Conjugates a quaternion.
+
+- `q`: quat
+
+Returns `q` conjugates.
+
+### `quat.length(q)`
+Calculates the length of a quaternion.
+
+- `q`: quat
+
+Returns the length of `q`.
+
+### `quat.normalize(q)`
+Normalizes a quaternion.
+
+- `q`: quat
+
+Returns `q` normalized.
+
+### `quat.dot(q, p)`
+Calculates the dot product of two quaternions.
+
+- `q`: quat
+- `p`: quat
+
+Returns the dot product of `q` and `p`.
+
+### `quat.setAxisAngle(q, angle, v)`
+Set the angle at an axis of a quaternion.
+
+- `q`: quat
+- `angle`: quat
+- `v`: vec3
+
+Returns `q`.
+
+### `quat.fromMat3(q, m)`
+Sets a quaternion to a 3x3 matrix.
+
+- `q`: quat
+- `m`: mat3
+
+Returns `q`.
+
+### `quat.fromMat4(q, m)`
+Sets a quaternion to a 4x4 matrix.
+
+- `q`: quat
+- `m`: mat4
+
+Returns `q`.
+
+### `quat.setAxes(q, x, y, z)`
+Set the axes of the a quaternion.
+
+- `q`: quat
+- `x`: vec3
+- `y`: vec3
+- `z`: vec3
+
+Returns `q`.
+
+### `quat.getAngle(q)`
+Get the angle of a quaternion.
+
+- `q`: quat
+
+Returns the angle of `q`.
+
+### `quat.setEuler(q, yaw, pitch, roll)`
+Set euler angles to a quaternion.
+
+- `q`: quat
+- `yaw`: Number
+- `pitch`: Number
+- `roll`: Number
+
+Returns `q`.
+
+### `quat.fromDirection(q, direction, up)`
+Sets a quaternion to a direction.
+
+- `q`: quat
+- `direction`: vec3
+- `up`: vec3
+
+Returns `q`.
+
+### `quat.slerp(q, p, n)`
+Spherical linear interpolation between two quaternions
+
+- `q`: quat
+- `p`: quat
+- `n`: Number
+
+Returns `q`.
+
