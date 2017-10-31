@@ -50,27 +50,6 @@ function copy (a) {
   return a.slice(0)
 }
 
-/**
- * Multiplies a matrix with single matrix components.
- * @param {Number[]|Float32Array} a - 4x4 matrix (Array of length 16)
- * @param {Number} b00
- * @param {Number} b01
- * @param {Number} b02
- * @param {Number} b03
- * @param {Number} b10
- * @param {Number} b11
- * @param {Number} b12
- * @param {Number} b13
- * @param {Number} b20
- * @param {Number} b21
- * @param {Number} b22
- * @param {Number} b23
- * @param {Number} b30
- * @param {Number} b31
- * @param {Number} b32
- * @param {Number} b33
- * @returns {Number[]|Float32Array}
- */
 function _mult16 (a, b00, b01, b02, b03,
                 b10, b11, b12, b13,
                 b20, b21, b22, b23,
@@ -225,14 +204,6 @@ function identity (a) {
   return a
 }
 
-/**
- *
- * @param {Number[]|Float32Array} a - 4x4 matrix (Array of length 16)
- * @param x
- * @param y
- * @param z
- * @returns {Number[]|Float32Array}
- */
 function _setScale3 (a, x, y, z) {
   a[ 0] = x
   a[ 5] = y
@@ -244,14 +215,6 @@ function setScale (a, v) {
   return _setScale3(a, v[0], v[1], v[2])
 }
 
-/**
- *
- * @param {Number[]|Float32Array} a - 4x4 matrix (Array of length 16)
- * @param x
- * @param y
- * @param z
- * @returns {Number[]|Float32Array}
- */
 function _scale3 (a, x, y, z) {
   return _mult16(a, x, 0, 0, 0,
                 0, y, 0, 0,
@@ -263,14 +226,6 @@ function scale (a, v) {
   return _scale3(a, v[0], v[1], v[2])
 }
 
-/**
- *
- * @param {Number[]|Float32Array} a - 4x4 matrix (Array of length 16)
- * @param x
- * @param y
- * @param z
- * @returns {Number[]|Float32Array}
- */
 function _setTranslation3 (a, x, y, z) {
   a[12] = x
   a[13] = y
@@ -282,14 +237,6 @@ function setTranslation (a, v) {
   return _setTranslation3(a, v[0], v[1], v[2])
 }
 
-/**
- *
- * @param {Number[]|Float32Array} a - 4x4 matrix (Array of length 16)
- * @param x
- * @param y
- * @param z
- * @returns {Number[]|Float32Array}
- */
 function _translate3 (a, x, y, z) {
   return _mult16(a, 1, 0, 0, 0,
                 0, 1, 0, 0,
@@ -297,25 +244,10 @@ function _translate3 (a, x, y, z) {
                 x, y, z, 1)
 }
 
-/**
- *
- * @param {Number[]|Float32Array} a - 4x4 matrix (Array of length 16)
- * @param v
- * @returns {Number[]|Float32Array}
- */
 function translate (a, v) {
   return _translate3(a, v[0], v[1], v[2])
 }
 
-/**
- * Sets the rotation components by angle and axis. (Rotation is counter clockwise.)
- * @param {Number[]|Float32Array} a - 4x4 matrix (Array of length 16)
- * @param r
- * @param x
- * @param y
- * @param z
- * @returns {Number[]|Float32Array}
- */
 function _setRotation3 (a, r, x, y, z) {
   var len = Math.sqrt(x * x + y * y + z * z)
 
@@ -370,26 +302,10 @@ function _setRotation3 (a, r, x, y, z) {
   return a
 }
 
-/**
- * Sets the rotation components by angle and axis. (Rotation is counter clockwise.)
- * @param {Number[]|Float32Array} a - 4x4 matrix (Array of length 16)
- * @param r
- * @param v
- * @returns {Number[]|Float32Array}
- */
 function setRotation (a, r, v) {
   return _setRotation3(a, r, v[0], v[1], v[2])
 }
 
-/**
- * Rotates the matrix by angle and axis. (Rotation is counter clockwise.)
- * @param {Number[]|Float32Array} a - 4x4 matrix (Array of length 16)
- * @param r
- * @param x
- * @param y
- * @param z
- * @returns {Number[]|Float32Array}
- */
 function _rotate3 (a, r, x, y, z) {
   var len = Math.sqrt(x * x + y * y + z * z)
 
@@ -451,12 +367,6 @@ function rotate (a, r, v) {
   return _rotate3(a, r, v[0], v[1], v[2])
 }
 
-/**
- *
- * @param {Number[]|Float32Array} a - 4x4 matrix (Array of length 16)
- * @param b
- * @returns {Number[]|Float32Array}
- */
 function fromQuat (a, b) {
   var x = b[0]
   var y = b[1]
@@ -576,21 +486,6 @@ function ortho (a, left, right, bottom, top, near, far) {
 
   return a
 }
-
-/**
- *
- * @param {Number[]|Float32Array} a
- * @param eyex
- * @param eyey
- * @param eyez
- * @param targetx
- * @param targety
- * @param targetz
- * @param upx
- * @param upy
- * @param upz
- * @returns {Number[]|Float32Array}
- */
 
 function _lookAt9 (a, eyex, eyey, eyez, targetx, targety, targetz, upx, upy, upz) {
   var x0, x1, x2, y0, y1, y2, z0, z1, z2, len
