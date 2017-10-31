@@ -1,9 +1,9 @@
 module.exports = {
-  Mat3: require('./Mat3'),
-  Mat4: require('./Mat4'),
-  Vec2: require('./Vec2'),
-  Vec3: require('./Vec3'),
-  Vec4: require('./Vec4'),
-  Quat: require('./Quat'),
-  Utils: require('./Utils')
+  mat3: require('./mat3'),
+  mat4: require('./mat4'),
+  vec2: require('./vec2'),
+  vec3: require('./vec3'),
+  vec4: require('./vec4'),
+  quat: require('./quat'),
+  utils: require('./utils')
 }
