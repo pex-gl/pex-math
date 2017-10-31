@@ -173,12 +173,17 @@ function copy (a) {
   return a.slice(0)
 }
 
+function addScaled (v, w, n) {
+  return add(v, scale(copy(w), n))
+}
+
 var Vec3 = {
   create: create,
   set: set,
   copy: copy,
   equals: equals,
   add: add,
+  addScaled: addScaled,
   sub: sub,
   scale: scale,
   multMat4: multMat4,

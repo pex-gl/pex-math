@@ -378,6 +378,15 @@ Add a vector with another.
 
 Returns `v` after addition.
 
+### `vec3.addScaled(v, w, n)`
+Add a vector with another scaled vector.
+
+- `v`: vec3
+- `w`: vec3
+- `n`: Number
+
+Returns `v` after addition.
+
 ### `vec3.sub(v, w)`
 Substracts a vector with another.
 
