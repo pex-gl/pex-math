@@ -1,26 +1,3 @@
-/**
- * Returns a 4x4 identity matrix.
- * Row major memory layout
- *
- *   0   1   2   3
- *   4   5   6   7
- *   8   9  10  11
- *  12  13  14  15
- *
- * equivalent to the column major OpenGL spec
- *
- *   0   4   8  12
- *   1   5   9  13
- *   2   6  10  14
- *   3   7  11  15
- *
- *  m00 m10 m20 m30
- *  m01 m11 m21 m31
- *  m02 m12 m22 m32
- *  m03 m13 m23 m33
- *
- * @returns {Number[]}
- */
 function create () {
   return [
     1, 0, 0, 0,
@@ -30,12 +7,6 @@ function create () {
   ]
 }
 
-/**
- * Sets a 4x4 matrix from another 4x4 matrix components.
- * @param {Number[]|Float32Array} a - Dst Matrix (Array of length 16)
- * @param {{Number[]|Float32Array} b - Src Matrix (Array of length 16)
- * @returns {{Number[]|Float32Array}
- */
 function set (a, b) {
   a[0] = b[0]
   a[1] = b[1]
@@ -56,56 +27,6 @@ function set (a, b) {
   return a
 }
 
-/**
- * Sets a 4x4 matrix from single components.
- * @param {Number[]|Float32Array} a - Dst Matrix (Array of length 16)
- * @param {Number} a00
- * @param {Number} a01
- * @param {Number} a02
- * @param {Number} a03
- * @param {Number} a10
- * @param {Number} a11
- * @param {Number} a12
- * @param {Number} a13
- * @param {Number} a20
- * @param {Number} a21
- * @param {Number} a22
- * @param {Number} a23
- * @param {Number} a30
- * @param {Number} a31
- * @param {Number} a32
- * @param {Number} a33
- * @returns {Array|Float32Array
- */
-function set16 (a, a00, a01, a02, a03,
-               a10, a11, a12, a13,
-               a20, a21, a22, a23,
-               a30, a31, a32, a33) {
-  a[0] = a00
-  a[1] = a01
-  a[2] = a02
-  a[3] = a03
-  a[4] = a10
-  a[5] = a11
-  a[6] = a12
-  a[7] = a13
-  a[8] = a20
-  a[9] = a21
-  a[10] = a22
-  a[11] = a23
-  a[12] = a30
-  a[13] = a31
-  a[14] = a32
-  a[15] = a33
-  return a
-}
-
-/**
- * Returns true if two 4x4 matrices are equal.
- * @param {Number[]|Float32Array} a - 4x4 matrix (Array of length 16)
- * @param {Number[]|Float32Array} b - 4x4 matrix (Array of length 16)
- * @returns {boolean}
- */
 function equals (a, b) {
   return a[0] === b[0] &&
     a[1] === b[1] &&
@@ -125,11 +46,6 @@ function equals (a, b) {
     a[15] === b[15]
 }
 
-/**
- * Returns a copy of the src 4x4 matrix.
- * @param {Number[]|Float32Array} a - 4x4 src matrix (Array of length 16)
- * @returns {Number[]|Float32Array}
- */
 function copy (a) {
   return a.slice(0)
 }
@@ -155,7 +71,7 @@ function copy (a) {
  * @param {Number} b33
  * @returns {Number[]|Float32Array}
  */
-function mult16 (a, b00, b01, b02, b03,
+function _mult16 (a, b00, b01, b02, b03,
                 b10, b11, b12, b13,
                 b20, b21, b22, b23,
                 b30, b31, b32, b33) {
@@ -187,12 +103,6 @@ function mult16 (a, b00, b01, b02, b03,
   return a
 }
 
-/**
- * Multiplies a 4x4 matrix with another 4x4 matrix.
- * @param {Number[]|Float32Array} a - 4x4 matrix (Array of length 16)
- * @param {Number[]|Float32Array} b - 4x4 matrix (Array of length 16)
- * @returns {Number[]|Float32Array}
- */
 function mult (a, b) {
   var a00 = a[ 0], a01 = a[ 1], a02 = a[ 2], a03 = a[ 3]
   var a10 = a[ 4], a11 = a[ 5], a12 = a[ 6], a13 = a[ 7]
@@ -227,11 +137,6 @@ function mult (a, b) {
   return a
 }
 
-/**
- * Inverts a 4x4 matrix.
- * @param {Number[]|Float32Array} a - 4x4 matrix (Array of length 16)
- * @returns {Number[]|Float32Array}
- */
 function invert (a) {
   var a00 = a[ 0], a10 = a[ 1], a20 = a[ 2], a30 = a[ 3]
   var a01 = a[ 4], a11 = a[ 5], a21 = a[ 6], a31 = a[ 7]
@@ -288,11 +193,6 @@ function invert (a) {
   return a
 }
 
-/**
- * Transposes a 4x4 matrix.
- * @param {Number[]|Float32Array} a - 4x4 matrix (Array of length 16)
- * @returns {Number[]|Float32Array}
- */
 function transpose (a) {
   var a01 = a[ 1], a02 = a[ 2], a03 = a[ 3]
   var a12 = a [6], a13 = a[ 7]
@@ -319,11 +219,6 @@ function transpose (a) {
   return a
 }
 
-/**
- * Sets a 4x4 matrix to its identity.
- * @param {Number[]|Float32Array} a - 4x4 matrix (Array of length 16)
- * @returns {Number[]|Float32Array}
- */
 function identity (a) {
   a[0] = a[5] = a[10] = a[15] = 1
   a[1] = a[2] = a[3] = a[4] = a[6] = a[7] = a[8] = a[9] = a[11] = a[12] = a[13] = a[14] = 0
@@ -338,21 +233,15 @@ function identity (a) {
  * @param z
  * @returns {Number[]|Float32Array}
  */
-function setScale3 (a, x, y, z) {
+function _setScale3 (a, x, y, z) {
   a[ 0] = x
   a[ 5] = y
   a[10] = z
   return a
 }
 
-/**
- *
- * @param {Number[]|Float32Array} a - 4x4 matrix (Array of length 16)
- * @param v
- * @returns {Number[]|Float32Array}
- */
 function setScale (a, v) {
-  return setScale3(a, v[0], v[1], v[2])
+  return _setScale3(a, v[0], v[1], v[2])
 }
 
 /**
@@ -363,21 +252,15 @@ function setScale (a, v) {
  * @param z
  * @returns {Number[]|Float32Array}
  */
-function scale3 (a, x, y, z) {
-  return mult16(a, x, 0, 0, 0,
+function _scale3 (a, x, y, z) {
+  return _mult16(a, x, 0, 0, 0,
                 0, y, 0, 0,
                 0, 0, z, 0,
                 0, 0, 0, 1)
 }
 
-/**
- *
- * @param {Number[]|Float32Array} a - 4x4 matrix (Array of length 16)
- * @param v
- * @returns {Number[]|Float32Array}
- */
 function scale (a, v) {
-  return scale3(a, v[0], v[1], v[2])
+  return _scale3(a, v[0], v[1], v[2])
 }
 
 /**
@@ -388,21 +271,15 @@ function scale (a, v) {
  * @param z
  * @returns {Number[]|Float32Array}
  */
-function setTranslation3 (a, x, y, z) {
+function _setTranslation3 (a, x, y, z) {
   a[12] = x
   a[13] = y
   a[14] = z
   return a
 }
 
-/**
- *
- * @param {Number[]|Float32Array} a - 4x4 matrix (Array of length 16)
- * @param v
- * @returns {Number[]|Float32Array}
- */
 function setTranslation (a, v) {
-  return setTranslation3(a, v[0], v[1], v[2])
+  return _setTranslation3(a, v[0], v[1], v[2])
 }
 
 /**
@@ -413,8 +290,8 @@ function setTranslation (a, v) {
  * @param z
  * @returns {Number[]|Float32Array}
  */
-function translate3 (a, x, y, z) {
-  return mult16(a, 1, 0, 0, 0,
+function _translate3 (a, x, y, z) {
+  return _mult16(a, 1, 0, 0, 0,
                 0, 1, 0, 0,
                 0, 0, 1, 0,
                 x, y, z, 1)
@@ -427,7 +304,7 @@ function translate3 (a, x, y, z) {
  * @returns {Number[]|Float32Array}
  */
 function translate (a, v) {
-  return translate3(a, v[0], v[1], v[2])
+  return _translate3(a, v[0], v[1], v[2])
 }
 
 /**
@@ -439,7 +316,7 @@ function translate (a, v) {
  * @param z
  * @returns {Number[]|Float32Array}
  */
-function setRotation3 (a, r, x, y, z) {
+function _setRotation3 (a, r, x, y, z) {
   var len = Math.sqrt(x * x + y * y + z * z)
 
   if (len < 0.0001) {
@@ -501,7 +378,7 @@ function setRotation3 (a, r, x, y, z) {
  * @returns {Number[]|Float32Array}
  */
 function setRotation (a, r, v) {
-  return setRotation3(a, r, v[0], v[1], v[2])
+  return _setRotation3(a, r, v[0], v[1], v[2])
 }
 
 /**
@@ -513,7 +390,7 @@ function setRotation (a, r, v) {
  * @param z
  * @returns {Number[]|Float32Array}
  */
-function rotate3 (a, r, x, y, z) {
+function _rotate3 (a, r, x, y, z) {
   var len = Math.sqrt(x * x + y * y + z * z)
 
   if (len < 0.0001) {
@@ -564,137 +441,14 @@ function rotate3 (a, r, x, y, z) {
   var _a22 = a02 * b20 + a12 * b21 + a22 * b22
   var _a23 = a03 * b20 + a13 * b21 + a23 * b22
 
-  return mult16(a, _a00, _a01, _a02, _a03,
+  return _mult16(a, _a00, _a01, _a02, _a03,
                 _a10, _a11, _a12, _a13,
                 _a20, _a21, _a22, _a23,
                 0, 0, 0, 1)
 }
 
-/**
- * Rotates the matrix by angle and axis. (Rotation is counter clockwise.)
- * @param {Number[]|Float32Array} a - 4x4 matrix (Array of length 16)
- * @param r
- * @param v
- * @returns {Number[]|Float32Array}
- */
 function rotate (a, r, v) {
-  return rotate3(a, r, v[0], v[1], v[2])
-}
-
-/**
- * Sets the rotation components by rotation per axis. (Rotation is counter clockwise.)
- * @param {Number[]|Float32Array} a - 4x4 matrix (Array of length 16)
- * @param x
- * @param y
- * @param z
- * @returns {Number[]|Float32Array}
- */
-function setRotationXYZ3 (a, x, y, z) {
-  var cosx = Math.cos(x)
-  var sinx = Math.sin(x)
-  var cosy = Math.cos(y)
-  var siny = Math.sin(y)
-  var cosz = Math.cos(z)
-  var sinz = Math.sin(z)
-
-  // column 1
-  a[ 0] = cosy * cosz
-  a[ 4] = -cosx * sinz + sinx * siny * cosz
-  a[ 8] = sinx * sinz + cosx * siny * cosz
-
-  // column 2
-  a[ 1] = cosy * sinz
-  a[ 5] = cosx * cosz + sinx * siny * sinz
-  a[ 9] = -sinx * cosz + cosx * siny * sinz
-
-  // column 3
-  a[ 2] = -siny
-  a[ 6] = sinx * cosy
-  a[10] = cosx * cosy
-
-  return a
-}
-
-/**
- *
- * @param {Number[]|Float32Array} a - 4x4 matrix (Array of length 16)
- * @param v
- * @returns {Number[]|Float32Array}
- */
-function setRotationXYZ (a, v) {
-  return setRotationXYZ3(a, v[0], v[1], v[2])
-}
-
-/**
- *
- * @param {Number[]|Float32Array} a - 4x4 matrix (Array of length 16)
- * @param x
- * @param y
- * @param z
- * @returns {Number[]|Float32Array}
- */
-function rotateXYZ3 (a, x, y, z) {
-  var cosx = Math.cos(x)
-  var sinx = Math.sin(x)
-  var cosy = Math.cos(y)
-  var siny = Math.sin(y)
-  var cosz = Math.cos(z)
-  var sinz = Math.sin(z)
-
-  var a00 = cosy * cosz
-  var a10 = -cosx * sinz + sinx * siny * cosz
-  var a20 = sinx * sinz + cosx * siny * cosz
-
-  var a01 = cosy * sinz
-  var a11 = cosx * cosz + sinx * siny * sinz
-  var a21 = -sinx * cosz + cosx * siny * sinz
-
-  var a02 = -siny
-  var a12 = sinx * cosy
-  var a22 = cosx * cosy
-
-  return mult16(a, a00, a01, a02, 0,
-                a10, a11, a12, 0,
-                a20, a21, a22, 0,
-                0, 0, 0, 1)
-}
-
-/**
- *
- * @param {Number[]|Float32Array} a - 4x4 matrix (Array of length 16)
- * @param v
- * @returns {Number[]|Float32Array}
- */
-function rotateXYZ (a, v) {
-  return rotateXYZ3(a, v[0], v[1], v[2])
-}
-
-function setRotationFromOnB9 (a, ux, uy, uz, vx, vy, vz, wx, wy, wz) {
-  a[ 0] = ux
-  a[ 1] = uy
-  a[ 2] = uz
-
-  a[ 4] = vx
-  a[ 5] = vy
-  a[ 6] = vz
-
-  a[ 8] = wx
-  a[ 9] = wy
-  a[10] = wz
-
-  return a
-}
-
-/**
- *
- * @param {Number[]|Float32Array} a - 4x4 matrix (Array of length 16)
- * @param u
- * @param v
- * @param w
- * @returns {Number[]|Float32Array}
- */
-function setRotationFromOnB (a, u, v, w) {
-  return setRotationFromOnB9(a, u[0], u[1], u[2], v[0], v[1], v[2], w[0], w[1], w[2])
+  return _rotate3(a, r, v[0], v[1], v[2])
 }
 
 /**
@@ -743,12 +497,6 @@ function fromQuat (a, b) {
   return a
 }
 
-/**
- * Sets a 4x4 matrix from a 3x3 rotation matrix.
- * @param {Number[]|Float32Array} a - 4x4 matrix (Array of length 16)
- * @param {Number[]|Float32Array} b - 3x3 matrix (Array of length 9)
- * @returns {Number[]|Float32Array}
- */
 function fromMat3 (a, b) {
   a[ 0] = b[ 0]
   a[ 1] = b[ 1]
@@ -769,127 +517,6 @@ function fromMat3 (a, b) {
   return a
 }
 
-/**
- *
- * @param x
- * @param y
- * @param z
- * @returns {Number[]|Float32Array}
- */
-function createFromScale3 (x, y, z) {
-  return setScale3(create(), x, y, z)
-}
-
-/**
- *
- * @param v
- * @returns {Number[]|Float32Array}
- */
-function createFromScale (v) {
-  return createFromScale3(v[0], v[1], v[2])
-}
-
-/**
- *
- * @param x
- * @param y
- * @param z
- * @returns {Number[]|Float32Array}
- */
-function createFromTranslation3 (x, y, z) {
-  return setTranslation3(create(), x, y, z)
-}
-
-/**
- *
- * @param v
- * @returns {Number[]|Float32Array}
- */
-function createFromTranslation (v) {
-  return createFromTranslation3(v[0], v[1], v[2])
-}
-
-/**
- *
- * @param r
- * @param x
- * @param y
- * @param z
- * @returns {Number[]|Float32Array}
- */
-function createFromRotation3 (r, x, y, z) {
-  return setRotation3(create(), r, x, y, z)
-}
-
-/**
- *
- * @param r
- * @param v
- * @returns {Number[]|Float32Array}
- */
-function createFromRotation (r, v) {
-  return createFromRotation3(r, v[0], v[1], v[2])
-}
-
-/**
- *
- * @param x
- * @param y
- * @param z
- * @returns {Number[]|Float32Array}
- */
-function createFromRotationXYZ3 (x, y, z) {
-  return setRotationXYZ3(create(), x, y, z)
-}
-
-/**
- *
- * @param v
- * @returns {Number[]|Float32Array}
- */
-function createFromRotationXYZ (v) {
-  return createFromRotationXYZ3(v[0], v[1], v[2])
-}
-
-/**
- *
- * @param ux
- * @param uy
- * @param uz
- * @param vx
- * @param vy
- * @param vz
- * @param wx
- * @param wy
- * @param wz
- * @returns {Number[]|Float32Array}
- */
-function createFromOnB9 (ux, uy, uz, vx, vy, vz, wx, wy, wz) {
-  return setRotationFromOnB9(create(), ux, uy, uz, vx, vy, vz, wx, wy, wz)
-}
-
-/**
- *
- * @param u
- * @param v
- * @param w
- * @returns {Number[]|Float32Array}
- */
-function createFromOnB (u, v, w) {
-  return createFromOnB9(u[0], u[1], u[2], v[0], v[1], v[2], w[0], w[1], w[2])
-}
-
-/**
- *
- * @param a - 4x4 matrix (Array of length 16)
- * @param left
- * @param right
- * @param bottom
- * @param top
- * @param near
- * @param far
- * @returns {Number[]|Float32Array}
- */
 function frustum (a, left, right, bottom, top, near, far) {
   var rl = 1.0 / (right - left)
   var tb = 1.0 / (top - bottom)
@@ -916,15 +543,6 @@ function frustum (a, left, right, bottom, top, near, far) {
   return a
 }
 
-/**
- * Calculate perspective matrix
- * @param  {Mat4} a        - out matrix
- * @param  {Number} fov    - field of view in degrees
- * @param  {Number} aspect - aspect ratio
- * @param  {Number} near   - near clipping plane
- * @param  {Number} far    - far clipping plane distance
- * @return {Mat4}          - returns out matrix
- */
 function perspective (a, fov, aspect, near, far) {
   var f = 1.0 / Math.tan(fov / 180.0 * Math.PI * 0.5)
   var nf = 1.0 / (near - far)
@@ -939,18 +557,6 @@ function perspective (a, fov, aspect, near, far) {
 
   return a
 }
-
-/**
- *
- * @param {Number[]|Float32Array} a - 4x4 matrix (Array of length 16)
- * @param left
- * @param right
- * @param bottom
- * @param top
- * @param near
- * @param far
- * @returns {Number[]|Float32Array}
- */
 
 function ortho (a, left, right, bottom, top, near, far) {
   var lr = left - right
@@ -986,7 +592,7 @@ function ortho (a, left, right, bottom, top, near, far) {
  * @returns {Number[]|Float32Array}
  */
 
-function lookAt9 (a, eyex, eyey, eyez, targetx, targety, targetz, upx, upy, upz) {
+function _lookAt9 (a, eyex, eyey, eyez, targetx, targety, targetz, upx, upy, upz) {
   var x0, x1, x2, y0, y1, y2, z0, z1, z2, len
 
   if (Math.abs(eyex - targetx) < 0.000001 &&
@@ -1059,64 +665,39 @@ function lookAt9 (a, eyex, eyey, eyez, targetx, targety, targetz, upx, upy, upz)
   return a
 }
 
-/**
- *
- * @param {Number[]|Float32Array} a
- * @param from
- * @param to
- * @param up
- * @returns {Number[]|Float32Array}
- */
-
 function lookAt (a, from, to, up) {
-  return lookAt9(a, from[0], from[1], from[2], to[0], to[1], to[2], up[0], up[1], up[2])
+  return _lookAt9(a, from[0], from[1], from[2], to[0], to[1], to[2], up[0], up[1], up[2])
 }
 
 var Mat4 = {
-  create: create,
-  set: set,
-  set16: set16,
-  equals: equals,
-  copy: copy,
-  mult16: mult16,
+  _mult16: _mult16,
+  _setScale3: _setScale3,
+  _scale3: _scale3,
+  _setTranslation3: _setTranslation3,
+  _translate3: _translate3,
+  _setRotation3: _setRotation3,
+  _rotate3: _rotate3,
+  _lookAt9: _lookAt9,
+  // documented
+  fromMat3: fromMat3,
+  fromQuat: fromQuat,
+  setTranslation: setTranslation,
+  setScale: setScale,
+  setRotation: setRotation,
+  translate: translate,
+  scale: scale,
+  rotate: rotate,
+  identity: identity,
   mult: mult,
   invert: invert,
   transpose: transpose,
-  setScale3: setScale3,
-  setScale: setScale,
-  scale3: scale3,
-  scale: scale,
-  setTranslation3: setTranslation3,
-  setTranslation: setTranslation,
-  translate3: translate3,
-  translate: translate,
-  setRotationXYZ3: setRotationXYZ3,
-  setRotationXYZ: setRotationXYZ,
-  rotateXYZ3: rotateXYZ3,
-  rotateXYZ: rotateXYZ,
-  setRotation3: setRotation3,
-  setRotation: setRotation,
-  rotate3: rotate3,
-  rotate: rotate,
-  setRotationFromOnB9: setRotationFromOnB9,
-  setRotationFromOnB: setRotationFromOnB,
-  fromQuat: fromQuat,
-  fromMat3: fromMat3,
-  identity: identity,
-  createFromScale3: createFromScale3,
-  createFromScale: createFromScale,
-  createFromTranslation3: createFromTranslation3,
-  createFromTranslation: createFromTranslation,
-  createFromRotation3: createFromRotation3,
-  createFromRotation: createFromRotation,
-  createFromRotationXYZ: createFromRotationXYZ,
-  createFromRotationXYZ3: createFromRotationXYZ3,
-  createFromOnB9: createFromOnB9,
-  createFromOnB: createFromOnB,
+  equals: equals,
+  copy: copy,
+  create: create,
+  set: set,
   frustum: frustum,
   perspective: perspective,
   ortho: ortho,
-  lookAt9: lookAt9,
   lookAt: lookAt
 }
 
