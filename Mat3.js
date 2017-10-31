@@ -37,7 +37,7 @@ function equals (a, b) {
     a[9] === b[9]
 }
 
-function set9 (a, b00, b01, b02, b10, b11, b12, b20, b21, b22) {
+function _set9 (a, b00, b01, b02, b10, b11, b12, b20, b21, b22) {
   a[0] = b00
   a[1] = b01
   a[2] = b02
@@ -119,33 +119,14 @@ function fromQuat (a, b) {
   return a
 }
 
-/**
- * [Mat3 description]
- * @type {Object}
- */
 var Mat3 = {
-  /**
-* [create description]
-* @type {[type]}
-*/
+  _set9: _set9,
+  // documented
   create: create,
   set: set,
-  set9: set9,
   identity: identity,
-    /**
-  * [equals description]
-  * @type {[type]}
-  */
   equals: equals,
-    /**
-  * [fromMat4 description]
-  * @type {[type]}
-  */
   fromMat4: fromMat4,
-    /**
-  * [fromQuat description]
-  * @type {[type]}
-  */
   fromQuat: fromQuat
 }
 

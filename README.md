@@ -25,10 +25,10 @@ var identityMatrix = mat4.create()
 
 `var mat4 = require('pex-math/mat4')`
 
-#### mat4.create()
- Returns a 4x4 identity matrix.
+### `mat4.create()`
+Returns a 4x4 identity matrix.
 
- Row major memory layout:
+Row major memory layout:
 
 ```
  0   1   2   3
@@ -37,7 +37,7 @@ var identityMatrix = mat4.create()
 12  13  14  15
 ```
 
- Equivalent to the column major OpenGL spec:
+Equivalent to the column major OpenGL spec:
 
 ```
  0   4   8  12
@@ -53,30 +53,30 @@ var identityMatrix = mat4.create()
 
 Returns a new `mat4`.
 
-#### mat4.set(a, b)
-Sets a 4x4 matrix from another 4x4 matrix components.
+### `mat4.set(m, n)`
+Sets a matrix from another matrix.
 
-- `a`:  mat4 - the matrix being set
-- `b`:  mat4 - the matrix used as template
+- `m`:  mat4 - the matrix being set
+- `n`:  mat4 - the matrix used as template
 
 Returns the newly set `a`.
 
-#### mat4.equals(a, b)
+### `mat4.equals(m, n)`
 Compares two matrices.
 
-- `a`: mat4
-- `b`: mat4
+- `m`: mat4
+- `n`: mat4
 
 Returns a `bool`.
 
-#### mat4.copy(m)
-Returns a copy of m.
+### `mat4.copy(m)`
+Returns a copy of a matrix.
 
 - `m`: mat4
 
 Returns a new instance of `m`.
 
-#### mat4.mult(m, n)
+### `mat4.mult(m, n)`
 Multiplies two matrices.
 
 - `m`: mat4
@@ -84,28 +84,28 @@ Multiplies two matrices.
 
 Returns `m` multipled by `n`.
 
-#### mat4.invert(m)
+### `mat4.invert(m)`
 Inverts a matrix.
 
 - `m`: mat4
 
 Returns `m` inverted.
 
-#### mat4.tranpose(m)
+### `mat4.tranpose(m)`
 Transposes a matrix.
 
 - `m`: mat4
 
 Returns `m` transposed.
 
-#### mat4.identity(m)
+### `mat4.identity(m)`
 Sets a matrix to its identity.
 
 - `m`: mat4
 
 Returns `m` as its identity.
 
-#### mat4.setScale(m, v)
+### `mat4.setScale(m, v)`
 Sets the scale of a matrix to a vector.
 
 - `m`: mat4
@@ -113,7 +113,7 @@ Sets the scale of a matrix to a vector.
 
 Returns `m` modified.
 
-#### mat4.setTranslation(m, v)
+### `mat4.setTranslation(m, v)`
 Sets the translation of a matrix to a vector.
 
 - `m`: mat4
@@ -121,7 +121,7 @@ Sets the translation of a matrix to a vector.
 
 Returns `m` modified.
 
-#### mat4.setRotation(m, r, v)
+### `mat4.setRotation(m, r, v)`
 Sets the rotation component of a matrix at an axis to an angle.
 
 - `m`: mat4
@@ -130,7 +130,7 @@ Sets the rotation component of a matrix at an axis to an angle.
 
 Returns `m` modified.
 
-#### mat4.scale(m, v)
+### `mat4.scale(m, v)`
 Scales a matrix by a vector.
 
 - `m`: mat4
@@ -138,7 +138,7 @@ Scales a matrix by a vector.
 
 Returns `m` scaled.
 
-#### mat4.translate(m, v)
+### `mat4.translate(m, v)`
 Translates a matrix by a vector.
 
 - `m`: mat4
@@ -146,8 +146,8 @@ Translates a matrix by a vector.
 
 Returns `m` translated.
 
-#### mat4.rotate(m, r, v)
-Rotates a matrix by an angle at an axis
+### `mat4.rotate(m, r, v)`
+Rotates a matrix by an angle at an axis.
 
 - `m`: mat4
 - `r`: Number - the angle of rotation
@@ -155,7 +155,7 @@ Rotates a matrix by an angle at an axis
 
 Returns `m` rotated.
 
-#### mat4.frustum(m, left, right, bottom, top, near, far)
+### `mat4.frustum(m, left, right, bottom, top, near, far)`
 Create a frustum matrix.
 
 - `m`: mat4
@@ -168,7 +168,7 @@ Create a frustum matrix.
 
 Returns `m`.
 
-#### mat4.perspective(m, fov, aspect, near, far)
+### `mat4.perspective(m, fov, aspect, near, far)`
 Create a perspective matrix.
 
 - `m`: mat4 - out matrix
@@ -179,7 +179,7 @@ Create a perspective matrix.
 
 Returns `m`.
 
-#### mat4.ortho(m, left, right, bottom, top, near, far)
+### `mat4.ortho(m, left, right, bottom, top, near, far)`
 Create a orthographic matrix.
 
 - `m`: mat4
@@ -192,7 +192,7 @@ Create a orthographic matrix.
 
 Returns `m`.
 
-#### mat4.lookAt(m, from, to, up)
+### `mat4.lookAt(m, from, to, up)`
 Calculates a lookAt matrix from a position, target and up vectors.
 
 - `m`: mat4
@@ -202,18 +202,86 @@ Calculates a lookAt matrix from a position, target and up vectors.
 
 Returns `m`.
 
-#### mat4.fromQuat(m, q)
-Sets matrix to a quaternion
+### `mat4.fromQuat(m, q)`
+Sets matrix to a quaternion.
 
 - `m`: mat4
 - `q`: quat
 
 Returns `m`.
 
-#### mat4.fromMat3(m4, m3)
+### `mat4.fromMat3(m4, m3)`
 Sets a 4x4 matrix to a 3x3 matrix.
 
 - `m4`: mat4
 - `m3`: mat3
 
 Returns `m4`.
+
+## Mat3
+
+`var mat3 = require('pex-math/mat3')`
+
+### `mat3.create()`
+Returns a 3x3 identity matrix.
+
+Row major memory layout:
+
+```
+ 0   1   2
+ 3   4   5
+ 6   7   8
+```
+
+ Equivalent to the column major OpenGL spec:
+
+```
+  0   3   6
+  1   4   7
+  2   5   8
+
+ m00 m10 m20
+ m01 m11 m21
+ m02 m12 m22
+```
+
+Returns a new `mat3`.
+
+### `mat3.set(m, n)`
+Sets a matrix from another matrix.
+
+- `m`:  mat3 - the matrix being set
+- `n`:  mat3 - the matrix used as template
+
+Returns the newly set `a`.
+
+### `mat3.identity(m)`
+Sets a matrix to its identity.
+
+- `m`: mat3
+
+Returns `m` as its identity.
+
+### `mat3.equals(m, n)`
+Compares two matrices.
+
+- `m`: mat3
+- `n`: mat3
+
+Returns a `bool`.
+
+### `mat3.fromMat4(m3, m4)`
+Sets a 3x3 matrix to a 4x4 matrix.
+
+- `m3`: mat3
+- `m4`: mat4
+
+Returns `m3`.
+
+### `mat3.fromQuat(m, q)`
+Sets matrix to a quaternion.
+
+- `m`: mat3
+- `q`: quat
+
+Returns `m`.
