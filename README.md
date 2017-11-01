@@ -619,13 +619,13 @@ Sets matrix to a quaternion.
 
 Returns `m`.
 
-### `mat4.fromMat3(m4, m3)`
+### `mat4.fromMat3(m, m3)`
 Sets a 4x4 matrix to a 3x3 matrix.
 
-- `m4`: mat4
+- `m`: mat4
 - `m3`: mat3
 
-Returns `m4`.
+Returns `m`.
 
 ## quat
 
