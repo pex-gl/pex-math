@@ -213,7 +213,7 @@ Scales a vector by a number.
 - `v`: vec3
 - `n`: Number
 
-Returns `v` scales.
+Returns `v` scaled.
 
 ### `vec3.multMat4(v, m)`
 Multiplies a vector by a matrix.
