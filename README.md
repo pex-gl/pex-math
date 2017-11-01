@@ -21,6 +21,424 @@ var identityMatrix = mat4.create()
 
 # API
 
+## vec2
+
+`var vec2 = require('pex-math/vec2')`
+
+### `vec2.create()`
+Returns a new vec2 at 0, 0, 0.
+
+### `vec2.set(v, w)`
+Sets a vector to another vector.
+
+- `v`: vec2 - the vector being set
+- `w`: vec2 - the vector used as template
+
+Returns `v`.
+
+### `vec2.copy(v)`
+Returns a copy of a vector.
+
+- `v`: vec2
+
+Returns a new instance of `v`.
+
+### `vec2.equals(v, w)`
+Compares two vectors.
+
+- `v`: vec2
+- `w`: vec2
+
+Returns a `bool`.
+
+### `vec2.add(v, w)`
+Add a vector with another.
+
+- `v`: vec2
+- `w`: vec2
+
+Returns `v` after addition.
+
+### `vec2.sub(v, w)`
+Substracts a vector with another.
+
+- `v`: vec2
+- `w`: vec2
+
+Returns `v` after substraction.
+
+### `vec2.scale(v, n)`
+Scales a vector by a number.
+
+- `v`: vec2
+- `n`: Number
+
+Returns `v` scales.
+
+### `vec2.dot(v, w)`
+Calculates the dot product of two vectors.
+
+- `v`: vec2
+- `w`: vec2
+
+Returns `v` after calculation.
+
+### `vec2.length(v)`
+Calculates the length of a vector.
+
+- `v`: vec2
+
+Returns the length of `v`.
+
+### `vec2.lengthSq(v)`
+Calculates the squared length of a vector.
+
+- `v`: vec2
+
+Returns the squared length of `v`.
+
+### `vec2.normalize(v)`
+Normalises a vector.
+
+- `v`: vec2
+
+Returns `v` normalised.
+
+### `vec2.distance(v, w)`
+Calculates the distance between two vectors.
+
+- `v`: vec2
+- `w`: vec2
+
+Returns the distance betweeen `v` and `w`.
+
+### `vec2.distanceSq(v, w)`
+Calculates the squared distance between two vectors.
+
+- `v`: vec2
+- `w`: vec2
+
+Returns the squared distance betweeen `v` and `w`.
+
+### `vec2.limit(v, n)`
+Limits a vector to a length.
+
+- `v`: vec2
+- `n`: Number
+
+Returns `v` scaled.
+
+### `vec2.invert(v)`
+Inverts a vector.
+
+- `v`: vec2
+
+Returns `v` inverted.
+
+### `vec2.lerp(v, w, n)`
+Linearly interpolates between two vectors.
+
+- `v`: vec2
+- `w`: vec2
+- `n`: Number - lerp value
+
+Returns `v` lerped.
+
+### `vec2.toString(v, precision)`
+Prints a vector to a string.
+
+- `v`: vec2
+- `precision`: number
+
+Returns a `String`.
+
+## vec3
+
+`var vec3 = require('pex-math/vec3')`
+
+### `vec3.create()`
+Returns a new vec3 at 0, 0, 0.
+
+### `vec3.set(v, w)`
+Sets a vector to another vector.
+
+- `v`: vec3 - the vector being set
+- `w`: vec3 - the vector used as template
+
+Returns `v`.
+
+### `vec3.copy(v)`
+Returns a copy of a vector.
+
+- `v`: vec3
+
+Returns a new instance of `v`.
+
+### `vec3.equals(v, w)`
+Compares two vectors.
+
+- `v`: vec3
+- `w`: vec3
+
+Returns a `bool`.
+
+### `vec3.add(v, w)`
+Add a vector with another.
+
+- `v`: vec3
+- `w`: vec3
+
+Returns `v` after addition.
+
+### `vec3.addScaled(v, w, n)`
+Add a vector with another scaled vector.
+
+- `v`: vec3
+- `w`: vec3
+- `n`: Number
+
+Returns `v` after addition.
+
+### `vec3.sub(v, w)`
+Substracts a vector with another.
+
+- `v`: vec3
+- `w`: vec3
+
+Returns `v` after substraction.
+
+### `vec3.scale(v, n)`
+Scales a vector by a number.
+
+- `v`: vec3
+- `n`: Number
+
+Returns `v` scales.
+
+### `vec3.multMat4(v, m)`
+Multiplies a vector by a matrix.
+
+- `v`: vec3
+- `m`: mat4
+
+Returns `v` after multiplication.
+
+### `vec3.multQuat(v, q)`
+Multiplies a vector by a quaternion.
+
+- `v`: vec3
+- `q`: quat
+
+Returns `v` after multiplication.
+
+### `vec3.dot(v, w)`
+Calculates the dot product of two vectors.
+
+- `v`: vec3
+- `w`: vec3
+
+Returns `v` after calculation.
+
+### `vec3.cross(v, w)`
+Calculates the cross product of two vectors.
+
+- `v`: vec3
+- `w`: vec3
+
+Returns `v` after calculation.
+
+### `vec3.length(v)`
+Calculates the length of a vector.
+
+- `v`: vec3
+
+Returns the length of `v`.
+
+### `vec3.lengthSq(v)`
+Calculates the squared length of a vector.
+
+- `v`: vec3
+
+Returns the squared length of `v`.
+
+### `vec3.normalize(v)`
+Normalises a vector.
+
+- `v`: vec3
+
+Returns `v` normalised.
+
+### `vec3.distance(v, w)`
+Calculates the distance between two vectors.
+
+- `v`: vec3
+- `w`: vec3
+
+Returns the distance betweeen `v` and `w`.
+
+### `vec3.distanceSq(v, w)`
+Calculates the squared distance between two vectors.
+
+- `v`: vec3
+- `w`: vec3
+
+Returns the squared distance betweeen `v` and `w`.
+
+### `vec3.limit(v, n)`
+Limits a vector to a length.
+
+- `v`: vec3
+- `n`: Number
+
+Returns `v` scaled.
+
+### `vec3.invert(v)`
+Inverts a vector.
+
+- `v`: vec3
+
+Returns `v` inverted.
+
+### `vec3.lerp(v, w, n)`
+Linearly interpolates between two vectors.
+
+- `v`: vec3
+- `w`: vec3
+- `n`: Number - lerp value
+
+Returns `v` lerped.
+
+### `vec3.toString(v, precision)`
+Prints a vector to a string.
+
+- `v`: vec3
+- `precision`: number
+
+Returns a `String`.
+
+## vec4
+
+`var vec4 = require('pex-math/vec4')`
+
+### `vec4.create()`
+Returns a new vec4 at 0, 0, 0.
+
+### `vec4.equals(v, w)`
+Compares two vectors.
+
+- `v`: vec4
+- `w`: vec4
+
+Returns a `bool`.
+
+### `vec4.set(v, w)`
+Sets a vector to another vector.
+
+- `v`: vec4 - the vector being set
+- `w`: vec4 - the vector used as template
+
+Returns `v`.
+
+### `vec4.fromVec3(v4, v3)`
+Create a vec4 from vec3.
+
+- `v4`: vec4
+- `v3`: vec3
+
+Returns `v4`.
+
+### `vec4.multMat4(v, m)`
+Multiplies a vector with a matrix.
+
+- `v`: vec4
+- `m`: mat4
+
+Returns `v`.
+
+### `vec4.copy(v)`
+Returns a copy of a vector.
+
+- `v`: vec4
+
+Returns a new instance of `v`.
+
+### `vec4.lerp(v, w, n)`
+Linearly interpolates between two vectors.
+
+- `v`: vec4
+- `w`: vec4
+- `n`: Number - lerp value
+
+Returns `a` lerped.
+
+## mat3
+
+`var mat3 = require('pex-math/mat3')`
+
+### `mat3.create()`
+Returns a 3x3 identity matrix.
+
+Row major memory layout:
+
+```
+ 0   1   2
+ 3   4   5
+ 6   7   8
+```
+
+ Equivalent to the column major OpenGL spec:
+
+```
+  0   3   6
+  1   4   7
+  2   5   8
+
+ m00 m10 m20
+ m01 m11 m21
+ m02 m12 m22
+```
+
+Returns a new `mat3`.
+
+### `mat3.set(m, n)`
+Sets a matrix from another matrix.
+
+- `m`:  mat3 - the matrix being set
+- `n`:  mat3 - the matrix used as template
+
+Returns `m`.
+
+### `mat3.identity(m)`
+Sets a matrix to the identity matrix.
+
+- `m`: mat3
+
+Returns `m` as its identity.
+
+### `mat3.equals(m, n)`
+Compares two matrices.
+
+- `m`: mat3
+- `n`: mat3
+
+Returns a `bool`.
+
+### `mat3.fromMat4(m3, m4)`
+Sets a 3x3 matrix to a 4x4 matrix.
+
+- `m3`: mat3
+- `m4`: mat4
+
+Returns `m3`.
+
+### `mat3.fromQuat(m, q)`
+Sets matrix to a quaternion.
+
+- `m`: mat3
+- `q`: quat
+
+Returns `m`.
+
 ## mat4
 
 `var mat4 = require('pex-math/mat4')`
@@ -218,422 +636,6 @@ Sets a 4x4 matrix to a 3x3 matrix.
 
 Returns `m4`.
 
-## mat3
-
-`var mat3 = require('pex-math/mat3')`
-
-### `mat3.create()`
-Returns a 3x3 identity matrix.
-
-Row major memory layout:
-
-```
- 0   1   2
- 3   4   5
- 6   7   8
-```
-
- Equivalent to the column major OpenGL spec:
-
-```
-  0   3   6
-  1   4   7
-  2   5   8
-
- m00 m10 m20
- m01 m11 m21
- m02 m12 m22
-```
-
-Returns a new `mat3`.
-
-### `mat3.set(m, n)`
-Sets a matrix from another matrix.
-
-- `m`:  mat3 - the matrix being set
-- `n`:  mat3 - the matrix used as template
-
-Returns `m`.
-
-### `mat3.identity(m)`
-Sets a matrix to the identity matrix.
-
-- `m`: mat3
-
-Returns `m` as its identity.
-
-### `mat3.equals(m, n)`
-Compares two matrices.
-
-- `m`: mat3
-- `n`: mat3
-
-Returns a `bool`.
-
-### `mat3.fromMat4(m3, m4)`
-Sets a 3x3 matrix to a 4x4 matrix.
-
-- `m3`: mat3
-- `m4`: mat4
-
-Returns `m3`.
-
-### `mat3.fromQuat(m, q)`
-Sets matrix to a quaternion.
-
-- `m`: mat3
-- `q`: quat
-
-Returns `m`.
-
-## vec4
-
-`var vec4 = require('pex-math/vec4')`
-
-### `vec4.create()`
-Returns a new vec4 at 0, 0, 0.
-
-### `vec4.equals(v, w)`
-Compares two vectors.
-
-- `v`: vec4
-- `w`: vec4
-
-Returns a `bool`.
-
-### `vec4.set(v, w)`
-Sets a vector to another vector.
-
-- `v`: vec4 - the vector being set
-- `w`: vec4 - the vector used as template
-
-Returns `v`.
-
-### `vec4.fromVec3(v4, v3)`
-Create a vec4 from vec3.
-
-- `v4`: vec4
-- `v3`: vec3
-
-Returns `v4`.
-
-### `vec4.multMat4(v, m)`
-Multiplies a vector with a matrix.
-
-- `v`: vec4
-- `m`: mat4
-
-Returns `v`.
-
-### `vec4.copy(v)`
-Returns a copy of a vector.
-
-- `v`: vec4
-
-Returns a new instance of `v`.
-
-### `vec4.lerp(v, w, n)`
-Linearly interpolates between two vectors.
-
-- `v`: vec4
-- `w`: vec4
-- `n`: Number - lerp value
-
-Returns `a` lerped.
-
-## vec3
-`var vec3 = require('pex-math/vec3')`
-
-### `vec3.create()`
-Returns a new vec3 at 0, 0, 0.
-
-### `vec3.set(v, w)`
-Sets a vector to another vector.
-
-- `v`: vec3 - the vector being set
-- `w`: vec3 - the vector used as template
-
-Returns `v`.
-
-### `vec3.copy(v)`
-Returns a copy of a vector.
-
-- `v`: vec3
-
-Returns a new instance of `v`.
-
-### `vec3.equals(v, w)`
-Compares two vectors.
-
-- `v`: vec3
-- `w`: vec3
-
-Returns a `bool`.
-
-### `vec3.add(v, w)`
-Add a vector with another.
-
-- `v`: vec3
-- `w`: vec3
-
-Returns `v` after addition.
-
-### `vec3.addScaled(v, w, n)`
-Add a vector with another scaled vector.
-
-- `v`: vec3
-- `w`: vec3
-- `n`: Number
-
-Returns `v` after addition.
-
-### `vec3.sub(v, w)`
-Substracts a vector with another.
-
-- `v`: vec3
-- `w`: vec3
-
-Returns `v` after substraction.
-
-### `vec3.scale(v, n)`
-Scales a vector by a number.
-
-- `v`: vec3
-- `n`: Number
-
-Returns `v` scales.
-
-### `vec3.multMat4(v, m)`
-Multiplies a vector by a matrix.
-
-- `v`: vec3
-- `m`: mat4
-
-Returns `v` after multiplication.
-
-### `vec3.multQuat(v, q)`
-Multiplies a vector by a quaternion.
-
-- `v`: vec3
-- `q`: quat
-
-Returns `v` after multiplication.
-
-### `vec3.dot(v, w)`
-Calculates the dot product of two vectors.
-
-- `v`: vec3
-- `w`: vec3
-
-Returns `v` after calculation.
-
-### `vec3.cross(v, w)`
-Calculates the cross product of two vectors.
-
-- `v`: vec3
-- `w`: vec3
-
-Returns `v` after calculation.
-
-### `vec3.length(v)`
-Calculates the length of a vector.
-
-- `v`: vec3
-
-Returns the length of `v`.
-
-### `vec3.lengthSq(v)`
-Calculates the squared length of a vector.
-
-- `v`: vec3
-
-Returns the squared length of `v`.
-
-### `vec3.normalize(v)`
-Normalises a vector.
-
-- `v`: vec3
-
-Returns `v` normalised.
-
-### `vec3.distance(v, w)`
-Calculates the distance between two vectors.
-
-- `v`: vec3
-- `w`: vec3
-
-Returns the distance betweeen `v` and `w`.
-
-### `vec3.distanceSq(v, w)`
-Calculates the squared distance between two vectors.
-
-- `v`: vec3
-- `w`: vec3
-
-Returns the squared distance betweeen `v` and `w`.
-
-### `vec3.limit(v, n)`
-Limits a vector to a length.
-
-- `v`: vec3
-- `n`: Number
-
-Returns `v` scaled.
-
-### `vec3.invert(v)`
-Inverts a vector.
-
-- `v`: vec3
-
-Returns `v` inverted.
-
-### `vec3.lerp(v, w, n)`
-Linearly interpolates between two vectors.
-
-- `v`: vec3
-- `w`: vec3
-- `n`: Number - lerp value
-
-Returns `v` lerped.
-
-### `vec3.toString(v, precision)`
-Prints a vector to a string.
-
-- `v`: vec3
-- `precision`: number
-
-Returns a `String`.
-
-## vec2
-`var vec2 = require('pex-math/vec2')`
-
-### `vec2.create()`
-Returns a new vec2 at 0, 0, 0.
-
-### `vec2.set(v, w)`
-Sets a vector to another vector.
-
-- `v`: vec2 - the vector being set
-- `w`: vec2 - the vector used as template
-
-Returns `v`.
-
-### `vec2.copy(v)`
-Returns a copy of a vector.
-
-- `v`: vec2
-
-Returns a new instance of `v`.
-
-### `vec2.equals(v, w)`
-Compares two vectors.
-
-- `v`: vec2
-- `w`: vec2
-
-Returns a `bool`.
-
-### `vec2.add(v, w)`
-Add a vector with another.
-
-- `v`: vec2
-- `w`: vec2
-
-Returns `v` after addition.
-
-### `vec2.sub(v, w)`
-Substracts a vector with another.
-
-- `v`: vec2
-- `w`: vec2
-
-Returns `v` after substraction.
-
-### `vec2.scale(v, n)`
-Scales a vector by a number.
-
-- `v`: vec2
-- `n`: Number
-
-Returns `v` scales.
-
-### `vec2.dot(v, w)`
-Calculates the dot product of two vectors.
-
-- `v`: vec2
-- `w`: vec2
-
-Returns `v` after calculation.
-
-### `vec2.length(v)`
-Calculates the length of a vector.
-
-- `v`: vec2
-
-Returns the length of `v`.
-
-### `vec2.lengthSq(v)`
-Calculates the squared length of a vector.
-
-- `v`: vec2
-
-Returns the squared length of `v`.
-
-### `vec2.normalize(v)`
-Normalises a vector.
-
-- `v`: vec2
-
-Returns `v` normalised.
-
-### `vec2.distance(v, w)`
-Calculates the distance between two vectors.
-
-- `v`: vec2
-- `w`: vec2
-
-Returns the distance betweeen `v` and `w`.
-
-### `vec2.distanceSq(v, w)`
-Calculates the squared distance between two vectors.
-
-- `v`: vec2
-- `w`: vec2
-
-Returns the squared distance betweeen `v` and `w`.
-
-### `vec2.limit(v, n)`
-Limits a vector to a length.
-
-- `v`: vec2
-- `n`: Number
-
-Returns `v` scaled.
-
-### `vec2.invert(v)`
-Inverts a vector.
-
-- `v`: vec2
-
-Returns `v` inverted.
-
-### `vec2.lerp(v, w, n)`
-Linearly interpolates between two vectors.
-
-- `v`: vec2
-- `w`: vec2
-- `n`: Number - lerp value
-
-Returns `v` lerped.
-
-### `vec2.toString(v, precision)`
-Prints a vector to a string.
-
-- `v`: vec2
-- `precision`: number
-
-Returns a `String`.
-
 ## quat
 
 `var quat = require('pex-math/quat')`
@@ -642,7 +644,7 @@ Returns a `String`.
 Create a new quaternion.
 
 ### `quat.equals(q, p)`
-Create a new quaternion.
+Compares two quaternions.
 
 - `q`: quat
 - `p`: quat
@@ -777,7 +779,7 @@ Sets a quaternion to a direction.
 Returns `q`.
 
 ### `quat.slerp(q, p, n)`
-Spherical linear interpolation between two quaternions
+Spherical linear interpolation between two quaternions.
 
 - `q`: quat
 - `p`: quat
@@ -788,7 +790,7 @@ Returns `q`.
 ## utils
 
 ### `utils.lerp(a, b, n)`
-Linear interpolation between two numbers
+Linear interpolation between two numbers.
 
 - `a`: Number
 - `b`: Number
@@ -805,7 +807,7 @@ Clamps a number between two numbers.
 
 Returns a `Number`.
 
-### `utils.smoothstep(n, min, max)
+### `utils.smoothstep(n, min, max)`
 
 - `n`: Number
 - `min`: Number
@@ -813,7 +815,7 @@ Returns a `Number`.
 
 Returns a `Number`.
 
-### `utils.map(n, inStart, inEnd, outStart, outEnd)
+### `utils.map(n, inStart, inEnd, outStart, outEnd)`
 Maps a number from one range to another.
 
 - `n`: Number
