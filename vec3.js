@@ -174,7 +174,11 @@ function copy (a) {
 }
 
 function addScaled (v, w, n) {
-  return add(v, scale(copy(w), n))
+  v[0] += w[0] * n
+  v[1] += w[1] * n
+  v[2] += w[2] * n
+
+  return v
 }
 
 var Vec3 = {

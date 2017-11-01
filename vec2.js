@@ -110,6 +110,13 @@ function toString (a, precision) {
   return s
 }
 
+function addScaled (v, w, n) {
+  v[0] += w[0] * n
+  v[1] += w[1] * n
+
+  return v
+}
+
 var Vec2 = {
   create: create,
   set: set,
