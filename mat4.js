@@ -453,13 +453,13 @@ function frustum (a, left, right, bottom, top, near, far) {
   return a
 }
 
-function perspective (a, fov, aspect, near, far) {
+function perspective (a, fov, aspectRatio, near, far) {
   var f = 1.0 / Math.tan(fov)
   var nf = 1.0 / (near - far)
 
   a[1] = a[2] = a[3] = a[4] = a[6] = a[7] = a[8] = a[9] = a[12] = a[13] = a[15] = 0
 
-  a[ 0] = f / aspect
+  a[ 0] = f / aspectRatio
   a[ 5] = f
   a[10] = (far + near) * nf
   a[11] = -1

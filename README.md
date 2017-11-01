@@ -577,12 +577,12 @@ Create a frustum matrix.
 
 Returns `m`.
 
-### `mat4.perspective(m, fovy, aspect, near, far)`
+### `mat4.perspective(m, fovy, aspectRatio, near, far)`
 Create a perspective matrix.
 
 - `m`: mat4 - out matrix
 - `fovy`: Number - field of view in radians
-- `aspect`: Number - aspect ratio
+- `aspectRatio`: Number - aspect ratio
 - `near`: Number - near clipping plane
 - `far`: Number - far clipping plane
 
