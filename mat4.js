@@ -204,17 +204,6 @@ function identity (a) {
   return a
 }
 
-function _setScale3 (a, x, y, z) {
-  a[ 0] = x
-  a[ 5] = y
-  a[10] = z
-  return a
-}
-
-function setScale (a, v) {
-  return _setScale3(a, v[0], v[1], v[2])
-}
-
 function _scale3 (a, x, y, z) {
   return _mult16(a, x, 0, 0, 0,
                 0, y, 0, 0,
@@ -226,17 +215,6 @@ function scale (a, v) {
   return _scale3(a, v[0], v[1], v[2])
 }
 
-function _setTranslation3 (a, x, y, z) {
-  a[12] = x
-  a[13] = y
-  a[14] = z
-  return a
-}
-
-function setTranslation (a, v) {
-  return _setTranslation3(a, v[0], v[1], v[2])
-}
-
 function _translate3 (a, x, y, z) {
   return _mult16(a, 1, 0, 0, 0,
                 0, 1, 0, 0,
@@ -246,64 +224,6 @@ function _translate3 (a, x, y, z) {
 
 function translate (a, v) {
   return _translate3(a, v[0], v[1], v[2])
-}
-
-function _setRotation3 (a, r, x, y, z) {
-  var len = Math.sqrt(x * x + y * y + z * z)
-
-  if (len < 0.0001) {
-    return null
-  }
-
-  var s, c, t
-  var a00, a01, a02, a03
-  var a10, a11, a12, a13
-  var a20, a21, a22, a23
-  var b00, b01, b02
-  var b10, b11, b12
-  var b20, b21, b22
-
-  len = 1 / len
-
-  x *= len
-  y *= len
-  z *= len
-
-  s = Math.sin(r)
-  c = Math.cos(r)
-  t = 1 - c
-
-  a00 = a11 = a22 = 1
-  a01 = a02 = a03 = a10 = a12 = a13 = a20 = a21 = a23 = 0
-
-  b00 = x * x * t + c
-  b01 = y * x * t + z * s
-  b02 = z * x * t - y * s
-  b10 = x * y * t - z * s
-  b11 = y * y * t + c
-  b12 = z * y * t + x * s
-  b20 = x * z * t + y * s
-  b21 = y * z * t - x * s
-  b22 = z * z * t + c
-
-  a[0 ] = a00 * b00 + a10 * b01 + a20 * b02
-  a[1 ] = a01 * b00 + a11 * b01 + a21 * b02
-  a[2 ] = a02 * b00 + a12 * b01 + a22 * b02
-  a[3 ] = a03 * b00 + a13 * b01 + a23 * b02
-  a[4 ] = a00 * b10 + a10 * b11 + a20 * b12
-  a[5 ] = a01 * b10 + a11 * b11 + a21 * b12
-  a[6 ] = a02 * b10 + a12 * b11 + a22 * b12
-  a[7 ] = a03 * b10 + a13 * b11 + a23 * b12
-  a[8 ] = a00 * b20 + a10 * b21 + a20 * b22
-  a[9 ] = a01 * b20 + a11 * b21 + a21 * b22
-  a[10] = a02 * b20 + a12 * b21 + a22 * b22
-  a[11] = a03 * b20 + a13 * b21 + a23 * b22
-
-  return a
-}
-
-function setRotation (a, r, v) {
-  return _setRotation3(a, r, v[0], v[1], v[2])
 }
 
 function _rotate3 (a, r, x, y, z) {
@@ -561,24 +481,99 @@ function _lookAt9 (a, eyex, eyey, eyez, targetx, targety, targetz, upx, upy, upz
 }
 
 function lookAt (a, from, to, up) {
-  return _lookAt9(a, from[0], from[1], from[2], to[0], to[1], to[2], up[0], up[1], up[2])
+  var eyex = from[0]
+  var eyey = from[1]
+  var eyez = from[2]
+
+  var targetx = to[0]
+  var targety = to[1]
+  var targetz = to[2]
+
+  var upx = up[0]
+  var upy = up[1]
+  var upz = up[2]
+
+  var x0, x1, x2, y0, y1, y2, z0, z1, z2, len
+
+  if (Math.abs(eyex - targetx) < 0.000001 &&
+      Math.abs(eyey - targety) < 0.000001 &&
+      Math.abs(eyez - targetz) < 0.000001) {
+    a[ 0] = 1
+    a[ 1] = a[ 2] = a[ 3] = 0
+    a[ 5] = 1
+    a[ 4] = a[ 6] = a[ 7] = 0
+    a[10] = 1
+    a[ 8] = a[ 9] = a[11] = 0
+    a[15] = 1
+    a[12] = a[13] = a[14] = 0
+
+    return a
+  }
+
+  z0 = eyex - targetx
+  z1 = eyey - targety
+  z2 = eyez - targetz
+
+  len = 1 / Math.sqrt(z0 * z0 + z1 * z1 + z2 * z2)
+  z0 *= len
+  z1 *= len
+  z2 *= len
+
+  x0 = upy * z2 - upz * z1
+  x1 = upz * z0 - upx * z2
+  x2 = upx * z1 - upy * z0
+
+  len = Math.sqrt(x0 * x0 + x1 * x1 + x2 * x2)
+
+  if (len) {
+    len = 1.0 / len
+    x0 *= len
+    x1 *= len
+    x2 *= len
+  }
+
+  y0 = z1 * x2 - z2 * x1
+  y1 = z2 * x0 - z0 * x2
+  y2 = z0 * x1 - z1 * x0
+
+  len = Math.sqrt(y0 * y0 + y1 * y1 + y2 * y2)
+
+  if (len) {
+    len = 1.0 / len
+    x0 *= len
+    x1 *= len
+    x2 *= len
+  }
+
+  a[0] = x0
+  a[1] = y0
+  a[2] = z0
+  a[3] = 0
+  a[4] = x1
+  a[5] = y1
+  a[6] = z1
+  a[7] = 0
+  a[8] = x2
+  a[9] = y2
+  a[10] = z2
+  a[11] = 0
+  a[12] = -(x0 * eyex + x1 * eyey + x2 * eyez)
+  a[13] = -(y0 * eyex + y1 * eyey + y2 * eyez)
+  a[14] = -(z0 * eyex + z1 * eyey + z2 * eyez)
+  a[15] = 1
+
+  return a
 }
 
 var Mat4 = {
   _mult16: _mult16,
-  _setScale3: _setScale3,
   _scale3: _scale3,
-  _setTranslation3: _setTranslation3,
   _translate3: _translate3,
-  _setRotation3: _setRotation3,
   _rotate3: _rotate3,
   _lookAt9: _lookAt9,
   // documented
   fromMat3: fromMat3,
   fromQuat: fromQuat,
-  setTranslation: setTranslation,
-  setScale: setScale,
-  setRotation: setRotation,
   translate: translate,
   scale: scale,
   rotate: rotate,

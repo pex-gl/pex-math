@@ -500,31 +500,6 @@ Sets a matrix to the identity matrix.
 
 Returns `m` as its identity.
 
-### `mat4.setScale(m, v)`
-Sets the scale of a matrix to a vector.
-
-- `m`: mat4
-- `v`: vec3
-
-Returns `m` modified.
-
-### `mat4.setTranslation(m, v)`
-Sets the translation of a matrix to a vector.
-
-- `m`: mat4
-- `v`: vec3
-
-Returns `m` modified.
-
-### `mat4.setRotation(m, r, v)`
-Sets the rotation component of a matrix at an axis to an angle.
-
-- `m`: mat4
-- `r`: Number - the angle of rotation
-- `v`: vec3 - the axis of rotation
-
-Returns `m` modified.
-
 ### `mat4.scale(m, v)`
 Scales a matrix by a vector.
 
