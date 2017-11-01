@@ -128,13 +128,6 @@ Limits a vector to a length.
 
 Returns `v` scaled.
 
-### `vec2.invert(v)`
-Inverts a vector.
-
-- `v`: vec2
-
-Returns `v` inverted.
-
 ### `vec2.lerp(v, w, n)`
 Linearly interpolates between two vectors.
 
@@ -291,13 +284,6 @@ Limits a vector to a length.
 - `n`: Number
 
 Returns `v` scaled.
-
-### `vec3.invert(v)`
-Inverts a vector.
-
-- `v`: vec3
-
-Returns `v` inverted.
 
 ### `vec3.lerp(v, w, n)`
 Linearly interpolates between two vectors.

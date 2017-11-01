@@ -86,12 +86,6 @@ function limit (a, n) {
   return a
 }
 
-function invert (a) {
-  a[0] *= -1
-  a[1] *= -1
-  return a
-}
-
 function lerp (a, b, n) {
   var x = a[0]
   var y = a[1]
@@ -132,7 +126,6 @@ var Vec2 = {
   distance: distance,
   distanceSq: distanceSq,
   limit: limit,
-  invert: invert,
   lerp: lerp,
   toString: toString
 }
