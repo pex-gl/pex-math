@@ -23,10 +23,6 @@ function toDegrees (radians) {
   return radians * 180 / Math.PI
 }
 
-function fraction (n) {
-  return n - Math.floor(n)
-}
-
 function sign (n) {
   return n / Math.abs(n)
 }
@@ -50,11 +46,9 @@ var Utils = {
   lerp: lerp,
   clamp: clamp,
   smoothstep: smoothstep,
-  normalize: normalize,
   map: map,
   toRadians: toRadians,
   toDegrees: toDegrees,
-  fraction: fraction,
   sign: sign,
   isPowerOfTwo: isPowerOfTwo,
   nextPowerOfTwo: nextPowerOfTwo
