@@ -362,15 +362,6 @@ Returns a copy of a vector.
 
 Returns a new instance of `v`.
 
-### `vec4.lerp(v, w, n)`
-Linearly interpolates between two vectors.
-
-- `v`: vec4
-- `w`: vec4
-- `n`: Number - lerp value
-
-Returns `a` lerped.
-
 ## mat3
 
 `var mat3 = require('pex-math/mat3')`

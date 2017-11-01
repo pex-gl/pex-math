@@ -40,28 +40,13 @@ function multMat4 (a, m) {
   return a
 }
 
-function lerp (a, b, n) {
-  var x = a[0]
-  var y = a[1]
-  var z = a[2]
-  var w = a[3]
-
-  a[0] = x + (b[0] - x) * n
-  a[1] = y + (b[1] - y) * n
-  a[2] = z + (b[2] - z) * n
-  a[3] = w + (b[3] - w) * n
-
-  return a
-}
-
 var Vec4 = {
   create: create,
   set: set,
   fromVec3: fromVec3,
   multMat4: multMat4,
   copy: copy,
-  equals: equals,
-  lerp: lerp
+  equals: equals
 }
 
 module.exports = Vec4
