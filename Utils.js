@@ -1,22 +1,18 @@
-function lerp (a, b, t) {
-  return a + (b - a) * t
+function lerp (a, b, n) {
+  return a + (b - a) * n
 }
 
-function clamp (a, min, max) {
-  return Math.max(min, Math.min(a, max))
+function clamp (n, min, max) {
+  return Math.max(min, Math.min(n, max))
 }
 
-function smoothstep (min, max, x) {
-  x = clamp((x - min) / (max - min), 0.0, 1.0)
-  return x * x * (3 - 2 * x)
+function smoothstep (n, min, max) {
+  n = clamp((n - min) / (max - min), 0.0, 1.0)
+  return n * n * (3 - 2 * n)
 }
 
-function normalize (a, start, end) {
-  return (a - start) / (end - start)
-}
-
-function map (a, inStart, inEnd, outStart, outEnd) {
-  return outStart + (outEnd - outStart) * normalize(a, inStart, inEnd)
+function map (n, inStart, inEnd, outStart, outEnd) {
+  return outStart + (outEnd - outStart) * (n - start) / (end - start)
 }
 
 function toRadians (degrees) {
@@ -27,16 +23,27 @@ function toDegrees (radians) {
   return radians * 180 / Math.PI
 }
 
-function frac (a) {
-  return a - Math.floor(a)
+function fraction (n) {
+  return n - Math.floor(n)
 }
 
-function sgn (a) {
-  return a / Math.abs(a)
+function sign (n) {
+  return n / Math.abs(n)
 }
 
-function isPOT (a) {
+function isPowerOfTwo (a) {
   return (a & (a - 1)) === 0
+}
+
+function nextPowerOfTwo (n) {
+  if (n === 0) return 1
+  n--
+  n |= n >> 1
+  n |= n >> 2
+  n |= n >> 4
+  n |= n >> 8
+  n |= n >> 16
+  return n + 1
 }
 
 var Utils = {
@@ -47,9 +54,10 @@ var Utils = {
   map: map,
   toRadians: toRadians,
   toDegrees: toDegrees,
-  frac: frac,
-  sgn: sgn,
-  isPOT: isPOT
+  fraction: fraction,
+  sign: sign,
+  isPowerOfTwo: isPowerOfTwo,
+  nextPowerOfTwo: nextPowerOfTwo
 }
 
 module.exports = Utils

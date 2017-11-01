@@ -785,3 +785,90 @@ Spherical linear interpolation between two quaternions
 
 Returns `q`.
 
+## utils
+
+### `utils.lerp(a, b, n)`
+Linear interpolation between two numbers
+
+- `a`: Number
+- `b`: Number
+- `n`: Number
+
+Returns a `Number`.
+
+### `utils.clamp(n, min, max)`
+Clamps a number between two numbers.
+
+- `n`: Number
+- `min`: Number
+- `max`: Number
+
+Returns a `Number`.
+
+### `utils.smoothstep(n, min, max)
+
+- `n`: Number
+- `min`: Number
+- `max`: Number
+
+Returns a `Number`.
+
+### `utils.map(n, inStart, inEnd, outStart, outEnd)
+Maps a number from one range to another.
+
+- `n`: Number
+- `inStart`: Number
+- `inEnd`: Number
+- `outStart`: Number
+- `outEnd`: Number
+
+Returns a `Number`.
+
+### `toRadians(degrees)`
+Transforms degrees into radians.
+
+- `degrees` - Number
+
+Returns a `Number`.
+
+### `toDegrees(radians)`
+Transforms radians into degrees.
+
+- `radians` - Number
+
+Returns a `Number`.
+
+### `fraction(n)`
+Returns the fractional part of a number.
+
+- `n` - Number
+
+Returns a `Number`.
+
+### `sign(n)`
+Returns the sign of a number.
+
+- `n` - Number
+
+Returns a `Number`.
+
+### `sign(n)`
+Returns the sign of a number.
+
+- `n` - Number
+
+Returns a `Number`.
+
+### `isPowerOfTwo(n)`
+Returns the sign of a number.
+
+- `n` - Number
+
+Returns a `Number`.
+
+### `nextPowerOfTwo(n)`
+Returns the sign of a number.
+
+- `n` - Number
+
+Returns a `Number`.
