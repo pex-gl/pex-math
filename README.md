@@ -73,7 +73,7 @@ Scales a vector by a number.
 - `v`: vec2
 - `n`: Number
 
-Returns `v` scales.
+Returns `v` scaled.
 
 ### `vec2.dot(v, w)`
 Calculates the dot product of two vectors.
