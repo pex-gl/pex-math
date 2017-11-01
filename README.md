@@ -694,16 +694,6 @@ Sets a quaternion to a 4x4 matrix.
 
 Returns `q`.
 
-### `quat.setAxes(q, x, y, z)`
-Set the axes of the a quaternion.
-
-- `q`: quat
-- `x`: vec3
-- `y`: vec3
-- `z`: vec3
-
-Returns `q`.
-
 ### `quat.getAngle(q)`
 Get the angle of a quaternion.
 
@@ -721,21 +711,17 @@ Set euler angles to a quaternion.
 
 Returns `q`.
 
-### `quat.fromDirection(q, direction, up)`
-Sets a quaternion to a direction.
-
-- `q`: quat
-- `direction`: vec3
-- `up`: vec3
-
-Returns `q`.
-
 ### `quat.slerp(q, p, n)`
 Spherical linear interpolation between two quaternions.
 
 - `q`: quat
 - `p`: quat
 - `n`: Number
+
+Returns `q`.
+
+### `quat.fromTo(q, from, to, up)`
+TODO
 
 Returns `q`.
 

@@ -164,31 +164,8 @@ function fromMat4 (a, m) {
                    m[ 8], m[ 9], m[10])
 }
 
-function setAxes9 (a, xx, xy, xz, yx, yy, yz, zx, zy, zz) {
-  return _fromMat39(a, xx, xy, xz, yx, yy, yz, zx, zy, zz)
-}
-
-function setAxes (a, x, y, z) {
-  return setAxes9(a, x[0], x[1], x[2], y[0], y[1], y[2], z[0], z[1], z[2])
-}
-
 function getAngle (a) {
   return Math.acos(a[3]) * 2.0
-}
-
-function fromDirection (a, direction, up) {
-  up = Vec3.set(TEMP_VEC3_0, up === undefined ? Y_AXIS : up)
-
-  var tangent = TEMP_VEC3_1
-  var normal = TEMP_VEC3_2
-  var bitangent = TEMP_VEC3_3
-
-  tangent = Vec3.normalize(Vec3.set(tangent, direction))
-  bitangent = Vec3.normalize(Vec3.cross(Vec3.set(bitangent, up), tangent))
-
-  normal = Vec3.cross(Vec3.set(normal, tangent), bitangent)
-
-  return setAxes(a, bitangent, normal, tangent)
 }
 
 function setEuler (q, yaw, pitch, roll) {
@@ -213,17 +190,11 @@ function setEuler (q, yaw, pitch, roll) {
   return q
 }
 
-function _fromTo9 (a, fromx, fromy, fromz, tox, toy, toz, upx, upy, upz) {
-  var from = Vec3.set3(TEMP_VEC3_0, fromx, fromy, fromz)
-  var to = Vec3.set3(TEMP_VEC3_1, tox, toy, toz)
-  var direction = Vec3.normalize(Vec3.sub(to, from))
-  var up = Vec3.set3(TEMP_VEC3_2, upx, upy, upz)
-
-  return fromDirection(a, direction, up)
-}
-
 function fromTo (a, from, to, up) {
-  return _fromTo9(a, from[0], from[1], from[2], to[0], to[1], to[2], up[0], up[1], up[2])
+  var w = cross(copy(u), v)
+  var q = [w[0], w[1], w[2], 1 + dot(u, v)]
+  normalize(q)
+  return q
 }
 
 function slerp (a, b, t) {
@@ -272,7 +243,6 @@ function slerp (a, b, t) {
 }
 
 var Quat = {
-  _fromTo9: _fromTo9,
   _setAxisAngle3: _setAxisAngle3,
   // documented
   create: create,
@@ -289,11 +259,8 @@ var Quat = {
   setAxisAngle: setAxisAngle,
   fromMat3: fromMat3,
   fromMat4: fromMat4,
-  setAxes9: setAxes9,
-  setAxes: setAxes,
   getAngle: getAngle,
   setEuler: setEuler,
-  fromDirection: fromDirection,
   slerp: slerp,
   fromTo: fromTo
 }
