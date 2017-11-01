@@ -1,118 +1,188 @@
-var assert = require('assert');
-var Vec3   = require('../Vec3');
+var test = require('tape')
+var vec3 = require('../vec3')
 
-//create
-assert.deepEqual(Vec3.create(),[0,0,0]);
+var allMethods = Object.keys(vec3)
+var handledMethods = []
 
-//equals
-assert(Vec3.equals([1,2,3],[1,2,3]));
-assert(!Vec3.equals([1,2,3.0001],[1,2,3]));
+test('vec3.create', function (t) {
+  var expected = [0, 0, 0]
 
-//equals3
-assert(Vec3.equals3([1,2,3],1,2,3));
-assert(!Vec3.equals3([1,2,3.0001],1,2,3));
+  var a = vec3.create()
+  t.deepEqual(a, expected, 'should return new vec3')
 
-//copy
-assert.deepEqual(Vec3.copy([1,2,3]),[1,2,3]);
-assert.deepEqual(Vec3.copy([-1,-2,-3]),[-1,-2,-3]);
+  handledMethods.push('create')
+  t.end()
+})
 
-//set3
-assert.deepEqual(Vec3.set3(Vec3.create(),1,2,3),[1,2,3]);
+test('vec3.equals', function (t) {
+  var a = [1, 2, 3]
+  var b = [1, 2, 3]
+  var c = [1, 2.001, 3]
 
-//set
-assert.deepEqual(Vec3.set(Vec3.create(),[1,2,3]),[1,2,3]);
+  t.true(vec3.equals(a, b), 'equal returns true')
+  t.false(vec3.equals(a, c), 'not equal returns false')
 
-//add
-assert.deepEqual(Vec3.add([1,2,3],[1,2,3]),[2,4,6]);
+  handledMethods.push('equals')
+  t.end()
+})
 
-//add3
-assert.deepEqual(Vec3.add3([1,2,3],1,2,3),[2,4,6]);
+test('vec3.copy', function (t) {
+  var a = [1, 2, 3]
+  var expectedCopyOfA = [1, 2, 3]
 
-//sub
-assert.deepEqual(Vec3.sub([1,2,3],[4,5,6]),[-3,-3,-3]);
+  var c = vec3.copy(a)
+  t.deepEqual(c, expectedCopyOfA, 'should copy')
 
-//sub3
-assert.deepEqual(Vec3.sub3([1,2,3],4,5,6),[-3,-3,-3]);
+  a[0] = 9
+  t.deepEqual(c, expectedCopyOfA, 'should not modify the original')
 
-//scale
-assert.deepEqual(Vec3.scale([1,2,3],2),[2,4,6]);
+  handledMethods.push('copy')
+  t.end()
+})
 
-//multMat4
+test('vec3.set', function (t) {
+  var a = [0, 0, 0]
+  var b = [1, 1, 1]
+  var expected = [1, 1, 1]
 
-//dot
-assert.equal(Vec3.dot([1,2,3],[1,2,3]),14);
+  vec3.set(a, b)
+  t.deepEqual(a, expected, 'should set a vec3')
 
-//cross
-assert.deepEqual(Vec3.cross([1,2,3],[4,5,6]),[-3,6,-3]);
-assert.deepEqual(Vec3.cross([0.5,0.5,0.5],[1,1,1]),[0,0,0]);
+  handledMethods.push('set')
+  t.end()
+})
 
-//cross3
-assert.deepEqual(Vec3.cross3([1,2,3],4,5,6),[-3,6,-3]);
-assert.deepEqual(Vec3.cross3([0.5,0.5,0.5],1,1,1),[0,0,0]);
+test('vec3.add', function (t) {
+  var a = [2, 2, 2]
+  var b = [1, 1, 1]
+  var expected = [3, 3, 3]
 
-//length
-assert.equal(Vec3.length([1,2,3]),Math.sqrt(14));
-assert.equal(Vec3.length([0,0,0]),0);
+  vec3.add(a, b)
+  t.deepEqual(a, expected, 'should add two vec2s')
 
-//lengthSq
-assert.equal(Vec3.lengthSq([1,2,3]),14);
+  handledMethods.push('add')
+  t.end()
+})
 
-//normalize
-assert.deepEqual(Vec3.normalize([2, 0,0]),[1, 0,0]);
-assert.deepEqual(Vec3.normalize([0,-2,0]),[0,-1,0]);
-assert.deepEqual(Vec3.normalize([0,0,-2]),[0,0,-1]);
-assert.deepEqual(Vec3.normalize([1,1,1]),[0.5773502691896258, 0.5773502691896258, 0.5773502691896258]);
-assert.deepEqual(Vec3.normalize([1,2,3]),[0.2672612419124244, 0.5345224838248488, 0.8017837257372732]);
+test('vec3.sub', function (t) {
+  var a = [2, 2, 4]
+  var b = [1, 1, 6]
+  var expected = [1, 1, -2]
 
-//distance
-assert.equal(Vec3.distance([1,0,0],[0,0,0]),1.0);
-assert.equal(Vec3.distance([1,2,3],[4,5,6]),5.196152422706632);
+  vec3.sub(a, b)
+  t.deepEqual(a, expected, 'should substract one vec3 from another')
 
-//distance3
-assert.equal(Vec3.distance3([1,0,0],0,0,0),1.0);
-assert.equal(Vec3.distance3([1,2,3],4,5,6),5.196152422706632);
+  handledMethods.push('sub')
+  t.end()
+})
 
-//distanceSq
-assert.equal(Vec3.distanceSq([1,0,0],[0,0,0]),1.0);
-assert.equal(Vec3.distanceSq([1,2,3],[4,5,6]),27);
+test('vec3.scale', function (t) {
+  var a = [2, 2, 4]
+  var scale = 2
+  var expected = [4, 4, 8]
 
-//distanceSq3
-assert.equal(Vec3.distanceSq3([1,0,0],0,0,0),1.0);
-assert.equal(Vec3.distanceSq3([1,2,3],4,5,6),27);
+  vec3.scale(a, scale)
+  t.deepEqual(a, expected, 'should scale a vec3')
 
-//invert
-assert.deepEqual(Vec3.invert([1,2,3]),[-1,-2,-3]);
-assert.deepEqual(Vec3.invert([-1,-2,-3]),[1,2,3]);
+  handledMethods.push('scale')
+  t.end()
+})
 
-//lerp
-assert.deepEqual(Vec3.lerp([0,0,0],[1,1,1],0.5),[0.5,0.5,0.5]);
-assert.deepEqual(Vec3.lerp([-1,-1,-1],[0,0,0],0.5),[-0.5,-0.5,-0.5]);
+test('vec3.dot', function (t) {
+  var a = [1, 2, 3]
+  var b = [1, 2, 3]
+  var dot = vec3.dot(a, b)
 
-//toZero
-assert.deepEqual(Vec3.toZero([1,2,3]),[0,0,0]);
-assert.deepEqual(Vec3.toZero([-1,-2,-3]),[0,0,0]);
+  t.deepEqual(dot, 14, 'should compute the dot product')
 
-//toOne
-assert.deepEqual(Vec3.toOne([1,2,3]),[1,1,1]);
-assert.deepEqual(Vec3.toOne([-1,-2,-3]),[1,1,1]);
+  handledMethods.push('dot')
+  t.end()
+})
 
-//toMax
-assert.deepEqual(Vec3.toMax([1,2,3]),[Number.MAX_VALUE,Number.MAX_VALUE,Number.MAX_VALUE]);
-assert.deepEqual(Vec3.toMax([-1,-2,-3]),[Number.MAX_VALUE,Number.MAX_VALUE,Number.MAX_VALUE]);
+test('vec3.cross', function (t) {
+  var a = [1, 2, 3]
+  var b = [4, 5, 6]
+  var cross = vec3.cross(a, b)
 
-//toMin
-assert.deepEqual(Vec3.toMin([1,2,3]),[-Number.MAX_VALUE,-Number.MAX_VALUE,-Number.MAX_VALUE]);
-assert.deepEqual(Vec3.toMin([-1,-2,-3]),[-Number.MAX_VALUE,-Number.MAX_VALUE,-Number.MAX_VALUE]);
+  t.deepEqual(cross, [-3, 6, -3], 'should compute the cross product')
 
-//toAbs
-assert.deepEqual(Vec3.toAbs([1,2,3]),[1,2,3]);
-assert.deepEqual(Vec3.toAbs([-1,-2,-3]),[1,2,3]);
+  a = [0.5, 0.5, 0.5]
+  b = [1, 1, 1]
+  cross = vec3.cross(a, b)
 
-//xAxis
-assert.deepEqual(Vec3.xAxis(),[1,0,0]);
+  t.deepEqual(cross, [0, 0, 0], 'should compute the cross product')
 
-//yAxis
-assert.deepEqual(Vec3.yAxis(),[0,1,0]);
+  handledMethods.push('cross')
+  t.end()
+})
 
-//zAxis
-assert.deepEqual(Vec3.zAxis(),[0,0,1]);
+test('vec3.length', function (t) {
+  var a = [1, 2, 3]
+  var b = [0, 0, 0]
+
+  t.deepEqual(vec3.length(a), Math.sqrt(14), 'should compute the length of a vec3')
+  t.deepEqual(vec3.length(b), 0, 'should compute the length of a vec3')
+
+  handledMethods.push('length')
+  t.end()
+})
+
+test('vec3.lengthSq', function (t) {
+  var a = [1, 2, 3]
+  var b = [0, 0, 0]
+
+  t.deepEqual(vec3.lengthSq(a), 14, 'should compute the squared length of a vec3')
+  t.deepEqual(vec3.lengthSq(b), 0, 'should compute the squared length of a vec3')
+
+  handledMethods.push('lengthSq')
+  t.end()
+})
+
+test('vec3.normalize', function (t) {
+  var message = 'should normalize vec3'
+  t.deepEqual(vec3.normalize([2, 0, 0]), [1, 0, 0], message)
+  t.deepEqual(vec3.normalize([0, -2, 0]), [0, -1, 0], message)
+  t.deepEqual(vec3.normalize([0, 0, -2]), [0, 0, -1], message)
+  t.deepEqual(vec3.normalize([1, 1, 1]), [0.5773502691896258, 0.5773502691896258, 0.5773502691896258], message)
+  t.deepEqual(vec3.normalize([1, 2, 3]), [0.2672612419124244, 0.5345224838248488, 0.8017837257372732], message)
+
+  handledMethods.push('normalize')
+  t.end()
+})
+
+// distance
+test('vec3.distance', function (t) {
+  var message = 'should compute the distance between two vec3s'
+  t.equal(vec3.distance([1, 0, 0], [0, 0, 0]), 1.0, message)
+  t.equal(vec3.distance([1, 2, 3], [4, 5, 6]), 5.196152422706632, message)
+
+  handledMethods.push('distance')
+  t.end()
+})
+
+test('vec3.distanceSq', function (t) {
+  var message = 'should compute the squared distance between two vec3s'
+  t.equal(vec3.distanceSq([1, 0, 0], [0, 0, 0]), 1.0, message)
+  t.equal(vec3.distanceSq([1, 2, 3], [4, 5, 6]), 27, message)
+
+  handledMethods.push('distanceSq')
+  t.end()
+})
+
+test('vec3.lerp', function (t) {
+  var message = 'should lerp between two vec3s'
+  t.deepEqual(vec3.lerp([0, 0, 0], [1, 1, 1], 0.5), [0.5, 0.5, 0.5], message)
+  t.deepEqual(vec3.lerp([-1, -1, -1], [0, 0, 0], 0.5), [-0.5, -0.5, -0.5], message)
+
+  handledMethods.push('lerp')
+  t.end()
+})
+
+test('coverage', function (t) {
+  allMethods.forEach(function (name) {
+    if (handledMethods.indexOf(name) == -1) {
+      console.log('missing test for vec3.' + name)
+    }
+  })
+  t.end()
+})

@@ -1,67 +1,80 @@
-var assert = require('assert');
-var Quat   = require('../Quat');
+var assert = require('assert')
+var test = require('tape')
+var quat = require('../quat')
 
-//create
-assert.deepEqual(Quat.create(),[0,0,0,1]);
+var allMethods = Object.keys(quat)
+var handledMethods = []
 
-//equals
-assert(Quat.equals(Quat.create(),[0,0,0,1]));
+test('quat.create', function (t) {
+  t.deepEqual(quat.create(), [0, 0, 0, 1], 'should create new quat')
+  handledMethods.push('create')
+  t.end()
+})
 
-//identity
-assert.deepEqual(Quat.identity([1,2,3,4]),[0,0,0,1]);
+test('quat.equals', function (t) {
+  t.true(quat.equals(quat.create(), [0, 0, 0, 1]), 'should return true')
+  handledMethods.push('equals')
+  t.end()
+})
 
-//copy
-assert.deepEqual(Quat.copy([1,2,3,4]),[1,2,3,4]);
+test('coverage', function (t) {
+  allMethods.forEach(function (name) {
+    if (handledMethods.indexOf(name) === -1) {
+      console.log('missing test for quat.' + name)
+    }
+  })
+  t.end()
+})
 
-//set
-assert.deepEqual(Quat.set([1,2,3,4],[5,6,7,8]),[5,6,7,8]);
+// // identity
+// assert.deepEqual(quat.identity([1, 2, 3, 4]), [0, 0, 0, 1])
 
-//set4
-assert.deepEqual(Quat.set4([1,2,3,4],5,6,7,8),[5,6,7,8]);
+// // copy
+// assert.deepEqual(quat.copy([1, 2, 3, 4]), [1, 2, 3, 4])
 
-//mult
-assert.deepEqual(Quat.mult([1,2,3,4],[5,6,7,8]),[24,48,48,-6]);
-assert.deepEqual(Quat.mult([5,6,7,8],[1,2,3,4]),[32,32,56,-6]);
+// // set
+// assert.deepEqual(quat.set([1, 2, 3, 4], [5, 6, 7, 8]), [5, 6, 7, 8])
 
-//length
-assert.equal(Quat.length([1,2,3,4]),5.477225575051661);
+// // mult
+// assert.deepEqual(quat.mult([1, 2, 3, 4], [5, 6, 7, 8]), [24, 48, 48, -6])
+// assert.deepEqual(quat.mult([5, 6, 7, 8], [1, 2, 3, 4]), [32, 32, 56, -6])
 
-//normalize
-assert.deepEqual(Quat.normalize([0,0,0,5]),[0,0,0,1]);
+// // length
+// assert.equal(quat.length([1, 2, 3, 4]), 5.477225575051661)
 
-//lerp
+// // normalize
+// assert.deepEqual(quat.normalize([0, 0, 0, 5]), [0, 0, 0, 1])
 
-//dot
+// // lerp
 
-//setAxisAngle
-assert.deepEqual(Quat.setAxisAngle(Quat.create(),Math.PI * 0.5,[1,0,0]),[0.7071067811865475, 0, 0, 0.7071067811865476]);
-assert.deepEqual(Quat.setAxisAngle3(Quat.create(),Math.PI * 0.5,1,0,0),[0.7071067811865475, 0, 0, 0.7071067811865476]);
+// // dot
 
-//fromMat3
-//TODO: check, x is inverted, matrix is transposed
-//assert.deepEqual(Quat.fromMat3(Quat.create(),[1,0,0, 0,0,-1, 0,1,0]),[-0.7071067811865475, 0, 0, 0.7071067811865476]);
+// // setAxisAngle
+// assert.deepEqual(quat.setAxisAngle(quat.create(), Math.PI * 0.5, [1, 0, 0]), [0.7071067811865475, 0, 0, 0.7071067811865476])
+// assert.deepEqual(quat._setAxisAngle3(quat.create(), Math.PI * 0.5, 1, 0, 0), [0.7071067811865475, 0, 0, 0.7071067811865476])
 
-//fromMat4
-//TODO: check, x is inverted, matrix is transposed
-//assert.deepEqual(Quat.fromMat4(Quat.create(),[1,0,0,0, 0,0,-1,0, 0,1,0,0, 0,0,0,1]),[-0.7071067811865475, 0, 0, 0.7071067811865476]);
+// // fromMat3
+// // TODO: check, x is inverted, matrix is transposed
+// // assert.deepEqual(quat.fromMat3(quat.create(),[1,0,0, 0,0,-1, 0,1,0]),[-0.7071067811865475, 0, 0, 0.7071067811865476]);
 
-//setAxes9
-//TODO: check, matrix is transposed
+// // fromMat4
+// // TODO: check, x is inverted, matrix is transposed
+// // assert.deepEqual(quat.fromMat4(quat.create(),[1,0,0,0, 0,0,-1,0, 0,1,0,0, 0,0,0,1]),[-0.7071067811865475, 0, 0, 0.7071067811865476]);
 
-//setAxes
-//TODO: check, matrix is transposed
+// // setAxes9
+// // TODO: check, matrix is transposed
 
-//getAxisAngle
-assert.equal(Quat.getAngle(Quat.setAxisAngle(Quat.create(),Math.PI * 0.5,[1,0,0])),Math.PI * 0.5);
+// // setAxes
+// // TODO: check, matrix is transposed
 
-//getAxis
-assert.deepEqual(Quat.getAxis(Quat.setAxisAngle(Quat.create(),Math.PI * 0.5,[1,0,0]),[0,0,0]),[1,0,0]);
+// // getAxisAngle
+// assert.equal(quat.getAngle(quat.setAxisAngle(quat.create(), Math.PI * 0.5, [1, 0, 0])), Math.PI * 0.5)
 
-//fromDirection
-//TODO: check, matrix is transposed
+// // fromDirection
+// // TODO: check, matrix is transposed
 
-//lookAt9
-//TODO: check, matrix is transposed
+// // lookAt9
+// // TODO: check, matrix is transposed
 
-//lookAt
-//TODO: check, matrix is transposed
+// // lookAt
+// // TODO: check, matrix is transposed
