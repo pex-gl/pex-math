@@ -17,7 +17,6 @@ bench('mat4/translate', function (b) {
   b.end()
 })
 
-
 bench('mat4/rotate', function (b) {
   var mat4 = pexMat4.create()
 
@@ -30,7 +29,7 @@ bench('mat4/lookAt', function (b) {
   var mat4 = pexMat4.create()
 
   b.start()
-  pexMat4.lookAt(mat4, [0, 4, 2], [0, 0, 0], [0, 1 ,0])
+  pexMat4.lookAt(mat4, [0, 4, 2], [0, 0, 0], [0, 1, 0])
   b.end()
 })
 
