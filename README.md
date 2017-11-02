@@ -674,7 +674,7 @@ Set the angle at an axis of a quaternion.
 
 - `q`: quat
 - `axis`: vec3
-- `angle`: quat
+- `angle`: Number
 
 Returns `q`.
 
