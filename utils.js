@@ -12,7 +12,7 @@ function smoothstep (n, min, max) {
 }
 
 function map (n, inStart, inEnd, outStart, outEnd) {
-  return outStart + (outEnd - outStart) * (n - start) / (end - start)
+  return outStart + (outEnd - outStart) * (n - inStart) / (inEnd - inStart)
 }
 
 function toRadians (degrees) {
