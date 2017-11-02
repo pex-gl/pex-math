@@ -121,6 +121,7 @@ var Vec2 = {
   copy: copy,
   equals: equals,
   add: add,
+  addScaled: addScaled,
   sub: sub,
   scale: scale,
   dot: dot,
