@@ -67,11 +67,11 @@ Substracts a vector with another.
 
 Returns `v` after substraction.
 
-### `vec2.scale(v, n)`
+### `vec2.scale(v, s)`
 Scales a vector by a number.
 
 - `v`: vec2
-- `n`: Number
+- `s`: Number
 
 Returns `v` scaled.
 
@@ -120,20 +120,20 @@ Calculates the squared distance between two vectors.
 
 Returns the squared distance betweeen `v` and `w`.
 
-### `vec2.limit(v, n)`
+### `vec2.limit(v, s)`
 Limits a vector to a length.
 
 - `v`: vec2
-- `n`: Number
+- `s`: Number
 
 Returns `v` scaled.
 
-### `vec2.lerp(v, w, n)`
+### `vec2.lerp(v, w, t)`
 Linearly interpolates between two vectors.
 
 - `v`: vec2
 - `w`: vec2
-- `n`: Number - lerp value
+- `t`: Number - lerp value
 
 Returns `v` lerped.
 
@@ -183,12 +183,12 @@ Add a vector with another.
 
 Returns `v` after addition.
 
-### `vec3.addScaled(v, w, n)`
+### `vec3.addScaled(v, w, s)`
 Add a vector with another scaled vector.
 
 - `v`: vec3
 - `w`: vec3
-- `n`: Number
+- `s`: Number
 
 Returns `v` after addition.
 
@@ -200,11 +200,11 @@ Substracts a vector with another.
 
 Returns `v` after substraction.
 
-### `vec3.scale(v, n)`
+### `vec3.scale(v, s)`
 Scales a vector by a number.
 
 - `v`: vec3
-- `n`: Number
+- `s`: Number
 
 Returns `v` scaled.
 
@@ -277,28 +277,28 @@ Calculates the squared distance between two vectors.
 
 Returns the squared distance betweeen `v` and `w`.
 
-### `vec3.limit(v, n)`
+### `vec3.limit(v, s)`
 Limits a vector to a length.
 
 - `v`: vec3
-- `n`: Number
+- `s`: Number
 
 Returns `v` scaled.
 
-### `vec3.lerp(v, w, n)`
+### `vec3.lerp(v, w, t)`
 Linearly interpolates between two vectors.
 
 - `v`: vec3
 - `w`: vec3
-- `n`: Number - lerp value
+- `t`: Number - lerp value
 
 Returns `v` lerped.
 
-### `vec3.toString(v, precision)`
+### `vec3.toString(v, p)`
 Prints a vector to a string.
 
 - `v`: vec3
-- `precision`: number
+- `p`: Number - precision
 
 Returns a `String`.
 
@@ -325,10 +325,10 @@ Sets a vector to another vector.
 
 Returns `v`.
 
-### `vec4.fromVec3(v4, v3)`
+### `vec4.fromVec3(v, v3)`
 Create a vec4 from vec3.
 
-- `v4`: vec4
+- `v`: vec4
 - `v3`: vec3
 
 Returns `v4`.
@@ -400,10 +400,10 @@ Compares two matrices.
 
 Returns a `bool`.
 
-### `mat3.fromMat4(m3, m4)`
+### `mat3.fromMat4(m, m4)`
 Sets a 3x3 matrix to a 4x4 matrix.
 
-- `m3`: mat3
+- `m`: mat3
 - `m4`: mat4
 
 Returns `m3`.
@@ -711,12 +711,12 @@ Set euler angles to a quaternion.
 
 Returns `q`.
 
-### `quat.slerp(q, p, n)`
+### `quat.slerp(q, p, t)`
 Spherical linear interpolation between two quaternions.
 
 - `q`: quat
 - `p`: quat
-- `n`: Number
+- `t`: Number
 
 Returns `q`.
 
@@ -727,36 +727,36 @@ Returns `q`.
 
 ## utils
 
-### `utils.lerp(a, b, n)`
+### `utils.lerp(a, b, t)`
 Linear interpolation between two numbers.
 
 - `a`: Number
 - `b`: Number
-- `n`: Number
+- `t`: Number
 
 Returns a `Number`.
 
-### `utils.clamp(n, min, max)`
+### `utils.clamp(a, min, max)`
 Clamps a number between two numbers.
 
-- `n`: Number
+- `a`: Number
 - `min`: Number
 - `max`: Number
 
 Returns a `Number`.
 
-### `utils.smoothstep(n, min, max)`
+### `utils.smoothstep(a, min, max)`
 
-- `n`: Number
+- `a`: Number
 - `min`: Number
 - `max`: Number
 
 Returns a `Number`.
 
-### `utils.map(n, inStart, inEnd, outStart, outEnd)`
+### `utils.map(a, inStart, inEnd, outStart, outEnd)`
 Maps a number from one range to another.
 
-- `n`: Number
+- `a`: Number
 - `inStart`: Number
 - `inEnd`: Number
 - `outStart`: Number
@@ -778,37 +778,37 @@ Transforms radians into degrees.
 
 Returns a `Number`.
 
-### `fraction(n)`
+### `fraction(a)`
 Returns the fractional part of a number.
 
-- `n` - Number
+- `a` - Number
 
 Returns a `Number`.
 
-### `sign(n)`
+### `sign(a)`
 Returns the sign of a number.
 
-- `n` - Number
+- `a` - Number
 
 Returns a `Number`.
 
-### `sign(n)`
+### `sign(a)`
 Returns the sign of a number.
 
-- `n` - Number
+- `a` - Number
 
 Returns a `Number`.
 
-### `isPowerOfTwo(n)`
+### `isPowerOfTwo(a)`
 Returns the sign of a number.
 
-- `n` - Number
+- `a` - Number
 
 Returns a `Number`.
 
-### `nextPowerOfTwo(n)`
+### `nextPowerOfTwo(a)`
 Returns the sign of a number.
 
-- `n` - Number
+- `a` - Number
 
 Returns a `Number`.
