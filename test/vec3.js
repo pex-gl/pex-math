@@ -180,7 +180,7 @@ test('vec3.lerp', function (t) {
 
 test('coverage', function (t) {
   allMethods.forEach(function (name) {
-    if (handledMethods.indexOf(name) == -1) {
+    if (handledMethods.indexOf(name) === -1) {
       console.log('missing test for vec3.' + name)
     }
   })
