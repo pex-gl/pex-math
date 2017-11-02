@@ -33,10 +33,10 @@ function multMat4 (a, m) {
   var y = a[1]
   var z = a[2]
   var w = a[3]
-  a[0] = m[ 0] * x + m[ 4] * y + m[ 8] * z + m[12] * w
-  a[1] = m[ 1] * x + m[ 5] * y + m[ 9] * z + m[13] * w
-  a[2] = m[ 2] * x + m[ 6] * y + m[10] * z + m[14] * w
-  a[3] = m[ 3] * x + m[ 7] * y + m[11] * z + m[15] * w
+  a[0] = m[0] * x + m[4] * y + m[8] * z + m[12] * w
+  a[1] = m[1] * x + m[5] * y + m[9] * z + m[13] * w
+  a[2] = m[2] * x + m[6] * y + m[10] * z + m[14] * w
+  a[3] = m[3] * x + m[7] * y + m[11] * z + m[15] * w
   return a
 }
 
