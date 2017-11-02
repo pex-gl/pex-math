@@ -669,12 +669,12 @@ Calculates the dot product of two quaternions.
 
 Returns the dot product of `q` and `p`.
 
-### `quat.setAxisAngle(q, angle, v)`
+### `quat.setAxisAngle(q, axis, angle)`
 Set the angle at an axis of a quaternion.
 
 - `q`: quat
+- `axis`: vec3
 - `angle`: quat
-- `v`: vec3
 
 Returns `q`.
 

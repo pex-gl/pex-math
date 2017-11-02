@@ -1,3 +1,4 @@
+var assert = require('assert')
 var Vec3 = require('./Vec3')
 
 var EPSILON = Math.pow(2, -24)
@@ -97,18 +98,15 @@ function dot (a, b) {
   return a[0] * b[0] + a[1] * b[1] + a[2] * b[2] + a[3] * b[3]
 }
 
-function _setAxisAngle3 (a, angle, x, y, z) {
+function setAxisAngle (a, axis, angle) {
+  assert(axis.length !== undefined, 'quat.setAxisAngle: axis should be vec3')
   var angle_2 = angle * 0.5
   var sin_2 = Math.sin(angle_2)
-  a[0] = x * sin_2
-  a[1] = y * sin_2
-  a[2] = z * sin_2
+  a[0] = v[0] * sin_2
+  a[1] = v[1] * sin_2
+  a[2] = v[2] * sin_2
   a[3] = Math.cos(angle_2)
   return normalize(a)
-}
-
-function setAxisAngle (a, angle, v) {
-  return _setAxisAngle3(a, angle, v[0], v[1], v[2])
 }
 
 function _fromMat39 (a, m0, m1, m2,
