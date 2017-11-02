@@ -1,4 +1,3 @@
-var assert = require('assert')
 var test = require('tape')
 var quat = require('../quat')
 
