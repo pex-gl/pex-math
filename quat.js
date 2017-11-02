@@ -1,13 +1,7 @@
 var assert = require('assert')
-var Vec3 = require('./Vec3')
+var vec3 = require('./vec3')
 
 var EPSILON = Math.pow(2, -24)
-
-var Y_AXIS = [0, 1, 0]
-var TEMP_VEC3_0 = [0, 0, 0]
-var TEMP_VEC3_1 = [0, 0, 0]
-var TEMP_VEC3_2 = [0, 0, 0]
-var TEMP_VEC3_3 = [0, 0, 0]
 
 function create () {
   return [0, 0, 0, 1]
@@ -100,12 +94,12 @@ function dot (a, b) {
 
 function setAxisAngle (a, axis, angle) {
   assert(axis.length !== undefined, 'quat.setAxisAngle: axis should be vec3')
-  var angle_2 = angle * 0.5
-  var sin_2 = Math.sin(angle_2)
-  a[0] = v[0] * sin_2
-  a[1] = v[1] * sin_2
-  a[2] = v[2] * sin_2
-  a[3] = Math.cos(angle_2)
+  var angle2 = angle * 0.5
+  var sin2 = Math.sin(angle2)
+  a[0] = axis[0] * sin2
+  a[1] = axis[1] * sin2
+  a[2] = axis[2] * sin2
+  a[3] = Math.cos(angle2)
   return normalize(a)
 }
 
@@ -122,7 +116,6 @@ function _fromMat39 (a, m0, m1, m2,
     a[0] = (m5 - m7) * s
     a[1] = (m6 - m2) * s
     a[2] = (m1 - m3) * s
-
   } else if ((m0 > m4) && (m0 > m8)) {
     s = Math.sqrt(1.0 + m0 - m4 - m8)
     a[0] = s * 0.5
@@ -130,7 +123,6 @@ function _fromMat39 (a, m0, m1, m2,
     a[1] = (m1 + m3) * s
     a[2] = (m6 + m2) * s
     a[3] = (m5 - m7) * s
-
   } else if (m4 > m8) {
     s = Math.sqrt(1.0 + m4 - m0 - m8)
     a[1] = s * 0.5
@@ -138,7 +130,6 @@ function _fromMat39 (a, m0, m1, m2,
     a[0] = (m1 + m3) * s
     a[2] = (m5 + m7) * s
     a[3] = (m6 - m2) * s
-
   } else {
     s = Math.sqrt(1.0 + m8 - m0 - m4)
     a[2] = s * 0.5
@@ -157,9 +148,9 @@ function fromMat3 (a, m) {
 }
 
 function fromMat4 (a, m) {
-  return _fromMat39(a, m[ 0], m[ 1], m[ 2],
-                   m[ 4], m[ 5], m[ 6],
-                   m[ 8], m[ 9], m[10])
+  return _fromMat39(a, m[0], m[1], m[2],
+                   m[4], m[5], m[6],
+                   m[8], m[9], m[10])
 }
 
 function getAngle (a) {
@@ -188,12 +179,18 @@ function setEuler (q, yaw, pitch, roll) {
   return q
 }
 
-function fromTo (a, from, to, up) {
-  var w = cross(copy(u), v)
-  var q = [w[0], w[1], w[2], 1 + dot(u, v)]
-  normalize(q)
-  return q
-}
+var fromTo = (function () {
+  var u = []
+  return function (q, v, w) {
+    u = vec3.cross(vec3.set(u, v), w)
+    q[0] = u[0]
+    q[1] = u[1]
+    q[2] = u[2]
+    q[3] = 1 + vec3.dot(v, w)
+    normalize(q)
+    return q
+  }
+})()
 
 function slerp (a, b, t) {
   // http://jsperf.com/quaternion-slerp-implementations
@@ -241,8 +238,6 @@ function slerp (a, b, t) {
 }
 
 var Quat = {
-  _setAxisAngle3: _setAxisAngle3,
-  // documented
   create: create,
   equals: equals,
   identity: identity,
