@@ -63,11 +63,15 @@ function normalize (a) {
 }
 
 function distance (a, b) {
-  return distance2(a, b[0], b[1])
+  var dx = b[0] - a[0]
+  var dy = b[1] - a[1]
+  return Math.sqrt(dx * dx + dy * dy)
 }
 
 function distanceSq (a, b) {
-  return distanceSq2(a, b[0], b[1], b[2])
+  var dx = b[0] - a[0]
+  var dy = b[1] - a[1]
+  return dx * dx + dy * dy
 }
 
 function limit (a, n) {
