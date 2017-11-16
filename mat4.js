@@ -431,9 +431,9 @@ function frustum (a, left, right, bottom, top, near, far) {
 }
 
 function perspective (a, fovy, aspectRatio, near, far) {
-  assert(fovy < Math.PI, 'mat4.perpsective: horizontal field of view should be in radians (0 to Pi)')
+  assert(fovy < Math.PI, 'mat4.perpsective: vertical field of view should be in radians (0 to PI)')
 
-  var f = 1.0 / Math.tan(fovy)
+  var f = 1.0 / Math.tan(fovy * 0.5)
   var nf = 1.0 / (near - far)
 
   a[1] = a[2] = a[3] = a[4] = a[6] = a[7] = a[8] = a[9] = a[12] = a[13] = a[15] = 0
