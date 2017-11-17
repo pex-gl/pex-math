@@ -4,7 +4,8 @@
   "description": "Array based vector, qaternion and matrix math for the pex library",
   "main": "index.js",
   "scripts": {
-    "test": "tape ./test/*.js"
+    "test": "tape ./test/*.js",
+    "benchmark": "node benchmark/bench-pex.js > pex-math && node benchmark/bench-gl-matrix.js > gl-matrix && nanobench-compare gl-matrix pex-math && rm pex-math && rm gl-matrix"
   },
   "repository": {
     "type": "git",
@@ -33,6 +34,9 @@
   },
   "homepage": "https://github.com/pex-gl/pex-math",
   "devDependencies": {
+    "gl-matrix": "^2.4.0",
+    "nanobench": "^2.1.0",
     "tape": "^4.0.0"
-  }
+  },
+  "dependencies": {}
 }

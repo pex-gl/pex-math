@@ -1,12 +1,7 @@
-var Vec3 = require('./Vec3')
+var assert = require('assert')
+var vec3 = require('./vec3')
 
 var EPSILON = Math.pow(2, -24)
-
-var Y_AXIS = [0, 1, 0]
-var TEMP_VEC3_0 = [0, 0, 0]
-var TEMP_VEC3_1 = [0, 0, 0]
-var TEMP_VEC3_2 = [0, 0, 0]
-var TEMP_VEC3_3 = [0, 0, 0]
 
 function create () {
   return [0, 0, 0, 1]
@@ -34,14 +29,6 @@ function set (a, b) {
   a[1] = b[1]
   a[2] = b[2]
   a[3] = b[3]
-  return a
-}
-
-function set4 (a, x, y, z, w) {
-  a[0] = x
-  a[1] = y
-  a[2] = z
-  a[3] = w
   return a
 }
 
@@ -105,21 +92,18 @@ function dot (a, b) {
   return a[0] * b[0] + a[1] * b[1] + a[2] * b[2] + a[3] * b[3]
 }
 
-function setAxisAngle3 (a, angle, x, y, z) {
-  var angle_2 = angle * 0.5
-  var sin_2 = Math.sin(angle_2)
-  a[0] = x * sin_2
-  a[1] = y * sin_2
-  a[2] = z * sin_2
-  a[3] = Math.cos(angle_2)
+function setAxisAngle (a, axis, angle) {
+  assert(axis.length !== undefined, 'quat.setAxisAngle: axis should be vec3')
+  var angle2 = angle * 0.5
+  var sin2 = Math.sin(angle2)
+  a[0] = axis[0] * sin2
+  a[1] = axis[1] * sin2
+  a[2] = axis[2] * sin2
+  a[3] = Math.cos(angle2)
   return normalize(a)
 }
 
-function setAxisAngle (a, angle, v) {
-  return setAxisAngle3(a, angle, v[0], v[1], v[2])
-}
-
-function fromMat39 (a, m0, m1, m2,
+function _fromMat39 (a, m0, m1, m2,
                    m3, m4, m5,
                    m6, m7, m8) {
   var trace = m0 + m4 + m8
@@ -132,7 +116,6 @@ function fromMat39 (a, m0, m1, m2,
     a[0] = (m5 - m7) * s
     a[1] = (m6 - m2) * s
     a[2] = (m1 - m3) * s
-
   } else if ((m0 > m4) && (m0 > m8)) {
     s = Math.sqrt(1.0 + m0 - m4 - m8)
     a[0] = s * 0.5
@@ -140,7 +123,6 @@ function fromMat39 (a, m0, m1, m2,
     a[1] = (m1 + m3) * s
     a[2] = (m6 + m2) * s
     a[3] = (m5 - m7) * s
-
   } else if (m4 > m8) {
     s = Math.sqrt(1.0 + m4 - m0 - m8)
     a[1] = s * 0.5
@@ -148,7 +130,6 @@ function fromMat39 (a, m0, m1, m2,
     a[0] = (m1 + m3) * s
     a[2] = (m5 + m7) * s
     a[3] = (m6 - m2) * s
-
   } else {
     s = Math.sqrt(1.0 + m8 - m0 - m4)
     a[2] = s * 0.5
@@ -161,48 +142,19 @@ function fromMat39 (a, m0, m1, m2,
 }
 
 function fromMat3 (a, m) {
-  return fromMat39(a, m[0], m[1], m[2],
+  return _fromMat39(a, m[0], m[1], m[2],
                    m[3], m[4], m[5],
                    m[6], m[7], m[8])
 }
 
 function fromMat4 (a, m) {
-  return fromMat39(a, m[ 0], m[ 1], m[ 2],
-                   m[ 4], m[ 5], m[ 6],
-                   m[ 8], m[ 9], m[10])
-}
-
-function setAxes9 (a, xx, xy, xz, yx, yy, yz, zx, zy, zz) {
-  return fromMat39(a, xx, xy, xz, yx, yy, yz, zx, zy, zz)
-}
-
-function setAxes (a, x, y, z) {
-  return setAxes9(a, x[0], x[1], x[2], y[0], y[1], y[2], z[0], z[1], z[2])
+  return _fromMat39(a, m[0], m[1], m[2],
+                   m[4], m[5], m[6],
+                   m[8], m[9], m[10])
 }
 
 function getAngle (a) {
   return Math.acos(a[3]) * 2.0
-}
-
-function getAxisAngle (a, out) {
-  out[3] = getAngle(a)
-  getAxis(a, out)
-  return out
-}
-
-function fromDirection (a, direction, up) {
-  up = Vec3.set(TEMP_VEC3_0, up === undefined ? Y_AXIS : up)
-
-  var tangent = TEMP_VEC3_1
-  var normal = TEMP_VEC3_2
-  var bitangent = TEMP_VEC3_3
-
-  tangent = Vec3.normalize(Vec3.set(tangent, direction))
-  bitangent = Vec3.normalize(Vec3.cross(Vec3.set(bitangent, up), tangent))
-
-  normal = Vec3.cross(Vec3.set(normal, tangent), bitangent)
-
-  return setAxes(a, bitangent, normal, tangent)
 }
 
 function setEuler (q, yaw, pitch, roll) {
@@ -227,27 +179,18 @@ function setEuler (q, yaw, pitch, roll) {
   return q
 }
 
-function fromTo9 (a, fromx, fromy, fromz, tox, toy, toz, upx, upy, upz) {
-  var from = Vec3.set3(TEMP_VEC3_0, fromx, fromy, fromz)
-  var to = Vec3.set3(TEMP_VEC3_1, tox, toy, toz)
-  var direction = Vec3.normalize(Vec3.sub(to, from))
-  var up = Vec3.set3(TEMP_VEC3_2, upx, upy, upz)
-
-  return fromDirection(a, direction, up)
-}
-
-function fromTo (a, from, to, up) {
-  return fromTo9(a, from[0], from[1], from[2], to[0], to[1], to[2], up[0], up[1], up[2])
-}
-
-function getAxis (a, out) {
-  var w = a[3]
-  var s = 1.0 / Math.sqrt(1.0 - w * w)
-  out[0] = a[0] * s
-  out[1] = a[1] * s
-  out[2] = a[2] * s
-  return out
-}
+var fromTo = (function () {
+  var u = []
+  return function (q, v, w) {
+    u = vec3.cross(vec3.set(u, v), w)
+    q[0] = u[0]
+    q[1] = u[1]
+    q[2] = u[2]
+    q[3] = 1 + vec3.dot(v, w)
+    normalize(q)
+    return q
+  }
+})()
 
 function slerp (a, b, t) {
   // http://jsperf.com/quaternion-slerp-implementations
@@ -294,38 +237,25 @@ function slerp (a, b, t) {
   return a
 }
 
-function createFromEuler (yaw, pitch, roll) {
-  return setEuler(create(), yaw, pitch, roll)
-}
-
 var Quat = {
   create: create,
   equals: equals,
   identity: identity,
   copy: copy,
   set: set,
-  set4: set4,
   mult: mult,
   invert: invert,
   conjugate: conjugate,
   dot: dot,
   length: length,
   normalize: normalize,
-  setAxisAngle3: setAxisAngle3,
   setAxisAngle: setAxisAngle,
   fromMat3: fromMat3,
   fromMat4: fromMat4,
-  setAxes9: setAxes9,
-  setAxes: setAxes,
   getAngle: getAngle,
-  getAxis: getAxis,
-  getAxisAngle: getAxisAngle,
   setEuler: setEuler,
-  fromDirection: fromDirection,
   slerp: slerp,
-  fromTo9: fromTo9,
-  fromTo: fromTo,
-  createFromEuler: createFromEuler
+  fromTo: fromTo
 }
 
 module.exports = Quat
