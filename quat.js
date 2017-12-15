@@ -103,9 +103,7 @@ function setAxisAngle (a, axis, angle) {
   return normalize(a)
 }
 
-function _fromMat39 (a, m0, m1, m2,
-                   m3, m4, m5,
-                   m6, m7, m8) {
+function _fromMat39 (a, m0, m1, m2, m3, m4, m5, m6, m7, m8) {
   var trace = m0 + m4 + m8
   var s
 
@@ -139,6 +137,10 @@ function _fromMat39 (a, m0, m1, m2,
     a[3] = (m1 - m3) * s
   }
   return a
+}
+
+function setAxes (a, x, y, z) {
+  return _fromMat39(a, x[0], x[1], x[2], y[0], y[1], y[2], z[0], z[1], z[2])
 }
 
 function fromMat3 (a, m) {
@@ -250,6 +252,7 @@ var Quat = {
   length: length,
   normalize: normalize,
   setAxisAngle: setAxisAngle,
+  setAxes: setAxes,
   fromMat3: fromMat3,
   fromMat4: fromMat4,
   getAngle: getAngle,
