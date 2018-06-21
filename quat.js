@@ -92,8 +92,29 @@ function dot (a, b) {
   return a[0] * b[0] + a[1] * b[1] + a[2] * b[2] + a[3] * b[3]
 }
 
-function setAxisAngle (a, axis, angle) {
-  assert(axis.length !== undefined, 'quat.setAxisAngle: axis should be vec3')
+//x = yaw, y = pitch, z = roll
+//assumes XYZ order
+function fromEuler (q, euler) {
+  var x = euler[0]
+  var y = euler[1]
+  var z = euler[2]
+  var cx = Math.cos(x / 2)
+  var cy = Math.cos(y / 2)
+  var cz = Math.cos(z / 2)
+  var sx = Math.sin(x / 2)
+  var sy = Math.sin(y / 2)
+  var sz = Math.sin(z / 2)
+
+  q[0] = sx * cy * cz + cx * sy * sz
+  q[1] = cx * sy * cz - sx * cy * sz
+  q[2] = cx * cy * sz + sx * sy * cz
+  q[3] = cx * cy * cz - sx * sy * sz
+
+  return q
+}
+
+function fromAxisAngle (a, axis, angle) {
+  assert(axis.length !== undefined, 'quat.fromAxisAngle: axis should be vec3')
   var angle2 = angle * 0.5
   var sin2 = Math.sin(angle2)
   a[0] = axis[0] * sin2
@@ -139,7 +160,7 @@ function _fromMat39 (a, m0, m1, m2, m3, m4, m5, m6, m7, m8) {
   return a
 }
 
-function setAxes (a, x, y, z) {
+function fromAxes (a, x, y, z) {
   return _fromMat39(a, x[0], x[1], x[2], y[0], y[1], y[2], z[0], z[1], z[2])
 }
 
@@ -155,31 +176,7 @@ function fromMat4 (a, m) {
                    m[8], m[9], m[10])
 }
 
-function getAngle (a) {
-  return Math.acos(a[3]) * 2.0
-}
 
-function setEuler (q, yaw, pitch, roll) {
-  pitch *= 0.5
-  yaw *= 0.5
-  roll *= 0.5
-
-  var spitch = Math.sin(pitch)
-  var cpitch = Math.cos(pitch)
-  var syaw = Math.sin(yaw)
-  var cyaw = Math.cos(yaw)
-  var sroll = Math.sin(roll)
-  var croll = Math.cos(roll)
-  var cpitchCosYaw = cpitch * cyaw
-  var spitchSinYaw = spitch * syaw
-
-  q[0] = sroll * cpitchCosYaw - croll * spitchSinYaw
-  q[1] = croll * spitch * cyaw + sroll * cpitch * syaw
-  q[2] = croll * cpitch * syaw - sroll * spitch * cyaw
-  q[3] = croll * cpitchCosYaw + sroll * spitchSinYaw
-
-  return q
-}
 
 var fromTo = (function () {
   var u = []
@@ -251,12 +248,11 @@ var Quat = {
   dot: dot,
   length: length,
   normalize: normalize,
-  setAxisAngle: setAxisAngle,
-  setAxes: setAxes,
+  fromEuler: fromEuler,
+  fromAxisAngle: fromAxisAngle,
+  fromAxes: fromAxes,
   fromMat3: fromMat3,
   fromMat4: fromMat4,
-  getAngle: getAngle,
-  setEuler: setEuler,
   slerp: slerp,
   fromTo: fromTo
 }

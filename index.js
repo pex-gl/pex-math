@@ -5,5 +5,6 @@ module.exports = {
   vec3: require('./vec3'),
   vec4: require('./vec4'),
   quat: require('./quat'),
+  euler: require('./euler'),
   utils: require('./utils')
 }

@@ -669,12 +669,31 @@ Calculates the dot product of two quaternions.
 
 Returns the dot product of `q` and `p`.
 
-### `quat.setAxisAngle(q, axis, angle)`
+
+### `quat.fromEuler(q, euler)`
+Set euler angles to a quaternion. Assumes XYZ rotation order.
+
+- `q`: quat
+- `euler`: vec3/euler [x/yaw, y/pitch, z/roll]
+
+Returns `q`.
+
+### `quat.fromAxisAngle(q, axis, angle)`
 Set the angle at an axis of a quaternion.
 
 - `q`: quat
 - `axis`: vec3
 - `angle`: Number
+
+Returns `q`.
+
+### `quat.fromAxes(q, xAxis, yAxis, zAxis)`
+Sets quaternion from orthonormal base xyz.
+
+- `q`: quat
+- `xAxis`: vec3
+- `zAxis`: vec3
+- `yAxis`: vec3
 
 Returns `q`.
 
@@ -694,23 +713,6 @@ Sets a quaternion to a 4x4 matrix.
 
 Returns `q`.
 
-### `quat.getAngle(q)`
-Get the angle of a quaternion.
-
-- `q`: quat
-
-Returns the angle of `q`.
-
-### `quat.setEuler(q, yaw, pitch, roll)`
-Set euler angles to a quaternion.
-
-- `q`: quat
-- `yaw`: Number
-- `pitch`: Number
-- `roll`: Number
-
-Returns `q`.
-
 ### `quat.slerp(q, p, t)`
 Spherical linear interpolation between two quaternions.
 
@@ -724,6 +726,23 @@ Returns `q`.
 TODO
 
 Returns `q`.
+
+## euler
+
+vec3 array of [x, y, z] rotation [yaw, pitch, roll] in radians.
+
+`var euler = require('pex-math/euler')`
+
+### `euler.create()`
+Create a new euler angles [0, 0, 0].
+
+### `euler.fromQuat(e, q)`
+Creates euler angles from quaterion. Assumes XYZ order of rotations.
+
+- `e`: euler/vec3
+- `q`: quat
+
+Returns `e`.
 
 ## utils
 
