@@ -606,16 +606,6 @@ Sets matrix to a quaternion.
 
 Returns `m`.
 
-### `mat3.fromTranslationRotationScale(m, t, r, s)`
-Sets matrix to the TRS matrix.
-
-- `m`: mat4
-- `t`: vec3
-- `r`: quat
-- `s`: vec3
-
-Returns `m`.
-
 ### `mat4.fromMat3(m, m3)`
 Sets a 4x4 matrix to a 3x3 matrix.
 
