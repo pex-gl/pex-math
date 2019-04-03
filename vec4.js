@@ -41,6 +41,14 @@ function multMat4 (a, m) {
   return a
 }
 
+function scale (a, n) {
+  a[0] *= n
+  a[1] *= n
+  a[2] *= n
+  a[3] *= n
+  return a
+}
+
 var Vec4 = {
   create: create,
   set: set,
