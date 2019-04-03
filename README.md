@@ -356,6 +356,82 @@ Scales a vector by a number.
 
 Returns `v` scaled.
 
+
+## mat2d
+
+`var mat2d = require('pex-math/mat2d')`
+
+### `mat2d.create()`
+Returns a 2x3 identity matrix, a short form for a 3x3 matrix with the last row ignored.
+
+Row major memory layout:
+
+```
+ 0   1   2
+ 3   4   5
+```
+
+ Equivalent to the column major OpenGL spec:
+
+```
+  0   3
+  1   4
+  2   5
+
+ m00 m10
+ m01 m11
+ m02 m12
+```
+
+Returns a new `mat2d`.
+
+### `mat2d.set(m, n)`
+Sets a matrix from another matrix.
+
+- `m`:  mat2d - the matrix being set
+- `n`:  mat2d - the matrix used as template
+
+Returns `m`.
+
+### `mat2d.identity(m)`
+Sets a matrix to the identity matrix.
+
+- `m`: mat2d
+
+Returns `m` as its identity.
+
+### `mat2d.mult(m, n)`
+Multiplies two matrices.
+
+- `m`: mat2d
+- `n`: mat2d
+
+Returns `m` multipled by `n`.
+
+### `mat2d.translate(m, v)`
+Translates a matrix by a vector.
+
+- `m`: mat2d
+- `v`: vec2
+
+Returns `m` translated.
+
+### `mat2d.rotate(m, r)`
+Rotates a matrix by an angle.
+
+- `m`: mat2d
+- `r`: Number - the angle of rotation
+
+Returns `m` rotated.
+
+### `mat2d.scale(m, v)`
+Scales a matrix by a vector.
+
+- `m`: mat2d
+- `v`: vec2
+
+Returns `m` scaled.
+
 ## mat3
 
 `var mat3 = require('pex-math/mat3')`
@@ -416,6 +492,14 @@ Compares two matrices.
 
 Returns a `bool`.
 
+### `mat3.fromMat2d(m, m2x3)`
+Sets a 3x3 matrix from a 2x3 matrix.
+
+- `m`: mat3
+- `m2x3`: mat4
+
+Returns `m3`.
+
 ### `mat3.fromMat4(m, m4)`
 Sets a 3x3 matrix to a 4x4 matrix.
 
@@ -429,16 +513,6 @@ Sets matrix to a quaternion.
 
 - `m`: mat3
 - `q`: quat
-
-Returns `m`.
-
-### `mat3.fromTranslationRotationScale(m, t, r, s)`
-Sets matrix to the TRS matrix.
-
-- `m`: mat3
-- `t`: vec2
-- `r`: Number - the angle of rotation
-- `s`: vec2
 
 Returns `m`.
 

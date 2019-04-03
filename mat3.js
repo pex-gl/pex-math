@@ -85,6 +85,19 @@ function mult(a, b) {
   return a
 }
 
+function fromMat2d(a, b) {
+  a[0] = b[0]
+  a[1] = b[1]
+  a[2] = 0
+  a[3] = b[2]
+  a[4] = b[3]
+  a[5] = 0
+  a[6] = b[4]
+  a[7] = b[5]
+  a[8] = 1
+  return a
+}
+
 function fromMat4 (a, b) {
   a[0] = b[0]
   a[1] = b[1]
@@ -143,6 +156,7 @@ var Mat3 = {
   identity: identity,
   equals: equals,
   mult: mult,
+  fromMat2d: fromMat2d,
   fromMat4: fromMat4,
   fromQuat: fromQuat
 }

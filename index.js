@@ -1,4 +1,5 @@
 module.exports = {
+  mat2d: require('./mat2d'),
   mat3: require('./mat3'),
   mat4: require('./mat4'),
   vec2: require('./vec2'),
