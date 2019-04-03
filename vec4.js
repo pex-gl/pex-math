@@ -55,6 +55,7 @@ var Vec4 = {
   fromVec3: fromVec3,
   multMat4: multMat4,
   copy: copy,
+  scale : scale,
   equals: equals
 }
 
