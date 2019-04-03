@@ -348,6 +348,14 @@ Returns a copy of a vector.
 
 Returns a new instance of `v`.
 
+### `vec4.scale(v, s)`
+Scales a vector by a number.
+
+- `v`: vec4
+- `s`: Number
+
+Returns `v` scaled.
+
 ## mat3
 
 `var mat3 = require('pex-math/mat3')`
@@ -391,6 +399,14 @@ Sets a matrix to the identity matrix.
 - `m`: mat3
 
 Returns `m` as its identity.
+
+### `mat3.mult(m, n)`
+Multiplies two matrices.
+
+- `m`: mat3
+- `n`: mat3
+
+Returns `m` multipled by `n`.
 
 ### `mat3.equals(m, n)`
 Compares two matrices.
