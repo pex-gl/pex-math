@@ -392,6 +392,14 @@ Sets a matrix to the identity matrix.
 
 Returns `m` as its identity.
 
+### `mat3.mult(m, n)`
+Multiplies two matrices.
+
+- `m`: mat3
+- `n`: mat3
+
+Returns `m` multipled by `n`.
+
 ### `mat3.equals(m, n)`
 Compares two matrices.
 
