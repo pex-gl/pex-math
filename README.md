@@ -348,6 +348,14 @@ Returns a copy of a vector.
 
 Returns a new instance of `v`.
 
+### `vec4.scale(v, s)`
+Scales a vector by a number.
+
+- `v`: vec4
+- `s`: Number
+
+Returns `v` scaled.
+
 ## mat3
 
 `var mat3 = require('pex-math/mat3')`
