@@ -101,6 +101,33 @@ function fromQuat (a, b) {
   return a
 }
 
+function fromTranslationRotationScale(a, translation, rotation, scale) {
+  const c = Math.cos(rotation)
+  const s = Math.sin(rotation)
+
+  const b = mult(
+    mult(
+      [
+        1, 0, 0,
+        0, 1, 0,
+        translation[0], translation[1], 1
+      ],
+      [
+        c, s, 0,
+        -s, c, 0,
+        0, 0, 1
+      ]
+    ),
+    [
+      scale[0], 0, 0,
+      0, scale[1], 0,
+      0, 0, 1
+    ]
+  );
+
+  return set(a, b)
+}
+
 var Mat3 = {
   _set9: _set9,
   // documented
@@ -109,7 +136,8 @@ var Mat3 = {
   identity: identity,
   equals: equals,
   fromMat4: fromMat4,
-  fromQuat: fromQuat
+  fromQuat: fromQuat,
+  fromTranslationRotationScale: fromTranslationRotationScale
 }
 
 module.exports = Mat3

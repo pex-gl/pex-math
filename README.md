@@ -416,6 +416,16 @@ Sets matrix to a quaternion.
 
 Returns `m`.
 
+### `mat3.fromTranslationRotationScale(m, t, r, s)`
+Sets matrix to the TRS matrix.
+
+- `m`: mat3
+- `t`: vec2
+- `r`: Number - the angle of rotation
+- `s`: vec2
+
+Returns `m`.
+
 ## mat4
 
 `var mat4 = require('pex-math/mat4')`
@@ -577,6 +587,16 @@ Sets matrix to a quaternion.
 
 - `m`: mat4
 - `q`: quat
+
+Returns `m`.
+
+### `mat3.fromTranslationRotationScale(m, t, r, s)`
+Sets matrix to the TRS matrix.
+
+- `m`: mat4
+- `t`: vec3
+- `r`: quat
+- `s`: vec3
 
 Returns `m`.
 

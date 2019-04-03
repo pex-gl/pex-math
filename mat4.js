@@ -384,6 +384,15 @@ function fromQuat (a, b) {
   return a
 }
 
+const TEMP_0 = create()
+function fromTranslationRotationScale(a, translation, rotation, scale) {
+  translate(a, translation)
+  mult(a, fromQuat(TEMP_0, rotation))
+  scale(a, scale)
+
+  return a
+}
+
 function fromMat3 (a, b) {
   a[0] = b[0]
   a[1] = b[1]
@@ -633,6 +642,7 @@ var Mat4 = {
   // documented
   fromMat3: fromMat3,
   fromQuat: fromQuat,
+  fromTranslationRotationScale: fromTranslationRotationScale,
   translate: translate,
   scale: scale,
   rotate: rotate,
