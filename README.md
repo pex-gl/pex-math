@@ -688,6 +688,16 @@ Sets a 4x4 matrix to a 3x3 matrix.
 
 Returns `m`.
 
+### `mat4.fromTranslationRotationScale(m, t, r, s)`
+Sets matrix to the TRS matrix.
+
+- `m`: mat4
+- `t`: vec3
+- `r`: quat
+- `s`: vec3
+
+ Returns `m`.
+
 ## quat
 
 `var quat = require('pex-math/quat')`
