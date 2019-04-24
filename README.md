@@ -60,12 +60,12 @@ Add a vector with another.
 Returns `v` after addition.
 
 ### `vec2.sub(v, w)`
-Substracts a vector with another.
+Subtracts a vector with another.
 
 - `v`: vec2
 - `w`: vec2
 
-Returns `v` after substraction.
+Returns `v` after subtraction.
 
 ### `vec2.scale(v, s)`
 Scales a vector by a number.
@@ -110,7 +110,7 @@ Calculates the distance between two vectors.
 - `v`: vec2
 - `w`: vec2
 
-Returns the distance betweeen `v` and `w`.
+Returns the distance between `v` and `w`.
 
 ### `vec2.distanceSq(v, w)`
 Calculates the squared distance between two vectors.
@@ -118,7 +118,7 @@ Calculates the squared distance between two vectors.
 - `v`: vec2
 - `w`: vec2
 
-Returns the squared distance betweeen `v` and `w`.
+Returns the squared distance between `v` and `w`.
 
 ### `vec2.limit(v, s)`
 Limits a vector to a length.
@@ -193,12 +193,12 @@ Add a vector with another scaled vector.
 Returns `v` after addition.
 
 ### `vec3.sub(v, w)`
-Substracts a vector with another.
+Subtracts a vector with another.
 
 - `v`: vec3
 - `w`: vec3
 
-Returns `v` after substraction.
+Returns `v` after subtraction.
 
 ### `vec3.scale(v, s)`
 Scales a vector by a number.
@@ -267,7 +267,7 @@ Calculates the distance between two vectors.
 - `v`: vec3
 - `w`: vec3
 
-Returns the distance betweeen `v` and `w`.
+Returns the distance between `v` and `w`.
 
 ### `vec3.distanceSq(v, w)`
 Calculates the squared distance between two vectors.
@@ -275,7 +275,7 @@ Calculates the squared distance between two vectors.
 - `v`: vec3
 - `w`: vec3
 
-Returns the squared distance betweeen `v` and `w`.
+Returns the squared distance between `v` and `w`.
 
 ### `vec3.limit(v, s)`
 Limits a vector to a length.
@@ -406,7 +406,7 @@ Multiplies two matrices.
 - `m`: mat2x3
 - `n`: mat2x3
 
-Returns `m` multipled by `n`.
+Returns `m` multiplied by `n`.
 
 ### `mat2x3.translate(m, v)`
 Translates a matrix by a vector.
@@ -482,7 +482,7 @@ Multiplies two matrices.
 - `m`: mat3
 - `n`: mat3
 
-Returns `m` multipled by `n`.
+Returns `m` multiplied by `n`.
 
 ### `mat3.equals(m, n)`
 Compares two matrices.
@@ -577,7 +577,7 @@ Multiplies two matrices.
 - `m`: mat4
 - `n`: mat4
 
-Returns `m` multipled by `n`.
+Returns `m` multiplied by `n`.
 
 ### `mat4.invert(m)`
 Inverts a matrix.
