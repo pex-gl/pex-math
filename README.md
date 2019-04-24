@@ -357,11 +357,11 @@ Scales a vector by a number.
 Returns `v` scaled.
 
 
-## mat2d
+## mat2x3
 
-`var mat2d = require('pex-math/mat2d')`
+`var mat2x3 = require('pex-math/mat2x3')`
 
-### `mat2d.create()`
+### `mat2x3.create()`
 Returns a 2x3 identity matrix, a short form for a 3x3 matrix with the last row ignored.
 
 Row major memory layout:
@@ -383,51 +383,51 @@ Row major memory layout:
  m02 m12
 ```
 
-Returns a new `mat2d`.
+Returns a new `mat2x3`.
 
-### `mat2d.set(m, n)`
+### `mat2x3.set(m, n)`
 Sets a matrix from another matrix.
 
-- `m`:  mat2d - the matrix being set
-- `n`:  mat2d - the matrix used as template
+- `m`:  mat2x3 - the matrix being set
+- `n`:  mat2x3 - the matrix used as template
 
 Returns `m`.
 
-### `mat2d.identity(m)`
+### `mat2x3.identity(m)`
 Sets a matrix to the identity matrix.
 
-- `m`: mat2d
+- `m`: mat2x3
 
 Returns `m` as its identity.
 
-### `mat2d.mult(m, n)`
+### `mat2x3.mult(m, n)`
 Multiplies two matrices.
 
-- `m`: mat2d
-- `n`: mat2d
+- `m`: mat2x3
+- `n`: mat2x3
 
 Returns `m` multipled by `n`.
 
-### `mat2d.translate(m, v)`
+### `mat2x3.translate(m, v)`
 Translates a matrix by a vector.
 
-- `m`: mat2d
+- `m`: mat2x3
 - `v`: vec2
 
 Returns `m` translated.
 
-### `mat2d.rotate(m, r)`
+### `mat2x3.rotate(m, r)`
 Rotates a matrix by an angle.
 
-- `m`: mat2d
+- `m`: mat2x3
 - `r`: Number - the angle of rotation
 
 Returns `m` rotated.
 
-### `mat2d.scale(m, v)`
+### `mat2x3.scale(m, v)`
 Scales a matrix by a vector.
 
-- `m`: mat2d
+- `m`: mat2x3
 - `v`: vec2
 
 Returns `m` scaled.
@@ -492,11 +492,11 @@ Compares two matrices.
 
 Returns a `bool`.
 
-### `mat3.fromMat2d(m, m2x3)`
+### `mat3.fromMat2x3(m, m2x3)`
 Sets a 3x3 matrix from a 2x3 matrix.
 
 - `m`: mat3
-- `m2x3`: mat4
+- `m2x3`: mat2x3
 
 Returns `m3`.
 
