@@ -60,12 +60,12 @@ Add a vector with another.
 Returns `v` after addition.
 
 ### `vec2.sub(v, w)`
-Substracts a vector with another.
+Subtracts a vector with another.
 
 - `v`: vec2
 - `w`: vec2
 
-Returns `v` after substraction.
+Returns `v` after subtraction.
 
 ### `vec2.scale(v, s)`
 Scales a vector by a number.
@@ -110,7 +110,7 @@ Calculates the distance between two vectors.
 - `v`: vec2
 - `w`: vec2
 
-Returns the distance betweeen `v` and `w`.
+Returns the distance between `v` and `w`.
 
 ### `vec2.distanceSq(v, w)`
 Calculates the squared distance between two vectors.
@@ -118,7 +118,7 @@ Calculates the squared distance between two vectors.
 - `v`: vec2
 - `w`: vec2
 
-Returns the squared distance betweeen `v` and `w`.
+Returns the squared distance between `v` and `w`.
 
 ### `vec2.limit(v, s)`
 Limits a vector to a length.
@@ -193,12 +193,12 @@ Add a vector with another scaled vector.
 Returns `v` after addition.
 
 ### `vec3.sub(v, w)`
-Substracts a vector with another.
+Subtracts a vector with another.
 
 - `v`: vec3
 - `w`: vec3
 
-Returns `v` after substraction.
+Returns `v` after subtraction.
 
 ### `vec3.scale(v, s)`
 Scales a vector by a number.
@@ -267,7 +267,7 @@ Calculates the distance between two vectors.
 - `v`: vec3
 - `w`: vec3
 
-Returns the distance betweeen `v` and `w`.
+Returns the distance between `v` and `w`.
 
 ### `vec3.distanceSq(v, w)`
 Calculates the squared distance between two vectors.
@@ -275,7 +275,7 @@ Calculates the squared distance between two vectors.
 - `v`: vec3
 - `w`: vec3
 
-Returns the squared distance betweeen `v` and `w`.
+Returns the squared distance between `v` and `w`.
 
 ### `vec3.limit(v, s)`
 Limits a vector to a length.
@@ -356,6 +356,82 @@ Scales a vector by a number.
 
 Returns `v` scaled.
 
+
+## mat2x3
+
+`var mat2x3 = require('pex-math/mat2x3')`
+
+### `mat2x3.create()`
+Returns a 2x3 identity matrix, a short form for a 3x3 matrix with the last row ignored.
+
+Row major memory layout:
+
+```
+ 0   1   2
+ 3   4   5
+```
+
+ Equivalent to the column major OpenGL spec:
+
+```
+  0   3
+  1   4
+  2   5
+
+ m00 m10
+ m01 m11
+ m02 m12
+```
+
+Returns a new `mat2x3`.
+
+### `mat2x3.set(m, n)`
+Sets a matrix from another matrix.
+
+- `m`:  mat2x3 - the matrix being set
+- `n`:  mat2x3 - the matrix used as template
+
+Returns `m`.
+
+### `mat2x3.identity(m)`
+Sets a matrix to the identity matrix.
+
+- `m`: mat2x3
+
+Returns `m` as its identity.
+
+### `mat2x3.mult(m, n)`
+Multiplies two matrices.
+
+- `m`: mat2x3
+- `n`: mat2x3
+
+Returns `m` multiplied by `n`.
+
+### `mat2x3.translate(m, v)`
+Translates a matrix by a vector.
+
+- `m`: mat2x3
+- `v`: vec2
+
+Returns `m` translated.
+
+### `mat2x3.rotate(m, r)`
+Rotates a matrix by an angle.
+
+- `m`: mat2x3
+- `r`: Number - the angle of rotation
+
+Returns `m` rotated.
+
+### `mat2x3.scale(m, v)`
+Scales a matrix by a vector.
+
+- `m`: mat2x3
+- `v`: vec2
+
+Returns `m` scaled.
+
 ## mat3
 
 `var mat3 = require('pex-math/mat3')`
@@ -406,7 +482,7 @@ Multiplies two matrices.
 - `m`: mat3
 - `n`: mat3
 
-Returns `m` multipled by `n`.
+Returns `m` multiplied by `n`.
 
 ### `mat3.equals(m, n)`
 Compares two matrices.
@@ -415,6 +491,14 @@ Compares two matrices.
 - `n`: mat3
 
 Returns a `bool`.
+
+### `mat3.fromMat2x3(m, m2x3)`
+Sets a 3x3 matrix from a 2x3 matrix.
+
+- `m`: mat3
+- `m2x3`: mat2x3
+
+Returns `m3`.
 
 ### `mat3.fromMat4(m, m4)`
 Sets a 3x3 matrix to a 4x4 matrix.
@@ -493,7 +577,7 @@ Multiplies two matrices.
 - `m`: mat4
 - `n`: mat4
 
-Returns `m` multipled by `n`.
+Returns `m` multiplied by `n`.
 
 ### `mat4.invert(m)`
 Inverts a matrix.
@@ -603,6 +687,16 @@ Sets a 4x4 matrix to a 3x3 matrix.
 - `m3`: mat3
 
 Returns `m`.
+
+### `mat4.fromTranslationRotationScale(m, t, r, s)`
+Sets matrix to the TRS matrix.
+
+- `m`: mat4
+- `t`: vec3
+- `r`: quat
+- `s`: vec3
+
+ Returns `m`.
 
 ## quat
 
