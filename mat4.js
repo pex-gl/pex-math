@@ -385,10 +385,10 @@ function fromQuat (a, b) {
 }
 
 const TEMP_0 = create()
-function fromTranslationRotationScale(a, translation, rotation, scale) {
+function fromTranslationRotationScale(a, translation, rotation, scaling) {
   translate(a, translation)
   mult(a, fromQuat(TEMP_0, rotation))
-  scale(a, scale)
+  scale(a, scaling)
 
   return a
 }
