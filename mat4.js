@@ -1,15 +1,10 @@
 var assert = require('assert')
 
-function create () {
-  return [
-    1, 0, 0, 0,
-    0, 1, 0, 0,
-    0, 0, 1, 0,
-    0, 0, 0, 1
-  ]
+function create() {
+  return [1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1]
 }
 
-function set (a, b) {
+function set(a, b) {
   a[0] = b[0]
   a[1] = b[1]
   a[2] = b[2]
@@ -29,8 +24,9 @@ function set (a, b) {
   return a
 }
 
-function equals (a, b) {
-  return a[0] === b[0] &&
+function equals(a, b) {
+  return (
+    a[0] === b[0] &&
     a[1] === b[1] &&
     a[2] === b[2] &&
     a[3] === b[3] &&
@@ -46,16 +42,32 @@ function equals (a, b) {
     a[13] === b[13] &&
     a[14] === b[14] &&
     a[15] === b[15]
+  )
 }
 
-function copy (a) {
+function copy(a) {
   return a.slice(0)
 }
 
-function _mult16 (a, b00, b01, b02, b03,
-                b10, b11, b12, b13,
-                b20, b21, b22, b23,
-                b30, b31, b32, b33) {
+function _mult16(
+  a,
+  b00,
+  b01,
+  b02,
+  b03,
+  b10,
+  b11,
+  b12,
+  b13,
+  b20,
+  b21,
+  b22,
+  b23,
+  b30,
+  b31,
+  b32,
+  b33
+) {
   var a00 = a[0]
   var a01 = a[1]
   var a02 = a[2]
@@ -73,30 +85,30 @@ function _mult16 (a, b00, b01, b02, b03,
   var a32 = a[14]
   var a33 = a[15]
 
-  a[0] = (b00 * a00) + (b01 * a10) + (b02 * a20) + (b03 * a30)
-  a[1] = (b00 * a01) + (b01 * a11) + (b02 * a21) + (b03 * a31)
-  a[2] = (b00 * a02) + (b01 * a12) + (b02 * a22) + (b03 * a32)
-  a[3] = (b00 * a03) + (b01 * a13) + (b02 * a23) + (b03 * a33)
+  a[0] = b00 * a00 + b01 * a10 + b02 * a20 + b03 * a30
+  a[1] = b00 * a01 + b01 * a11 + b02 * a21 + b03 * a31
+  a[2] = b00 * a02 + b01 * a12 + b02 * a22 + b03 * a32
+  a[3] = b00 * a03 + b01 * a13 + b02 * a23 + b03 * a33
 
-  a[4] = (b10 * a00) + (b11 * a10) + (b12 * a20) + (b13 * a30)
-  a[5] = (b10 * a01) + (b11 * a11) + (b12 * a21) + (b13 * a31)
-  a[6] = (b10 * a02) + (b11 * a12) + (b12 * a22) + (b13 * a32)
-  a[7] = (b10 * a03) + (b11 * a13) + (b12 * a23) + (b13 * a33)
+  a[4] = b10 * a00 + b11 * a10 + b12 * a20 + b13 * a30
+  a[5] = b10 * a01 + b11 * a11 + b12 * a21 + b13 * a31
+  a[6] = b10 * a02 + b11 * a12 + b12 * a22 + b13 * a32
+  a[7] = b10 * a03 + b11 * a13 + b12 * a23 + b13 * a33
 
-  a[8] = (b20 * a00) + (b21 * a10) + (b22 * a20) + (b23 * a30)
-  a[9] = (b20 * a01) + (b21 * a11) + (b22 * a21) + (b23 * a31)
-  a[10] = (b20 * a02) + (b21 * a12) + (b22 * a22) + (b23 * a32)
-  a[11] = (b20 * a03) + (b21 * a13) + (b22 * a23) + (b23 * a33)
+  a[8] = b20 * a00 + b21 * a10 + b22 * a20 + b23 * a30
+  a[9] = b20 * a01 + b21 * a11 + b22 * a21 + b23 * a31
+  a[10] = b20 * a02 + b21 * a12 + b22 * a22 + b23 * a32
+  a[11] = b20 * a03 + b21 * a13 + b22 * a23 + b23 * a33
 
-  a[12] = (b30 * a00) + (b31 * a10) + (b32 * a20) + (b33 * a30)
-  a[13] = (b30 * a01) + (b31 * a11) + (b32 * a21) + (b33 * a31)
-  a[14] = (b30 * a02) + (b31 * a12) + (b32 * a22) + (b33 * a32)
-  a[15] = (b30 * a03) + (b31 * a13) + (b32 * a23) + (b33 * a33)
+  a[12] = b30 * a00 + b31 * a10 + b32 * a20 + b33 * a30
+  a[13] = b30 * a01 + b31 * a11 + b32 * a21 + b33 * a31
+  a[14] = b30 * a02 + b31 * a12 + b32 * a22 + b33 * a32
+  a[15] = b30 * a03 + b31 * a13 + b32 * a23 + b33 * a33
 
   return a
 }
 
-function mult (a, b) {
+function mult(a, b) {
   var a00 = a[0]
   var a01 = a[1]
   var a02 = a[2]
@@ -131,30 +143,30 @@ function mult (a, b) {
   var b32 = b[14]
   var b33 = b[15]
 
-  a[0] = (b00 * a00) + (b01 * a10) + (b02 * a20) + (b03 * a30)
-  a[1] = (b00 * a01) + (b01 * a11) + (b02 * a21) + (b03 * a31)
-  a[2] = (b00 * a02) + (b01 * a12) + (b02 * a22) + (b03 * a32)
-  a[3] = (b00 * a03) + (b01 * a13) + (b02 * a23) + (b03 * a33)
+  a[0] = b00 * a00 + b01 * a10 + b02 * a20 + b03 * a30
+  a[1] = b00 * a01 + b01 * a11 + b02 * a21 + b03 * a31
+  a[2] = b00 * a02 + b01 * a12 + b02 * a22 + b03 * a32
+  a[3] = b00 * a03 + b01 * a13 + b02 * a23 + b03 * a33
 
-  a[4] = (b10 * a00) + (b11 * a10) + (b12 * a20) + (b13 * a30)
-  a[5] = (b10 * a01) + (b11 * a11) + (b12 * a21) + (b13 * a31)
-  a[6] = (b10 * a02) + (b11 * a12) + (b12 * a22) + (b13 * a32)
-  a[7] = (b10 * a03) + (b11 * a13) + (b12 * a23) + (b13 * a33)
+  a[4] = b10 * a00 + b11 * a10 + b12 * a20 + b13 * a30
+  a[5] = b10 * a01 + b11 * a11 + b12 * a21 + b13 * a31
+  a[6] = b10 * a02 + b11 * a12 + b12 * a22 + b13 * a32
+  a[7] = b10 * a03 + b11 * a13 + b12 * a23 + b13 * a33
 
-  a[8] = (b20 * a00) + (b21 * a10) + (b22 * a20) + (b23 * a30)
-  a[9] = (b20 * a01) + (b21 * a11) + (b22 * a21) + (b23 * a31)
-  a[10] = (b20 * a02) + (b21 * a12) + (b22 * a22) + (b23 * a32)
-  a[11] = (b20 * a03) + (b21 * a13) + (b22 * a23) + (b23 * a33)
+  a[8] = b20 * a00 + b21 * a10 + b22 * a20 + b23 * a30
+  a[9] = b20 * a01 + b21 * a11 + b22 * a21 + b23 * a31
+  a[10] = b20 * a02 + b21 * a12 + b22 * a22 + b23 * a32
+  a[11] = b20 * a03 + b21 * a13 + b22 * a23 + b23 * a33
 
-  a[12] = (b30 * a00) + (b31 * a10) + (b32 * a20) + (b33 * a30)
-  a[13] = (b30 * a01) + (b31 * a11) + (b32 * a21) + (b33 * a31)
-  a[14] = (b30 * a02) + (b31 * a12) + (b32 * a22) + (b33 * a32)
-  a[15] = (b30 * a03) + (b31 * a13) + (b32 * a23) + (b33 * a33)
+  a[12] = b30 * a00 + b31 * a10 + b32 * a20 + b33 * a30
+  a[13] = b30 * a01 + b31 * a11 + b32 * a21 + b33 * a31
+  a[14] = b30 * a02 + b31 * a12 + b32 * a22 + b33 * a32
+  a[15] = b30 * a03 + b31 * a13 + b32 * a23 + b33 * a33
 
   return a
 }
 
-function invert (a) {
+function invert(a) {
   var a00 = a[0]
   var a10 = a[1]
   var a20 = a[2]
@@ -174,25 +186,121 @@ function invert (a) {
 
   // TODO: add caching
 
-  a[0] = a11 * a22 * a33 - a11 * a32 * a23 - a12 * a21 * a33 + a12 * a31 * a23 + a13 * a21 * a32 - a13 * a31 * a22
-  a[4] = -a01 * a22 * a33 + a01 * a32 * a23 + a02 * a21 * a33 - a02 * a31 * a23 - a03 * a21 * a32 + a03 * a31 * a22
-  a[8] = a01 * a12 * a33 - a01 * a32 * a13 - a02 * a11 * a33 + a02 * a31 * a13 + a03 * a11 * a32 - a03 * a31 * a12
-  a[12] = -a01 * a12 * a23 + a01 * a22 * a13 + a02 * a11 * a23 - a02 * a21 * a13 - a03 * a11 * a22 + a03 * a21 * a12
+  a[0] =
+    a11 * a22 * a33 -
+    a11 * a32 * a23 -
+    a12 * a21 * a33 +
+    a12 * a31 * a23 +
+    a13 * a21 * a32 -
+    a13 * a31 * a22
+  a[4] =
+    -a01 * a22 * a33 +
+    a01 * a32 * a23 +
+    a02 * a21 * a33 -
+    a02 * a31 * a23 -
+    a03 * a21 * a32 +
+    a03 * a31 * a22
+  a[8] =
+    a01 * a12 * a33 -
+    a01 * a32 * a13 -
+    a02 * a11 * a33 +
+    a02 * a31 * a13 +
+    a03 * a11 * a32 -
+    a03 * a31 * a12
+  a[12] =
+    -a01 * a12 * a23 +
+    a01 * a22 * a13 +
+    a02 * a11 * a23 -
+    a02 * a21 * a13 -
+    a03 * a11 * a22 +
+    a03 * a21 * a12
 
-  a[1] = -a10 * a22 * a33 + a10 * a32 * a23 + a12 * a20 * a33 - a12 * a30 * a23 - a13 * a20 * a32 + a13 * a30 * a22
-  a[5] = a00 * a22 * a33 - a00 * a32 * a23 - a02 * a20 * a33 + a02 * a30 * a23 + a03 * a20 * a32 - a03 * a30 * a22
-  a[9] = -a00 * a12 * a33 + a00 * a32 * a13 + a02 * a10 * a33 - a02 * a30 * a13 - a03 * a10 * a32 + a03 * a30 * a12
-  a[13] = a00 * a12 * a23 - a00 * a22 * a13 - a02 * a10 * a23 + a02 * a20 * a13 + a03 * a10 * a22 - a03 * a20 * a12
+  a[1] =
+    -a10 * a22 * a33 +
+    a10 * a32 * a23 +
+    a12 * a20 * a33 -
+    a12 * a30 * a23 -
+    a13 * a20 * a32 +
+    a13 * a30 * a22
+  a[5] =
+    a00 * a22 * a33 -
+    a00 * a32 * a23 -
+    a02 * a20 * a33 +
+    a02 * a30 * a23 +
+    a03 * a20 * a32 -
+    a03 * a30 * a22
+  a[9] =
+    -a00 * a12 * a33 +
+    a00 * a32 * a13 +
+    a02 * a10 * a33 -
+    a02 * a30 * a13 -
+    a03 * a10 * a32 +
+    a03 * a30 * a12
+  a[13] =
+    a00 * a12 * a23 -
+    a00 * a22 * a13 -
+    a02 * a10 * a23 +
+    a02 * a20 * a13 +
+    a03 * a10 * a22 -
+    a03 * a20 * a12
 
-  a[2] = a10 * a21 * a33 - a10 * a31 * a23 - a11 * a20 * a33 + a11 * a30 * a23 + a13 * a20 * a31 - a13 * a30 * a21
-  a[6] = -a00 * a21 * a33 + a00 * a31 * a23 + a01 * a20 * a33 - a01 * a30 * a23 - a03 * a20 * a31 + a03 * a30 * a21
-  a[10] = a00 * a11 * a33 - a00 * a31 * a13 - a01 * a10 * a33 + a01 * a30 * a13 + a03 * a10 * a31 - a03 * a30 * a11
-  a[14] = -a00 * a11 * a23 + a00 * a21 * a13 + a01 * a10 * a23 - a01 * a20 * a13 - a03 * a10 * a21 + a03 * a20 * a11
+  a[2] =
+    a10 * a21 * a33 -
+    a10 * a31 * a23 -
+    a11 * a20 * a33 +
+    a11 * a30 * a23 +
+    a13 * a20 * a31 -
+    a13 * a30 * a21
+  a[6] =
+    -a00 * a21 * a33 +
+    a00 * a31 * a23 +
+    a01 * a20 * a33 -
+    a01 * a30 * a23 -
+    a03 * a20 * a31 +
+    a03 * a30 * a21
+  a[10] =
+    a00 * a11 * a33 -
+    a00 * a31 * a13 -
+    a01 * a10 * a33 +
+    a01 * a30 * a13 +
+    a03 * a10 * a31 -
+    a03 * a30 * a11
+  a[14] =
+    -a00 * a11 * a23 +
+    a00 * a21 * a13 +
+    a01 * a10 * a23 -
+    a01 * a20 * a13 -
+    a03 * a10 * a21 +
+    a03 * a20 * a11
 
-  a[3] = -a10 * a21 * a32 + a10 * a31 * a22 + a11 * a20 * a32 - a11 * a30 * a22 - a12 * a20 * a31 + a12 * a30 * a21
-  a[7] = a00 * a21 * a32 - a00 * a31 * a22 - a01 * a20 * a32 + a01 * a30 * a22 + a02 * a20 * a31 - a02 * a30 * a21
-  a[11] = -a00 * a11 * a32 + a00 * a31 * a12 + a01 * a10 * a32 - a01 * a30 * a12 - a02 * a10 * a31 + a02 * a30 * a11
-  a[15] = a00 * a11 * a22 - a00 * a21 * a12 - a01 * a10 * a22 + a01 * a20 * a12 + a02 * a10 * a21 - a02 * a20 * a11
+  a[3] =
+    -a10 * a21 * a32 +
+    a10 * a31 * a22 +
+    a11 * a20 * a32 -
+    a11 * a30 * a22 -
+    a12 * a20 * a31 +
+    a12 * a30 * a21
+  a[7] =
+    a00 * a21 * a32 -
+    a00 * a31 * a22 -
+    a01 * a20 * a32 +
+    a01 * a30 * a22 +
+    a02 * a20 * a31 -
+    a02 * a30 * a21
+  a[11] =
+    -a00 * a11 * a32 +
+    a00 * a31 * a12 +
+    a01 * a10 * a32 -
+    a01 * a30 * a12 -
+    a02 * a10 * a31 +
+    a02 * a30 * a11
+  a[15] =
+    a00 * a11 * a22 -
+    a00 * a21 * a12 -
+    a01 * a10 * a22 +
+    a01 * a20 * a12 +
+    a02 * a10 * a21 -
+    a02 * a20 * a11
 
   var det = a00 * a[0] + a10 * a[4] + a20 * a[8] + a30 * a[12]
 
@@ -222,7 +330,7 @@ function invert (a) {
   return a
 }
 
-function transpose (a) {
+function transpose(a) {
   var a01 = a[1]
   var a02 = a[2]
   var a03 = a[3]
@@ -255,35 +363,29 @@ function transpose (a) {
   return a
 }
 
-function identity (a) {
+function identity(a) {
   a[0] = a[5] = a[10] = a[15] = 1
   a[1] = a[2] = a[3] = a[4] = a[6] = a[7] = a[8] = a[9] = a[11] = a[12] = a[13] = a[14] = 0
   return a
 }
 
-function _scale3 (a, x, y, z) {
-  return _mult16(a, x, 0, 0, 0,
-                0, y, 0, 0,
-                0, 0, z, 0,
-                0, 0, 0, 1)
+function _scale3(a, x, y, z) {
+  return _mult16(a, x, 0, 0, 0, 0, y, 0, 0, 0, 0, z, 0, 0, 0, 0, 1)
 }
 
-function scale (a, v) {
+function scale(a, v) {
   return _scale3(a, v[0], v[1], v[2])
 }
 
-function _translate3 (a, x, y, z) {
-  return _mult16(a, 1, 0, 0, 0,
-                0, 1, 0, 0,
-                0, 0, 1, 0,
-                x, y, z, 1)
+function _translate3(a, x, y, z) {
+  return _mult16(a, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, x, y, z, 1)
 }
 
-function translate (a, v) {
+function translate(a, v) {
   return _translate3(a, v[0], v[1], v[2])
 }
 
-function _rotate3 (a, r, x, y, z) {
+function _rotate3(a, r, x, y, z) {
   var len = Math.sqrt(x * x + y * y + z * z)
 
   if (len < 0.0001) {
@@ -334,17 +436,32 @@ function _rotate3 (a, r, x, y, z) {
   var _a22 = a02 * b20 + a12 * b21 + a22 * b22
   var _a23 = a03 * b20 + a13 * b21 + a23 * b22
 
-  return _mult16(a, _a00, _a01, _a02, _a03,
-                _a10, _a11, _a12, _a13,
-                _a20, _a21, _a22, _a23,
-                0, 0, 0, 1)
+  return _mult16(
+    a,
+    _a00,
+    _a01,
+    _a02,
+    _a03,
+    _a10,
+    _a11,
+    _a12,
+    _a13,
+    _a20,
+    _a21,
+    _a22,
+    _a23,
+    0,
+    0,
+    0,
+    1
+  )
 }
 
-function rotate (a, r, v) {
+function rotate(a, r, v) {
   return _rotate3(a, r, v[0], v[1], v[2])
 }
 
-function fromQuat (a, b) {
+function fromQuat(a, b) {
   var x = b[0]
   var y = b[1]
   var z = b[2]
@@ -386,6 +503,7 @@ function fromQuat (a, b) {
 
 const TEMP_0 = create()
 function fromTranslationRotationScale(a, translation, rotation, scaling) {
+  identity(a)
   translate(a, translation)
   mult(a, fromQuat(TEMP_0, rotation))
   scale(a, scaling)
@@ -393,7 +511,7 @@ function fromTranslationRotationScale(a, translation, rotation, scaling) {
   return a
 }
 
-function fromMat3 (a, b) {
+function fromMat3(a, b) {
   a[0] = b[0]
   a[1] = b[1]
   a[2] = b[2]
@@ -406,14 +524,13 @@ function fromMat3 (a, b) {
   a[9] = b[7]
   a[10] = b[8]
 
-  a[3] = a[7] = a[11] =
-    a[12] = a[13] = a[14] = 0
+  a[3] = a[7] = a[11] = a[12] = a[13] = a[14] = 0
   a[15] = 1.0
 
   return a
 }
 
-function frustum (a, left, right, bottom, top, near, far) {
+function frustum(a, left, right, bottom, top, near, far) {
   var rl = 1.0 / (right - left)
   var tb = 1.0 / (top - bottom)
   var nf = 1.0 / (near - far)
@@ -433,14 +550,17 @@ function frustum (a, left, right, bottom, top, near, far) {
   a[11] = -1
   a[12] = 0
   a[13] = 0
-  a[14] = (far * near2) * nf
+  a[14] = far * near2 * nf
   a[15] = 0
 
   return a
 }
 
-function perspective (a, fovy, aspectRatio, near, far) {
-  assert(fovy < Math.PI, 'mat4.perpsective: vertical field of view should be in radians (0 to PI)')
+function perspective(a, fovy, aspectRatio, near, far) {
+  assert(
+    fovy < Math.PI,
+    'mat4.perpsective: vertical field of view should be in radians (0 to PI)'
+  )
 
   var f = 1.0 / Math.tan(fovy * 0.5)
   var nf = 1.0 / (near - far)
@@ -451,12 +571,12 @@ function perspective (a, fovy, aspectRatio, near, far) {
   a[5] = f
   a[10] = (far + near) * nf
   a[11] = -1
-  a[14] = (2 * far * near) * nf
+  a[14] = 2 * far * near * nf
 
   return a
 }
 
-function ortho (a, left, right, bottom, top, near, far) {
+function ortho(a, left, right, bottom, top, near, far) {
   var lr = left - right
   var bt = bottom - top
   var nf = near - far
@@ -475,12 +595,25 @@ function ortho (a, left, right, bottom, top, near, far) {
   return a
 }
 
-function _lookAt9 (a, eyex, eyey, eyez, targetx, targety, targetz, upx, upy, upz) {
+function _lookAt9(
+  a,
+  eyex,
+  eyey,
+  eyez,
+  targetx,
+  targety,
+  targetz,
+  upx,
+  upy,
+  upz
+) {
   var x0, x1, x2, y0, y1, y2, z0, z1, z2, len
 
-  if (Math.abs(eyex - targetx) < 0.000001 &&
-      Math.abs(eyey - targety) < 0.000001 &&
-      Math.abs(eyez - targetz) < 0.000001) {
+  if (
+    Math.abs(eyex - targetx) < 0.000001 &&
+    Math.abs(eyey - targety) < 0.000001 &&
+    Math.abs(eyez - targetz) < 0.000001
+  ) {
     a[0] = 1
     a[1] = a[2] = a[3] = 0
     a[5] = 1
@@ -548,7 +681,7 @@ function _lookAt9 (a, eyex, eyey, eyez, targetx, targety, targetz, upx, upy, upz
   return a
 }
 
-function lookAt (a, from, to, up) {
+function lookAt(a, from, to, up) {
   var eyex = from[0]
   var eyey = from[1]
   var eyez = from[2]
@@ -563,9 +696,11 @@ function lookAt (a, from, to, up) {
 
   var x0, x1, x2, y0, y1, y2, z0, z1, z2, len
 
-  if (Math.abs(eyex - targetx) < 0.000001 &&
-      Math.abs(eyey - targety) < 0.000001 &&
-      Math.abs(eyez - targetz) < 0.000001) {
+  if (
+    Math.abs(eyex - targetx) < 0.000001 &&
+    Math.abs(eyey - targety) < 0.000001 &&
+    Math.abs(eyez - targetz) < 0.000001
+  ) {
     a[0] = 1
     a[1] = a[2] = a[3] = 0
     a[5] = 1
