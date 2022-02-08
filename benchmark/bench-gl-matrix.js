@@ -1,42 +1,43 @@
 import bench from "nanobench";
-import { mat4 as glMat4 } from "gl-matrix";
+import { mat4 } from "gl-matrix";
+import { run } from "./utils.js";
 
 bench("mat4/scale", (b) => {
-  const mat4 = glMat4.create();
+  const m = mat4.create();
 
   b.start();
-  glMat4.scale(mat4, mat4, [4, 2, 9]);
+  run(() => mat4.scale(m, m, [4, 2, 9]));
   b.end();
 });
 
 bench("mat4/translate", (b) => {
-  const mat4 = glMat4.create();
+  const m = mat4.create();
 
   b.start();
-  glMat4.translate(mat4, mat4, [4, 2, 9]);
+  run(() => mat4.translate(m, m, [4, 2, 9]));
   b.end();
 });
 
 bench("mat4/rotate", (b) => {
-  const mat4 = glMat4.create();
+  const m = mat4.create();
 
   b.start();
-  glMat4.rotate(mat4, mat4, 0.42, [1, 0, 0]);
+  run(() => mat4.rotate(m, m, 0.42, [1, 0, 0]));
   b.end();
 });
 
 bench("mat4/lookAt", (b) => {
-  const mat4 = glMat4.create();
+  const m = mat4.create();
 
   b.start();
-  glMat4.lookAt(mat4, [0, 4, 2], [0, 0, 0], [0, 1, 0]);
+  run(() => mat4.lookAt(m, [0, 4, 2], [0, 0, 0], [0, 1, 0]));
   b.end();
 });
 
 bench("mat4/clone", (b) => {
-  const mat4 = glMat4.create();
+  const m = mat4.create();
 
   b.start();
-  glMat4.clone(mat4);
+  run(() => mat4.clone(m));
   b.end();
 });
