@@ -7,32 +7,14 @@ export function create() {
   ]
 }
 
-export function equals(a, b) {
-  return (
-    a[0] === b[0] &&
-    a[1] === b[1] &&
-    a[2] === b[2] &&
-    a[3] === b[3] &&
-    a[4] === b[4] &&
-    a[5] === b[5] &&
-    a[6] === b[6] &&
-    a[7] === b[7] &&
-    a[8] === b[8] &&
-    a[9] === b[9]
-  );
+export function identity(a) {
+  a[0] = a[4] = a[8] = 1;
+  a[1] = a[2] = a[3] = a[5] = a[6] = a[7] = 0;
+  return a;
 }
 
-export function _set9(a, b00, b01, b02, b10, b11, b12, b20, b21, b22) {
-  a[0] = b00;
-  a[1] = b01;
-  a[2] = b02;
-  a[3] = b10;
-  a[4] = b11;
-  a[5] = b12;
-  a[6] = b20;
-  a[7] = b21;
-  a[8] = b22;
-  return a;
+export function copy(a) {
+  return a.slice();
 }
 
 export function set(a, b) {
@@ -48,10 +30,19 @@ export function set(a, b) {
   return a;
 }
 
-export function identity(a) {
-  a[0] = a[4] = a[8] = 1;
-  a[1] = a[2] = a[3] = a[5] = a[6] = a[7] = 0;
-  return a;
+export function equals(a, b) {
+  return (
+    a[0] === b[0] &&
+    a[1] === b[1] &&
+    a[2] === b[2] &&
+    a[3] === b[3] &&
+    a[4] === b[4] &&
+    a[5] === b[5] &&
+    a[6] === b[6] &&
+    a[7] === b[7] &&
+    a[8] === b[8] &&
+    a[9] === b[9]
+  );
 }
 
 export function mult(a, b) {

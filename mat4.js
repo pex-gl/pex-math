@@ -10,6 +10,28 @@ export function create() {
   ]
 }
 
+export function identity(a) {
+  a[0] = a[5] = a[10] = a[15] = 1;
+  a[1] =
+    a[2] =
+    a[3] =
+    a[4] =
+    a[6] =
+    a[7] =
+    a[8] =
+    a[9] =
+    a[11] =
+    a[12] =
+    a[13] =
+    a[14] =
+      0;
+  return a;
+}
+
+export function copy(a) {
+  return a.slice();
+}
+
 export function set(a, b) {
   a[0] = b[0];
   a[1] = b[1];
@@ -49,10 +71,6 @@ export function equals(a, b) {
     a[14] === b[14] &&
     a[15] === b[15]
   );
-}
-
-export function copy(a) {
-  return a.slice();
 }
 
 export function _mult16(
@@ -366,24 +384,6 @@ export function transpose(a) {
   a[13] = a13;
   a[14] = a23;
 
-  return a;
-}
-
-export function identity(a) {
-  a[0] = a[5] = a[10] = a[15] = 1;
-  a[1] =
-    a[2] =
-    a[3] =
-    a[4] =
-    a[6] =
-    a[7] =
-    a[8] =
-    a[9] =
-    a[11] =
-    a[12] =
-    a[13] =
-    a[14] =
-      0;
   return a;
 }
 
