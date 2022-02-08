@@ -150,6 +150,7 @@ export function mult(a, b) {
   const a32 = a[14];
   const a33 = a[15];
 
+  // TODO: caching
   const b00 = b[0];
   const b01 = b[1];
   const b02 = b[2];
@@ -436,9 +437,18 @@ export function _rotate3(a, r, x, y, z) {
   const c = Math.cos(r);
   const t = 1 - c;
 
-  let a00, a11, a22, a01, a02, a03, a10, a12, a13, a20, a21, a23;
-  a00 = a11 = a22 = 1;
-  a01 = a02 = a03 = a10 = a12 = a13 = a20 = a21 = a23 = 0;
+  const a00 = a[0];
+  const a01 = a[1];
+  const a02 = a[2];
+  const a03 = a[3];
+  const a10 = a[4];
+  const a11 = a[5];
+  const a12 = a[6];
+  const a13 = a[7];
+  const a20 = a[8];
+  const a21 = a[9];
+  const a22 = a[10];
+  const a23 = a[11];
 
   const b00 = x * x * t + c;
   const b01 = y * x * t + z * s;
@@ -450,38 +460,19 @@ export function _rotate3(a, r, x, y, z) {
   const b21 = y * z * t - x * s;
   const b22 = z * z * t + c;
 
-  const _a00 = a00 * b00 + a10 * b01 + a20 * b02;
-  const _a01 = a01 * b00 + a11 * b01 + a21 * b02;
-  const _a02 = a02 * b00 + a12 * b01 + a22 * b02;
-  const _a03 = a03 * b00 + a13 * b01 + a23 * b02;
-  const _a10 = a00 * b10 + a10 * b11 + a20 * b12;
-  const _a11 = a01 * b10 + a11 * b11 + a21 * b12;
-  const _a12 = a02 * b10 + a12 * b11 + a22 * b12;
-  const _a13 = a03 * b10 + a13 * b11 + a23 * b12;
-  const _a20 = a00 * b20 + a10 * b21 + a20 * b22;
-  const _a21 = a01 * b20 + a11 * b21 + a21 * b22;
-  const _a22 = a02 * b20 + a12 * b21 + a22 * b22;
-  const _a23 = a03 * b20 + a13 * b21 + a23 * b22;
-
-  return _mult16(
-    a,
-    _a00,
-    _a01,
-    _a02,
-    _a03,
-    _a10,
-    _a11,
-    _a12,
-    _a13,
-    _a20,
-    _a21,
-    _a22,
-    _a23,
-    0,
-    0,
-    0,
-    1
-  );
+  a[0] = a00 * b00 + a10 * b01 + a20 * b02;
+  a[1] = a01 * b00 + a11 * b01 + a21 * b02;
+  a[2] = a02 * b00 + a12 * b01 + a22 * b02;
+  a[3] = a03 * b00 + a13 * b01 + a23 * b02;
+  a[4] = a00 * b10 + a10 * b11 + a20 * b12;
+  a[5] = a01 * b10 + a11 * b11 + a21 * b12;
+  a[6] = a02 * b10 + a12 * b11 + a22 * b12;
+  a[7] = a03 * b10 + a13 * b11 + a23 * b12;
+  a[8] = a00 * b20 + a10 * b21 + a20 * b22;
+  a[9] = a01 * b20 + a11 * b21 + a21 * b22;
+  a[10] = a02 * b20 + a12 * b21 + a22 * b22;
+  a[11] = a03 * b20 + a13 * b21 + a23 * b22;
+  return a;
 }
 
 export function rotate(a, r, v) {
