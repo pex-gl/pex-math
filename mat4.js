@@ -1,5 +1,35 @@
+/**
+ * @module mat4
+ */
 import { EPSILON } from "./utils.js";
 
+/**
+ * Returns a 4x4 identity matrix.
+ *
+ * Row major memory layout:
+ *
+ * ```
+ *  0   1   2   3
+ *  4   5   6   7
+ *  8   9  10  11
+ * 12  13  14  15
+ * ```
+ *
+ * Equivalent to the column major OpenGL spec:
+ *
+ * ```
+ *  0   4   8  12
+ *  1   5   9  13
+ *  2   6  10  14
+ *  3   7  11  15
+ *
+ *  m00 m10 m20 m30
+ *  m01 m11 m21 m31
+ *  m02 m12 m22 m32
+ *  m03 m13 m23 m33
+ * ```
+ * @returns {mat4}
+ */
 export function create() {
   // prettier-ignore
   return [
@@ -10,6 +40,11 @@ export function create() {
   ]
 }
 
+/**
+ * Sets a matrix to the identity matrix.
+ * @param {mat4} a
+ * @returns {mat4}
+ */
 export function identity(a) {
   a[0] = a[5] = a[10] = a[15] = 1;
   a[1] =
@@ -28,10 +63,21 @@ export function identity(a) {
   return a;
 }
 
+/**
+ * Returns a copy of a matrix.
+ * @param {mat4} a
+ * @returns {mat4}
+ */
 export function copy(a) {
   return a.slice();
 }
 
+/**
+ * Sets a matrix from another matrix.
+ * @param {mat4} a
+ * @param {mat4} b
+ * @returns {mat4}
+ */
 export function set(a, b) {
   a[0] = b[0];
   a[1] = b[1];
@@ -52,6 +98,12 @@ export function set(a, b) {
   return a;
 }
 
+/**
+ * Compares two matrices.
+ * @param {mat4} a
+ * @param {mat4} b
+ * @returns {boolean}
+ */
 export function equals(a, b) {
   return (
     a[0] === b[0] &&
@@ -73,6 +125,9 @@ export function equals(a, b) {
   );
 }
 
+/**
+ * @private
+ */
 export function _mult16(
   a,
   b00,
@@ -132,6 +187,12 @@ export function _mult16(
   return a;
 }
 
+/**
+ * Multiplies two matrices.
+ * @param {mat4} a
+ * @param {mat4} b
+ * @returns {mat4}
+ */
 export function mult(a, b) {
   const a00 = a[0];
   const a01 = a[1];
@@ -191,6 +252,11 @@ export function mult(a, b) {
   return a;
 }
 
+/**
+ * Inverts a matrix.
+ * @param {mat4} a
+ * @returns {mat4}
+ */
 export function invert(a) {
   const a00 = a[0];
   const a10 = a[1];
@@ -355,6 +421,11 @@ export function invert(a) {
   return a;
 }
 
+/**
+ * Transposes a matrix.
+ * @param {mat4} a
+ * @returns {mat4}
+ */
 export function transpose(a) {
   const a01 = a[1];
   const a02 = a[2];
@@ -388,6 +459,9 @@ export function transpose(a) {
   return a;
 }
 
+/**
+ * @private
+ */
 export function _scale3(a, x, y, z) {
   a[0] *= x;
   a[1] *= x;
@@ -404,10 +478,19 @@ export function _scale3(a, x, y, z) {
   return a;
 }
 
+/**
+ * Scales a matrix by a vector.
+ * @param {mat4} a
+ * @param {vec3} v
+ * @returns {mat4}
+ */
 export function scale(a, v) {
   return _scale3(a, v[0], v[1], v[2]);
 }
 
+/**
+ * @private
+ */
 export function _translate3(a, x, y, z) {
   a[12] += a[0] * x + a[4] * y + a[8] * z;
   a[13] += a[1] * x + a[5] * y + a[9] * z;
@@ -416,10 +499,19 @@ export function _translate3(a, x, y, z) {
   return a;
 }
 
+/**
+ * Translates a matrix by a vector.
+ * @param {mat4} a
+ * @param {vec3} v
+ * @returns {mat4}
+ */
 export function translate(a, v) {
   return _translate3(a, v[0], v[1], v[2]);
 }
 
+/**
+ * @private
+ */
 export function _rotate3(a, r, x, y, z) {
   let len = Math.sqrt(x * x + y * y + z * z);
 
@@ -475,15 +567,28 @@ export function _rotate3(a, r, x, y, z) {
   return a;
 }
 
+/**
+ * Rotates a matrix by an angle at an axis.
+ * @param {mat4} a
+ * @param {Radians} r
+ * @param {vec3} v
+ * @returns {mat4}
+ */
 export function rotate(a, r, v) {
   return _rotate3(a, r, v[0], v[1], v[2]);
 }
 
-export function fromQuat(a, b) {
-  const x = b[0];
-  const y = b[1];
-  const z = b[2];
-  const w = b[3];
+/**
+ * Sets matrix to a quaternion.
+ * @param {mat4} a
+ * @param {quat} q
+ * @returns {mat4}
+ */
+export function fromQuat(a, q) {
+  const x = q[0];
+  const y = q[1];
+  const z = q[2];
+  const w = q[3];
 
   const x2 = x + x;
   const y2 = y + y;
@@ -520,6 +625,14 @@ export function fromQuat(a, b) {
 }
 
 const TEMP_0 = create();
+/**
+ * Sets matrix to the TRS matrix.
+ * @param {mat4} a
+ * @param {vec3} translation
+ * @param {quat} rotation
+ * @param {vec3} scaling
+ * @returns {mat4}
+ */
 export function fromTranslationRotationScale(
   a,
   translation,
@@ -534,6 +647,12 @@ export function fromTranslationRotationScale(
   return a;
 }
 
+/**
+ * Sets a 4x4 matrix to a 3x3 matrix.
+ * @param {mat4} a
+ * @param {mat3} b
+ * @returns {mat4}
+ */
 export function fromMat3(a, b) {
   a[0] = b[0];
   a[1] = b[1];
@@ -553,6 +672,17 @@ export function fromMat3(a, b) {
   return a;
 }
 
+/**
+ * Create a frustum matrix.
+ * @param {mat4} a
+ * @param {number} left
+ * @param {number} right
+ * @param {number} bottom
+ * @param {number} top
+ * @param {number} near
+ * @param {number} far
+ * @returns {mat4}
+ */
 export function frustum(a, left, right, bottom, top, near, far) {
   const rl = 1 / (right - left);
   const tb = 1 / (top - bottom);
@@ -579,6 +709,15 @@ export function frustum(a, left, right, bottom, top, near, far) {
   return a;
 }
 
+/**
+ * Create a perspective matrix.
+ * @param {mat4} a
+ * @param {Radians} fovy
+ * @param {number} aspectRatio
+ * @param {number} near
+ * @param {number} far
+ * @returns {mat4}
+ */
 export function perspective(a, fovy, aspectRatio, near, far) {
   const f = 1 / Math.tan(fovy / 2);
   const nf = 1 / (near - far);
@@ -605,6 +744,17 @@ export function perspective(a, fovy, aspectRatio, near, far) {
   return a;
 }
 
+/**
+ * Create a orthographic matrix.
+ * @param {mat4} a
+ * @param {number} left
+ * @param {number} right
+ * @param {number} bottom
+ * @param {number} top
+ * @param {number} near
+ * @param {number} far
+ * @returns {mat4}
+ */
 export function ortho(a, left, right, bottom, top, near, far) {
   const lr = left - right;
   const bt = bottom - top;
@@ -624,6 +774,9 @@ export function ortho(a, left, right, bottom, top, near, far) {
   return a;
 }
 
+/**
+ * @private
+ */
 export function _lookAt9(
   a,
   eyex,
@@ -699,6 +852,14 @@ export function _lookAt9(
   return a;
 }
 
+/**
+ * Calculates a lookAt matrix from a position, target and up vectors.
+ * @param {mat4} a
+ * @param {vec3} from
+ * @param {vec3} to
+ * @param {vec3} up
+ * @returns {mat4}
+ */
 export function lookAt(a, from, to, up) {
   return _lookAt9(
     a,

@@ -1,24 +1,44 @@
+/**
+ * @module quat
+ */
+
 import * as vec3 from "./vec3.js";
 import { EPSILON } from "./utils.js";
 
+/**
+ * Returns a new quat at 0, 0, 0, 1.
+ * @returns {quat}
+ */
 export function create() {
   return [0, 0, 0, 1];
 }
 
-export function equals(a, b) {
-  return a[0] === b[0] && a[1] === b[1] && a[2] === b[2] && a[3] === b[3];
-}
-
+/**
+ * Sets a quaternion to the identity quaternion.
+ * @param {quat} a
+ * @returns {quat}
+ */
 export function identity(a) {
   a[0] = a[1] = a[2] = 0;
   a[3] = 1;
   return a;
 }
 
+/**
+ * Returns a copy of a quaternion.
+ * @param {quat} a
+ * @returns {quat}
+ */
 export function copy(a) {
   return a.slice();
 }
 
+/**
+ * Sets a quaternion to another quaternion.
+ * @param {quat} a
+ * @param {quat} b
+ * @returns {quat}
+ */
 export function set(a, b) {
   a[0] = b[0];
   a[1] = b[1];
@@ -27,6 +47,22 @@ export function set(a, b) {
   return a;
 }
 
+/**
+ * Compares two quaternions.
+ * @param {quat} a
+ * @param {quat} b
+ * @returns {boolean}
+ */
+export function equals(a, b) {
+  return a[0] === b[0] && a[1] === b[1] && a[2] === b[2] && a[3] === b[3];
+}
+
+/**
+ * Multiplies one quaternion by another.
+ * @param {quat} a
+ * @param {quat} b
+ * @returns {quat}
+ */
 export function mult(a, b) {
   const ax = a[0];
   const ay = a[1];
@@ -45,6 +81,11 @@ export function mult(a, b) {
   return a;
 }
 
+/**
+ * Inverts a quaternion.
+ * @param {quat} a
+ * @returns {quat}
+ */
 export function invert(a) {
   let l = dot(a, a);
   l = l ? 1 / l : 0;
@@ -56,6 +97,11 @@ export function invert(a) {
   return a;
 }
 
+/**
+ * Conjugates a quaternion.
+ * @param {quat} a
+ * @returns {quat}
+ */
 export function conjugate(a) {
   a[0] *= -1;
   a[1] *= -1;
@@ -63,6 +109,11 @@ export function conjugate(a) {
   return a;
 }
 
+/**
+ * Calculates the length of a quaternion.
+ * @param {quat} a
+ * @returns {quat}
+ */
 export function length(a) {
   const x = a[0];
   const y = a[1];
@@ -71,6 +122,11 @@ export function length(a) {
   return Math.sqrt(x * x + y * y + z * z + w * w);
 }
 
+/**
+ * Normalizes a quaternion.
+ * @param {quat} a
+ * @returns {quat}
+ */
 export function normalize(a) {
   let l = length(a);
   if (l > 2 ** -24) {
@@ -83,12 +139,22 @@ export function normalize(a) {
   return a;
 }
 
+/**
+ * Calculates the dot product of two quaternions.
+ * @param {quat} a
+ * @param {quat} b
+ * @returns {quat}
+ */
 export function dot(a, b) {
   return a[0] * b[0] + a[1] * b[1] + a[2] * b[2] + a[3] * b[3];
 }
 
-//x = yaw, y = pitch, z = roll
-//assumes XYZ order
+/**
+ * Set euler angles to a quaternion. Assumes XYZ rotation order.
+ * @param {quat} q
+ * @param {euler} euler
+ * @returns {quat}
+ */
 export function fromEuler(q, euler) {
   const x = euler[0];
   const y = euler[1];
@@ -108,6 +174,13 @@ export function fromEuler(q, euler) {
   return q;
 }
 
+/**
+ * Set the angle at an axis of a quaternion.
+ * @param {quat} a
+ * @param {vec3} axis
+ * @param {Radians} angle
+ * @returns {quat}
+ */
 export function fromAxisAngle(a, axis, angle) {
   const angle2 = angle / 2;
   const sin2 = Math.sin(angle2);
@@ -118,6 +191,9 @@ export function fromAxisAngle(a, axis, angle) {
   return normalize(a);
 }
 
+/**
+ * @private
+ */
 export function _fromMat39(a, m0, m1, m2, m3, m4, m5, m6, m7, m8) {
   const trace = m0 + m4 + m8;
   let s;
@@ -154,31 +230,65 @@ export function _fromMat39(a, m0, m1, m2, m3, m4, m5, m6, m7, m8) {
   return a;
 }
 
+/**
+ * Sets quaternion from orthonormal base xyz.
+ * @param {quat} a
+ * @param {number} x
+ * @param {number} y
+ * @param {number} z
+ * @returns {quat}
+ */
 export function fromAxes(a, x, y, z) {
   return _fromMat39(a, x[0], x[1], x[2], y[0], y[1], y[2], z[0], z[1], z[2]);
 }
 
+/**
+ * Sets a quaternion to a 3x3 matrix.
+ * @param {quat} a
+ * @param {mat3} m
+ * @returns {quat}
+ */
 export function fromMat3(a, m) {
   return _fromMat39(a, m[0], m[1], m[2], m[3], m[4], m[5], m[6], m[7], m[8]);
 }
 
+/**
+ * Sets a quaternion to a 4x4 matrix.
+ * @param {quat} a
+ * @param {mat4} m
+ * @returns {quat}
+ */
 export function fromMat4(a, m) {
   return _fromMat39(a, m[0], m[1], m[2], m[4], m[5], m[6], m[8], m[9], m[10]);
 }
 
+/**
+ * Sets a quaternion to represent the shortest rotation from one vector to another.
+ * @param {quat} a
+ * @param {vec3} v
+ * @param {vec3} w
+ * @returns {quat}
+ */
 export const fromTo = (() => {
   let u = [];
-  return (q, v, w) => {
+  return (a, v, w) => {
     u = vec3.cross(vec3.set(u, v), w);
-    q[0] = u[0];
-    q[1] = u[1];
-    q[2] = u[2];
-    q[3] = 1 + vec3.dot(v, w);
-    normalize(q);
-    return q;
+    a[0] = u[0];
+    a[1] = u[1];
+    a[2] = u[2];
+    a[3] = 1 + vec3.dot(v, w);
+    normalize(a);
+    return a;
   };
 })();
 
+/**
+ * Spherical linear interpolation between two quaternions.
+ * @param {quat} a
+ * @param {quat} b
+ * @param {number} t
+ * @returns {quat}
+ */
 export function slerp(a, b, t) {
   // http://jsperf.com/quaternion-slerp-implementations
   const ax = a[0];

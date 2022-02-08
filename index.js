@@ -1,3 +1,8 @@
+/**
+ * Re-export vec, mat, quat, euler and utils
+ * @module index
+ */
+
 export * as mat2x3 from "./mat2x3.js";
 export * as mat3 from "./mat3.js";
 export * as mat4 from "./mat4.js";

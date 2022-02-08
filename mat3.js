@@ -1,3 +1,31 @@
+/**
+ * @module mat3
+ */
+
+/**
+ * Returns a 3x3 identity matrix.
+ *
+ * Row major memory layout:
+ *
+ * ```
+ *  0   1   2
+ *  3   4   5
+ *  6   7   8
+ * ```
+ *
+ *  Equivalent to the column major OpenGL spec:
+ *
+ * ```
+ *   0   3   6
+ *   1   4   7
+ *   2   5   8
+ *
+ *  m00 m10 m20
+ *  m01 m11 m21
+ *  m02 m12 m22
+ * ```
+ * @returns {mat3}
+ */
 export function create() {
   // prettier-ignore
   return [
@@ -7,16 +35,32 @@ export function create() {
   ]
 }
 
+/**
+ * Sets a matrix to the identity matrix.
+ * @param {mat3} a
+ * @returns {mat3}
+ */
 export function identity(a) {
   a[0] = a[4] = a[8] = 1;
   a[1] = a[2] = a[3] = a[5] = a[6] = a[7] = 0;
   return a;
 }
 
+/**
+ * Returns a copy of a matrix.
+ * @param {mat3} a
+ * @returns {mat3}
+ */
 export function copy(a) {
   return a.slice();
 }
 
+/**
+ * Sets a matrix from another matrix.
+ * @param {mat3} a
+ * @param {mat3} b
+ * @returns {mat3}
+ */
 export function set(a, b) {
   a[0] = b[0];
   a[1] = b[1];
@@ -30,6 +74,12 @@ export function set(a, b) {
   return a;
 }
 
+/**
+ * Compares two matrices.
+ * @param {mat3} a
+ * @param {mat3} b
+ * @returns {boolean}
+ */
 export function equals(a, b) {
   return (
     a[0] === b[0] &&
@@ -45,6 +95,12 @@ export function equals(a, b) {
   );
 }
 
+/**
+ * Multiplies two matrices.
+ * @param {mat3} a
+ * @param {mat3} b
+ * @returns {mat3}
+ */
 export function mult(a, b) {
   const a00 = a[0];
   const a01 = a[1];
@@ -79,6 +135,12 @@ export function mult(a, b) {
   return a;
 }
 
+/**
+ * Sets a 3x3 matrix from a 2x3 matrix.
+ * @param {mat3} a
+ * @param {mat2x3} b
+ * @returns {mat3}
+ */
 export function fromMat2x3(a, b) {
   a[0] = b[0];
   a[1] = b[1];
@@ -92,6 +154,12 @@ export function fromMat2x3(a, b) {
   return a;
 }
 
+/**
+ * Sets a 3x3 matrix to a 4x4 matrix.
+ * @param {mat3} a
+ * @param {mat4} b
+ * @returns {mat3}
+ */
 export function fromMat4(a, b) {
   a[0] = b[0];
   a[1] = b[1];
@@ -105,6 +173,12 @@ export function fromMat4(a, b) {
   return a;
 }
 
+/**
+ * Sets matrix to a quaternion.
+ * @param {mat3} a
+ * @param {quat} b
+ * @returns {mat3}
+ */
 export function fromQuat(a, b) {
   const x = b[0];
   const y = b[1];
@@ -142,6 +216,11 @@ export function fromQuat(a, b) {
   return a;
 }
 
+/**
+ * Transposes a matrix.
+ * @param {mat3} a
+ * @returns {mat3}
+ */
 export function transpose(a) {
   const a01 = a[1];
   const a02 = a[2];

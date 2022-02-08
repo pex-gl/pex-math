@@ -1,11 +1,30 @@
+/**
+ * @module vec3
+ */
+
+/**
+ * Returns a new vec3 at 0, 0, 0.
+ * @returns {vec3}
+ */
 export function create() {
   return [0, 0, 0];
 }
 
-export function equals(a, b) {
-  return a[0] === b[0] && a[1] === b[1] && a[2] === b[2];
+/**
+ * Returns a copy of a vector.
+ * @param {vec3} a
+ * @returns {vec3}
+ */
+export function copy(a) {
+  return a.slice();
 }
 
+/**
+ * Sets a vector to another vector.
+ * @param {vec3} a
+ * @param {vec3} b
+ * @returns {vec3}
+ */
 export function set(a, b) {
   a[0] = b[0];
   a[1] = b[1];
@@ -13,10 +32,22 @@ export function set(a, b) {
   return a;
 }
 
-export function copy(a) {
-  return a.slice();
+/**
+ * Compares two vectors.
+ * @param {vec3} a
+ * @param {vec3} b
+ * @returns {boolean}
+ */
+export function equals(a, b) {
+  return a[0] === b[0] && a[1] === b[1] && a[2] === b[2];
 }
 
+/**
+ * Add a vector with another.
+ * @param {vec3} a
+ * @param {vec3} b
+ * @returns {vec3}
+ */
 export function add(a, b) {
   a[0] += b[0];
   a[1] += b[1];
@@ -24,6 +55,12 @@ export function add(a, b) {
   return a;
 }
 
+/**
+ * Subtracts a vector with another.
+ * @param {vec3} a
+ * @param {vec3} b
+ * @returns {vec3}
+ */
 export function sub(a, b) {
   a[0] -= b[0];
   a[1] -= b[1];
@@ -31,6 +68,12 @@ export function sub(a, b) {
   return a;
 }
 
+/**
+ * Scales a vector by a number.
+ * @param {vec3} a
+ * @param {number} n
+ * @returns {vec3}
+ */
 export function scale(a, n) {
   a[0] *= n;
   a[1] *= n;
@@ -38,6 +81,27 @@ export function scale(a, n) {
   return a;
 }
 
+/**
+ * Adds two vectors after scaling the second one.
+ * @param {vec3} a
+ * @param {vec3} b
+ * @param {number} n
+ * @returns {vec3}
+ */
+export function addScaled(a, b, n) {
+  a[0] += b[0] * n;
+  a[1] += b[1] * n;
+  a[2] += b[2] * n;
+
+  return a;
+}
+
+/**
+ * Multiplies a vector by a matrix.
+ * @param {vec3} a
+ * @param {mat4} m
+ * @returns {vec3}
+ */
 export function multMat4(a, m) {
   const x = a[0];
   const y = a[1];
@@ -50,6 +114,12 @@ export function multMat4(a, m) {
   return a;
 }
 
+/**
+ * Multiplies a vector by a quaternion.
+ * @param {vec3} a
+ * @param {quat} q
+ * @returns {vec3}
+ */
 export function multQuat(a, q) {
   const x = a[0];
   const y = a[1];
@@ -72,10 +142,22 @@ export function multQuat(a, q) {
   return a;
 }
 
+/**
+ * Calculates the dot product of two vectors.
+ * @param {vec3} a
+ * @param {vec3} b
+ * @returns {number}
+ */
 export function dot(a, b) {
   return a[0] * b[0] + a[1] * b[1] + a[2] * b[2];
 }
 
+/**
+ * Calculates the cross product of two vectors.
+ * @param {vec3} a
+ * @param {vec3} b
+ * @returns {number}
+ */
 export function cross(a, b) {
   const x = a[0];
   const y = a[1];
@@ -90,6 +172,11 @@ export function cross(a, b) {
   return a;
 }
 
+/**
+ * Calculates the length of a vector.
+ * @param {vec3} a
+ * @returns {number}
+ */
 export function length(a) {
   const x = a[0];
   const y = a[1];
@@ -97,6 +184,11 @@ export function length(a) {
   return Math.sqrt(x * x + y * y + z * z);
 }
 
+/**
+ * Calculates the squared length of a vector.
+ * @param {vec3} a
+ * @returns {number}
+ */
 export function lengthSq(a) {
   const x = a[0];
   const y = a[1];
@@ -104,6 +196,11 @@ export function lengthSq(a) {
   return x * x + y * y + z * z;
 }
 
+/**
+ * Normalises a vector.
+ * @param {vec3} a
+ * @returns {vec3}
+ */
 export function normalize(a) {
   const x = a[0];
   const y = a[1];
@@ -117,6 +214,12 @@ export function normalize(a) {
   return a;
 }
 
+/**
+ * Calculates the distance between two vectors.
+ * @param {vec3} a
+ * @param {vec3} b
+ * @returns {number}
+ */
 export function distance(a, b) {
   const dx = b[0] - a[0];
   const dy = b[1] - a[1];
@@ -124,6 +227,12 @@ export function distance(a, b) {
   return Math.sqrt(dx * dx + dy * dy + dz * dz);
 }
 
+/**
+ * Calculates the squared distance between two vectors.
+ * @param {vec3} a
+ * @param {vec3} b
+ * @returns {number}
+ */
 export function distanceSq(a, b) {
   const dx = b[0] - a[0];
   const dy = b[1] - a[1];
@@ -131,6 +240,12 @@ export function distanceSq(a, b) {
   return dx * dx + dy * dy + dz * dz;
 }
 
+/**
+ * Limits a vector to a length.
+ * @param {vec3} a
+ * @param {vec3} n
+ * @returns {vec3}
+ */
 export function limit(a, n) {
   const x = a[0];
   const y = a[1];
@@ -149,6 +264,13 @@ export function limit(a, n) {
   return a;
 }
 
+/**
+ * Linearly interpolates between two vectors.
+ * @param {vec3} a
+ * @param {vec3} b
+ * @param {number} n
+ * @returns {vec3}
+ */
 export function lerp(a, b, n) {
   const x = a[0];
   const y = a[1];
@@ -161,6 +283,12 @@ export function lerp(a, b, n) {
   return a;
 }
 
+/**
+ * Prints a vector to a string.
+ * @param {vec3} a
+ * @param {number} precision
+ * @returns {vec3}
+ */
 export function toString(a, precision) {
   const scale = 10 ** (precision !== undefined ? precision : 4);
   let s = "[";
@@ -168,12 +296,4 @@ export function toString(a, precision) {
   s += `${Math.floor(a[1] * scale) / scale}, `;
   s += `${Math.floor(a[2] * scale) / scale}]`;
   return s;
-}
-
-export function addScaled(v, w, n) {
-  v[0] += w[0] * n;
-  v[1] += w[1] * n;
-  v[2] += w[2] * n;
-
-  return v;
 }

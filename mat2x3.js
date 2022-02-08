@@ -1,3 +1,30 @@
+/**
+ * @module mat2x3
+ */
+
+/**
+ * Returns a 2x3 identity matrix, a short form for a 3x3 matrix with the last row ignored.
+ *
+ * Row major memory layout:
+ *
+ * ```
+ * 0   1   2
+ * 3   4   5
+ * ```
+ *
+ * Equivalent to the column major OpenGL spec:
+ *
+ * ```
+ * 0   3
+ * 1   4
+ * 2   5
+ *
+ * m00 m10
+ * m01 m11
+ * m02 m12
+ * ```
+ * @returns {mat2x3}
+ */
 export function create() {
   // prettier-ignore
   return [
@@ -6,16 +33,32 @@ export function create() {
   ]
 }
 
+/**
+ * Sets a matrix to the identity matrix.
+ * @param {mat2x3} a
+ * @returns {mat2x3}
+ */
 export function identity(a) {
   a[0] = a[3] = 1;
   a[1] = a[2] = a[4] = a[5] = 0;
   return a;
 }
 
+/**
+ * Returns a copy of a matrix.
+ * @param {mat2x3} a
+ * @returns {mat2x3}
+ */
 export function copy(a) {
   return a.slice();
 }
 
+/**
+ * Sets a matrix from another matrix.
+ * @param {mat2x3} a
+ * @param {mat2x3} b
+ * @returns {mat2x3}
+ */
 export function set(a, b) {
   a[0] = b[0];
   a[1] = b[1];
@@ -26,6 +69,12 @@ export function set(a, b) {
   return a;
 }
 
+/**
+ * Compares two matrices.
+ * @param {mat2x3} a
+ * @param {mat2x3} b
+ * @returns {boolean}
+ */
 export function equals(a, b) {
   return (
     a[0] === b[0] &&
@@ -37,6 +86,12 @@ export function equals(a, b) {
   );
 }
 
+/**
+ * Multiplies two matrices.
+ * @param {mat2x3} a
+ * @param {mat2x3} b
+ * @returns {mat2x3}
+ */
 export function mult(a, b) {
   const a0 = a[0];
   const a1 = a[1];
@@ -62,6 +117,12 @@ export function mult(a, b) {
   return a;
 }
 
+/**
+ * Translates a matrix by a vector.
+ * @param {mat2x3} a
+ * @param {vec2} v
+ * @returns {mat2x3}
+ */
 export function translate(a, v) {
   const a0 = a[0];
   const a1 = a[1];
@@ -83,6 +144,12 @@ export function translate(a, v) {
   return a;
 }
 
+/**
+ * Rotates a matrix by an angle.
+ * @param {mat2x3} a
+ * @param {Radians} rad
+ * @returns {mat2x3}
+ */
 export function rotate(a, rad) {
   const a0 = a[0];
   const a1 = a[1];
@@ -100,6 +167,12 @@ export function rotate(a, rad) {
   return a;
 }
 
+/**
+ * Scales a matrix by a vector.
+ * @param {mat2x3} a
+ * @param {vec2} v
+ * @returns {mat2x3}
+ */
 export function scale(a, v) {
   const a0 = a[0];
   const a1 = a[1];

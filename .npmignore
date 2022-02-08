@@ -1,4 +1,6 @@
-test
 docs
-out
+coverage
+test
+.github
+.editorconfig
 benchmark
