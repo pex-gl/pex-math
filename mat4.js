@@ -585,11 +585,6 @@ export function frustum(a, left, right, bottom, top, near, far) {
 }
 
 export function perspective(a, fovy, aspectRatio, near, far) {
-  console.assert(
-    fovy < Math.PI,
-    "mat4.perpsective: vertical field of view should be in radians (0 to PI)"
-  );
-
   const f = 1 / Math.tan(fovy * 0.5);
   const nf = 1 / (near - far);
 

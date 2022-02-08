@@ -109,10 +109,6 @@ export function fromEuler(q, euler) {
 }
 
 export function fromAxisAngle(a, axis, angle) {
-  console.assert(
-    axis.length !== undefined,
-    "quat.fromAxisAngle: axis should be vec3"
-  );
   const angle2 = angle * 0.5;
   const sin2 = Math.sin(angle2);
   a[0] = axis[0] * sin2;
