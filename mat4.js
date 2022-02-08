@@ -730,97 +730,16 @@ export function _lookAt9(
 }
 
 export function lookAt(a, from, to, up) {
-  const eyex = from[0];
-  const eyey = from[1];
-  const eyez = from[2];
-
-  const targetx = to[0];
-  const targety = to[1];
-  const targetz = to[2];
-
-  const upx = up[0];
-  const upy = up[1];
-  const upz = up[2];
-
-  let x0;
-  let x1;
-  let x2;
-  let y0;
-  let y1;
-  let y2;
-  let z0;
-  let z1;
-  let z2;
-  let len;
-
-  if (
-    Math.abs(eyex - targetx) < EPSILON &&
-    Math.abs(eyey - targety) < EPSILON &&
-    Math.abs(eyez - targetz) < EPSILON
-  ) {
-    a[0] = 1;
-    a[1] = a[2] = a[3] = 0;
-    a[5] = 1;
-    a[4] = a[6] = a[7] = 0;
-    a[10] = 1;
-    a[8] = a[9] = a[11] = 0;
-    a[15] = 1;
-    a[12] = a[13] = a[14] = 0;
-
-    return a;
-  }
-
-  z0 = eyex - targetx;
-  z1 = eyey - targety;
-  z2 = eyez - targetz;
-
-  len = 1 / Math.sqrt(z0 * z0 + z1 * z1 + z2 * z2);
-  z0 *= len;
-  z1 *= len;
-  z2 *= len;
-
-  x0 = upy * z2 - upz * z1;
-  x1 = upz * z0 - upx * z2;
-  x2 = upx * z1 - upy * z0;
-
-  len = Math.sqrt(x0 * x0 + x1 * x1 + x2 * x2);
-
-  if (len) {
-    len = 1 / len;
-    x0 *= len;
-    x1 *= len;
-    x2 *= len;
-  }
-
-  y0 = z1 * x2 - z2 * x1;
-  y1 = z2 * x0 - z0 * x2;
-  y2 = z0 * x1 - z1 * x0;
-
-  len = Math.sqrt(y0 * y0 + y1 * y1 + y2 * y2);
-
-  if (len) {
-    len = 1 / len;
-    x0 *= len;
-    x1 *= len;
-    x2 *= len;
-  }
-
-  a[0] = x0;
-  a[1] = y0;
-  a[2] = z0;
-  a[3] = 0;
-  a[4] = x1;
-  a[5] = y1;
-  a[6] = z1;
-  a[7] = 0;
-  a[8] = x2;
-  a[9] = y2;
-  a[10] = z2;
-  a[11] = 0;
-  a[12] = -(x0 * eyex + x1 * eyey + x2 * eyez);
-  a[13] = -(y0 * eyex + y1 * eyey + y2 * eyez);
-  a[14] = -(z0 * eyex + z1 * eyey + z2 * eyez);
-  a[15] = 1;
-
-  return a;
+  return _lookAt9(
+    a,
+    from[0],
+    from[1],
+    from[2],
+    to[0],
+    to[1],
+    to[2],
+    up[0],
+    up[1],
+    up[2]
+  );
 }
