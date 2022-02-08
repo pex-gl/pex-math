@@ -1,3 +1,5 @@
+import { EPSILON } from "./utils.js";
+
 export function create() {
   // prettier-ignore
   return [
@@ -404,7 +406,7 @@ export function translate(a, v) {
 export function _rotate3(a, r, x, y, z) {
   let len = Math.sqrt(x * x + y * y + z * z);
 
-  if (len < 0.0001) {
+  if (len < EPSILON) {
     return null;
   }
 
@@ -644,9 +646,9 @@ export function _lookAt9(
   let len;
 
   if (
-    Math.abs(eyex - targetx) < 0.000001 &&
-    Math.abs(eyey - targety) < 0.000001 &&
-    Math.abs(eyez - targetz) < 0.000001
+    Math.abs(eyex - targetx) < EPSILON &&
+    Math.abs(eyey - targety) < EPSILON &&
+    Math.abs(eyez - targetz) < EPSILON
   ) {
     a[0] = 1;
     a[1] = a[2] = a[3] = 0;
@@ -740,9 +742,9 @@ export function lookAt(a, from, to, up) {
   let len;
 
   if (
-    Math.abs(eyex - targetx) < 0.000001 &&
-    Math.abs(eyey - targety) < 0.000001 &&
-    Math.abs(eyez - targetz) < 0.000001
+    Math.abs(eyex - targetx) < EPSILON &&
+    Math.abs(eyey - targety) < EPSILON &&
+    Math.abs(eyez - targetz) < EPSILON
   ) {
     a[0] = 1;
     a[1] = a[2] = a[3] = 0;

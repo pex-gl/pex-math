@@ -1,3 +1,5 @@
+export const EPSILON = 0.000001;
+
 export function lerp(a, b, n) {
   return a + (b - a) * n;
 }

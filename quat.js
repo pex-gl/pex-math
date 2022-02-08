@@ -1,6 +1,5 @@
-import { vec3 } from "./index.js";
-
-const EPSILON = 2 ** -24;
+import * as vec3 from "./vec3.js";
+import { EPSILON } from "./utils.js";
 
 export function create() {
   return [0, 0, 0, 1];
@@ -74,7 +73,7 @@ export function length(a) {
 
 export function normalize(a) {
   let l = length(a);
-  if (l > EPSILON) {
+  if (l > 2 ** -24) {
     l = 1 / l;
     a[0] *= l;
     a[1] *= l;
@@ -217,7 +216,7 @@ export function slerp(a, b, t) {
     a[3] = bw;
   }
 
-  if (1 - cosom > 0.000001) {
+  if (1 - cosom > EPSILON) {
     omega = Math.acos(cosom);
     sinom = Math.sin(omega);
     scale0 = Math.sin((1 - t) * omega) / sinom;
