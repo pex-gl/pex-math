@@ -388,7 +388,19 @@ export function identity(a) {
 }
 
 export function _scale3(a, x, y, z) {
-  return _mult16(a, x, 0, 0, 0, 0, y, 0, 0, 0, 0, z, 0, 0, 0, 0, 1);
+  a[0] *= x;
+  a[1] *= x;
+  a[2] *= x;
+  a[3] *= x;
+  a[4] *= y;
+  a[5] *= y;
+  a[6] *= y;
+  a[7] *= y;
+  a[8] *= z;
+  a[9] *= z;
+  a[10] *= z;
+  a[11] *= z;
+  return a;
 }
 
 export function scale(a, v) {
