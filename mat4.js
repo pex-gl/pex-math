@@ -52,7 +52,7 @@ export function equals(a, b) {
 }
 
 export function copy(a) {
-  return a.slice(0);
+  return a.slice();
 }
 
 export function _mult16(

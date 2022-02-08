@@ -15,7 +15,7 @@ export function set(a, b) {
 }
 
 export function copy(a) {
-  return a.slice(0);
+  return a.slice();
 }
 
 export function fromVec3(a, b) {

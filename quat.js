@@ -16,7 +16,7 @@ export function identity(a) {
 }
 
 export function copy(a) {
-  return a.slice(0);
+  return a.slice();
 }
 
 export function set(a, b) {
