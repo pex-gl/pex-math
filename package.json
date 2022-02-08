@@ -5,7 +5,17 @@
   "keywords": [
     "pex",
     "webgl",
-    "math"
+    "math",
+    "vector",
+    "quaternion",
+    "matrix",
+    "vec2",
+    "vec3",
+    "vec4",
+    "quat",
+    "mat2x3",
+    "mat3",
+    "mat4"
   ],
   "homepage": "https://github.com/pex-gl/pex-math",
   "bugs": "https://github.com/pex-gl/pex-math/issues",
