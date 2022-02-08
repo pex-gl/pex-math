@@ -53,6 +53,46 @@ test("mat4.equals", (t) => {
   t.end();
 });
 
+test("mat4.translate", (t) => {
+  t.deepEqual(
+    mat4.translate(
+      [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16],
+      [1, 2, 3]
+    ),
+    [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 51, 58, 65, 72],
+    "should translate a mat4 by a vec3"
+  );
+  t.deepEqual(
+    mat4.translate([1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1], [1, 2, 3]),
+    [1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 1, 2, 3, 1],
+    "should an identity translate a mat4 by a vec3"
+  );
+
+  handledMethods.push("translate");
+  t.end();
+});
+
+test("mat4.rotate", (t) => {
+  t.deepEqual(
+    mat4.rotate(
+      [1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1],
+      Math.PI * 0.5,
+      [1, 0, 0]
+    ),
+    // prettier-ignore
+    [
+      1, 0, 0, 0,
+      0, Math.cos(Math.PI * 0.5), 1, 0,
+      0, -1, Math.cos(Math.PI * 0.5), 0,
+      0, 0, 0, 1,
+    ],
+    "should rotate a mat4 by an angle on an axis"
+  );
+
+  handledMethods.push("rotate");
+  t.end();
+});
+
 test("coverage", (t) => {
   allMethods.forEach((name) => {
     if (!handledMethods.includes(name)) {
@@ -233,31 +273,6 @@ test("coverage", (t) => {
 //   10, 12, 14, 16,
 //   27, 30, 33, 36,
 //   13, 14, 15, 16
-// ])
-
-// // translate
-// assert.deepEqual(Mat4.translate([
-//   1, 2, 3, 4,
-//   5, 6, 7, 8,
-//   9, 10, 11, 12,
-//   13, 14, 15, 16
-// ], [1, 2, 3]), [
-//   1, 2, 3, 4,
-//   5, 6, 7, 8,
-//   9, 10, 11, 12,
-//   51, 58, 65, 72
-// ])
-
-// assert.deepEqual(Mat4.translate([
-//   1, 0, 0, 0,
-//   0, 1, 0, 0,
-//   0, 0, 1, 0,
-//   0, 0, 0, 1
-// ], [1, 2, 3]), [
-//   1, 0, 0, 0,
-//   0, 1, 0, 0,
-//   0, 0, 1, 0,
-//   1, 2, 3, 1
 // ])
 
 // // translate3
