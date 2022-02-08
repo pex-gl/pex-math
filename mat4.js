@@ -646,46 +646,26 @@ export function _lookAt9(
   upy,
   upz
 ) {
-  let x0;
-  let x1;
-  let x2;
-  let y0;
-  let y1;
-  let y2;
-  let z0;
-  let z1;
-  let z2;
-  let len;
-
   if (
     Math.abs(eyex - targetx) < EPSILON &&
     Math.abs(eyey - targety) < EPSILON &&
     Math.abs(eyez - targetz) < EPSILON
   ) {
-    a[0] = 1;
-    a[1] = a[2] = a[3] = 0;
-    a[5] = 1;
-    a[4] = a[6] = a[7] = 0;
-    a[10] = 1;
-    a[8] = a[9] = a[11] = 0;
-    a[15] = 1;
-    a[12] = a[13] = a[14] = 0;
-
-    return a;
+    return identity(a);
   }
 
-  z0 = eyex - targetx;
-  z1 = eyey - targety;
-  z2 = eyez - targetz;
+  let z0 = eyex - targetx;
+  let z1 = eyey - targety;
+  let z2 = eyez - targetz;
 
-  len = 1 / Math.sqrt(z0 * z0 + z1 * z1 + z2 * z2);
+  let len = 1 / Math.sqrt(z0 * z0 + z1 * z1 + z2 * z2);
   z0 *= len;
   z1 *= len;
   z2 *= len;
 
-  x0 = upy * z2 - upz * z1;
-  x1 = upz * z0 - upx * z2;
-  x2 = upx * z1 - upy * z0;
+  let x0 = upy * z2 - upz * z1;
+  let x1 = upz * z0 - upx * z2;
+  let x2 = upx * z1 - upy * z0;
 
   len = Math.sqrt(x0 * x0 + x1 * x1 + x2 * x2);
 
@@ -696,9 +676,9 @@ export function _lookAt9(
     x2 *= len;
   }
 
-  y0 = z1 * x2 - z2 * x1;
-  y1 = z2 * x0 - z0 * x2;
-  y2 = z0 * x1 - z1 * x0;
+  let y0 = z1 * x2 - z2 * x1;
+  let y1 = z2 * x0 - z0 * x2;
+  let y2 = z0 * x1 - z1 * x0;
 
   len = Math.sqrt(y0 * y0 + y1 * y1 + y2 * y2);
 
