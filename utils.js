@@ -7,7 +7,7 @@ export function clamp(n, min, max) {
 }
 
 export function smoothstep(n, min, max) {
-  n = clamp((n - min) / (max - min), 0.0, 1.0);
+  n = clamp((n - min) / (max - min), 0, 1);
   return n * n * (3 - 2 * n);
 }
 
@@ -16,7 +16,7 @@ export function map(n, inStart, inEnd, outStart, outEnd) {
 }
 
 export function toRadians(degrees) {
-  return (degrees * Math.PI) / 180.0;
+  return (degrees * Math.PI) / 180;
 }
 
 export function toDegrees(radians) {

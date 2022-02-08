@@ -312,7 +312,7 @@ export function invert(a) {
     return null;
   }
 
-  det = 1.0 / det;
+  det = 1 / det;
 
   a[0] *= det;
   a[1] *= det;
@@ -539,15 +539,15 @@ export function fromMat3(a, b) {
   a[10] = b[8];
 
   a[3] = a[7] = a[11] = a[12] = a[13] = a[14] = 0;
-  a[15] = 1.0;
+  a[15] = 1;
 
   return a;
 }
 
 export function frustum(a, left, right, bottom, top, near, far) {
-  const rl = 1.0 / (right - left);
-  const tb = 1.0 / (top - bottom);
-  const nf = 1.0 / (near - far);
+  const rl = 1 / (right - left);
+  const tb = 1 / (top - bottom);
+  const nf = 1 / (near - far);
 
   const near2 = near * 2;
 
@@ -576,8 +576,8 @@ export function perspective(a, fovy, aspectRatio, near, far) {
     "mat4.perpsective: vertical field of view should be in radians (0 to PI)"
   );
 
-  const f = 1.0 / Math.tan(fovy * 0.5);
-  const nf = 1.0 / (near - far);
+  const f = 1 / Math.tan(fovy * 0.5);
+  const nf = 1 / (near - far);
 
   a[1] =
     a[2] =
@@ -676,7 +676,7 @@ export function _lookAt9(
   len = Math.sqrt(x0 * x0 + x1 * x1 + x2 * x2);
 
   if (len) {
-    len = 1.0 / len;
+    len = 1 / len;
     x0 *= len;
     x1 *= len;
     x2 *= len;
@@ -689,7 +689,7 @@ export function _lookAt9(
   len = Math.sqrt(y0 * y0 + y1 * y1 + y2 * y2);
 
   if (len) {
-    len = 1.0 / len;
+    len = 1 / len;
     x0 *= len;
     x1 *= len;
     x2 *= len;
@@ -772,7 +772,7 @@ export function lookAt(a, from, to, up) {
   len = Math.sqrt(x0 * x0 + x1 * x1 + x2 * x2);
 
   if (len) {
-    len = 1.0 / len;
+    len = 1 / len;
     x0 *= len;
     x1 *= len;
     x2 *= len;
@@ -785,7 +785,7 @@ export function lookAt(a, from, to, up) {
   len = Math.sqrt(y0 * y0 + y1 * y1 + y2 * y2);
 
   if (len) {
-    len = 1.0 / len;
+    len = 1 / len;
     x0 *= len;
     x1 *= len;
     x2 *= len;

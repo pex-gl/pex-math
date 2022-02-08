@@ -55,7 +55,7 @@ export function normalize(a) {
   const y = a[1];
   let l = Math.sqrt(x * x + y * y);
 
-  l = 1.0 / (l || 1);
+  l = 1 / (l || 1);
   a[0] *= l;
   a[1] *= l;
   return a;

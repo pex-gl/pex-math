@@ -11,8 +11,8 @@ export function equals(a, b) {
 }
 
 export function identity(a) {
-  a[0] = a[1] = a[2] = 0.0;
-  a[3] = 1.0;
+  a[0] = a[1] = a[2] = 0;
+  a[3] = 1;
   return a;
 }
 
@@ -48,7 +48,7 @@ export function mult(a, b) {
 
 export function invert(a) {
   let l = dot(a, a);
-  l = l ? 1.0 / l : 0.0;
+  l = l ? 1 / l : 0;
 
   a[0] *= -l;
   a[1] *= -l;
@@ -75,7 +75,7 @@ export function length(a) {
 export function normalize(a) {
   let l = length(a);
   if (l > EPSILON) {
-    l = 1.0 / l;
+    l = 1 / l;
     a[0] *= l;
     a[1] *= l;
     a[2] *= l;
@@ -135,21 +135,21 @@ export function _fromMat39(a, m0, m1, m2, m3, m4, m5, m6, m7, m8) {
     a[1] = (m6 - m2) * s;
     a[2] = (m1 - m3) * s;
   } else if (m0 > m4 && m0 > m8) {
-    s = Math.sqrt(1.0 + m0 - m4 - m8);
+    s = Math.sqrt(1 + m0 - m4 - m8);
     a[0] = s * 0.5;
     s = 0.5 / s;
     a[1] = (m1 + m3) * s;
     a[2] = (m6 + m2) * s;
     a[3] = (m5 - m7) * s;
   } else if (m4 > m8) {
-    s = Math.sqrt(1.0 + m4 - m0 - m8);
+    s = Math.sqrt(1 + m4 - m0 - m8);
     a[1] = s * 0.5;
     s = 0.5 / s;
     a[0] = (m1 + m3) * s;
     a[2] = (m5 + m7) * s;
     a[3] = (m6 - m2) * s;
   } else {
-    s = Math.sqrt(1.0 + m8 - m0 - m4);
+    s = Math.sqrt(1 + m8 - m0 - m4);
     a[2] = s * 0.5;
     s = 0.5 / s;
     a[0] = (m6 + m2) * s;
@@ -204,7 +204,7 @@ export function slerp(a, b, t) {
 
   cosom = dot(a, b);
 
-  if (cosom < 0.0) {
+  if (cosom < 0) {
     cosom = -cosom;
     a[0] = -bx;
     a[1] = -by;
@@ -217,13 +217,13 @@ export function slerp(a, b, t) {
     a[3] = bw;
   }
 
-  if (1.0 - cosom > 0.000001) {
+  if (1 - cosom > 0.000001) {
     omega = Math.acos(cosom);
     sinom = Math.sin(omega);
-    scale0 = Math.sin((1.0 - t) * omega) / sinom;
+    scale0 = Math.sin((1 - t) * omega) / sinom;
     scale1 = Math.sin(t * omega) / sinom;
   } else {
-    scale0 = 1.0 - t;
+    scale0 = 1 - t;
     scale1 = t;
   }
 

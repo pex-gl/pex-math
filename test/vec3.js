@@ -173,7 +173,7 @@ test("vec3.normalize", (t) => {
 // distance
 test("vec3.distance", (t) => {
   const message = "should compute the distance between two vec3s";
-  t.equal(vec3.distance([1, 0, 0], [0, 0, 0]), 1.0, message);
+  t.equal(vec3.distance([1, 0, 0], [0, 0, 0]), 1, message);
   t.equal(vec3.distance([1, 2, 3], [4, 5, 6]), 5.196152422706632, message);
 
   handledMethods.push("distance");
@@ -182,7 +182,7 @@ test("vec3.distance", (t) => {
 
 test("vec3.distanceSq", (t) => {
   const message = "should compute the squared distance between two vec3s";
-  t.equal(vec3.distanceSq([1, 0, 0], [0, 0, 0]), 1.0, message);
+  t.equal(vec3.distanceSq([1, 0, 0], [0, 0, 0]), 1, message);
   t.equal(vec3.distanceSq([1, 2, 3], [4, 5, 6]), 27, message);
 
   handledMethods.push("distanceSq");

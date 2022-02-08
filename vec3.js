@@ -110,7 +110,7 @@ export function normalize(a) {
   const z = a[2];
   let l = Math.sqrt(x * x + y * y + z * z);
 
-  l = 1.0 / (l || 1);
+  l = 1 / (l || 1);
   a[0] *= l;
   a[1] *= l;
   a[2] *= l;
