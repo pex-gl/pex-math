@@ -141,3 +141,20 @@ export function fromQuat(a, b) {
 
   return a;
 }
+
+export function transpose(a) {
+  const a01 = a[1];
+  const a02 = a[2];
+  const a12 = a[5];
+
+  a[1] = a[3];
+  a[2] = a[6];
+
+  a[3] = a01;
+  a[5] = a[7];
+
+  a[6] = a02;
+  a[7] = a12;
+
+  return a;
+}
