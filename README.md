@@ -1,6 +1,14 @@
 # pex-math
 
-[![js-standard-style](https://img.shields.io/badge/code%20style-standard-brightgreen.svg)](http://standardjs.com/)
+[![npm version](https://img.shields.io/npm/v/pex-math)](https://www.npmjs.com/package/pex-math)
+[![stability-stable](https://img.shields.io/badge/stability-stable-green.svg)](https://www.npmjs.com/package/pex-math)
+[![npm minzipped size](https://img.shields.io/bundlephobia/minzip/pex-math)](https://bundlephobia.com/package/pex-math)
+[![dependencies](https://img.shields.io/librariesio/release/npm/pex-math)](https://github.com/pex-gl/pex-math/blob/main/package.json)
+[![types](https://img.shields.io/npm/types/pex-math)](https://github.com/microsoft/TypeScript)
+[![Conventional Commits](https://img.shields.io/badge/Conventional%20Commits-1.0.0-fa6673.svg)](https://conventionalcommits.org)
+[![styled with prettier](https://img.shields.io/badge/styled_with-Prettier-f8bc45.svg?logo=prettier)](https://github.com/prettier/prettier)
+[![linted with eslint](https://img.shields.io/badge/linted_with-ES_Lint-4B32C3.svg?logo=eslint)](https://github.com/eslint/eslint)
+[![license](https://img.shields.io/github/license/pex-gl/pex-math)](https://github.com/pex-gl/pex-math/blob/main/LICENSE.md)
 
 Array-based vector, quaternion and matrix math for [PEX](http://pex.gl/)
 
