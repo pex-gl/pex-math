@@ -1,29 +1,29 @@
-var test = require('tape')
-var quat = require('../quat')
+import test from "tape";
+import { quat } from "../index.js";
 
-var allMethods = Object.keys(quat)
-var handledMethods = []
+const allMethods = Object.keys(quat);
+const handledMethods = [];
 
-test('quat.create', function (t) {
-  t.deepEqual(quat.create(), [0, 0, 0, 1], 'should create new quat')
-  handledMethods.push('create')
-  t.end()
-})
+test("quat.create", (t) => {
+  t.deepEqual(quat.create(), [0, 0, 0, 1], "should create new quat");
+  handledMethods.push("create");
+  t.end();
+});
 
-test('quat.equals', function (t) {
-  t.true(quat.equals(quat.create(), [0, 0, 0, 1]), 'should return true')
-  handledMethods.push('equals')
-  t.end()
-})
+test("quat.equals", (t) => {
+  t.true(quat.equals(quat.create(), [0, 0, 0, 1]), "should return true");
+  handledMethods.push("equals");
+  t.end();
+});
 
-test('coverage', function (t) {
-  allMethods.forEach(function (name) {
-    if (handledMethods.indexOf(name) === -1) {
-      console.log('missing test for quat.' + name)
+test("coverage", (t) => {
+  allMethods.forEach((name) => {
+    if (!handledMethods.includes(name)) {
+      console.log(`missing test for quat.${name}`);
     }
-  })
-  t.end()
-})
+  });
+  t.end();
+});
 
 // // identity
 // assert.deepEqual(quat.identity([1, 2, 3, 4]), [0, 0, 0, 1])

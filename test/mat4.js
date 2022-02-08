@@ -1,80 +1,66 @@
-var test = require('tape')
-var mat4 = require('../mat4')
+import test from "tape";
+import { mat4 } from "../index.js";
 
-var allMethods = Object.keys(mat4)
-var handledMethods = []
+const allMethods = Object.keys(mat4);
+const handledMethods = [];
 
-test('mat4.create', function (t) {
-  t.deepEqual(mat4.create(), [
-    1, 0, 0, 0,
-    0, 1, 0, 0,
-    0, 0, 1, 0,
-    0, 0, 0, 1
-  ], 'should return a new mat4')
+test("mat4.create", (t) => {
+  t.deepEqual(
+    mat4.create(),
+    [1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1],
+    "should return a new mat4"
+  );
 
-  handledMethods.push('create')
-  t.end()
-})
+  handledMethods.push("create");
+  t.end();
+});
 
-test('mat4.identity', function (t) {
-  t.deepEqual(mat4.identity([
-    1, 2, 3, 4,
-    5, 6, 7, 8,
-    9, 10, 11, 12,
-    13, 14, 15, 16
-  ]), [
-    1, 0, 0, 0,
-    0, 1, 0, 0,
-    0, 0, 1, 0,
-    0, 0, 0, 1
-  ], 'should return the identity matrix')
+test("mat4.identity", (t) => {
+  t.deepEqual(
+    mat4.identity([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]),
+    [1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1],
+    "should return the identity matrix"
+  );
 
-  handledMethods.push('identity')
-  t.end()
-})
+  handledMethods.push("identity");
+  t.end();
+});
 
-test('mat4.set', function (t) {
-  t.deepEqual(mat4.set(mat4.create(), [
-    1, 2, 3, 4,
-    5, 6, 7, 8,
-    9, 10, 11, 12,
-    13, 14, 15, 16
-  ]), [
-    1, 2, 3, 4,
-    5, 6, 7, 8,
-    9, 10, 11, 12,
-    13, 14, 15, 16
-  ], 'should set a mat4')
+test("mat4.set", (t) => {
+  t.deepEqual(
+    mat4.set(
+      mat4.create(),
+      [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]
+    ),
+    [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16],
+    "should set a mat4"
+  );
 
-  handledMethods.push('set')
-  t.end()
-})
+  handledMethods.push("set");
+  t.end();
+});
 
-test('mat4.equals', function (t) {
-  t.true(mat4.equals([
-    1, 2, 3, 4,
-    5, 6, 7, 8,
-    9, 10, 11, 12,
-    13, 14, 15, 16
-  ], [
-    1, 2, 3, 4,
-    5, 6, 7, 8,
-    9, 10, 11, 12,
-    13, 14, 15, 16
-  ]), 'should compare two mat4s')
+test("mat4.equals", (t) => {
+  t.true(
+    mat4.equals(
+      [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16],
+      [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]
+    ),
+    "should compare two mat4s"
+  );
 
-  handledMethods.push('equals')
-  t.end()
-})
+  handledMethods.push("equals");
+  t.end();
+});
 
-test('coverage', function (t) {
-  allMethods.forEach(function (name) {
-    if (handledMethods.indexOf(name) === -1) {
-      console.log('missing test for mat4.' + name)
+test("coverage", (t) => {
+  allMethods.forEach((name) => {
+    if (!handledMethods.includes(name)) {
+      console.log(`missing test for mat4.${name}`);
     }
-  })
-  t.end()
-})
+  });
+  t.end();
+});
 
 // // equals
 
