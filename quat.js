@@ -170,7 +170,7 @@ export function fromMat4(a, m) {
   return _fromMat39(a, m[0], m[1], m[2], m[4], m[5], m[6], m[8], m[9], m[10]);
 }
 
-const fromTo = (() => {
+export const fromTo = (() => {
   let u = [];
   return (q, v, w) => {
     u = vec3.cross(vec3.set(u, v), w);
@@ -182,7 +182,6 @@ const fromTo = (() => {
     return q;
   };
 })();
-export { fromTo };
 
 export function slerp(a, b, t) {
   // http://jsperf.com/quaternion-slerp-implementations
