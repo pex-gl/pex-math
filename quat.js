@@ -109,7 +109,7 @@ export function fromEuler(q, euler) {
 }
 
 export function fromAxisAngle(a, axis, angle) {
-  const angle2 = angle * 0.5;
+  const angle2 = angle / 2;
   const sin2 = Math.sin(angle2);
   a[0] = axis[0] * sin2;
   a[1] = axis[1] * sin2;
@@ -124,28 +124,28 @@ export function _fromMat39(a, m0, m1, m2, m3, m4, m5, m6, m7, m8) {
 
   if (trace >= 0) {
     s = Math.sqrt(trace + 1);
-    a[3] = 0.5 * s;
+    a[3] = s / 2;
     s = 0.5 / s;
     a[0] = (m5 - m7) * s;
     a[1] = (m6 - m2) * s;
     a[2] = (m1 - m3) * s;
   } else if (m0 > m4 && m0 > m8) {
     s = Math.sqrt(1 + m0 - m4 - m8);
-    a[0] = s * 0.5;
+    a[0] = s / 2;
     s = 0.5 / s;
     a[1] = (m1 + m3) * s;
     a[2] = (m6 + m2) * s;
     a[3] = (m5 - m7) * s;
   } else if (m4 > m8) {
     s = Math.sqrt(1 + m4 - m0 - m8);
-    a[1] = s * 0.5;
+    a[1] = s / 2;
     s = 0.5 / s;
     a[0] = (m1 + m3) * s;
     a[2] = (m5 + m7) * s;
     a[3] = (m6 - m2) * s;
   } else {
     s = Math.sqrt(1 + m8 - m0 - m4);
-    a[2] = s * 0.5;
+    a[2] = s / 2;
     s = 0.5 / s;
     a[0] = (m6 + m2) * s;
     a[1] = (m5 + m7) * s;

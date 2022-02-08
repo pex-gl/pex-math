@@ -580,7 +580,7 @@ export function frustum(a, left, right, bottom, top, near, far) {
 }
 
 export function perspective(a, fovy, aspectRatio, near, far) {
-  const f = 1 / Math.tan(fovy * 0.5);
+  const f = 1 / Math.tan(fovy / 2);
   const nf = 1 / (near - far);
 
   a[1] =
