@@ -151,14 +151,14 @@ export function dot(a, b) {
 
 /**
  * Set euler angles to a quaternion. Assumes XYZ rotation order.
- * @param {quat} q
- * @param {euler} euler
+ * @param {quat} a
+ * @param {euler} e
  * @returns {quat}
  */
-export function fromEuler(q, euler) {
-  const x = euler[0];
-  const y = euler[1];
-  const z = euler[2];
+export function fromEuler(a, e) {
+  const x = e[0];
+  const y = e[1];
+  const z = e[2];
   const cx = Math.cos(x / 2);
   const cy = Math.cos(y / 2);
   const cz = Math.cos(z / 2);
@@ -166,27 +166,27 @@ export function fromEuler(q, euler) {
   const sy = Math.sin(y / 2);
   const sz = Math.sin(z / 2);
 
-  q[0] = sx * cy * cz + cx * sy * sz;
-  q[1] = cx * sy * cz - sx * cy * sz;
-  q[2] = cx * cy * sz + sx * sy * cz;
-  q[3] = cx * cy * cz - sx * sy * sz;
+  a[0] = sx * cy * cz + cx * sy * sz;
+  a[1] = cx * sy * cz - sx * cy * sz;
+  a[2] = cx * cy * sz + sx * sy * cz;
+  a[3] = cx * cy * cz - sx * sy * sz;
 
-  return q;
+  return a;
 }
 
 /**
  * Set the angle at an axis of a quaternion.
  * @param {quat} a
- * @param {vec3} axis
- * @param {Radians} angle
+ * @param {vec3} v
+ * @param {Radians} r
  * @returns {quat}
  */
-export function fromAxisAngle(a, axis, angle) {
-  const angle2 = angle / 2;
+export function fromAxisAngle(a, v, r) {
+  const angle2 = r / 2;
   const sin2 = Math.sin(angle2);
-  a[0] = axis[0] * sin2;
-  a[1] = axis[1] * sin2;
-  a[2] = axis[2] * sin2;
+  a[0] = v[0] * sin2;
+  a[1] = v[1] * sin2;
+  a[2] = v[2] * sin2;
   a[3] = Math.cos(angle2);
   return normalize(a);
 }

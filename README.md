@@ -66,7 +66,7 @@ const identityMatrix = mat4.create();
 
 - [euler](#module_euler)
   - [.create()](#module_euler.create) ⇒ <code>euler</code>
-  - [.fromQuat(v, q)](#module_euler.fromQuat) ⇒ <code>euler</code>
+  - [.fromQuat(a, q)](#module_euler.fromQuat) ⇒ <code>euler</code>
 
 <a name="module_euler.create"></a>
 
@@ -74,10 +74,10 @@ const identityMatrix = mat4.create();
 
 Create a new euler angles [0, 0, 0]: vec3 array of [x, y, z] rotation [yaw, pitch, roll] in radians.
 
-**Kind**: static method of [<code>euler</code>](#module_euler)  
+**Kind**: static method of [<code>euler</code>](#module_euler)
 <a name="module_euler.fromQuat"></a>
 
-### euler.fromQuat(v, q) ⇒ <code>euler</code>
+### euler.fromQuat(a, q) ⇒ <code>euler</code>
 
 Creates euler angles from quaterion. Assumes XYZ order of rotations.
 
@@ -85,7 +85,7 @@ Creates euler angles from quaterion. Assumes XYZ order of rotations.
 
 | Param | Type               |
 | ----- | ------------------ |
-| v     | <code>euler</code> |
+| a     | <code>euler</code> |
 | q     | <code>quat</code>  |
 
 <a name="module_index"></a>
@@ -134,7 +134,7 @@ m01 m11
 m02 m12
 ```
 
-**Kind**: static method of [<code>mat2x3</code>](#module_mat2x3)  
+**Kind**: static method of [<code>mat2x3</code>](#module_mat2x3)
 <a name="module_mat2x3.identity"></a>
 
 ### mat2x3.identity(a) ⇒ <code>mat2x3</code>
@@ -250,7 +250,7 @@ Scales a matrix by a vector.
   - [.mult(a, b)](#module_mat3.mult) ⇒ <code>mat3</code>
   - [.fromMat2x3(a, b)](#module_mat3.fromMat2x3) ⇒ <code>mat3</code>
   - [.fromMat4(a, b)](#module_mat3.fromMat4) ⇒ <code>mat3</code>
-  - [.fromQuat(a, b)](#module_mat3.fromQuat) ⇒ <code>mat3</code>
+  - [.fromQuat(a, q)](#module_mat3.fromQuat) ⇒ <code>mat3</code>
   - [.transpose(a)](#module_mat3.transpose) ⇒ <code>mat3</code>
 
 <a name="module_mat3.create"></a>
@@ -279,7 +279,7 @@ Equivalent to the column major OpenGL spec:
  m02 m12 m22
 ```
 
-**Kind**: static method of [<code>mat3</code>](#module_mat3)  
+**Kind**: static method of [<code>mat3</code>](#module_mat3)
 <a name="module_mat3.identity"></a>
 
 ### mat3.identity(a) ⇒ <code>mat3</code>
@@ -371,7 +371,7 @@ Sets a 3x3 matrix to a 4x4 matrix.
 
 <a name="module_mat3.fromQuat"></a>
 
-### mat3.fromQuat(a, b) ⇒ <code>mat3</code>
+### mat3.fromQuat(a, q) ⇒ <code>mat3</code>
 
 Sets matrix to a quaternion.
 
@@ -380,7 +380,7 @@ Sets matrix to a quaternion.
 | Param | Type              |
 | ----- | ----------------- |
 | a     | <code>mat3</code> |
-| b     | <code>quat</code> |
+| q     | <code>quat</code> |
 
 <a name="module_mat3.transpose"></a>
 
@@ -447,7 +447,7 @@ Equivalent to the column major OpenGL spec:
  m03 m13 m23 m33
 ```
 
-**Kind**: static method of [<code>mat4</code>](#module_mat4)  
+**Kind**: static method of [<code>mat4</code>](#module_mat4)
 <a name="module_mat4.identity"></a>
 
 ### mat4.identity(a) ⇒ <code>mat4</code>
@@ -700,8 +700,8 @@ Calculates a lookAt matrix from a position, target and up vectors.
   - [.length(a)](#module_quat.length) ⇒ <code>quat</code>
   - [.normalize(a)](#module_quat.normalize) ⇒ <code>quat</code>
   - [.dot(a, b)](#module_quat.dot) ⇒ <code>quat</code>
-  - [.fromEuler(q, euler)](#module_quat.fromEuler) ⇒ <code>quat</code>
-  - [.fromAxisAngle(a, axis, angle)](#module_quat.fromAxisAngle) ⇒ <code>quat</code>
+  - [.fromEuler(a, e)](#module_quat.fromEuler) ⇒ <code>quat</code>
+  - [.fromAxisAngle(a, v, r)](#module_quat.fromAxisAngle) ⇒ <code>quat</code>
   - [.fromAxes(a, x, y, z)](#module_quat.fromAxes) ⇒ <code>quat</code>
   - [.fromMat3(a, m)](#module_quat.fromMat3) ⇒ <code>quat</code>
   - [.fromMat4(a, m)](#module_quat.fromMat4) ⇒ <code>quat</code>
@@ -727,7 +727,7 @@ Sets a quaternion to represent the shortest rotation from one vector to another.
 
 Returns a new quat at 0, 0, 0, 1.
 
-**Kind**: static method of [<code>quat</code>](#module_quat)  
+**Kind**: static method of [<code>quat</code>](#module_quat)
 <a name="module_quat.identity"></a>
 
 ### quat.identity(a) ⇒ <code>quat</code>
@@ -854,7 +854,7 @@ Calculates the dot product of two quaternions.
 
 <a name="module_quat.fromEuler"></a>
 
-### quat.fromEuler(q, euler) ⇒ <code>quat</code>
+### quat.fromEuler(a, e) ⇒ <code>quat</code>
 
 Set euler angles to a quaternion. Assumes XYZ rotation order.
 
@@ -862,12 +862,12 @@ Set euler angles to a quaternion. Assumes XYZ rotation order.
 
 | Param | Type               |
 | ----- | ------------------ |
-| q     | <code>quat</code>  |
-| euler | <code>euler</code> |
+| a     | <code>quat</code>  |
+| e     | <code>euler</code> |
 
 <a name="module_quat.fromAxisAngle"></a>
 
-### quat.fromAxisAngle(a, axis, angle) ⇒ <code>quat</code>
+### quat.fromAxisAngle(a, v, r) ⇒ <code>quat</code>
 
 Set the angle at an axis of a quaternion.
 
@@ -876,8 +876,8 @@ Set the angle at an axis of a quaternion.
 | Param | Type                 |
 | ----- | -------------------- |
 | a     | <code>quat</code>    |
-| axis  | <code>vec3</code>    |
-| angle | <code>Radians</code> |
+| v     | <code>vec3</code>    |
+| r     | <code>Radians</code> |
 
 <a name="module_quat.fromAxes"></a>
 
@@ -958,7 +958,7 @@ Spherical linear interpolation between two quaternions.
 
 ### utils.EPSILON : <code>number</code>
 
-**Kind**: static constant of [<code>utils</code>](#module_utils)  
+**Kind**: static constant of [<code>utils</code>](#module_utils)
 <a name="module_utils.lerp"></a>
 
 ### utils.lerp(a, b, n) ⇒ <code>number</code>
@@ -1081,12 +1081,12 @@ Returns the next highest power of two.
 
 ### utils~Degrees : <code>number</code>
 
-**Kind**: inner typedef of [<code>utils</code>](#module_utils)  
+**Kind**: inner typedef of [<code>utils</code>](#module_utils)
 <a name="module_utils..Radians"></a>
 
 ### utils~Radians : <code>number</code>
 
-**Kind**: inner typedef of [<code>utils</code>](#module_utils)  
+**Kind**: inner typedef of [<code>utils</code>](#module_utils)
 <a name="module_vec2"></a>
 
 ## vec2
@@ -1116,7 +1116,7 @@ Returns the next highest power of two.
 
 Returns a new vec2 at 0, 0, 0.
 
-**Kind**: static method of [<code>vec2</code>](#module_vec2)  
+**Kind**: static method of [<code>vec2</code>](#module_vec2)
 <a name="module_vec2.copy"></a>
 
 ### vec2.copy(a) ⇒ <code>vec2</code>
@@ -1355,7 +1355,7 @@ Prints a vector to a string.
 
 Returns a new vec3 at 0, 0, 0.
 
-**Kind**: static method of [<code>vec3</code>](#module_vec3)  
+**Kind**: static method of [<code>vec3</code>](#module_vec3)
 <a name="module_vec3.copy"></a>
 
 ### vec3.copy(a) ⇒ <code>vec3</code>
@@ -1620,7 +1620,7 @@ Prints a vector to a string.
 
 Returns a new vec4 at 0, 0, 0, 1.
 
-**Kind**: static method of [<code>vec4</code>](#module_vec4)  
+**Kind**: static method of [<code>vec4</code>](#module_vec4)
 <a name="module_vec4.copy"></a>
 
 ### vec4.copy(a) ⇒ <code>vec4</code>

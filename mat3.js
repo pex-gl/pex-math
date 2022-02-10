@@ -176,14 +176,14 @@ export function fromMat4(a, b) {
 /**
  * Sets matrix to a quaternion.
  * @param {mat3} a
- * @param {quat} b
+ * @param {quat} q
  * @returns {mat3}
  */
-export function fromQuat(a, b) {
-  const x = b[0];
-  const y = b[1];
-  const z = b[2];
-  const w = b[3];
+export function fromQuat(a, q) {
+  const x = q[0];
+  const y = q[1];
+  const z = q[2];
+  const w = q[3];
 
   const x2 = x + x;
   const y2 = y + y;

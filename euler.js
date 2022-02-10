@@ -14,17 +14,17 @@ export function create() {
 
 /**
  * Creates euler angles from quaterion. Assumes XYZ order of rotations.
- * @param {euler} v
+ * @param {euler} a
  * @param {quat} q
  * @returns {euler}
  */
-export function fromQuat(v, q) {
+export function fromQuat(a, q) {
   const sqx = q[0] * q[0];
   const sqy = q[1] * q[1];
   const sqz = q[2] * q[2];
   const sqw = q[3] * q[3];
-  v[0] = Math.atan2(2 * (q[0] * q[3] - q[1] * q[2]), sqw - sqx - sqy + sqz);
-  v[1] = Math.asin(clamp(2 * (q[0] * q[2] + q[1] * q[3]), -1, 1));
-  v[2] = Math.atan2(2 * (q[2] * q[3] - q[0] * q[1]), sqw + sqx - sqy - sqz);
-  return v;
+  a[0] = Math.atan2(2 * (q[0] * q[3] - q[1] * q[2]), sqw - sqx - sqy + sqz);
+  a[1] = Math.asin(clamp(2 * (q[0] * q[2] + q[1] * q[3]), -1, 1));
+  a[2] = Math.atan2(2 * (q[2] * q[3] - q[0] * q[1]), sqw + sqx - sqy - sqz);
+  return a;
 }
