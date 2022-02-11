@@ -25,8 +25,10 @@ bench("mat4/clone", (b) => {
 });
 
 bench("mat4/mult", (b) => {
-  const m1 = mat4.create();
-  const m2 = mat4.create();
+  // const m1 = mat4.create();
+  // const m2 = mat4.create();
+  const m1 = Float32Array.of(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1);
+  const m2 = Float32Array.of(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1);
 
   b.start();
   run(() => mat4.mult(m1, m2));
