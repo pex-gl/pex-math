@@ -652,25 +652,57 @@ export function fromQuat(a, q) {
   return a;
 }
 
-const TEMP_0 = create();
 /**
  * Sets matrix to the TRS matrix.
  * @param {mat4} a
- * @param {vec3} translation
- * @param {quat} rotation
- * @param {vec3} scaling
+ * @param {vec3} v
+ * @param {quat} q
+ * @param {vec3} s
  * @returns {mat4}
  */
-export function fromTranslationRotationScale(
-  a,
-  translation,
-  rotation,
-  scaling
-) {
-  identity(a);
-  translate(a, translation);
-  mult(a, fromQuat(TEMP_0, rotation));
-  scale(a, scaling);
+export function fromTranslationRotationScale(a, v, q, s) {
+  // const TEMP_0 = create();
+  // identity(a);
+  // translate(a, translation);
+  // mult(a, fromQuat(TEMP_0, rotation));
+  // scale(a, scaling);
+
+  const x = q[0];
+  const y = q[1];
+  const z = q[2];
+  const w = q[3];
+  const x2 = x + x;
+  const y2 = y + y;
+  const z2 = z + z;
+
+  const xx = x * x2;
+  const xy = x * y2;
+  const xz = x * z2;
+  const yy = y * y2;
+  const yz = y * z2;
+  const zz = z * z2;
+  const wx = w * x2;
+  const wy = w * y2;
+  const wz = w * z2;
+
+  a[3] = a[7] = a[11] = 0;
+  a[15] = 1;
+
+  a[0] = (1 - (yy + zz)) * s[0];
+  a[1] = (xy + wz) * s[0];
+  a[2] = (xz - wy) * s[0];
+
+  a[4] = (xy - wz) * s[1];
+  a[5] = (1 - (xx + zz)) * s[1];
+  a[6] = (yz + wx) * s[1];
+
+  a[8] = (xz + wy) * s[2];
+  a[9] = (yz - wx) * s[2];
+  a[10] = (1 - (xx + yy)) * s[2];
+
+  a[12] = v[0];
+  a[13] = v[1];
+  a[14] = v[2];
 
   return a;
 }
