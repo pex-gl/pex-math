@@ -93,6 +93,29 @@ test("mat4.rotate", (t) => {
   t.end();
 });
 
+test("mat4.invert", (t) => {
+  t.deepEqual(
+    // prettier-ignore
+    mat4.invert([
+      1, 0, 0, 0,
+      0, 1, 0, 0,
+      0, 0, 1, 0,
+      -1, -2, -3, 1
+    ]),
+    // prettier-ignore
+    [
+      1, 0, 0, 0,
+      0, 1, 0, 0,
+      0, 0, 1, 0,
+      1, 2, 3, 1
+    ],
+    "should invert a mat4"
+  );
+
+  handledMethods.push("invert");
+  t.end();
+});
+
 test("coverage", (t) => {
   allMethods.forEach((name) => {
     if (!handledMethods.includes(name)) {
@@ -135,19 +158,6 @@ test("coverage", (t) => {
 //   0, 1, 0, 2,
 //   0, 0, 1, 3,
 //   0, 0, 0, 1
-// ]), [
-//   1, 0, 0, 0,
-//   0, 1, 0, 0,
-//   0, 0, 1, 0,
-//   1, 2, 3, 1
-// ])
-
-// // invert
-// assert.deepEqual(Mat4.invert([
-//   1, 0, 0, 0,
-//   0, 1, 0, 0,
-//   0, 0, 1, 0,
-//   -1, -2, -3, 1
 // ]), [
 //   1, 0, 0, 0,
 //   0, 1, 0, 0,
