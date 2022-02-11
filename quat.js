@@ -233,9 +233,9 @@ export function _fromMat39(a, m0, m1, m2, m3, m4, m5, m6, m7, m8) {
 /**
  * Sets quaternion from orthonormal base xyz.
  * @param {quat} a
- * @param {number} x
- * @param {number} y
- * @param {number} z
+ * @param {vec3} x
+ * @param {vec3} y
+ * @param {vec3} z
  * @returns {quat}
  */
 export function fromAxes(a, x, y, z) {
