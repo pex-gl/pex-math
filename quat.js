@@ -3,7 +3,8 @@
  */
 
 import * as vec3 from "./vec3.js";
-import { EPSILON } from "./utils.js";
+import * as vec4 from "./vec4.js";
+import { EPSILON, shallowCopy } from "./utils.js";
 
 /**
  * Returns a new quat at 0, 0, 0, 1.
@@ -29,9 +30,7 @@ export function identity(a) {
  * @param {quat} a
  * @returns {quat}
  */
-export function copy(a) {
-  return a.slice();
-}
+export const copy = shallowCopy;
 
 /**
  * Sets a quaternion to another quaternion.
@@ -39,13 +38,7 @@ export function copy(a) {
  * @param {quat} b
  * @returns {quat}
  */
-export function set(a, b) {
-  a[0] = b[0];
-  a[1] = b[1];
-  a[2] = b[2];
-  a[3] = b[3];
-  return a;
-}
+export const set = vec4.set;
 
 /**
  * Compares two quaternions.
@@ -53,9 +46,7 @@ export function set(a, b) {
  * @param {quat} b
  * @returns {boolean}
  */
-export function equals(a, b) {
-  return a[0] === b[0] && a[1] === b[1] && a[2] === b[2] && a[3] === b[3];
-}
+export const equals = vec4.equals;
 
 /**
  * Multiplies one quaternion by another.

@@ -2,6 +2,8 @@
  * @module vec3
  */
 
+import { shallowCopy } from "./utils.js";
+
 /**
  * Returns a new vec3 at 0, 0, 0.
  * @returns {vec3}
@@ -15,9 +17,7 @@ export function create() {
  * @param {vec3} a
  * @returns {vec3}
  */
-export function copy(a) {
-  return a.slice();
-}
+export const copy = shallowCopy;
 
 /**
  * Sets a vector to another vector.

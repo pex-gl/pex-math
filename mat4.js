@@ -1,7 +1,7 @@
 /**
  * @module mat4
  */
-import { EPSILON } from "./utils.js";
+import { EPSILON, shallowCopy } from "./utils.js";
 
 /**
  * Returns a 4x4 identity matrix.
@@ -68,9 +68,7 @@ export function identity(a) {
  * @param {mat4} a
  * @returns {mat4}
  */
-export function copy(a) {
-  return a.slice();
-}
+export const copy = shallowCopy;
 
 /**
  * Sets a matrix from another matrix.

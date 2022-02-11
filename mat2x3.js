@@ -2,6 +2,8 @@
  * @module mat2x3
  */
 
+import { shallowCopy } from "./utils.js";
+
 /**
  * Returns a 2x3 identity matrix, a short form for a 3x3 matrix with the last row ignored.
  *
@@ -49,9 +51,7 @@ export function identity(a) {
  * @param {mat2x3} a
  * @returns {mat2x3}
  */
-export function copy(a) {
-  return a.slice();
-}
+export const copy = shallowCopy;
 
 /**
  * Sets a matrix from another matrix.

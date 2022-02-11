@@ -2,6 +2,8 @@
  * @module vec2
  */
 
+import { shallowCopy } from "./utils.js";
+
 /**
  * Returns a new vec2 at 0, 0, 0.
  * @returns {vec2}
@@ -15,9 +17,7 @@ export function create() {
  * @param {vec2} a
  * @returns {vec2}
  */
-export function copy(a) {
-  return a.slice();
-}
+export const copy = shallowCopy;
 
 /**
  * Sets a vector to another vector.

@@ -113,3 +113,12 @@ export function nextPowerOfTwo(n) {
   n |= n >> 16;
   return n + 1;
 }
+
+/**
+ * Returns a shallow copy of an array.
+ * @param {number[]} a
+ * @returns {number[]}
+ */
+export function shallowCopy(a) {
+  return a.slice();
+}
