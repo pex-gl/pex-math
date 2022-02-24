@@ -4,8 +4,9 @@
   "description": "Array-based vector, quaternion and matrix math for PEX.",
   "keywords": [
     "pex",
-    "webgl",
     "math",
+    "webgl",
+    "3d",
     "vector",
     "quaternion",
     "matrix",
@@ -31,6 +32,7 @@
   "type": "module",
   "exports": "./index.js",
   "main": "index.js",
+  "types": "types/index.d.ts",
   "scripts": {
     "benchmark": "node benchmark/bench-math.js && node benchmark/bench-pex.js > pex-math && node benchmark/bench-gl-matrix.js > gl-matrix && nanobench-compare gl-matrix pex-math && rm pex-math && rm gl-matrix",
     "test": "tape ./test/*.js"
@@ -43,5 +45,8 @@
   "engines": {
     "node": ">=16.0.0",
     "npm": ">=7.0.0"
+  },
+  "snowdev": {
+    "dependencies": []
   }
 }

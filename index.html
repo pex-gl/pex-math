@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>pex-math by pex-gl (https://github.com/pex-gl)</title>
+    <style>
+      :root {
+        --color-dark: #404040;
+        --color-light: #f2f2f2;
+        --color-accent: #fd5e62;
+      }
+
+      body {
+        margin: 0;
+        overscroll-behavior: none;
+        font-family: sans-serif;
+        color: var(--color-light);
+        background-color: var(--color-dark);
+      }
+
+      main {
+        padding: 0 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>pex-math</h1>
+      <p>Open your console</p>
+    </main>
+    <script
+      async
+      src="https://ga.jspm.io/npm:es-module-shims@1.4.4/dist/es-module-shims.js"
+    ></script>
+    <script type="importmap">
+      {
+        "imports": {
+          "nanobench": "./benchmark/utils.js",
+          "gl-matrix": "https://unpkg.com/gl-matrix@3.4.3/esm/index.js"
+        }
+      }
+    </script>
+
+    <script type="module">
+      import "./benchmark/bench-gl-matrix.js";
+      import "./benchmark/bench-pex.js";
+
+      setTimeout(() => {
+        console.log("[0] = gl-matrix / [1] = pex-math");
+        const sortObject = (o) =>
+          Object.keys(o)
+            .sort()
+            .reduce((r, k) => ((r[k] = o[k]), r), {});
+
+        console.table(sortObject(window.benchLogs));
+      }, 3000);
+    </script>
+  </body>
+</html>
