@@ -10,7 +10,7 @@
 [![linted with eslint](https://img.shields.io/badge/linted_with-ES_Lint-4B32C3.svg?logo=eslint)](https://github.com/eslint/eslint)
 [![license](https://img.shields.io/github/license/pex-gl/pex-math)](https://github.com/pex-gl/pex-math/blob/main/LICENSE.md)
 
-Array-based vector, quaternion and matrix math for [PEX](http://pex.gl/)
+Array-based vector, quaternion and matrix math with utils for [PEX](https://pex.gl/).
 
 ## Installation
 
