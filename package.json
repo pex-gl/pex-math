@@ -35,12 +35,17 @@
   "types": "types/index.d.ts",
   "scripts": {
     "benchmark": "node benchmark/bench-math.js && node benchmark/bench-pex.js > pex-math && node benchmark/bench-gl-matrix.js > gl-matrix && nanobench-compare gl-matrix pex-math && rm pex-math && rm gl-matrix",
-    "test": "tape ./test/*.js"
+    "build": "npx snowdev build",
+    "dev": "npx snowdev dev",
+    "release": "npx snowdev release",
+    "test": "c8 mocha",
+    "test:watch": "mocha --watch --parallel"
   },
   "devDependencies": {
+    "c8": "^7.11.0",
     "gl-matrix": "^3.4.3",
-    "nanobench": "^2.1.1",
-    "tape": "^5.5.0"
+    "mocha": "^9.2.1",
+    "nanobench": "^2.1.1"
   },
   "engines": {
     "node": ">=16.0.0",

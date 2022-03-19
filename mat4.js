@@ -488,35 +488,6 @@ export function transpose(a) {
 /**
  * @private
  */
-export function _scale3(a, x, y, z) {
-  a[0] *= x;
-  a[1] *= x;
-  a[2] *= x;
-  a[3] *= x;
-  a[4] *= y;
-  a[5] *= y;
-  a[6] *= y;
-  a[7] *= y;
-  a[8] *= z;
-  a[9] *= z;
-  a[10] *= z;
-  a[11] *= z;
-  return a;
-}
-
-/**
- * Scales a matrix by a vector.
- * @param {mat4} a
- * @param {vec3} v
- * @returns {mat4}
- */
-export function scale(a, v) {
-  return _scale3(a, v[0], v[1], v[2]);
-}
-
-/**
- * @private
- */
 export function _translate3(a, x, y, z) {
   a[12] += a[0] * x + a[4] * y + a[8] * z;
   a[13] += a[1] * x + a[5] * y + a[9] * z;
@@ -605,7 +576,36 @@ export function rotate(a, r, v) {
 }
 
 /**
- * Sets matrix to a quaternion.
+ * @private
+ */
+export function _scale3(a, x, y, z) {
+  a[0] *= x;
+  a[1] *= x;
+  a[2] *= x;
+  a[3] *= x;
+  a[4] *= y;
+  a[5] *= y;
+  a[6] *= y;
+  a[7] *= y;
+  a[8] *= z;
+  a[9] *= z;
+  a[10] *= z;
+  a[11] *= z;
+  return a;
+}
+
+/**
+ * Scales a matrix by a vector.
+ * @param {mat4} a
+ * @param {vec3} v
+ * @returns {mat4}
+ */
+export function scale(a, v) {
+  return _scale3(a, v[0], v[1], v[2]);
+}
+
+/**
+ * Sets a matrix to a quaternion.
  * @param {mat4} a
  * @param {quat} q
  * @returns {mat4}
@@ -651,7 +651,7 @@ export function fromQuat(a, q) {
 }
 
 /**
- * Sets matrix to the TRS matrix.
+ * Sets a matrix to the TRS matrix.
  * @param {mat4} a
  * @param {vec3} v
  * @param {quat} q
@@ -731,7 +731,7 @@ export function fromMat3(a, b) {
 }
 
 /**
- * Create a frustum matrix.
+ * Creates a frustum matrix.
  * @param {mat4} a
  * @param {number} left
  * @param {number} right
@@ -768,7 +768,7 @@ export function frustum(a, left, right, bottom, top, near, far) {
 }
 
 /**
- * Create a perspective matrix.
+ * Creates a perspective matrix.
  * @param {mat4} a
  * @param {Radians} fovy
  * @param {number} aspectRatio
@@ -803,7 +803,7 @@ export function perspective(a, fovy, aspectRatio, near, far) {
 }
 
 /**
- * Create a orthographic matrix.
+ * Creates an orthographic matrix.
  * @param {mat4} a
  * @param {number} left
  * @param {number} right
@@ -911,7 +911,7 @@ export function _lookAt9(
 }
 
 /**
- * Calculates a lookAt matrix from a position, target and up vectors.
+ * Calculates a lookAt matrix from position, target and up vectors.
  * @param {mat4} a
  * @param {vec3} from
  * @param {vec3} to

@@ -118,17 +118,7 @@ export function length(a) {
  * @param {quat} a
  * @returns {quat}
  */
-export function normalize(a) {
-  let l = length(a);
-  if (l > 2 ** -24) {
-    l = 1 / l;
-    a[0] *= l;
-    a[1] *= l;
-    a[2] *= l;
-    a[3] *= l;
-  }
-  return a;
-}
+export const normalize = vec4.normalize;
 
 /**
  * Calculates the dot product of two quaternions.
@@ -222,7 +212,7 @@ export function _fromMat39(a, m0, m1, m2, m3, m4, m5, m6, m7, m8) {
 }
 
 /**
- * Sets quaternion from orthonormal base xyz.
+ * Sets a quaternion from orthonormal base xyz.
  * @param {quat} a
  * @param {vec3} x
  * @param {vec3} y
@@ -274,7 +264,7 @@ export const fromTo = (() => {
 })();
 
 /**
- * Spherical linear interpolation between two quaternions.
+ * Spherical linear interpolates between two quaternions.
  * @param {quat} a
  * @param {quat} b
  * @param {number} t
@@ -328,3 +318,11 @@ export function slerp(a, b, t) {
   a[3] = scale0 * aw + scale1 * a[3];
   return a;
 }
+
+/**
+ * Prints a quaternion to a string.
+ * @param {quat} a
+ * @param {number} precision
+ * @returns {quat}
+ */
+export const toString = vec4.toString;

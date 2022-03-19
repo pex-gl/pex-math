@@ -136,40 +136,24 @@ export function mult(a, b) {
 }
 
 /**
- * Sets a 3x3 matrix from a 2x3 matrix.
+ * Transposes a matrix.
  * @param {mat3} a
- * @param {mat2x3} b
  * @returns {mat3}
  */
-export function fromMat2x3(a, b) {
-  a[0] = b[0];
-  a[1] = b[1];
-  a[2] = 0;
-  a[3] = b[2];
-  a[4] = b[3];
-  a[5] = 0;
-  a[6] = b[4];
-  a[7] = b[5];
-  a[8] = 1;
-  return a;
-}
+export function transpose(a) {
+  const a01 = a[1];
+  const a02 = a[2];
+  const a12 = a[5];
 
-/**
- * Sets a 3x3 matrix to a 4x4 matrix.
- * @param {mat3} a
- * @param {mat4} b
- * @returns {mat3}
- */
-export function fromMat4(a, b) {
-  a[0] = b[0];
-  a[1] = b[1];
-  a[2] = b[2];
-  a[3] = b[4];
-  a[4] = b[5];
-  a[5] = b[6];
-  a[6] = b[8];
-  a[7] = b[9];
-  a[8] = b[10];
+  a[1] = a[3];
+  a[2] = a[6];
+
+  a[3] = a01;
+  a[5] = a[7];
+
+  a[6] = a02;
+  a[7] = a12;
+
   return a;
 }
 
@@ -217,23 +201,39 @@ export function fromQuat(a, q) {
 }
 
 /**
- * Transposes a matrix.
+ * Sets a 3x3 matrix from a 2x3 matrix.
  * @param {mat3} a
+ * @param {mat2x3} b
  * @returns {mat3}
  */
-export function transpose(a) {
-  const a01 = a[1];
-  const a02 = a[2];
-  const a12 = a[5];
+export function fromMat2x3(a, b) {
+  a[0] = b[0];
+  a[1] = b[1];
+  a[2] = 0;
+  a[3] = b[2];
+  a[4] = b[3];
+  a[5] = 0;
+  a[6] = b[4];
+  a[7] = b[5];
+  a[8] = 1;
+  return a;
+}
 
-  a[1] = a[3];
-  a[2] = a[6];
-
-  a[3] = a01;
-  a[5] = a[7];
-
-  a[6] = a02;
-  a[7] = a12;
-
+/**
+ * Sets a 3x3 matrix to a 4x4 matrix.
+ * @param {mat3} a
+ * @param {mat4} b
+ * @returns {mat3}
+ */
+export function fromMat4(a, b) {
+  a[0] = b[0];
+  a[1] = b[1];
+  a[2] = b[2];
+  a[3] = b[4];
+  a[4] = b[5];
+  a[5] = b[6];
+  a[6] = b[8];
+  a[7] = b[9];
+  a[8] = b[10];
   return a;
 }

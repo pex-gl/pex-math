@@ -1,212 +1,135 @@
-import test from "tape";
+import { deepEqual, notStrictEqual, ok } from "assert";
 import { vec3 } from "../index.js";
+import {
+  deepAlmostEqual,
+  IDENTITY_MAT4,
+  ONE_TWO_THREE_MAT4,
+  Y_QUAT,
+  Y_UP,
+} from "./common.js";
 
-const allMethods = Object.keys(vec3);
-const handledMethods = [];
+const DEFAULT_VEC3 = Object.freeze([0, 0, 0]);
+const Y_DOWN = Object.freeze([0, -1, 0]);
+const ONE_VEC3 = Object.freeze([1, 1, 1]);
+const ONE_VEC3_NORMALISED = Object.freeze(Array(3).fill(0.5773502691896258));
+const TWO_VEC3 = Object.freeze([2, 2, 2]);
+const ONE_TWO_THREE_VEC3 = Object.freeze([1, 2, 3]);
+const FOUR_FIVE_SIX_VEC3 = Object.freeze([4, 5, 6]);
 
-test("vec3.create", (t) => {
-  const expected = [0, 0, 0];
-
-  const a = vec3.create();
-  t.deepEqual(a, expected, "should return new vec3");
-
-  handledMethods.push("create");
-  t.end();
-});
-
-test("vec3.equals", (t) => {
-  const a = [1, 2, 3];
-  const b = [1, 2, 3];
-  const c = [1, 2.001, 3];
-
-  t.true(vec3.equals(a, b), "equal returns true");
-  t.false(vec3.equals(a, c), "not equal returns false");
-
-  handledMethods.push("equals");
-  t.end();
-});
-
-test("vec3.copy", (t) => {
-  const a = [1, 2, 3];
-  const expectedCopyOfA = [1, 2, 3];
-
-  const c = vec3.copy(a);
-  t.deepEqual(c, expectedCopyOfA, "should copy");
-
-  a[0] = 9;
-  t.deepEqual(c, expectedCopyOfA, "should not modify the original");
-
-  handledMethods.push("copy");
-  t.end();
-});
-
-test("vec3.set", (t) => {
-  const a = [0, 0, 0];
-  const b = [1, 1, 1];
-  const expected = [1, 1, 1];
-
-  vec3.set(a, b);
-  t.deepEqual(a, expected, "should set a vec3");
-
-  handledMethods.push("set");
-  t.end();
-});
-
-test("vec3.add", (t) => {
-  const a = [2, 2, 2];
-  const b = [1, 1, 1];
-  const expected = [3, 3, 3];
-
-  vec3.add(a, b);
-  t.deepEqual(a, expected, "should add two vec2s");
-
-  handledMethods.push("add");
-  t.end();
-});
-
-test("vec3.sub", (t) => {
-  const a = [2, 2, 4];
-  const b = [1, 1, 6];
-  const expected = [1, 1, -2];
-
-  vec3.sub(a, b);
-  t.deepEqual(a, expected, "should substract one vec3 from another");
-
-  handledMethods.push("sub");
-  t.end();
-});
-
-test("vec3.scale", (t) => {
-  const a = [2, 2, 4];
-  const scale = 2;
-  const expected = [4, 4, 8];
-
-  vec3.scale(a, scale);
-  t.deepEqual(a, expected, "should scale a vec3");
-
-  handledMethods.push("scale");
-  t.end();
-});
-
-test("vec3.dot", (t) => {
-  const a = [1, 2, 3];
-  const b = [1, 2, 3];
-  const dot = vec3.dot(a, b);
-
-  t.deepEqual(dot, 14, "should compute the dot product");
-
-  handledMethods.push("dot");
-  t.end();
-});
-
-test("vec3.cross", (t) => {
-  let a = [1, 2, 3];
-  let b = [4, 5, 6];
-  let cross = vec3.cross(a, b);
-
-  t.deepEqual(cross, [-3, 6, -3], "should compute the cross product");
-
-  a = [0.5, 0.5, 0.5];
-  b = [1, 1, 1];
-  cross = vec3.cross(a, b);
-
-  t.deepEqual(cross, [0, 0, 0], "should compute the cross product");
-
-  handledMethods.push("cross");
-  t.end();
-});
-
-test("vec3.length", (t) => {
-  const a = [1, 2, 3];
-  const b = [0, 0, 0];
-
-  t.deepEqual(
-    vec3.length(a),
-    Math.sqrt(14),
-    "should compute the length of a vec3"
-  );
-  t.deepEqual(vec3.length(b), 0, "should compute the length of a vec3");
-
-  handledMethods.push("length");
-  t.end();
-});
-
-test("vec3.lengthSq", (t) => {
-  const a = [1, 2, 3];
-  const b = [0, 0, 0];
-
-  t.deepEqual(
-    vec3.lengthSq(a),
-    14,
-    "should compute the squared length of a vec3"
-  );
-  t.deepEqual(
-    vec3.lengthSq(b),
-    0,
-    "should compute the squared length of a vec3"
-  );
-
-  handledMethods.push("lengthSq");
-  t.end();
-});
-
-test("vec3.normalize", (t) => {
-  const message = "should normalize vec3";
-  t.deepEqual(vec3.normalize([2, 0, 0]), [1, 0, 0], message);
-  t.deepEqual(vec3.normalize([0, -2, 0]), [0, -1, 0], message);
-  t.deepEqual(vec3.normalize([0, 0, -2]), [0, 0, -1], message);
-  t.deepEqual(
-    vec3.normalize([1, 1, 1]),
-    [0.5773502691896258, 0.5773502691896258, 0.5773502691896258],
-    message
-  );
-  t.deepEqual(
-    vec3.normalize([1, 2, 3]),
-    [0.2672612419124244, 0.5345224838248488, 0.8017837257372732],
-    message
-  );
-
-  handledMethods.push("normalize");
-  t.end();
-});
-
-// distance
-test("vec3.distance", (t) => {
-  const message = "should compute the distance between two vec3s";
-  t.equal(vec3.distance([1, 0, 0], [0, 0, 0]), 1, message);
-  t.equal(vec3.distance([1, 2, 3], [4, 5, 6]), 5.196152422706632, message);
-
-  handledMethods.push("distance");
-  t.end();
-});
-
-test("vec3.distanceSq", (t) => {
-  const message = "should compute the squared distance between two vec3s";
-  t.equal(vec3.distanceSq([1, 0, 0], [0, 0, 0]), 1, message);
-  t.equal(vec3.distanceSq([1, 2, 3], [4, 5, 6]), 27, message);
-
-  handledMethods.push("distanceSq");
-  t.end();
-});
-
-test("vec3.lerp", (t) => {
-  const message = "should lerp between two vec3s";
-  t.deepEqual(vec3.lerp([0, 0, 0], [1, 1, 1], 0.5), [0.5, 0.5, 0.5], message);
-  t.deepEqual(
-    vec3.lerp([-1, -1, -1], [0, 0, 0], 0.5),
-    [-0.5, -0.5, -0.5],
-    message
-  );
-
-  handledMethods.push("lerp");
-  t.end();
-});
-
-test("coverage", (t) => {
-  allMethods.forEach((name) => {
-    if (!handledMethods.includes(name)) {
-      console.log(`missing test for vec3.${name}`);
-    }
+describe("vec3", () => {
+  it("create() should return a new vec3", () => {
+    deepEqual(vec3.create(), DEFAULT_VEC3);
   });
-  t.end();
+  it("copy() should copy a vector without modifying it", () => {
+    const a = vec3.copy(ONE_VEC3);
+    deepEqual(a, ONE_VEC3);
+    notStrictEqual(a, ONE_VEC3);
+  });
+  it("set() should set a vector to another", () => {
+    const a = vec3.create();
+    vec3.set(a, ONE_VEC3);
+    notStrictEqual(a, ONE_VEC3);
+    deepEqual(a, ONE_VEC3);
+  });
+  it("equals() should compare two vectors", () => {
+    ok(vec3.equals(ONE_VEC3, [...ONE_VEC3]));
+    ok(vec3.equals(ONE_VEC3, DEFAULT_VEC3) === false);
+  });
+  it("add() should add a vector to another", () => {
+    deepEqual(vec3.add(vec3.copy(ONE_VEC3), ONE_VEC3), TWO_VEC3);
+  });
+  it("sub() should subtract a vector from another", () => {
+    deepEqual(vec3.sub(vec3.copy(ONE_VEC3), ONE_VEC3), DEFAULT_VEC3);
+  });
+  it("scale() should scale a vector by a number", () => {
+    deepEqual(vec3.scale(vec3.copy(ONE_VEC3), 2), TWO_VEC3);
+  });
+  it("addScaled() should add two vectors after scaling the second one", () => {
+    deepEqual(
+      vec3.addScaled(vec3.copy(DEFAULT_VEC3), vec3.copy(ONE_VEC3), 2),
+      TWO_VEC3
+    );
+  });
+  it("multMat4() should multiply a vector by a matrix", () => {
+    deepEqual(vec3.multMat4(vec3.create(), IDENTITY_MAT4), DEFAULT_VEC3);
+    deepEqual(vec3.multMat4(vec3.copy(ONE_VEC3), IDENTITY_MAT4), ONE_VEC3);
+    deepEqual(
+      vec3.multMat4(vec3.copy(ONE_VEC3), ONE_TWO_THREE_MAT4),
+      [2, 3, 4]
+    );
+  });
+  it("multQuat() should multiply a vector by a quaternion", () => {
+    deepEqual(vec3.multQuat(vec3.create(), Y_QUAT), DEFAULT_VEC3);
+    deepAlmostEqual(vec3.multQuat(vec3.copy(ONE_VEC3), Y_QUAT), [1, 1, -1]);
+  });
+  it("dot() calculate the dot product of two vectors", () => {
+    deepEqual(vec3.dot(DEFAULT_VEC3, ONE_VEC3), 0);
+    deepEqual(vec3.dot(DEFAULT_VEC3, DEFAULT_VEC3), 0);
+    deepEqual(vec3.dot(ONE_VEC3, ONE_VEC3), 3);
+    deepEqual(vec3.dot(ONE_VEC3, TWO_VEC3), 6);
+    deepEqual(vec3.dot(TWO_VEC3, TWO_VEC3), 12);
+  });
+  it("cross() calculate the cross product of two vectors", () => {
+    // Same vector or same direction
+    deepEqual(vec3.cross(vec3.copy(DEFAULT_VEC3), ONE_VEC3), DEFAULT_VEC3);
+    deepEqual(vec3.cross(vec3.copy(DEFAULT_VEC3), DEFAULT_VEC3), DEFAULT_VEC3);
+    deepEqual(vec3.cross(vec3.copy(ONE_VEC3), ONE_VEC3), DEFAULT_VEC3);
+    deepEqual(vec3.cross(vec3.copy(ONE_VEC3), TWO_VEC3), DEFAULT_VEC3);
+    deepEqual(vec3.cross(vec3.copy(TWO_VEC3), TWO_VEC3), DEFAULT_VEC3);
+    deepEqual(
+      vec3.cross(vec3.copy(ONE_TWO_THREE_VEC3), FOUR_FIVE_SIX_VEC3),
+      [-3, 6, -3]
+    );
+  });
+  it("length() calculate the length of a vector", () => {
+    deepEqual(vec3.length(DEFAULT_VEC3), 0);
+    deepEqual(vec3.length(ONE_VEC3), Math.sqrt(3));
+    deepEqual(vec3.length(TWO_VEC3), Math.sqrt(12));
+  });
+  it("lengthSq() calculate the squared length of a vector", () => {
+    deepEqual(vec3.lengthSq(DEFAULT_VEC3), 0);
+    deepEqual(vec3.lengthSq(ONE_VEC3), 3);
+    deepEqual(vec3.lengthSq(TWO_VEC3), 12);
+  });
+  it("normalize() should normalise a vector", () => {
+    deepEqual(vec3.normalize(vec3.copy(DEFAULT_VEC3)), DEFAULT_VEC3);
+    deepEqual(vec3.normalize([0, 2, 0]), Y_UP);
+    deepEqual(vec3.normalize([0, -2, 0]), Y_DOWN);
+    deepEqual(vec3.normalize(vec3.copy(ONE_VEC3)), ONE_VEC3_NORMALISED);
+    deepEqual(
+      vec3.normalize(vec3.copy(ONE_TWO_THREE_VEC3)),
+      [0.2672612419124244, 0.5345224838248488, 0.8017837257372732]
+    );
+  });
+  it("distance() calculate the distance between two vectors", () => {
+    deepEqual(vec3.distance(DEFAULT_VEC3, Y_UP), 1);
+    deepEqual(
+      vec3.distance(ONE_TWO_THREE_VEC3, FOUR_FIVE_SIX_VEC3),
+      5.196152422706632
+    );
+  });
+  it("distanceSq() should calculate the squared distance between two vectors", () => {
+    deepEqual(vec3.distance(DEFAULT_VEC3, Y_UP), 1);
+    deepEqual(vec3.distanceSq(ONE_TWO_THREE_VEC3, FOUR_FIVE_SIX_VEC3), 27);
+  });
+  it("limit() should limit a vector to a length", () => {
+    deepEqual(vec3.limit(vec3.copy(DEFAULT_VEC3), 1), DEFAULT_VEC3);
+    deepEqual(vec3.limit(vec3.copy(Y_UP), 1), Y_UP);
+    deepEqual(vec3.limit(vec3.copy(Y_DOWN), 1), Y_DOWN);
+    deepEqual(vec3.limit(vec3.copy(ONE_VEC3), 1), ONE_VEC3_NORMALISED);
+    deepEqual(vec3.limit(vec3.copy(ONE_VEC3), 2), ONE_VEC3);
+    deepEqual(vec3.limit([0, 2, 0], 1), Y_UP);
+  });
+  it("lerp() should linearly interpolates between two vectors", () => {
+    deepEqual(
+      vec3.lerp(vec3.copy(DEFAULT_VEC3), ONE_VEC3, 0.5),
+      [0.5, 0.5, 0.5]
+    );
+    deepEqual(vec3.lerp([-1, -1, -1], DEFAULT_VEC3, 0.5), [-0.5, -0.5, -0.5]);
+  });
+  it("toString() should print a vector to a string", () => {
+    deepEqual(vec3.toString(DEFAULT_VEC3), "[0, 0, 0]");
+    deepEqual(vec3.toString(ONE_VEC3), "[1, 1, 1]");
+    deepEqual(vec3.toString(ONE_VEC3_NORMALISED, 2), "[0.57, 0.57, 0.57]");
+  });
 });

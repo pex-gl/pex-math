@@ -43,7 +43,7 @@ export function equals(a, b) {
 }
 
 /**
- * Add a vector with another.
+ * Adds a vector to another.
  * @param {vec3} a
  * @param {vec3} b
  * @returns {vec3}
@@ -56,7 +56,7 @@ export function add(a, b) {
 }
 
 /**
- * Subtracts a vector with another.
+ * Subtracts a vector from another.
  * @param {vec3} a
  * @param {vec3} b
  * @returns {vec3}
@@ -156,7 +156,7 @@ export function dot(a, b) {
  * Calculates the cross product of two vectors.
  * @param {vec3} a
  * @param {vec3} b
- * @returns {number}
+ * @returns {vec3}
  */
 export function cross(a, b) {
   const x = a[0];
@@ -286,14 +286,11 @@ export function lerp(a, b, n) {
 /**
  * Prints a vector to a string.
  * @param {vec3} a
- * @param {number} precision
- * @returns {vec3}
+ * @param {number} [precision=4]
+ * @returns {string}
  */
-export function toString(a, precision) {
-  const scale = 10 ** (precision !== undefined ? precision : 4);
-  let s = "[";
-  s += `${Math.floor(a[0] * scale) / scale}, `;
-  s += `${Math.floor(a[1] * scale) / scale}, `;
-  s += `${Math.floor(a[2] * scale) / scale}]`;
-  return s;
+export function toString(a, precision = 4) {
+  const scale = 10 ** precision;
+  // prettier-ignore
+  return `[${Math.floor(a[0] * scale) / scale}, ${Math.floor(a[1] * scale) / scale}, ${Math.floor(a[2] * scale) / scale}]`;
 }

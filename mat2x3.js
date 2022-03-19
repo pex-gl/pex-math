@@ -10,8 +10,9 @@ import { shallowCopy } from "./utils.js";
  * Row major memory layout:
  *
  * ```
- * 0   1   2
- * 3   4   5
+ * 0   1
+ * 2   3
+ * 4   5
  * ```
  *
  * Equivalent to the column major OpenGL spec:
@@ -30,8 +31,9 @@ import { shallowCopy } from "./utils.js";
 export function create() {
   // prettier-ignore
   return [
-    1, 0, 0,
-    1, 0, 0
+    1, 0,
+    0, 1,
+    0, 0
   ]
 }
 

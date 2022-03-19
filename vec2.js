@@ -42,7 +42,7 @@ export function equals(a, b) {
 }
 
 /**
- * Add a vector with another.
+ * Add a vector to another.
  * @param {vec2} a
  * @param {vec2} b
  * @returns {vec2}
@@ -54,7 +54,7 @@ export function add(a, b) {
 }
 
 /**
- * Subtracts a vector with another.
+ * Subtracts a vector from another.
  * @param {vec2} a
  * @param {vec2} b
  * @returns {vec2}
@@ -205,13 +205,11 @@ export function lerp(a, b, n) {
 /**
  * Prints a vector to a string.
  * @param {vec2} a
- * @param {number} precision
- * @returns {vec2}
+ * @param {number} [precision=4]
+ * @returns {string}
  */
-export function toString(a, precision) {
-  const scale = 10 ** (precision !== undefined ? precision : 4);
-  let s = "[";
-  s += `${Math.floor(a[0] * scale) / scale}, `;
-  s += `${Math.floor(a[1] * scale) / scale}]`;
-  return s;
+export function toString(a, precision = 4) {
+  const scale = 10 ** precision;
+  // prettier-ignore
+  return `[${Math.floor(a[0] * scale) / scale}, ${Math.floor(a[1] * scale) / scale}]`;
 }

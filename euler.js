@@ -13,7 +13,7 @@ export function create() {
 }
 
 /**
- * Creates euler angles from quaterion. Assumes XYZ order of rotations.
+ * Creates euler angles from quaternion. Assumes XYZ order of rotations.
  * @param {euler} a
  * @param {quat} q
  * @returns {euler}
