@@ -22,10 +22,12 @@ export function set(a, i, b, j) {
 /**
  * Compares two vectors.
  * @param {avec3} a
+ * @param {number} i
  * @param {avec3} b
+ * @param {number} j
  * @returns {boolean}
  */
-export function equals(a, b) {
+export function equals(a, i, b, j) {
   return (
     a[i * 3] === b[j * 3] &&
     a[i * 3 + 1] === b[j * 3 + 1] &&
@@ -107,7 +109,7 @@ export function dot(a, i, b, j) {
  * @param {avec3} b
  * @param {number} j
  */
-export function cross(a, b) {
+export function cross(a, i, b, j) {
   const x = a[i * 3];
   const y = a[i * 3 + 1];
   const z = a[i * 3 + 2];
@@ -139,7 +141,7 @@ export function length(a, i) {
  * @param {number} i
  * @returns {number}
  */
-export function lengthSq(a) {
+export function lengthSq(a, i) {
   const x = a[i * 3];
   const y = a[i * 3 + 1];
   const z = a[i * 3 + 2];

@@ -24,10 +24,12 @@ export function set(a, i, b, j) {
 /**
  * Compares two vectors.
  * @param {avec4} a
+ * @param {number} i
  * @param {avec4} b
+ * @param {number} j
  * @returns {boolean}
  */
-export function equals(a, b) {
+export function equals(a, i, b, j) {
   return (
     a[i * 4] === b[j * 4] &&
     a[i * 4 + 1] === b[j * 4 + 1] &&
@@ -128,7 +130,7 @@ export function length(a, i) {
  * @param {number} i
  * @returns {number}
  */
-export function lengthSq(a) {
+export function lengthSq(a, i) {
   const x = a[i * 4];
   const y = a[i * 4 + 1];
   const z = a[i * 4 + 2];
