@@ -109,7 +109,7 @@ describe("vec3", () => {
     );
   });
   it("distanceSq() should calculate the squared distance between two vectors", () => {
-    deepEqual(vec3.distance(DEFAULT_VEC3, Y_UP), 1);
+    deepEqual(vec3.distanceSq(DEFAULT_VEC3, Y_UP), 1);
     deepEqual(vec3.distanceSq(ONE_TWO_THREE_VEC3, FOUR_FIVE_SIX_VEC3), 27);
   });
   it("limit() should limit a vector to a length", () => {

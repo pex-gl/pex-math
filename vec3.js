@@ -1,6 +1,4 @@
-/**
- * @module vec3
- */
+/** @module vec3 */
 
 import { shallowCopy } from "./utils.js";
 
@@ -243,7 +241,7 @@ export function distanceSq(a, b) {
 /**
  * Limits a vector to a length.
  * @param {vec3} a
- * @param {vec3} n
+ * @param {number} n
  * @returns {vec3}
  */
 export function limit(a, n) {
