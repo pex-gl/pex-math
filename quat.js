@@ -1,10 +1,8 @@
-/**
- * @module quat
- */
+/** @module quat */
 
 import * as vec3 from "./vec3.js";
 import * as vec4 from "./vec4.js";
-import { EPSILON, shallowCopy } from "./utils.js";
+import { EPSILON } from "./utils.js";
 
 /**
  * Returns a new quat at 0, 0, 0, 1.
@@ -30,7 +28,9 @@ export function identity(a) {
  * @param {quat} a
  * @returns {quat}
  */
-export const copy = shallowCopy;
+export function copy(a) {
+  return a.slice();
+}
 
 /**
  * Sets a quaternion to another quaternion.

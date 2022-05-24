@@ -176,9 +176,4 @@ describe("utils", () => {
     deepEqual(utils.nextPowerOfTwo(2 ** 1 + 1), 2 ** 2);
     deepEqual(utils.nextPowerOfTwo(2 ** 2 + 1), 2 ** 3);
   });
-
-  it("shallowCopy", () => {
-    deepEqual(utils.shallowCopy([0, 0, 0]), [0, 0, 0]);
-    notStrictEqual(utils.shallowCopy([0, 0, 0]), [0, 0, 0]);
-  });
 });

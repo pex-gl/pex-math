@@ -1,8 +1,4 @@
-/**
- * @module mat3
- */
-
-import { shallowCopy } from "./utils.js";
+/** @module mat3 */
 
 /**
  * Returns a 3x3 identity matrix.
@@ -53,7 +49,9 @@ export function identity(a) {
  * @param {mat3} a
  * @returns {mat3}
  */
-export const copy = shallowCopy;
+export function copy(a) {
+  return a.slice();
+}
 
 /**
  * Sets a matrix from another matrix.
