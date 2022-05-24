@@ -118,7 +118,18 @@ export function length(a) {
  * @param {quat} a
  * @returns {quat}
  */
-export const normalize = vec4.normalize;
+export function normalize(a) {
+  const x = a[0];
+  const y = a[1];
+  const z = a[2];
+  const w = a[3];
+  const l = 1 / (Math.sqrt(x * x + y * y + z * z + w * w) || 1);
+  a[0] *= l;
+  a[1] *= l;
+  a[2] *= l;
+  a[3] *= l;
+  return a;
+}
 
 /**
  * Calculates the dot product of two quaternions.
