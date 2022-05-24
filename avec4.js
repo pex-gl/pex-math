@@ -70,13 +70,13 @@ export function sub(a, i, b, j) {
  * Scales a vector by a number.
  * @param {avec4} a
  * @param {number} i
- * @param {number} n
+ * @param {number} s
  */
-export function scale(a, i, n) {
-  a[i * 4] *= n;
-  a[i * 4 + 1] *= n;
-  a[i * 4 + 2] *= n;
-  a[i * 4 + 3] *= n;
+export function scale(a, i, s) {
+  a[i * 4] *= s;
+  a[i * 4 + 1] *= s;
+  a[i * 4 + 2] *= s;
+  a[i * 4 + 3] *= s;
 }
 
 /**
@@ -85,13 +85,13 @@ export function scale(a, i, n) {
  * @param {number} i
  * @param {avec4} b
  * @param {number} j
- * @param {number} n
+ * @param {number} s
  */
-export function addScaled(a, i, b, j, n) {
-  a[i * 4] += b[j * 4] * n;
-  a[i * 4 + 1] += b[j * 4 + 1] * n;
-  a[i * 4 + 2] += b[j * 4 + 2] * n;
-  a[i * 4 + 3] += b[j * 4 + 3] * n;
+export function addScaled(a, i, b, j, s) {
+  a[i * 4] += b[j * 4] * s;
+  a[i * 4 + 1] += b[j * 4 + 1] * s;
+  a[i * 4 + 2] += b[j * 4 + 2] * s;
+  a[i * 4 + 3] += b[j * 4 + 3] * s;
 }
 
 
@@ -101,18 +101,18 @@ export function addScaled(a, i, b, j, n) {
  * @param {number} i
  * @param {avec4} b
  * @param {number} j
- * @param {number} n
+ * @param {number} t
  */
-export function lerp(a, i, b, j, n) {
+export function lerp(a, i, b, j, t) {
   const x = a[i * 4];
   const y = a[i * 4 + 1];
   const z = a[i * 4 + 2];
   const w = a[i * 4 + 3];
 
-  a[i * 4] = x + (b[j * 4] - x) * n;
-  a[i * 4 + 1] = y + (b[j * 4 + 1] - y) * n;
-  a[i * 4 + 2] = z + (b[j * 4 + 2] - z) * n;
-  a[i * 4 + 3] = w + (b[j * 4 + 3] - w) * n;
+  a[i * 4] = x + (b[j * 4] - x) * t;
+  a[i * 4 + 1] = y + (b[j * 4 + 1] - y) * t;
+  a[i * 4 + 2] = z + (b[j * 4 + 2] - z) * t;
+  a[i * 4 + 3] = w + (b[j * 4 + 3] - w) * t;
 }
 
 /**

@@ -1,6 +1,4 @@
-/**
- * @module utils
- */
+/** @module utils */
 
 /**
  * @typedef {number} Degrees
@@ -19,11 +17,11 @@ export const EPSILON = 0.000001;
  * Linear interpolation between two numbers.
  * @param {number} a
  * @param {number} b
- * @param {number} n
+ * @param {number} t
  * @returns {number}
  */
-export function lerp(a, b, n) {
-  return a + (b - a) * n;
+export function lerp(a, b, t) {
+  return a + (b - a) * t;
 }
 
 /**

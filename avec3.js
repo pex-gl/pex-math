@@ -65,12 +65,12 @@ export function sub(a, i, b, j) {
  * Scales a vector by a number.
  * @param {avec3} a
  * @param {number} i
- * @param {number} n
+ * @param {number} s
  */
-export function scale(a, i, n) {
-  a[i * 3] *= n;
-  a[i * 3 + 1] *= n;
-  a[i * 3 + 2] *= n;
+export function scale(a, i, s) {
+  a[i * 3] *= s;
+  a[i * 3 + 1] *= s;
+  a[i * 3 + 2] *= s;
 }
 
 /**
@@ -79,12 +79,12 @@ export function scale(a, i, n) {
  * @param {number} i
  * @param {avec3} b
  * @param {number} j
- * @param {number} n
+ * @param {number} s
  */
-export function addScaled(a, i, b, j, n) {
-  a[i * 3] += b[j * 3] * n;
-  a[i * 3 + 1] += b[j * 3 + 1] * n;
-  a[i * 3 + 2] += b[j * 3 + 2] * n;
+export function addScaled(a, i, b, j, s) {
+  a[i * 3] += b[j * 3] * s;
+  a[i * 3 + 1] += b[j * 3 + 1] * s;
+  a[i * 3 + 2] += b[j * 3 + 2] * s;
 }
 
 /**
@@ -200,18 +200,18 @@ export function distanceSq(a, i, b, j) {
  * Limits a vector to a length.
  * @param {avec3} a
  * @param {number} i
- * @param {number} n
+ * @param {number} len
  */
-export function limit(a, i, n) {
+export function limit(a, i, len) {
   const x = a[i * 3];
   const y = a[i * 3 + 1];
   const z = a[i * 3 + 2];
 
   const dsq = x * x + y * y + z * z;
-  const lsq = n * n;
+  const lsq = len * len;
 
   if (lsq > 0 && dsq > lsq) {
-    const nd = n / Math.sqrt(dsq);
+    const nd = len / Math.sqrt(dsq);
     a[i * 3] *= nd;
     a[i * 3 + 1] *= nd;
     a[i * 3 + 2] *= nd;
@@ -224,16 +224,16 @@ export function limit(a, i, n) {
  * @param {number} i
  * @param {avec3} b
  * @param {number} j
- * @param {number} n
+ * @param {number} t
  */
-export function lerp(a, i, b, j, n) {
+export function lerp(a, i, b, j, t) {
   const x = a[i * 3];
   const y = a[i * 3 + 1];
   const z = a[i * 3 + 2];
 
-  a[i * 3] = x + (b[j * 3] - x) * n;
-  a[i * 3 + 1] = y + (b[j * 3 + 1] - y) * n;
-  a[i * 3 + 2] = z + (b[j * 3 + 2] - z) * n;
+  a[i * 3] = x + (b[j * 3] - x) * t;
+  a[i * 3 + 1] = y + (b[j * 3 + 1] - y) * t;
+  a[i * 3 + 2] = z + (b[j * 3 + 2] - z) * t;
 }
 
 /**

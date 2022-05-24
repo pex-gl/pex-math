@@ -69,13 +69,13 @@ export function sub(a, b) {
 /**
  * Scales a vector by a number.
  * @param {vec3} a
- * @param {number} n
+ * @param {number} s
  * @returns {vec3}
  */
-export function scale(a, n) {
-  a[0] *= n;
-  a[1] *= n;
-  a[2] *= n;
+export function scale(a, s) {
+  a[0] *= s;
+  a[1] *= s;
+  a[2] *= s;
   return a;
 }
 
@@ -83,13 +83,13 @@ export function scale(a, n) {
  * Adds two vectors after scaling the second one.
  * @param {vec3} a
  * @param {vec3} b
- * @param {number} n
+ * @param {number} s
  * @returns {vec3}
  */
-export function addScaled(a, b, n) {
-  a[0] += b[0] * n;
-  a[1] += b[1] * n;
-  a[2] += b[2] * n;
+export function addScaled(a, b, s) {
+  a[0] += b[0] * s;
+  a[1] += b[1] * s;
+  a[2] += b[2] * s;
 
   return a;
 }
@@ -241,19 +241,19 @@ export function distanceSq(a, b) {
 /**
  * Limits a vector to a length.
  * @param {vec3} a
- * @param {number} n
+ * @param {number} len
  * @returns {vec3}
  */
-export function limit(a, n) {
+export function limit(a, len) {
   const x = a[0];
   const y = a[1];
   const z = a[2];
 
   const dsq = x * x + y * y + z * z;
-  const lsq = n * n;
+  const lsq = len * len;
 
   if (lsq > 0 && dsq > lsq) {
-    const nd = n / Math.sqrt(dsq);
+    const nd = len / Math.sqrt(dsq);
     a[0] *= nd;
     a[1] *= nd;
     a[2] *= nd;
@@ -266,17 +266,17 @@ export function limit(a, n) {
  * Linearly interpolates between two vectors.
  * @param {vec3} a
  * @param {vec3} b
- * @param {number} n
+ * @param {number} t
  * @returns {vec3}
  */
-export function lerp(a, b, n) {
+export function lerp(a, b, t) {
   const x = a[0];
   const y = a[1];
   const z = a[2];
 
-  a[0] = x + (b[0] - x) * n;
-  a[1] = y + (b[1] - y) * n;
-  a[2] = z + (b[2] - z) * n;
+  a[0] = x + (b[0] - x) * t;
+  a[1] = y + (b[1] - y) * t;
+  a[2] = z + (b[2] - z) * t;
 
   return a;
 }
