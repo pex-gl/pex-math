@@ -125,68 +125,6 @@ export function equals(a, b) {
 }
 
 /**
- * @private
- */
-export function _mult16(
-  a,
-  b00,
-  b01,
-  b02,
-  b03,
-  b10,
-  b11,
-  b12,
-  b13,
-  b20,
-  b21,
-  b22,
-  b23,
-  b30,
-  b31,
-  b32,
-  b33
-) {
-  const a00 = a[0];
-  const a01 = a[1];
-  const a02 = a[2];
-  const a03 = a[3];
-  const a10 = a[4];
-  const a11 = a[5];
-  const a12 = a[6];
-  const a13 = a[7];
-  const a20 = a[8];
-  const a21 = a[9];
-  const a22 = a[10];
-  const a23 = a[11];
-  const a30 = a[12];
-  const a31 = a[13];
-  const a32 = a[14];
-  const a33 = a[15];
-
-  a[0] = b00 * a00 + b01 * a10 + b02 * a20 + b03 * a30;
-  a[1] = b00 * a01 + b01 * a11 + b02 * a21 + b03 * a31;
-  a[2] = b00 * a02 + b01 * a12 + b02 * a22 + b03 * a32;
-  a[3] = b00 * a03 + b01 * a13 + b02 * a23 + b03 * a33;
-
-  a[4] = b10 * a00 + b11 * a10 + b12 * a20 + b13 * a30;
-  a[5] = b10 * a01 + b11 * a11 + b12 * a21 + b13 * a31;
-  a[6] = b10 * a02 + b11 * a12 + b12 * a22 + b13 * a32;
-  a[7] = b10 * a03 + b11 * a13 + b12 * a23 + b13 * a33;
-
-  a[8] = b20 * a00 + b21 * a10 + b22 * a20 + b23 * a30;
-  a[9] = b20 * a01 + b21 * a11 + b22 * a21 + b23 * a31;
-  a[10] = b20 * a02 + b21 * a12 + b22 * a22 + b23 * a32;
-  a[11] = b20 * a03 + b21 * a13 + b22 * a23 + b23 * a33;
-
-  a[12] = b30 * a00 + b31 * a10 + b32 * a20 + b33 * a30;
-  a[13] = b30 * a01 + b31 * a11 + b32 * a21 + b33 * a31;
-  a[14] = b30 * a02 + b31 * a12 + b32 * a22 + b33 * a32;
-  a[15] = b30 * a03 + b31 * a13 + b32 * a23 + b33 * a33;
-
-  return a;
-}
-
-/**
  * Multiplies two matrices.
  * @param {mat4} a
  * @param {mat4} b
@@ -487,30 +425,28 @@ export function transpose(a) {
 }
 
 /**
- * @private
- */
-export function _translate3(a, x, y, z) {
-  a[12] += a[0] * x + a[4] * y + a[8] * z;
-  a[13] += a[1] * x + a[5] * y + a[9] * z;
-  a[14] += a[2] * x + a[6] * y + a[10] * z;
-  a[15] += a[3] * x + a[7] * y + a[11] * z;
-  return a;
-}
-
-/**
  * Translates a matrix by a vector.
  * @param {mat4} a
  * @param {vec3} v
  * @returns {mat4}
  */
-export function translate(a, v) {
-  return _translate3(a, v[0], v[1], v[2]);
+export function translate(a, [x, y, z]) {
+  a[12] += a[0] * x + a[4] * y + a[8] * z;
+  a[13] += a[1] * x + a[5] * y + a[9] * z;
+  a[14] += a[2] * x + a[6] * y + a[10] * z;
+  a[15] += a[3] * x + a[7] * y + a[11] * z;
+
+  return a;
 }
 
 /**
- * @private
+ * Rotates a matrix by an angle at an axis.
+ * @param {mat4} a
+ * @param {Radians} r
+ * @param {vec3} v
+ * @returns {mat4}
  */
-export function _rotate3(a, r, x, y, z) {
+export function rotate(a, r, [x, y, z]) {
   let len = Math.sqrt(x * x + y * y + z * z);
 
   if (len < EPSILON) {
@@ -566,20 +502,12 @@ export function _rotate3(a, r, x, y, z) {
 }
 
 /**
- * Rotates a matrix by an angle at an axis.
+ * Scales a matrix by a vector.
  * @param {mat4} a
- * @param {Radians} r
  * @param {vec3} v
  * @returns {mat4}
  */
-export function rotate(a, r, v) {
-  return _rotate3(a, r, v[0], v[1], v[2]);
-}
-
-/**
- * @private
- */
-export function _scale3(a, x, y, z) {
+export function scale(a, [x, y, z]) {
   a[0] *= x;
   a[1] *= x;
   a[2] *= x;
@@ -593,16 +521,6 @@ export function _scale3(a, x, y, z) {
   a[10] *= z;
   a[11] *= z;
   return a;
-}
-
-/**
- * Scales a matrix by a vector.
- * @param {mat4} a
- * @param {vec3} v
- * @returns {mat4}
- */
-export function scale(a, v) {
-  return _scale3(a, v[0], v[1], v[2]);
 }
 
 /**
@@ -834,19 +752,18 @@ export function ortho(a, left, right, bottom, top, near, far) {
 }
 
 /**
- * @private
+ * Calculates a lookAt matrix from position, target and up vectors.
+ * @param {mat4} a
+ * @param {vec3} from
+ * @param {vec3} to
+ * @param {vec3} up
+ * @returns {mat4}
  */
-export function _lookAt9(
+export function lookAt(
   a,
-  eyex,
-  eyey,
-  eyez,
-  targetx,
-  targety,
-  targetz,
-  upx,
-  upy,
-  upz
+  [eyex, eyey, eyez],
+  [targetx, targety, targetz],
+  [upx, upy, upz]
 ) {
   if (
     Math.abs(eyex - targetx) < EPSILON &&
@@ -909,27 +826,4 @@ export function _lookAt9(
   a[15] = 1;
 
   return a;
-}
-
-/**
- * Calculates a lookAt matrix from position, target and up vectors.
- * @param {mat4} a
- * @param {vec3} from
- * @param {vec3} to
- * @param {vec3} up
- * @returns {mat4}
- */
-export function lookAt(a, from, to, up) {
-  return _lookAt9(
-    a,
-    from[0],
-    from[1],
-    from[2],
-    to[0],
-    to[1],
-    to[2],
-    up[0],
-    up[1],
-    up[2]
-  );
 }
