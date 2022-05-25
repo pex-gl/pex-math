@@ -94,7 +94,6 @@ export function addScaled(a, i, b, j, s) {
   a[i * 4 + 3] += b[j * 4 + 3] * s;
 }
 
-
 /**
  * Linearly interpolates between two vectors.
  * @param {avec4} a

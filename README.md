@@ -37,6 +37,10 @@ const identityMatrix = mat4.create();
 ## Modules
 
 <dl>
+<dt><a href="#module_avec3">avec3</a></dt>
+<dd></dd>
+<dt><a href="#module_avec4">avec4</a></dt>
+<dd></dd>
 <dt><a href="#module_euler">euler</a></dt>
 <dd></dd>
 <dt><a href="#module_index">index</a></dt>
@@ -59,6 +63,395 @@ const identityMatrix = mat4.create();
 <dt><a href="#module_vec4">vec4</a></dt>
 <dd></dd>
 </dl>
+
+<a name="module_avec3"></a>
+
+## avec3
+
+- [avec3](#module_avec3)
+  - [.set(a, i, b, j)](#module_avec3.set)
+  - [.equals(a, i, b, j)](#module_avec3.equals) ⇒ <code>boolean</code>
+  - [.add(a, i, b, j)](#module_avec3.add)
+  - [.sub(a, i, b, j)](#module_avec3.sub)
+  - [.scale(a, i, s)](#module_avec3.scale)
+  - [.addScaled(a, i, b, j, s)](#module_avec3.addScaled)
+  - [.dot(a, i, b, j)](#module_avec3.dot)
+  - [.cross(a, i, b, j)](#module_avec3.cross)
+  - [.length(a, i)](#module_avec3.length) ⇒ <code>number</code>
+  - [.lengthSq(a, i)](#module_avec3.lengthSq) ⇒ <code>number</code>
+  - [.normalize(a, i)](#module_avec3.normalize)
+  - [.distance(a, i, b, j)](#module_avec3.distance) ⇒ <code>number</code>
+  - [.distanceSq(a, i, b, j)](#module_avec3.distanceSq) ⇒ <code>number</code>
+  - [.limit(a, i, len)](#module_avec3.limit)
+  - [.lerp(a, i, b, j, t)](#module_avec3.lerp)
+  - [.toString(a, i, [precision])](#module_avec3.toString) ⇒ <code>string</code>
+
+<a name="module_avec3.set"></a>
+
+### avec3.set(a, i, b, j)
+
+Sets a vector to another vector.
+
+**Kind**: static method of [<code>avec3</code>](#module_avec3)
+
+| Param | Type                |
+| ----- | ------------------- |
+| a     | <code>avec3</code>  |
+| i     | <code>number</code> |
+| b     | <code>avec3</code>  |
+| j     | <code>number</code> |
+
+<a name="module_avec3.equals"></a>
+
+### avec3.equals(a, i, b, j) ⇒ <code>boolean</code>
+
+Compares two vectors.
+
+**Kind**: static method of [<code>avec3</code>](#module_avec3)
+
+| Param | Type                |
+| ----- | ------------------- |
+| a     | <code>avec3</code>  |
+| i     | <code>number</code> |
+| b     | <code>avec3</code>  |
+| j     | <code>number</code> |
+
+<a name="module_avec3.add"></a>
+
+### avec3.add(a, i, b, j)
+
+Adds a vector to another.
+
+**Kind**: static method of [<code>avec3</code>](#module_avec3)
+
+| Param | Type                |
+| ----- | ------------------- |
+| a     | <code>avec3</code>  |
+| i     | <code>number</code> |
+| b     | <code>avec3</code>  |
+| j     | <code>number</code> |
+
+<a name="module_avec3.sub"></a>
+
+### avec3.sub(a, i, b, j)
+
+Subtracts a vector from another.
+
+**Kind**: static method of [<code>avec3</code>](#module_avec3)
+
+| Param | Type                |
+| ----- | ------------------- |
+| a     | <code>avec3</code>  |
+| i     | <code>number</code> |
+| b     | <code>avec3</code>  |
+| j     | <code>number</code> |
+
+<a name="module_avec3.scale"></a>
+
+### avec3.scale(a, i, s)
+
+Scales a vector by a number.
+
+**Kind**: static method of [<code>avec3</code>](#module_avec3)
+
+| Param | Type                |
+| ----- | ------------------- |
+| a     | <code>avec3</code>  |
+| i     | <code>number</code> |
+| s     | <code>number</code> |
+
+<a name="module_avec3.addScaled"></a>
+
+### avec3.addScaled(a, i, b, j, s)
+
+Adds two vectors after scaling the second one.
+
+**Kind**: static method of [<code>avec3</code>](#module_avec3)
+
+| Param | Type                |
+| ----- | ------------------- |
+| a     | <code>avec3</code>  |
+| i     | <code>number</code> |
+| b     | <code>avec3</code>  |
+| j     | <code>number</code> |
+| s     | <code>number</code> |
+
+<a name="module_avec3.dot"></a>
+
+### avec3.dot(a, i, b, j)
+
+Calculates the dot product of two vectors.
+
+**Kind**: static method of [<code>avec3</code>](#module_avec3)
+
+| Param | Type                |
+| ----- | ------------------- |
+| a     | <code>avec3</code>  |
+| i     | <code>number</code> |
+| b     | <code>avec3</code>  |
+| j     | <code>number</code> |
+
+<a name="module_avec3.cross"></a>
+
+### avec3.cross(a, i, b, j)
+
+Calculates the cross product of two vectors.
+
+**Kind**: static method of [<code>avec3</code>](#module_avec3)
+
+| Param | Type                |
+| ----- | ------------------- |
+| a     | <code>avec3</code>  |
+| i     | <code>number</code> |
+| b     | <code>avec3</code>  |
+| j     | <code>number</code> |
+
+<a name="module_avec3.length"></a>
+
+### avec3.length(a, i) ⇒ <code>number</code>
+
+Calculates the length of a vector.
+
+**Kind**: static method of [<code>avec3</code>](#module_avec3)
+
+| Param | Type                |
+| ----- | ------------------- |
+| a     | <code>avec3</code>  |
+| i     | <code>number</code> |
+
+<a name="module_avec3.lengthSq"></a>
+
+### avec3.lengthSq(a, i) ⇒ <code>number</code>
+
+Calculates the squared length of a vector.
+
+**Kind**: static method of [<code>avec3</code>](#module_avec3)
+
+| Param | Type                |
+| ----- | ------------------- |
+| a     | <code>avec3</code>  |
+| i     | <code>number</code> |
+
+<a name="module_avec3.normalize"></a>
+
+### avec3.normalize(a, i)
+
+Normalises a vector.
+
+**Kind**: static method of [<code>avec3</code>](#module_avec3)
+
+| Param | Type                |
+| ----- | ------------------- |
+| a     | <code>avec3</code>  |
+| i     | <code>number</code> |
+
+<a name="module_avec3.distance"></a>
+
+### avec3.distance(a, i, b, j) ⇒ <code>number</code>
+
+Calculates the distance between two vectors.
+
+**Kind**: static method of [<code>avec3</code>](#module_avec3)
+
+| Param | Type                |
+| ----- | ------------------- |
+| a     | <code>avec3</code>  |
+| i     | <code>number</code> |
+| b     | <code>avec3</code>  |
+| j     | <code>number</code> |
+
+<a name="module_avec3.distanceSq"></a>
+
+### avec3.distanceSq(a, i, b, j) ⇒ <code>number</code>
+
+Calculates the squared distance between two vectors.
+
+**Kind**: static method of [<code>avec3</code>](#module_avec3)
+
+| Param | Type                |
+| ----- | ------------------- |
+| a     | <code>avec3</code>  |
+| i     | <code>number</code> |
+| b     | <code>avec3</code>  |
+| j     | <code>number</code> |
+
+<a name="module_avec3.limit"></a>
+
+### avec3.limit(a, i, len)
+
+Limits a vector to a length.
+
+**Kind**: static method of [<code>avec3</code>](#module_avec3)
+
+| Param | Type                |
+| ----- | ------------------- |
+| a     | <code>avec3</code>  |
+| i     | <code>number</code> |
+| len   | <code>number</code> |
+
+<a name="module_avec3.lerp"></a>
+
+### avec3.lerp(a, i, b, j, t)
+
+Linearly interpolates between two vectors.
+
+**Kind**: static method of [<code>avec3</code>](#module_avec3)
+
+| Param | Type                |
+| ----- | ------------------- |
+| a     | <code>avec3</code>  |
+| i     | <code>number</code> |
+| b     | <code>avec3</code>  |
+| j     | <code>number</code> |
+| t     | <code>number</code> |
+
+<a name="module_avec3.toString"></a>
+
+### avec3.toString(a, i, [precision]) ⇒ <code>string</code>
+
+Prints a vector to a string.
+
+**Kind**: static method of [<code>avec3</code>](#module_avec3)
+
+| Param       | Type                | Default        |
+| ----------- | ------------------- | -------------- |
+| a           | <code>avec3</code>  |                |
+| i           | <code>number</code> |                |
+| [precision] | <code>number</code> | <code>4</code> |
+
+<a name="module_avec4"></a>
+
+## avec4
+
+- [avec4](#module_avec4)
+  - [.set(a, i, b, j)](#module_avec4.set)
+  - [.equals(a, i, b, j)](#module_avec4.equals) ⇒ <code>boolean</code>
+  - [.add(a, i, b, j)](#module_avec4.add)
+  - [.sub(a, i, b, j)](#module_avec4.sub)
+  - [.scale(a, i, s)](#module_avec4.scale)
+  - [.addScaled(a, i, b, j, s)](#module_avec4.addScaled)
+  - [.lerp(a, i, b, j, t)](#module_avec4.lerp)
+  - [.toString(a, i, [precision])](#module_avec4.toString) ⇒ <code>string</code>
+
+<a name="module_avec4.set"></a>
+
+### avec4.set(a, i, b, j)
+
+Sets a vector to another vector.
+
+**Kind**: static method of [<code>avec4</code>](#module_avec4)
+
+| Param | Type                |
+| ----- | ------------------- |
+| a     | <code>avec4</code>  |
+| i     | <code>number</code> |
+| b     | <code>avec4</code>  |
+| j     | <code>number</code> |
+
+<a name="module_avec4.equals"></a>
+
+### avec4.equals(a, i, b, j) ⇒ <code>boolean</code>
+
+Compares two vectors.
+
+**Kind**: static method of [<code>avec4</code>](#module_avec4)
+
+| Param | Type                |
+| ----- | ------------------- |
+| a     | <code>avec4</code>  |
+| i     | <code>number</code> |
+| b     | <code>avec4</code>  |
+| j     | <code>number</code> |
+
+<a name="module_avec4.add"></a>
+
+### avec4.add(a, i, b, j)
+
+Adds a vector to another.
+
+**Kind**: static method of [<code>avec4</code>](#module_avec4)
+
+| Param | Type                |
+| ----- | ------------------- |
+| a     | <code>avec4</code>  |
+| i     | <code>number</code> |
+| b     | <code>avec4</code>  |
+| j     | <code>number</code> |
+
+<a name="module_avec4.sub"></a>
+
+### avec4.sub(a, i, b, j)
+
+Subtracts a vector from another.
+
+**Kind**: static method of [<code>avec4</code>](#module_avec4)
+
+| Param | Type                |
+| ----- | ------------------- |
+| a     | <code>avec4</code>  |
+| i     | <code>number</code> |
+| b     | <code>avec4</code>  |
+| j     | <code>number</code> |
+
+<a name="module_avec4.scale"></a>
+
+### avec4.scale(a, i, s)
+
+Scales a vector by a number.
+
+**Kind**: static method of [<code>avec4</code>](#module_avec4)
+
+| Param | Type                |
+| ----- | ------------------- |
+| a     | <code>avec4</code>  |
+| i     | <code>number</code> |
+| s     | <code>number</code> |
+
+<a name="module_avec4.addScaled"></a>
+
+### avec4.addScaled(a, i, b, j, s)
+
+Adds two vectors after scaling the second one.
+
+**Kind**: static method of [<code>avec4</code>](#module_avec4)
+
+| Param | Type                |
+| ----- | ------------------- |
+| a     | <code>avec4</code>  |
+| i     | <code>number</code> |
+| b     | <code>avec4</code>  |
+| j     | <code>number</code> |
+| s     | <code>number</code> |
+
+<a name="module_avec4.lerp"></a>
+
+### avec4.lerp(a, i, b, j, t)
+
+Linearly interpolates between two vectors.
+
+**Kind**: static method of [<code>avec4</code>](#module_avec4)
+
+| Param | Type                |
+| ----- | ------------------- |
+| a     | <code>avec4</code>  |
+| i     | <code>number</code> |
+| b     | <code>avec4</code>  |
+| j     | <code>number</code> |
+| t     | <code>number</code> |
+
+<a name="module_avec4.toString"></a>
+
+### avec4.toString(a, i, [precision]) ⇒ <code>string</code>
+
+Prints a vector to a string.
+
+**Kind**: static method of [<code>avec4</code>](#module_avec4)
+
+| Param       | Type                | Default        |
+| ----------- | ------------------- | -------------- |
+| a           | <code>avec4</code>  |                |
+| i           | <code>number</code> |                |
+| [precision] | <code>number</code> | <code>4</code> |
 
 <a name="module_euler"></a>
 
@@ -99,27 +492,15 @@ Re-export vec, mat, quat, euler and utils
 ## mat2x3
 
 - [mat2x3](#module_mat2x3)
-  - [.copy](#module_mat2x3.copy) ⇒ <code>mat2x3</code>
   - [.create()](#module_mat2x3.create) ⇒ <code>mat2x3</code>
   - [.identity(a)](#module_mat2x3.identity) ⇒ <code>mat2x3</code>
+  - [.copy(a)](#module_mat2x3.copy) ⇒ <code>mat2x3</code>
   - [.set(a, b)](#module_mat2x3.set) ⇒ <code>mat2x3</code>
   - [.equals(a, b)](#module_mat2x3.equals) ⇒ <code>boolean</code>
   - [.mult(a, b)](#module_mat2x3.mult) ⇒ <code>mat2x3</code>
   - [.translate(a, v)](#module_mat2x3.translate) ⇒ <code>mat2x3</code>
   - [.rotate(a, rad)](#module_mat2x3.rotate) ⇒ <code>mat2x3</code>
   - [.scale(a, v)](#module_mat2x3.scale) ⇒ <code>mat2x3</code>
-
-<a name="module_mat2x3.copy"></a>
-
-### mat2x3.copy ⇒ <code>mat2x3</code>
-
-Returns a copy of a matrix.
-
-**Kind**: static constant of [<code>mat2x3</code>](#module_mat2x3)
-
-| Param | Type                |
-| ----- | ------------------- |
-| a     | <code>mat2x3</code> |
 
 <a name="module_mat2x3.create"></a>
 
@@ -153,6 +534,18 @@ m02 m12
 ### mat2x3.identity(a) ⇒ <code>mat2x3</code>
 
 Sets a matrix to the identity matrix.
+
+**Kind**: static method of [<code>mat2x3</code>](#module_mat2x3)
+
+| Param | Type                |
+| ----- | ------------------- |
+| a     | <code>mat2x3</code> |
+
+<a name="module_mat2x3.copy"></a>
+
+### mat2x3.copy(a) ⇒ <code>mat2x3</code>
+
+Returns a copy of a matrix.
 
 **Kind**: static method of [<code>mat2x3</code>](#module_mat2x3)
 
@@ -243,9 +636,9 @@ Scales a matrix by a vector.
 ## mat3
 
 - [mat3](#module_mat3)
-  - [.copy](#module_mat3.copy) ⇒ <code>mat3</code>
   - [.create()](#module_mat3.create) ⇒ <code>mat3</code>
   - [.identity(a)](#module_mat3.identity) ⇒ <code>mat3</code>
+  - [.copy(a)](#module_mat3.copy) ⇒ <code>mat3</code>
   - [.set(a, b)](#module_mat3.set) ⇒ <code>mat3</code>
   - [.equals(a, b)](#module_mat3.equals) ⇒ <code>boolean</code>
   - [.mult(a, b)](#module_mat3.mult) ⇒ <code>mat3</code>
@@ -253,18 +646,6 @@ Scales a matrix by a vector.
   - [.fromQuat(a, q)](#module_mat3.fromQuat) ⇒ <code>mat3</code>
   - [.fromMat2x3(a, b)](#module_mat3.fromMat2x3) ⇒ <code>mat3</code>
   - [.fromMat4(a, b)](#module_mat3.fromMat4) ⇒ <code>mat3</code>
-
-<a name="module_mat3.copy"></a>
-
-### mat3.copy ⇒ <code>mat3</code>
-
-Returns a copy of a matrix.
-
-**Kind**: static constant of [<code>mat3</code>](#module_mat3)
-
-| Param | Type              |
-| ----- | ----------------- |
-| a     | <code>mat3</code> |
 
 <a name="module_mat3.create"></a>
 
@@ -298,6 +679,18 @@ Equivalent to the column major OpenGL spec:
 ### mat3.identity(a) ⇒ <code>mat3</code>
 
 Sets a matrix to the identity matrix.
+
+**Kind**: static method of [<code>mat3</code>](#module_mat3)
+
+| Param | Type              |
+| ----- | ----------------- |
+| a     | <code>mat3</code> |
+
+<a name="module_mat3.copy"></a>
+
+### mat3.copy(a) ⇒ <code>mat3</code>
+
+Returns a copy of a matrix.
 
 **Kind**: static method of [<code>mat3</code>](#module_mat3)
 
@@ -400,9 +793,9 @@ Sets a 3x3 matrix to a 4x4 matrix.
 ## mat4
 
 - [mat4](#module_mat4)
-  - [.copy](#module_mat4.copy) ⇒ <code>mat4</code>
   - [.create()](#module_mat4.create) ⇒ <code>mat4</code>
   - [.identity(a)](#module_mat4.identity) ⇒ <code>mat4</code>
+  - [.copy(a)](#module_mat4.copy) ⇒ <code>mat4</code>
   - [.set(a, b)](#module_mat4.set) ⇒ <code>mat4</code>
   - [.equals(a, b)](#module_mat4.equals) ⇒ <code>boolean</code>
   - [.mult(a, b)](#module_mat4.mult) ⇒ <code>mat4</code>
@@ -418,18 +811,6 @@ Sets a 3x3 matrix to a 4x4 matrix.
   - [.perspective(a, fovy, aspectRatio, near, far)](#module_mat4.perspective) ⇒ <code>mat4</code>
   - [.ortho(a, left, right, bottom, top, near, far)](#module_mat4.ortho) ⇒ <code>mat4</code>
   - [.lookAt(a, from, to, up)](#module_mat4.lookAt) ⇒ <code>mat4</code>
-
-<a name="module_mat4.copy"></a>
-
-### mat4.copy ⇒ <code>mat4</code>
-
-Returns a copy of a matrix.
-
-**Kind**: static constant of [<code>mat4</code>](#module_mat4)
-
-| Param | Type              |
-| ----- | ----------------- |
-| a     | <code>mat4</code> |
 
 <a name="module_mat4.create"></a>
 
@@ -466,6 +847,18 @@ Equivalent to the column major OpenGL spec:
 ### mat4.identity(a) ⇒ <code>mat4</code>
 
 Sets a matrix to the identity matrix.
+
+**Kind**: static method of [<code>mat4</code>](#module_mat4)
+
+| Param | Type              |
+| ----- | ----------------- |
+| a     | <code>mat4</code> |
+
+<a name="module_mat4.copy"></a>
+
+### mat4.copy(a) ⇒ <code>mat4</code>
+
+Returns a copy of a matrix.
 
 **Kind**: static method of [<code>mat4</code>](#module_mat4)
 
@@ -689,18 +1082,18 @@ Calculates a lookAt matrix from position, target and up vectors.
 ## quat
 
 - [quat](#module_quat)
-  - [.copy](#module_quat.copy) ⇒ <code>quat</code>
   - [.set](#module_quat.set) ⇒ <code>quat</code>
   - [.equals](#module_quat.equals) ⇒ <code>boolean</code>
-  - [.normalize](#module_quat.normalize) ⇒ <code>quat</code>
   - [.fromTo](#module_quat.fromTo) ⇒ <code>quat</code>
   - [.toString](#module_quat.toString) ⇒ <code>quat</code>
   - [.create()](#module_quat.create) ⇒ <code>quat</code>
   - [.identity(a)](#module_quat.identity) ⇒ <code>quat</code>
+  - [.copy(a)](#module_quat.copy) ⇒ <code>quat</code>
   - [.mult(a, b)](#module_quat.mult) ⇒ <code>quat</code>
   - [.invert(a)](#module_quat.invert) ⇒ <code>quat</code>
   - [.conjugate(a)](#module_quat.conjugate) ⇒ <code>quat</code>
   - [.length(a)](#module_quat.length) ⇒ <code>quat</code>
+  - [.normalize(a)](#module_quat.normalize) ⇒ <code>quat</code>
   - [.dot(a, b)](#module_quat.dot) ⇒ <code>quat</code>
   - [.fromEuler(a, e)](#module_quat.fromEuler) ⇒ <code>quat</code>
   - [.fromAxisAngle(a, v, r)](#module_quat.fromAxisAngle) ⇒ <code>quat</code>
@@ -708,18 +1101,6 @@ Calculates a lookAt matrix from position, target and up vectors.
   - [.fromMat3(a, m)](#module_quat.fromMat3) ⇒ <code>quat</code>
   - [.fromMat4(a, m)](#module_quat.fromMat4) ⇒ <code>quat</code>
   - [.slerp(a, b, t)](#module_quat.slerp) ⇒ <code>quat</code>
-
-<a name="module_quat.copy"></a>
-
-### quat.copy ⇒ <code>quat</code>
-
-Returns a copy of a quaternion.
-
-**Kind**: static constant of [<code>quat</code>](#module_quat)
-
-| Param | Type              |
-| ----- | ----------------- |
-| a     | <code>quat</code> |
 
 <a name="module_quat.set"></a>
 
@@ -746,18 +1127,6 @@ Compares two quaternions.
 | ----- | ----------------- |
 | a     | <code>quat</code> |
 | b     | <code>quat</code> |
-
-<a name="module_quat.normalize"></a>
-
-### quat.normalize ⇒ <code>quat</code>
-
-Normalizes a quaternion.
-
-**Kind**: static constant of [<code>quat</code>](#module_quat)
-
-| Param | Type              |
-| ----- | ----------------- |
-| a     | <code>quat</code> |
 
 <a name="module_quat.fromTo"></a>
 
@@ -798,6 +1167,18 @@ Returns a new quat at 0, 0, 0, 1.
 ### quat.identity(a) ⇒ <code>quat</code>
 
 Sets a quaternion to the identity quaternion.
+
+**Kind**: static method of [<code>quat</code>](#module_quat)
+
+| Param | Type              |
+| ----- | ----------------- |
+| a     | <code>quat</code> |
+
+<a name="module_quat.copy"></a>
+
+### quat.copy(a) ⇒ <code>quat</code>
+
+Returns a copy of a quaternion.
 
 **Kind**: static method of [<code>quat</code>](#module_quat)
 
@@ -847,6 +1228,18 @@ Conjugates a quaternion.
 ### quat.length(a) ⇒ <code>quat</code>
 
 Calculates the length of a quaternion.
+
+**Kind**: static method of [<code>quat</code>](#module_quat)
+
+| Param | Type              |
+| ----- | ----------------- |
+| a     | <code>quat</code> |
+
+<a name="module_quat.normalize"></a>
+
+### quat.normalize(a) ⇒ <code>quat</code>
+
+Normalizes a quaternion.
 
 **Kind**: static method of [<code>quat</code>](#module_quat)
 
@@ -956,7 +1349,7 @@ Spherical linear interpolates between two quaternions.
 - [utils](#module_utils)
   - _static_
     - [.EPSILON](#module_utils.EPSILON) : <code>number</code>
-    - [.lerp(a, b, n)](#module_utils.lerp) ⇒ <code>number</code>
+    - [.lerp(a, b, t)](#module_utils.lerp) ⇒ <code>number</code>
     - [.clamp(n, min, max)](#module_utils.clamp) ⇒ <code>number</code>
     - [.smoothstep(n, min, max)](#module_utils.smoothstep) ⇒ <code>number</code>
     - [.map(n, inStart, inEnd, outStart, outEnd)](#module_utils.map) ⇒ <code>number</code>
@@ -965,7 +1358,6 @@ Spherical linear interpolates between two quaternions.
     - [.sign(n)](#module_utils.sign) ⇒ <code>number</code>
     - [.isPowerOfTwo(a)](#module_utils.isPowerOfTwo) ⇒ <code>boolean</code>
     - [.nextPowerOfTwo(n)](#module_utils.nextPowerOfTwo) ⇒ <code>number</code>
-    - [.shallowCopy(a)](#module_utils.shallowCopy) ⇒ <code>Array.&lt;number&gt;</code>
   - _inner_
     - [~Degrees](#module_utils..Degrees) : <code>number</code>
     - [~Radians](#module_utils..Radians) : <code>number</code>
@@ -977,7 +1369,7 @@ Spherical linear interpolates between two quaternions.
 **Kind**: static constant of [<code>utils</code>](#module_utils)
 <a name="module_utils.lerp"></a>
 
-### utils.lerp(a, b, n) ⇒ <code>number</code>
+### utils.lerp(a, b, t) ⇒ <code>number</code>
 
 Linear interpolation between two numbers.
 
@@ -987,7 +1379,7 @@ Linear interpolation between two numbers.
 | ----- | ------------------- |
 | a     | <code>number</code> |
 | b     | <code>number</code> |
-| n     | <code>number</code> |
+| t     | <code>number</code> |
 
 <a name="module_utils.clamp"></a>
 
@@ -1093,18 +1485,6 @@ Returns the next highest power of two.
 | ----- | ------------------- |
 | n     | <code>number</code> |
 
-<a name="module_utils.shallowCopy"></a>
-
-### utils.shallowCopy(a) ⇒ <code>Array.&lt;number&gt;</code>
-
-Returns a shallow copy of an array.
-
-**Kind**: static method of [<code>utils</code>](#module_utils)
-
-| Param | Type                              |
-| ----- | --------------------------------- |
-| a     | <code>Array.&lt;number&gt;</code> |
-
 <a name="module_utils..Degrees"></a>
 
 ### utils~Degrees : <code>number</code>
@@ -1120,35 +1500,23 @@ Returns a shallow copy of an array.
 ## vec2
 
 - [vec2](#module_vec2)
-  - [.copy](#module_vec2.copy) ⇒ <code>vec2</code>
   - [.create()](#module_vec2.create) ⇒ <code>vec2</code>
+  - [.copy(a)](#module_vec2.copy) ⇒ <code>vec2</code>
   - [.set(a, b)](#module_vec2.set) ⇒ <code>vec2</code>
   - [.equals(a, b)](#module_vec2.equals) ⇒ <code>boolean</code>
   - [.add(a, b)](#module_vec2.add) ⇒ <code>vec2</code>
   - [.sub(a, b)](#module_vec2.sub) ⇒ <code>vec2</code>
-  - [.scale(a, n)](#module_vec2.scale) ⇒ <code>vec2</code>
-  - [.addScaled(a, b, n)](#module_vec2.addScaled) ⇒ <code>vec2</code>
+  - [.scale(a, s)](#module_vec2.scale) ⇒ <code>vec2</code>
+  - [.addScaled(a, b, s)](#module_vec2.addScaled) ⇒ <code>vec2</code>
   - [.dot(a, b)](#module_vec2.dot) ⇒ <code>number</code>
   - [.length(a)](#module_vec2.length) ⇒ <code>number</code>
   - [.lengthSq(a)](#module_vec2.lengthSq) ⇒ <code>number</code>
   - [.normalize(a)](#module_vec2.normalize) ⇒ <code>vec2</code>
   - [.distance(a, b)](#module_vec2.distance) ⇒ <code>number</code>
   - [.distanceSq(a, b)](#module_vec2.distanceSq) ⇒ <code>number</code>
-  - [.limit(a, n)](#module_vec2.limit) ⇒ <code>vec2</code>
-  - [.lerp(a, b, n)](#module_vec2.lerp) ⇒ <code>vec2</code>
+  - [.limit(a, len)](#module_vec2.limit) ⇒ <code>vec2</code>
+  - [.lerp(a, b, t)](#module_vec2.lerp) ⇒ <code>vec2</code>
   - [.toString(a, [precision])](#module_vec2.toString) ⇒ <code>string</code>
-
-<a name="module_vec2.copy"></a>
-
-### vec2.copy ⇒ <code>vec2</code>
-
-Returns a copy of a vector.
-
-**Kind**: static constant of [<code>vec2</code>](#module_vec2)
-
-| Param | Type              |
-| ----- | ----------------- |
-| a     | <code>vec2</code> |
 
 <a name="module_vec2.create"></a>
 
@@ -1157,6 +1525,18 @@ Returns a copy of a vector.
 Returns a new vec2 at 0, 0, 0.
 
 **Kind**: static method of [<code>vec2</code>](#module_vec2)
+<a name="module_vec2.copy"></a>
+
+### vec2.copy(a) ⇒ <code>vec2</code>
+
+Returns a copy of a vector.
+
+**Kind**: static method of [<code>vec2</code>](#module_vec2)
+
+| Param | Type              |
+| ----- | ----------------- |
+| a     | <code>vec2</code> |
+
 <a name="module_vec2.set"></a>
 
 ### vec2.set(a, b) ⇒ <code>vec2</code>
@@ -1211,7 +1591,7 @@ Subtracts a vector from another.
 
 <a name="module_vec2.scale"></a>
 
-### vec2.scale(a, n) ⇒ <code>vec2</code>
+### vec2.scale(a, s) ⇒ <code>vec2</code>
 
 Scales a vector by a number.
 
@@ -1220,11 +1600,11 @@ Scales a vector by a number.
 | Param | Type                |
 | ----- | ------------------- |
 | a     | <code>vec2</code>   |
-| n     | <code>number</code> |
+| s     | <code>number</code> |
 
 <a name="module_vec2.addScaled"></a>
 
-### vec2.addScaled(a, b, n) ⇒ <code>vec2</code>
+### vec2.addScaled(a, b, s) ⇒ <code>vec2</code>
 
 Adds two vectors after scaling the second one.
 
@@ -1234,7 +1614,7 @@ Adds two vectors after scaling the second one.
 | ----- | ------------------- |
 | a     | <code>vec2</code>   |
 | b     | <code>vec2</code>   |
-| n     | <code>number</code> |
+| s     | <code>number</code> |
 
 <a name="module_vec2.dot"></a>
 
@@ -1313,20 +1693,20 @@ Calculates the squared distance between two vectors.
 
 <a name="module_vec2.limit"></a>
 
-### vec2.limit(a, n) ⇒ <code>vec2</code>
+### vec2.limit(a, len) ⇒ <code>vec2</code>
 
 Limits a vector to a length.
 
 **Kind**: static method of [<code>vec2</code>](#module_vec2)
 
-| Param | Type              |
-| ----- | ----------------- |
-| a     | <code>vec2</code> |
-| n     | <code>vec2</code> |
+| Param | Type                |
+| ----- | ------------------- |
+| a     | <code>vec2</code>   |
+| len   | <code>number</code> |
 
 <a name="module_vec2.lerp"></a>
 
-### vec2.lerp(a, b, n) ⇒ <code>vec2</code>
+### vec2.lerp(a, b, t) ⇒ <code>vec2</code>
 
 Linearly interpolates between two vectors.
 
@@ -1336,7 +1716,7 @@ Linearly interpolates between two vectors.
 | ----- | ------------------- |
 | a     | <code>vec2</code>   |
 | b     | <code>vec2</code>   |
-| n     | <code>number</code> |
+| t     | <code>number</code> |
 
 <a name="module_vec2.toString"></a>
 
@@ -1356,14 +1736,14 @@ Prints a vector to a string.
 ## vec3
 
 - [vec3](#module_vec3)
-  - [.copy](#module_vec3.copy) ⇒ <code>vec3</code>
   - [.create()](#module_vec3.create) ⇒ <code>vec3</code>
+  - [.copy(a)](#module_vec3.copy) ⇒ <code>vec3</code>
   - [.set(a, b)](#module_vec3.set) ⇒ <code>vec3</code>
   - [.equals(a, b)](#module_vec3.equals) ⇒ <code>boolean</code>
   - [.add(a, b)](#module_vec3.add) ⇒ <code>vec3</code>
   - [.sub(a, b)](#module_vec3.sub) ⇒ <code>vec3</code>
-  - [.scale(a, n)](#module_vec3.scale) ⇒ <code>vec3</code>
-  - [.addScaled(a, b, n)](#module_vec3.addScaled) ⇒ <code>vec3</code>
+  - [.scale(a, s)](#module_vec3.scale) ⇒ <code>vec3</code>
+  - [.addScaled(a, b, s)](#module_vec3.addScaled) ⇒ <code>vec3</code>
   - [.multMat4(a, m)](#module_vec3.multMat4) ⇒ <code>vec3</code>
   - [.multQuat(a, q)](#module_vec3.multQuat) ⇒ <code>vec3</code>
   - [.dot(a, b)](#module_vec3.dot) ⇒ <code>number</code>
@@ -1373,21 +1753,9 @@ Prints a vector to a string.
   - [.normalize(a)](#module_vec3.normalize) ⇒ <code>vec3</code>
   - [.distance(a, b)](#module_vec3.distance) ⇒ <code>number</code>
   - [.distanceSq(a, b)](#module_vec3.distanceSq) ⇒ <code>number</code>
-  - [.limit(a, n)](#module_vec3.limit) ⇒ <code>vec3</code>
-  - [.lerp(a, b, n)](#module_vec3.lerp) ⇒ <code>vec3</code>
+  - [.limit(a, len)](#module_vec3.limit) ⇒ <code>vec3</code>
+  - [.lerp(a, b, t)](#module_vec3.lerp) ⇒ <code>vec3</code>
   - [.toString(a, [precision])](#module_vec3.toString) ⇒ <code>string</code>
-
-<a name="module_vec3.copy"></a>
-
-### vec3.copy ⇒ <code>vec3</code>
-
-Returns a copy of a vector.
-
-**Kind**: static constant of [<code>vec3</code>](#module_vec3)
-
-| Param | Type              |
-| ----- | ----------------- |
-| a     | <code>vec3</code> |
 
 <a name="module_vec3.create"></a>
 
@@ -1396,6 +1764,18 @@ Returns a copy of a vector.
 Returns a new vec3 at 0, 0, 0.
 
 **Kind**: static method of [<code>vec3</code>](#module_vec3)
+<a name="module_vec3.copy"></a>
+
+### vec3.copy(a) ⇒ <code>vec3</code>
+
+Returns a copy of a vector.
+
+**Kind**: static method of [<code>vec3</code>](#module_vec3)
+
+| Param | Type              |
+| ----- | ----------------- |
+| a     | <code>vec3</code> |
+
 <a name="module_vec3.set"></a>
 
 ### vec3.set(a, b) ⇒ <code>vec3</code>
@@ -1450,7 +1830,7 @@ Subtracts a vector from another.
 
 <a name="module_vec3.scale"></a>
 
-### vec3.scale(a, n) ⇒ <code>vec3</code>
+### vec3.scale(a, s) ⇒ <code>vec3</code>
 
 Scales a vector by a number.
 
@@ -1459,11 +1839,11 @@ Scales a vector by a number.
 | Param | Type                |
 | ----- | ------------------- |
 | a     | <code>vec3</code>   |
-| n     | <code>number</code> |
+| s     | <code>number</code> |
 
 <a name="module_vec3.addScaled"></a>
 
-### vec3.addScaled(a, b, n) ⇒ <code>vec3</code>
+### vec3.addScaled(a, b, s) ⇒ <code>vec3</code>
 
 Adds two vectors after scaling the second one.
 
@@ -1473,7 +1853,7 @@ Adds two vectors after scaling the second one.
 | ----- | ------------------- |
 | a     | <code>vec3</code>   |
 | b     | <code>vec3</code>   |
-| n     | <code>number</code> |
+| s     | <code>number</code> |
 
 <a name="module_vec3.multMat4"></a>
 
@@ -1591,20 +1971,20 @@ Calculates the squared distance between two vectors.
 
 <a name="module_vec3.limit"></a>
 
-### vec3.limit(a, n) ⇒ <code>vec3</code>
+### vec3.limit(a, len) ⇒ <code>vec3</code>
 
 Limits a vector to a length.
 
 **Kind**: static method of [<code>vec3</code>](#module_vec3)
 
-| Param | Type              |
-| ----- | ----------------- |
-| a     | <code>vec3</code> |
-| n     | <code>vec3</code> |
+| Param | Type                |
+| ----- | ------------------- |
+| a     | <code>vec3</code>   |
+| len   | <code>number</code> |
 
 <a name="module_vec3.lerp"></a>
 
-### vec3.lerp(a, b, n) ⇒ <code>vec3</code>
+### vec3.lerp(a, b, t) ⇒ <code>vec3</code>
 
 Linearly interpolates between two vectors.
 
@@ -1614,7 +1994,7 @@ Linearly interpolates between two vectors.
 | ----- | ------------------- |
 | a     | <code>vec3</code>   |
 | b     | <code>vec3</code>   |
-| n     | <code>number</code> |
+| t     | <code>number</code> |
 
 <a name="module_vec3.toString"></a>
 
@@ -1634,30 +2014,18 @@ Prints a vector to a string.
 ## vec4
 
 - [vec4](#module_vec4)
-  - [.copy](#module_vec4.copy) ⇒ <code>vec4</code>
   - [.create()](#module_vec4.create) ⇒ <code>vec4</code>
+  - [.copy(a)](#module_vec4.copy) ⇒ <code>vec4</code>
   - [.set(a, b)](#module_vec4.set) ⇒ <code>vec4</code>
   - [.equals(a, b)](#module_vec4.equals) ⇒ <code>boolean</code>
   - [.add(a, b)](#module_vec4.add) ⇒ <code>vec4</code>
   - [.sub(a, b)](#module_vec4.sub) ⇒ <code>vec4</code>
-  - [.scale(a, n)](#module_vec4.scale) ⇒ <code>vec4</code>
-  - [.addScaled(a, b, n)](#module_vec4.addScaled) ⇒ <code>vec4</code>
+  - [.scale(a, s)](#module_vec4.scale) ⇒ <code>vec4</code>
+  - [.addScaled(a, b, s)](#module_vec4.addScaled) ⇒ <code>vec4</code>
   - [.fromVec3(a, b)](#module_vec4.fromVec3) ⇒ <code>vec4</code>
   - [.multMat4(a, m)](#module_vec4.multMat4) ⇒ <code>vec4</code>
-  - [.normalize(a)](#module_vec4.normalize) ⇒ <code>vec4</code>
+  - [.lerp(a, b, t)](#module_vec4.lerp) ⇒ <code>vec4</code>
   - [.toString(a, [precision])](#module_vec4.toString) ⇒ <code>string</code>
-
-<a name="module_vec4.copy"></a>
-
-### vec4.copy ⇒ <code>vec4</code>
-
-Returns a copy of a vector.
-
-**Kind**: static constant of [<code>vec4</code>](#module_vec4)
-
-| Param | Type              |
-| ----- | ----------------- |
-| a     | <code>vec4</code> |
 
 <a name="module_vec4.create"></a>
 
@@ -1666,6 +2034,18 @@ Returns a copy of a vector.
 Returns a new vec4 at 0, 0, 0, 1.
 
 **Kind**: static method of [<code>vec4</code>](#module_vec4)
+<a name="module_vec4.copy"></a>
+
+### vec4.copy(a) ⇒ <code>vec4</code>
+
+Returns a copy of a vector.
+
+**Kind**: static method of [<code>vec4</code>](#module_vec4)
+
+| Param | Type              |
+| ----- | ----------------- |
+| a     | <code>vec4</code> |
+
 <a name="module_vec4.set"></a>
 
 ### vec4.set(a, b) ⇒ <code>vec4</code>
@@ -1720,7 +2100,7 @@ Subtracts a vector from another.
 
 <a name="module_vec4.scale"></a>
 
-### vec4.scale(a, n) ⇒ <code>vec4</code>
+### vec4.scale(a, s) ⇒ <code>vec4</code>
 
 Scales a vector by a number.
 
@@ -1729,11 +2109,11 @@ Scales a vector by a number.
 | Param | Type                |
 | ----- | ------------------- |
 | a     | <code>vec4</code>   |
-| n     | <code>number</code> |
+| s     | <code>number</code> |
 
 <a name="module_vec4.addScaled"></a>
 
-### vec4.addScaled(a, b, n) ⇒ <code>vec4</code>
+### vec4.addScaled(a, b, s) ⇒ <code>vec4</code>
 
 Adds two vectors after scaling the second one.
 
@@ -1743,7 +2123,7 @@ Adds two vectors after scaling the second one.
 | ----- | ------------------- |
 | a     | <code>vec4</code>   |
 | b     | <code>vec4</code>   |
-| n     | <code>number</code> |
+| s     | <code>number</code> |
 
 <a name="module_vec4.fromVec3"></a>
 
@@ -1771,17 +2151,19 @@ Multiplies a vector with a matrix.
 | a     | <code>vec4</code> |
 | m     | <code>mat4</code> |
 
-<a name="module_vec4.normalize"></a>
+<a name="module_vec4.lerp"></a>
 
-### vec4.normalize(a) ⇒ <code>vec4</code>
+### vec4.lerp(a, b, t) ⇒ <code>vec4</code>
 
-Normalises a vector.
+Linearly interpolates between two vectors.
 
 **Kind**: static method of [<code>vec4</code>](#module_vec4)
 
-| Param | Type              |
-| ----- | ----------------- |
-| a     | <code>vec4</code> |
+| Param | Type                |
+| ----- | ------------------- |
+| a     | <code>vec4</code>   |
+| b     | <code>vec4</code>   |
+| t     | <code>number</code> |
 
 <a name="module_vec4.toString"></a>
 
