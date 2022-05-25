@@ -1,4 +1,4 @@
-import { deepEqual, notStrictEqual, ok } from "assert";
+import { deepEqual, notStrictEqual, ok } from "node:assert";
 import { vec4 } from "../index.js";
 import { IDENTITY_MAT4, ONE_TWO_THREE_MAT4 } from "./common.js";
 

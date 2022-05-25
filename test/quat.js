@@ -1,4 +1,4 @@
-import { deepEqual, notStrictEqual, ok } from "assert";
+import { deepEqual, notStrictEqual, ok } from "node:assert";
 import { quat, utils } from "../index.js";
 import {
   deepAlmostEqual,

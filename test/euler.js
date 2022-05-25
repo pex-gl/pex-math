@@ -1,4 +1,4 @@
-import { deepEqual } from "assert";
+import { deepEqual } from "node:assert";
 import { euler, quat, utils } from "../index.js";
 import { X_QUAT, Y_QUAT, Z_QUAT } from "./common.js";
 

@@ -1,4 +1,4 @@
-import { deepEqual, notStrictEqual, ok } from "assert";
+import { deepEqual, notStrictEqual, ok } from "node:assert";
 import { mat2x3 } from "../index.js";
 import {
   ONE_TWO_VEC2,

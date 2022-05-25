@@ -1,4 +1,4 @@
-import { deepEqual, notStrictEqual, ok } from "assert";
+import { deepEqual, notStrictEqual, ok } from "node:assert";
 import { vec3 } from "../index.js";
 import {
   deepAlmostEqual,
