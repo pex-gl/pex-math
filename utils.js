@@ -1,14 +1,6 @@
 /** @module utils */
 
 /**
- * @typedef {number} Degrees
- */
-
-/**
- * @typedef {number} Radians
- */
-
-/**
  * @constant {number}
  */
 export const EPSILON = 0.000001;
@@ -62,8 +54,8 @@ export function map(n, inStart, inEnd, outStart, outEnd) {
 
 /**
  * Transforms degrees into radians.
- * @param {Degrees} degrees
- * @returns {Radians}
+ * @param {import("./types.js").Degrees} degrees
+ * @returns {import("./types.js").Radians}
  */
 export function toRadians(degrees) {
   return (degrees * Math.PI) / 180;
@@ -71,8 +63,8 @@ export function toRadians(degrees) {
 
 /**
  * Transforms radians into degrees.
- * @param {Radians} radians
- * @returns {Degrees}
+ * @param {import("./types.js").Radians} radians
+ * @returns {import("./types.js").Degrees}
  */
 export function toDegrees(radians) {
   return (radians * 180) / Math.PI;

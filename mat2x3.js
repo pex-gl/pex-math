@@ -22,7 +22,7 @@
  * m01 m11
  * m02 m12
  * ```
- * @returns {mat2x3}
+ * @returns {import("./types.js").mat2x3}
  */
 export function create() {
   // prettier-ignore
@@ -35,8 +35,8 @@ export function create() {
 
 /**
  * Sets a matrix to the identity matrix.
- * @param {mat2x3} a
- * @returns {mat2x3}
+ * @param {import("./types.js").mat2x3} a
+ * @returns {import("./types.js").mat2x3}
  */
 export function identity(a) {
   a[0] = a[3] = 1;
@@ -46,8 +46,8 @@ export function identity(a) {
 
 /**
  * Returns a copy of a matrix.
- * @param {mat2x3} a
- * @returns {mat2x3}
+ * @param {import("./types.js").mat2x3} a
+ * @returns {import("./types.js").mat2x3}
  */
 export function copy(a) {
   return a.slice();
@@ -55,9 +55,9 @@ export function copy(a) {
 
 /**
  * Sets a matrix from another matrix.
- * @param {mat2x3} a
- * @param {mat2x3} b
- * @returns {mat2x3}
+ * @param {import("./types.js").mat2x3} a
+ * @param {import("./types.js").mat2x3} b
+ * @returns {import("./types.js").mat2x3}
  */
 export function set(a, b) {
   a[0] = b[0];
@@ -71,8 +71,8 @@ export function set(a, b) {
 
 /**
  * Compares two matrices.
- * @param {mat2x3} a
- * @param {mat2x3} b
+ * @param {import("./types.js").mat2x3} a
+ * @param {import("./types.js").mat2x3} b
  * @returns {boolean}
  */
 export function equals(a, b) {
@@ -88,9 +88,9 @@ export function equals(a, b) {
 
 /**
  * Multiplies two matrices.
- * @param {mat2x3} a
- * @param {mat2x3} b
- * @returns {mat2x3}
+ * @param {import("./types.js").mat2x3} a
+ * @param {import("./types.js").mat2x3} b
+ * @returns {import("./types.js").mat2x3}
  */
 export function mult(a, b) {
   const a0 = a[0];
@@ -119,9 +119,9 @@ export function mult(a, b) {
 
 /**
  * Translates a matrix by a vector.
- * @param {mat2x3} a
- * @param {vec2} v
- * @returns {mat2x3}
+ * @param {import("./types.js").mat2x3} a
+ * @param {import("./types.js").vec2} v
+ * @returns {import("./types.js").mat2x3}
  */
 export function translate(a, v) {
   const a0 = a[0];
@@ -146,9 +146,9 @@ export function translate(a, v) {
 
 /**
  * Rotates a matrix by an angle.
- * @param {mat2x3} a
- * @param {Radians} rad
- * @returns {mat2x3}
+ * @param {import("./types.js").mat2x3} a
+ * @param {import("./types.js").Radians} rad
+ * @returns {import("./types.js").mat2x3}
  */
 export function rotate(a, rad) {
   const a0 = a[0];
@@ -169,9 +169,9 @@ export function rotate(a, rad) {
 
 /**
  * Scales a matrix by a vector.
- * @param {mat2x3} a
- * @param {vec2} v
- * @returns {mat2x3}
+ * @param {import("./types.js").mat2x3} a
+ * @param {import("./types.js").vec2} v
+ * @returns {import("./types.js").mat2x3}
  */
 export function scale(a, v) {
   const a0 = a[0];

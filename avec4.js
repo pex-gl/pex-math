@@ -9,9 +9,9 @@ export function set4(a, i, x, y, z, w) {
 
 /**
  * Sets a vector to another vector.
- * @param {avec4} a
+ * @param {import("./types.js").avec4} a
  * @param {number} i
- * @param {avec4} b
+ * @param {import("./types.js").avec4} b
  * @param {number} j
  */
 export function set(a, i, b, j) {
@@ -23,9 +23,9 @@ export function set(a, i, b, j) {
 
 /**
  * Compares two vectors.
- * @param {avec4} a
+ * @param {import("./types.js").avec4} a
  * @param {number} i
- * @param {avec4} b
+ * @param {import("./types.js").avec4} b
  * @param {number} j
  * @returns {boolean}
  */
@@ -40,9 +40,9 @@ export function equals(a, i, b, j) {
 
 /**
  * Adds a vector to another.
- * @param {avec4} a
+ * @param {import("./types.js").avec4} a
  * @param {number} i
- * @param {avec4} b
+ * @param {import("./types.js").avec4} b
  * @param {number} j
  */
 export function add(a, i, b, j) {
@@ -54,9 +54,9 @@ export function add(a, i, b, j) {
 
 /**
  * Subtracts a vector from another.
- * @param {avec4} a
+ * @param {import("./types.js").avec4} a
  * @param {number} i
- * @param {avec4} b
+ * @param {import("./types.js").avec4} b
  * @param {number} j
  */
 export function sub(a, i, b, j) {
@@ -68,7 +68,7 @@ export function sub(a, i, b, j) {
 
 /**
  * Scales a vector by a number.
- * @param {avec4} a
+ * @param {import("./types.js").avec4} a
  * @param {number} i
  * @param {number} s
  */
@@ -81,9 +81,9 @@ export function scale(a, i, s) {
 
 /**
  * Adds two vectors after scaling the second one.
- * @param {avec4} a
+ * @param {import("./types.js").avec4} a
  * @param {number} i
- * @param {avec4} b
+ * @param {import("./types.js").avec4} b
  * @param {number} j
  * @param {number} s
  */
@@ -96,9 +96,9 @@ export function addScaled(a, i, b, j, s) {
 
 /**
  * Linearly interpolates between two vectors.
- * @param {avec4} a
+ * @param {import("./types.js").avec4} a
  * @param {number} i
- * @param {avec4} b
+ * @param {import("./types.js").avec4} b
  * @param {number} j
  * @param {number} t
  */
@@ -116,7 +116,7 @@ export function lerp(a, i, b, j, t) {
 
 /**
  * Prints a vector to a string.
- * @param {avec4} a
+ * @param {import("./types.js").avec4} a
  * @param {number} i
  * @param {number} [precision=4]
  * @returns {string}

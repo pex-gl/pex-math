@@ -1,5 +1,4 @@
 /** @module mat4 */
-
 import { EPSILON } from "./utils.js";
 
 /**
@@ -27,7 +26,7 @@ import { EPSILON } from "./utils.js";
  *  m02 m12 m22 m32
  *  m03 m13 m23 m33
  * ```
- * @returns {mat4}
+ * @returns {import("./types.js").mat4}
  */
 export function create() {
   // prettier-ignore
@@ -41,8 +40,8 @@ export function create() {
 
 /**
  * Sets a matrix to the identity matrix.
- * @param {mat4} a
- * @returns {mat4}
+ * @param {import("./types.js").mat4} a
+ * @returns {import("./types.js").mat4}
  */
 export function identity(a) {
   a[0] = a[5] = a[10] = a[15] = 1;
@@ -64,8 +63,8 @@ export function identity(a) {
 
 /**
  * Returns a copy of a matrix.
- * @param {mat4} a
- * @returns {mat4}
+ * @param {import("./types.js").mat4} a
+ * @returns {import("./types.js").mat4}
  */
 export function copy(a) {
   return a.slice();
@@ -73,9 +72,9 @@ export function copy(a) {
 
 /**
  * Sets a matrix from another matrix.
- * @param {mat4} a
- * @param {mat4} b
- * @returns {mat4}
+ * @param {import("./types.js").mat4} a
+ * @param {import("./types.js").mat4} b
+ * @returns {import("./types.js").mat4}
  */
 export function set(a, b) {
   a[0] = b[0];
@@ -99,8 +98,8 @@ export function set(a, b) {
 
 /**
  * Compares two matrices.
- * @param {mat4} a
- * @param {mat4} b
+ * @param {import("./types.js").mat4} a
+ * @param {import("./types.js").mat4} b
  * @returns {boolean}
  */
 export function equals(a, b) {
@@ -126,9 +125,9 @@ export function equals(a, b) {
 
 /**
  * Multiplies two matrices.
- * @param {mat4} a
- * @param {mat4} b
- * @returns {mat4}
+ * @param {import("./types.js").mat4} a
+ * @param {import("./types.js").mat4} b
+ * @returns {import("./types.js").mat4}
  */
 export function mult(a, b) {
   const a00 = a[0];
@@ -189,8 +188,8 @@ export function mult(a, b) {
 
 /**
  * Inverts a matrix.
- * @param {mat4} a
- * @returns {mat4}
+ * @param {import("./types.js").mat4} a
+ * @returns {import("./types.js").mat4}
  */
 export function invert(a) {
   const a00 = a[0];
@@ -388,8 +387,8 @@ export function invert(a) {
 
 /**
  * Transposes a matrix.
- * @param {mat4} a
- * @returns {mat4}
+ * @param {import("./types.js").mat4} a
+ * @returns {import("./types.js").mat4}
  */
 export function transpose(a) {
   const a01 = a[1];
@@ -426,9 +425,9 @@ export function transpose(a) {
 
 /**
  * Translates a matrix by a vector.
- * @param {mat4} a
- * @param {vec3} v
- * @returns {mat4}
+ * @param {import("./types.js").mat4} a
+ * @param {import("./types.js").vec3} v
+ * @returns {import("./types.js").mat4}
  */
 export function translate(a, [x, y, z]) {
   a[12] += a[0] * x + a[4] * y + a[8] * z;
@@ -441,10 +440,10 @@ export function translate(a, [x, y, z]) {
 
 /**
  * Rotates a matrix by an angle at an axis.
- * @param {mat4} a
- * @param {Radians} r
- * @param {vec3} v
- * @returns {mat4}
+ * @param {import("./types.js").mat4} a
+ * @param {import("./types.js").Radians} r
+ * @param {import("./types.js").vec3} v
+ * @returns {import("./types.js").mat4}
  */
 export function rotate(a, r, [x, y, z]) {
   let len = Math.sqrt(x * x + y * y + z * z);
@@ -503,9 +502,9 @@ export function rotate(a, r, [x, y, z]) {
 
 /**
  * Scales a matrix by a vector.
- * @param {mat4} a
- * @param {vec3} v
- * @returns {mat4}
+ * @param {import("./types.js").mat4} a
+ * @param {import("./types.js").vec3} v
+ * @returns {import("./types.js").mat4}
  */
 export function scale(a, [x, y, z]) {
   a[0] *= x;
@@ -525,9 +524,9 @@ export function scale(a, [x, y, z]) {
 
 /**
  * Sets a matrix to a quaternion.
- * @param {mat4} a
- * @param {quat} q
- * @returns {mat4}
+ * @param {import("./types.js").mat4} a
+ * @param {import("./types.js").quat} q
+ * @returns {import("./types.js").mat4}
  */
 export function fromQuat(a, q) {
   const x = q[0];
@@ -571,11 +570,11 @@ export function fromQuat(a, q) {
 
 /**
  * Sets a matrix to the TRS matrix.
- * @param {mat4} a
- * @param {vec3} v
- * @param {quat} q
- * @param {vec3} s
- * @returns {mat4}
+ * @param {import("./types.js").mat4} a
+ * @param {import("./types.js").vec3} v
+ * @param {import("./types.js").quat} q
+ * @param {import("./types.js").vec3} s
+ * @returns {import("./types.js").mat4}
  */
 export function fromTranslationRotationScale(a, v, q, s) {
   // const TEMP_0 = create();
@@ -626,9 +625,9 @@ export function fromTranslationRotationScale(a, v, q, s) {
 
 /**
  * Sets a 4x4 matrix to a 3x3 matrix.
- * @param {mat4} a
- * @param {mat3} b
- * @returns {mat4}
+ * @param {import("./types.js").mat4} a
+ * @param {import("./types.js").mat3} b
+ * @returns {import("./types.js").mat4}
  */
 export function fromMat3(a, b) {
   a[0] = b[0];
@@ -651,14 +650,14 @@ export function fromMat3(a, b) {
 
 /**
  * Creates a frustum matrix.
- * @param {mat4} a
+ * @param {import("./types.js").mat4} a
  * @param {number} left
  * @param {number} right
  * @param {number} bottom
  * @param {number} top
  * @param {number} near
  * @param {number} far
- * @returns {mat4}
+ * @returns {import("./types.js").mat4}
  */
 export function frustum(a, left, right, bottom, top, near, far) {
   const rl = 1 / (right - left);
@@ -688,12 +687,12 @@ export function frustum(a, left, right, bottom, top, near, far) {
 
 /**
  * Creates a perspective matrix.
- * @param {mat4} a
- * @param {Radians} fovy
+ * @param {import("./types.js").mat4} a
+ * @param {import("./types.js").Radians} fovy
  * @param {number} aspectRatio
  * @param {number} near
  * @param {number} far
- * @returns {mat4}
+ * @returns {import("./types.js").mat4}
  */
 export function perspective(a, fovy, aspectRatio, near, far) {
   const f = 1 / Math.tan(fovy / 2);
@@ -723,14 +722,14 @@ export function perspective(a, fovy, aspectRatio, near, far) {
 
 /**
  * Creates an orthographic matrix.
- * @param {mat4} a
+ * @param {import("./types.js").mat4} a
  * @param {number} left
  * @param {number} right
  * @param {number} bottom
  * @param {number} top
  * @param {number} near
  * @param {number} far
- * @returns {mat4}
+ * @returns {import("./types.js").mat4}
  */
 export function ortho(a, left, right, bottom, top, near, far) {
   const lr = left - right;
@@ -753,11 +752,11 @@ export function ortho(a, left, right, bottom, top, near, far) {
 
 /**
  * Calculates a lookAt matrix from position, target and up vectors.
- * @param {mat4} a
- * @param {vec3} from
- * @param {vec3} to
- * @param {vec3} up
- * @returns {mat4}
+ * @param {import("./types.js").mat4} a
+ * @param {import("./types.js").vec3} from
+ * @param {import("./types.js").vec3} to
+ * @param {import("./types.js").vec3} up
+ * @returns {import("./types.js").mat4}
  */
 export function lookAt(
   a,
