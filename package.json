@@ -1,6 +1,6 @@
 {
   "name": "pex-math",
-  "version": "3.0.0-4",
+  "version": "4.0.0-alpha.0",
   "description": "Array-based vector, quaternion and matrix math with utils for PEX.",
   "keywords": [
     "pex",
