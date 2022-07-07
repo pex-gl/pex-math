@@ -1,5 +1,13 @@
 /** @module avec3 */
 
+/**
+ * Sets a vector components.
+ * @param {import("./types.js").avec3} a
+ * @param {number} i
+ * @param {number} x
+ * @param {number} y
+ * @param {number} z
+ */
 export function set3(a, i, x, y, z) {
   a[i * 3 + 0] = x;
   a[i * 3 + 1] = y;

@@ -1,5 +1,14 @@
 /** @module avec4 */
 
+/**
+ * Sets a vector components.
+ * @param {import("./types.js").avec4} a
+ * @param {number} i
+ * @param {number} x
+ * @param {number} y
+ * @param {number} z
+ * @param {number} w
+ */
 export function set4(a, i, x, y, z, w) {
   a[i * 4 + 0] = x;
   a[i * 4 + 1] = y;
