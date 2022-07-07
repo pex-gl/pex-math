@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+# [4.0.0-alpha.2](https://github.com/pex-gl/pex-math/compare/v4.0.0-alpha.1...v4.0.0-alpha.2) (2022-07-07)
+
+
+### Bug Fixes
+
+* export avec3/4 ([72673ed](https://github.com/pex-gl/pex-math/commit/72673edd6548775402e6f281834c1146e00bc74e))
+
+
+
 # [4.0.0-alpha.1](https://github.com/pex-gl/pex-math/compare/v4.0.0-alpha.0...v4.0.0-alpha.1) (2022-06-30)
 
 

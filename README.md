@@ -44,7 +44,7 @@ const identityMatrix = mat4.create();
 <dt><a href="#module_euler">euler</a></dt>
 <dd></dd>
 <dt><a href="#module_index">index</a></dt>
-<dd><p>Re-export vec, mat, quat, euler and utils</p>
+<dd><p>Re-export vec, avec, mat, quat, euler and utils</p>
 </dd>
 <dt><a href="#module_mat2x3">mat2x3</a></dt>
 <dd></dd>
@@ -100,6 +100,7 @@ const identityMatrix = mat4.create();
 ## avec3
 
 - [avec3](#module_avec3)
+  - [.set3(a, i, x, y, z)](#module_avec3.set3)
   - [.set(a, i, b, j)](#module_avec3.set)
   - [.equals(a, i, b, j)](#module_avec3.equals) ⇒ <code>boolean</code>
   - [.add(a, i, b, j)](#module_avec3.add)
@@ -116,6 +117,22 @@ const identityMatrix = mat4.create();
   - [.limit(a, i, len)](#module_avec3.limit)
   - [.lerp(a, i, b, j, t)](#module_avec3.lerp)
   - [.toString(a, i, [precision])](#module_avec3.toString) ⇒ <code>string</code>
+
+<a name="module_avec3.set3"></a>
+
+### avec3.set3(a, i, x, y, z)
+
+Sets a vector components.
+
+**Kind**: static method of [<code>avec3</code>](#module_avec3)
+
+| Param | Type                         |
+| ----- | ---------------------------- |
+| a     | [<code>avec3</code>](#avec3) |
+| i     | <code>number</code>          |
+| x     | <code>number</code>          |
+| y     | <code>number</code>          |
+| z     | <code>number</code>          |
 
 <a name="module_avec3.set"></a>
 
@@ -355,6 +372,7 @@ Prints a vector to a string.
 ## avec4
 
 - [avec4](#module_avec4)
+  - [.set4(a, i, x, y, z, w)](#module_avec4.set4)
   - [.set(a, i, b, j)](#module_avec4.set)
   - [.equals(a, i, b, j)](#module_avec4.equals) ⇒ <code>boolean</code>
   - [.add(a, i, b, j)](#module_avec4.add)
@@ -363,6 +381,23 @@ Prints a vector to a string.
   - [.addScaled(a, i, b, j, s)](#module_avec4.addScaled)
   - [.lerp(a, i, b, j, t)](#module_avec4.lerp)
   - [.toString(a, i, [precision])](#module_avec4.toString) ⇒ <code>string</code>
+
+<a name="module_avec4.set4"></a>
+
+### avec4.set4(a, i, x, y, z, w)
+
+Sets a vector components.
+
+**Kind**: static method of [<code>avec4</code>](#module_avec4)
+
+| Param | Type                         |
+| ----- | ---------------------------- |
+| a     | [<code>avec4</code>](#avec4) |
+| i     | <code>number</code>          |
+| x     | <code>number</code>          |
+| y     | <code>number</code>          |
+| z     | <code>number</code>          |
+| w     | <code>number</code>          |
 
 <a name="module_avec4.set"></a>
 
@@ -516,7 +551,7 @@ Creates euler angles from quaternion. Assumes XYZ order of rotations.
 
 ## index
 
-Re-export vec, mat, quat, euler and utils
+Re-export vec, avec, mat, quat, euler and utils
 
 <a name="module_mat2x3"></a>
 
