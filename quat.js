@@ -1,7 +1,10 @@
 /** @module quat */
 import * as vec3 from "./vec3.js";
 import * as vec4 from "./vec4.js";
+import * as mat4 from "./mat4.js";
 import { EPSILON } from "./utils.js";
+
+const TEMP_MAT4 = mat4.create();
 
 /**
  * Returns a new quat at 0, 0, 0, 1.
@@ -272,6 +275,18 @@ export const fromTo = (() => {
     return a;
   };
 })();
+
+/**
+ * Sets a quaternion from a vector to another.
+ * @param {import("./types.js").quat} a
+ * @param {import("./types.js").vec3} eye
+ * @param {import("./types.js").vec3} target
+ * @param {import("./types.js").vec3} [up=Y_UP]
+ * @returns {import("./types.js").quat}
+ */
+export function targetTo(a, eye, target, up) {
+  return fromMat4(a, mat4.targetTo(TEMP_MAT4, eye, target, up));
+}
 
 /**
  * Spherical linear interpolates between two quaternions.

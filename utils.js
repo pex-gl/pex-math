@@ -6,6 +6,11 @@
 export const EPSILON = 0.000001;
 
 /**
+ * @constant {import("./types.js").vec3}
+ */
+export const Y_UP = Object.freeze([0, 1, 0]);
+
+/**
  * Linear interpolation between two numbers.
  * @param {number} a
  * @param {number} b

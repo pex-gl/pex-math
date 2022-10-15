@@ -1,5 +1,5 @@
 /** @module mat4 */
-import { EPSILON } from "./utils.js";
+import { EPSILON, Y_UP } from "./utils.js";
 
 /**
  * Returns a 4x4 identity matrix.
@@ -755,14 +755,14 @@ export function ortho(a, left, right, bottom, top, near, far) {
  * @param {import("./types.js").mat4} a
  * @param {import("./types.js").vec3} from
  * @param {import("./types.js").vec3} to
- * @param {import("./types.js").vec3} up
+ * @param {import("./types.js").vec3} [up=Y_UP]
  * @returns {import("./types.js").mat4}
  */
 export function lookAt(
   a,
   [eyex, eyey, eyez],
   [targetx, targety, targetz],
-  [upx, upy, upz]
+  [upx, upy, upz] = Y_UP
 ) {
   if (
     Math.abs(eyex - targetx) < EPSILON &&
@@ -824,5 +824,64 @@ export function lookAt(
   a[14] = -(z0 * eyex + z1 * eyey + z2 * eyez);
   a[15] = 1;
 
+  return a;
+}
+
+/**
+ * Sets a matrix from a vector to another.
+ * @param {import("./types.js").mat4} a
+ * @param {import("./types.js").vec3} from
+ * @param {import("./types.js").vec3} to
+ * @param {import("./types.js").vec3} [up=Y_UP]
+ * @returns {import("./types.js").mat4}
+ */
+export function targetTo(
+  a,
+  [eyex, eyey, eyez],
+  [targetx, targety, targetz],
+  [upx, upy, upz] = Y_UP
+) {
+  let z0 = eyex - targetx;
+  let z1 = eyey - targety;
+  let z2 = eyez - targetz;
+
+  let len = z0 * z0 + z1 * z1 + z2 * z2;
+
+  if (len > 0) {
+    len = 1 / Math.sqrt(len);
+    z0 *= len;
+    z1 *= len;
+    z2 *= len;
+  }
+
+  let x0 = upy * z2 - upz * z1;
+  let x1 = upz * z0 - upx * z2;
+  let x2 = upx * z1 - upy * z0;
+
+  len = x0 * x0 + x1 * x1 + x2 * x2;
+
+  if (len > 0) {
+    len = 1 / Math.sqrt(len);
+    x0 *= len;
+    x1 *= len;
+    x2 *= len;
+  }
+
+  a[0] = x0;
+  a[1] = x1;
+  a[2] = x2;
+  a[3] = 0;
+  a[4] = z1 * x2 - z2 * x1;
+  a[5] = z2 * x0 - z0 * x2;
+  a[6] = z0 * x1 - z1 * x0;
+  a[7] = 0;
+  a[8] = z0;
+  a[9] = z1;
+  a[10] = z2;
+  a[11] = 0;
+  a[12] = eyex;
+  a[13] = eyey;
+  a[14] = eyez;
+  a[15] = 1;
   return a;
 }
