@@ -1,18 +1,24 @@
 import { deepEqual, notStrictEqual, ok } from "node:assert";
-import { quat, utils } from "../index.js";
+import { quat, utils, vec3 } from "../index.js";
 import {
   deepAlmostEqual,
   IDENTITY_MAT3,
   IDENTITY_MAT4,
-  ONE_TWO_THREE_MAT4,
   X_QUAT,
   Y_QUAT,
   Z_QUAT,
+  X_UP,
+  X_DOWN,
+  Y_UP,
+  Y_DOWN,
+  Z_UP,
+  Z_DOWN,
+  ORIGIN,
 } from "./common.js";
 
 const IDENTITY_QUAT = Object.freeze([0, 0, 0, 1]);
-const Y_UP = Object.freeze([0, 1, 0, 0]);
-const Y_DOWN = Object.freeze([0, -1, 0, 0]);
+const Y_UP_QUAT = Object.freeze([0, 1, 0, 0]);
+const Y_DOWN_QUAT = Object.freeze([0, -1, 0, 0]);
 const ONE_QUAT = Object.freeze([1, 1, 1, 1]);
 const ONE_QUAT_NORMALISED = Object.freeze(Array(4).fill(0.5));
 const TWO_QUAT = Object.freeze([2, 2, 2, 2]);
@@ -81,8 +87,8 @@ describe("quat", () => {
   it("normalize() should normalise a vector", () => {
     deepEqual(quat.normalize(quat.copy(IDENTITY_QUAT)), IDENTITY_QUAT);
     deepEqual(quat.normalize([0, 0, 0, 0]), [0, 0, 0, 0]);
-    deepEqual(quat.normalize([0, 2, 0, 0]), Y_UP);
-    deepEqual(quat.normalize([0, -2, 0, 0]), Y_DOWN);
+    deepEqual(quat.normalize([0, 2, 0, 0]), Y_UP_QUAT);
+    deepEqual(quat.normalize([0, -2, 0, 0]), Y_DOWN_QUAT);
     deepEqual(quat.normalize(quat.copy(ONE_QUAT)), ONE_QUAT_NORMALISED);
     deepEqual(
       quat.normalize(quat.copy(ONE_TWO_THREE_FOUR_QUAT)),
@@ -104,7 +110,7 @@ describe("quat", () => {
     );
   });
   it("fromEuler() should set euler angles to a quaternion", () => {
-    deepEqual(quat.fromEuler(quat.create(), [0, 0, 0]), IDENTITY_QUAT);
+    deepEqual(quat.fromEuler(quat.create(), ORIGIN), IDENTITY_QUAT);
     deepAlmostEqual(
       quat.fromEuler(
         quat.create(),
@@ -129,27 +135,15 @@ describe("quat", () => {
   });
   it("fromAxisAngle() should set the angle at an axis of a quaternion", () => {
     deepAlmostEqual(
-      quat.fromAxisAngle(quat.create(), Y_UP, Math.PI * 0.5),
+      quat.fromAxisAngle(quat.create(), Y_UP_QUAT, Math.PI * 0.5),
       Y_QUAT
     );
   });
   it("fromAxes() should set a quaternion from orthonormal base xyz", () => {
-    deepEqual(
-      quat.fromAxes(quat.create(), [1, 0, 0], Y_UP, [0, 0, 1]),
-      IDENTITY_QUAT
-    );
-    deepAlmostEqual(
-      quat.fromAxes(quat.create(), [1, 0, 0], [0, 0, 1], [0, -1, 0]),
-      X_QUAT
-    );
-    deepAlmostEqual(
-      quat.fromAxes(quat.create(), [0, 0, -1], [0, 1, 0], [1, 0, 0]),
-      Y_QUAT
-    );
-    deepAlmostEqual(
-      quat.fromAxes(quat.create(), [0, 1, 0], [-1, 0, 0], [0, 0, 1]),
-      Z_QUAT
-    );
+    deepEqual(quat.fromAxes(quat.create(), X_UP, Y_UP, Z_UP), IDENTITY_QUAT);
+    deepAlmostEqual(quat.fromAxes(quat.create(), X_UP, Z_UP, Y_DOWN), X_QUAT);
+    deepAlmostEqual(quat.fromAxes(quat.create(), Z_DOWN, Y_UP, X_UP), Y_QUAT);
+    deepAlmostEqual(quat.fromAxes(quat.create(), Y_UP, X_DOWN, Z_UP), Z_QUAT);
   });
   it("fromMat3() should set a quaternion to a 3x3 matrix", () => {
     deepEqual(quat.fromMat3(quat.create(), IDENTITY_MAT3), IDENTITY_QUAT);
@@ -233,11 +227,24 @@ describe("quat", () => {
     );
   });
   it("fromTo() should set a quaternion to represent the shortest rotation from one vector to another", () => {
-    deepEqual(quat.fromTo(quat.create(), [0, 1, 0], [0, 1, 0]), IDENTITY_QUAT);
+    deepEqual(quat.fromTo(quat.create(), Y_UP, Y_UP), IDENTITY_QUAT);
     // Right angle
-    deepAlmostEqual(quat.fromTo(quat.create(), [0, 1, 0], [-1, 0, 0]), Z_QUAT);
+    deepAlmostEqual(quat.fromTo(quat.create(), Y_UP, X_DOWN), Z_QUAT);
     // Opposite
     deepAlmostEqual(quat.fromTo(quat.create(), Y_UP, Y_DOWN), [0, 0, 0, 0]);
+  });
+  it("targetTo() should set a quaternion from a vector to another", () => {
+    deepEqual(
+      quat.normalize(quat.targetTo(quat.create(), Y_UP, Y_UP)),
+      IDENTITY_QUAT
+    );
+    // Right angle
+    deepAlmostEqual(
+      quat.targetTo(quat.create(), Y_UP, vec3.add(vec3.copy(Y_UP), X_DOWN)),
+      Y_QUAT
+    );
+    // Opposite
+    deepAlmostEqual(quat.targetTo(quat.create(), X_UP, X_DOWN), Y_QUAT);
   });
   it("slerp() should spherical linear interpolate between two quaternions", () => {
     // Same

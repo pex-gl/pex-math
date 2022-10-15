@@ -12,7 +12,13 @@ export function deepAlmostEqual(a, b, epsilon = 0.001) {
   }
 }
 
+export const ORIGIN = Object.freeze([0, 0, 0]);
+export const X_UP = Object.freeze([1, 0, 0]);
+export const X_DOWN = Object.freeze([-1, 0, 0]);
 export const Y_UP = Object.freeze([0, 1, 0]);
+export const Y_DOWN = Object.freeze([0, -1, 0]);
+export const Z_UP = Object.freeze([0, 0, 1]);
+export const Z_DOWN = Object.freeze([0, 0, -1]);
 
 export const IDENTITY_MAT2X3 = Object.freeze([1, 0, 0, 1, 0, 0]);
 export const IDENTITY_MAT3 = Object.freeze([1, 0, 0, 0, 1, 0, 0, 0, 1]);

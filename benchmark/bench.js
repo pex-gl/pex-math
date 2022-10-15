@@ -1,5 +1,5 @@
 import bench from "nanobench";
-
+import { avec3, vec3, quat } from "../index.js";
 import { run } from "./utils.js";
 
 const x = 1;
@@ -68,4 +68,35 @@ const testCloneArrayObjectAssign = (a) => Object.assign([], a);
 
     b.end();
   });
+});
+
+// Internals
+const elementLength = 512;
+const rotation = quat.fromAxisAngle(
+  quat.create(),
+  vec3.normalize([0, 1, 0]),
+  Math.PI
+);
+
+bench("avec3.set3 slice", (b) => {
+  const a = new Float32Array(elementLength).fill(1);
+
+  b.start();
+  run(() => {
+    for (let i = 0; i < elementLength / 3; i++) {
+      avec3.set3(a, i, ...vec3.multQuat(a.slice(i * 3, i * 3 + 3), rotation));
+    }
+  }, 1e3);
+  b.end();
+});
+bench("avec3.set slice", (b) => {
+  const a = new Float32Array(elementLength).fill(1);
+
+  b.start();
+  run(() => {
+    for (let i = 0; i < elementLength / 3; i++) {
+      avec3.set(a, i, vec3.multQuat(a.slice(i * 3, i * 3 + 3), rotation), 0);
+    }
+  }, 1e3);
+  b.end();
 });

@@ -3,8 +3,8 @@ import { vec2 } from "../index.js";
 import { ONE_TWO_VEC2 } from "./common.js";
 
 const DEFAULT_VEC2 = Object.freeze([0, 0]);
-const Y_UP = Object.freeze([0, 1]);
-const Y_DOWN = Object.freeze([0, -1]);
+const Y_UP_VEC2 = Object.freeze([0, 1]);
+const Y_DOWN_VEC2 = Object.freeze([0, -1]);
 const ONE_VEC2 = Object.freeze([1, 1]);
 const ONE_VEC2_NORMALISED = Object.freeze(Array(2).fill(0.7071067811865475));
 const TWO_VEC2 = Object.freeze([2, 2]);
@@ -63,8 +63,8 @@ describe("vec2", () => {
   });
   it("normalize() should normalise a vector", () => {
     deepEqual(vec2.normalize(vec2.copy(DEFAULT_VEC2)), DEFAULT_VEC2);
-    deepEqual(vec2.normalize([0, 2]), Y_UP);
-    deepEqual(vec2.normalize([0, -2]), Y_DOWN);
+    deepEqual(vec2.normalize([0, 2]), Y_UP_VEC2);
+    deepEqual(vec2.normalize([0, -2]), Y_DOWN_VEC2);
     deepEqual(vec2.normalize(vec2.copy(ONE_VEC2)), ONE_VEC2_NORMALISED);
     deepEqual(
       vec2.normalize(vec2.copy(ONE_TWO_VEC2)),
@@ -72,20 +72,20 @@ describe("vec2", () => {
     );
   });
   it("distance() calculate the distance between two vectors", () => {
-    deepEqual(vec2.distance(DEFAULT_VEC2, Y_UP), 1);
+    deepEqual(vec2.distance(DEFAULT_VEC2, Y_UP_VEC2), 1);
     deepEqual(vec2.distance(ONE_TWO_VEC2, THREE_FOUR_VEC2), 2.8284271247461903);
   });
   it("distanceSq() should calculate the squared distance between two vectors", () => {
-    deepEqual(vec2.distance(DEFAULT_VEC2, Y_UP), 1);
+    deepEqual(vec2.distance(DEFAULT_VEC2, Y_UP_VEC2), 1);
     deepEqual(vec2.distanceSq(ONE_TWO_VEC2, THREE_FOUR_VEC2), 8);
   });
   it("limit() should limit a vector to a length", () => {
     deepEqual(vec2.limit(vec2.copy(DEFAULT_VEC2), 1), DEFAULT_VEC2);
-    deepEqual(vec2.limit(vec2.copy(Y_UP), 1), Y_UP);
-    deepEqual(vec2.limit(vec2.copy(Y_DOWN), 1), Y_DOWN);
+    deepEqual(vec2.limit(vec2.copy(Y_UP_VEC2), 1), Y_UP_VEC2);
+    deepEqual(vec2.limit(vec2.copy(Y_DOWN_VEC2), 1), Y_DOWN_VEC2);
     deepEqual(vec2.limit(vec2.copy(ONE_VEC2), 1), ONE_VEC2_NORMALISED);
     deepEqual(vec2.limit(vec2.copy(ONE_VEC2), 2), ONE_VEC2);
-    deepEqual(vec2.limit([0, 2], 1), Y_UP);
+    deepEqual(vec2.limit([0, 2], 1), Y_UP_VEC2);
   });
   it("lerp() should linearly interpolates between two vectors", () => {
     deepEqual(vec2.lerp(vec2.copy(DEFAULT_VEC2), ONE_VEC2, 0.5), [0.5, 0.5]);

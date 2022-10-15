@@ -1,7 +1,5 @@
-const ITERATIONS = 1e6;
-
-export const run = (cb) => {
-  for (let i = 0; i < ITERATIONS; i++) {
+export const run = (cb, iterations = 1e6) => {
+  for (let i = 0; i < iterations; i++) {
     cb();
   }
 };

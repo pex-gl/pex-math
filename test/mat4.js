@@ -8,6 +8,12 @@ import {
   IDENTITY_MAT4,
   ONE_TWO_THREE_MAT4,
   Y_QUAT,
+  Y_DOWN,
+  X_UP,
+  X_DOWN,
+  ORIGIN,
+  Z_UP,
+  Z_DOWN,
 } from "./common.js";
 
 const ONE_MAT4 = Object.freeze(Array(16).fill(1));
@@ -165,7 +171,7 @@ describe("mat4", () => {
     deepEqual(
       mat4.fromTranslationRotationScale(
         mat4.create(),
-        [0, 0, 0],
+        ORIGIN,
         [0, 0, 0, 1],
         [1, 1, 1]
       ),
@@ -228,7 +234,7 @@ describe("mat4", () => {
   });
   it("lookAt() should calculate a lookAt matrix from position, target and up vectors", () => {
     deepEqual(
-      mat4.lookAt(mat4.create(), [0, 1, 0], [0, 0, 0], Y_UP),
+      mat4.lookAt(mat4.create(), Y_UP, ORIGIN, Y_UP),
       // prettier-ignore
       [
         0, 0, 0, 0,
@@ -237,5 +243,81 @@ describe("mat4", () => {
         0, 0, -1, 1
       ]
     );
+  });
+  it("targetTo() should set a matrix from a vector to another", () => {
+    deepEqual(
+      mat4.targetTo(mat4.create(), Y_UP, ORIGIN, Y_UP),
+      // prettier-ignore
+      [
+        0, 0, 0, 0,
+        0, 0, 0, 0,
+        0, 1, 0, 0,
+        0, 1, 0, 1
+      ]
+    );
+    describe("direction independent from distance", () => {
+      deepEqual(
+        mat4.targetTo(mat4.create(), Y_UP, [0, -100, 0], Y_UP),
+        // prettier-ignore
+        [
+          0, 0, 0, 0,
+          0, 0, 0, 0,
+          0, 1, 0, 0,
+          0, 1, 0, 1
+        ]
+      );
+    });
+    describe("up", () => {
+      deepEqual(
+        mat4.targetTo(mat4.create(), Y_UP, ORIGIN, Y_DOWN),
+        // prettier-ignore
+        [
+          0, 0, 0, 0,
+          0, 0, 0, 0,
+          0, 1, 0, 0,
+          0, 1, 0, 1
+        ]
+      );
+      deepEqual(
+        mat4.targetTo(mat4.create(), Y_UP, ORIGIN, X_UP),
+        // prettier-ignore
+        [
+          0, 0, 1, 0,
+          1, 0, 0, 0,
+          0, 1, 0, 0,
+          0, 1, 0, 1
+        ]
+      );
+      deepEqual(
+        mat4.targetTo(mat4.create(), Y_UP, ORIGIN, X_DOWN),
+        // prettier-ignore
+        [
+          0, 0, -1, 0,
+          -1, 0, 0, 0,
+          0, 1, 0, 0,
+          0, 1, 0, 1
+        ]
+      );
+      deepEqual(
+        mat4.targetTo(mat4.create(), Y_UP, ORIGIN, Z_UP),
+        // prettier-ignore
+        [
+          -1, 0, 0, 0,
+          0, 0, 1, 0,
+          0, 1, 0, 0,
+          0, 1, 0, 1
+        ]
+      );
+      deepEqual(
+        mat4.targetTo(mat4.create(), Y_UP, ORIGIN, Z_DOWN),
+        // prettier-ignore
+        [
+          1, 0, 0, 0,
+          0, 0, -1, 0,
+          0, 1, 0, 0,
+          0, 1, 0, 1
+        ]
+      );
+    });
   });
 });
