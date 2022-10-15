@@ -876,7 +876,8 @@ Sets a 3x3 matrix to a 4x4 matrix.
   - [.frustum(a, left, right, bottom, top, near, far)](#module_mat4.frustum) ⇒ [<code>mat4</code>](#mat4)
   - [.perspective(a, fovy, aspectRatio, near, far)](#module_mat4.perspective) ⇒ [<code>mat4</code>](#mat4)
   - [.ortho(a, left, right, bottom, top, near, far)](#module_mat4.ortho) ⇒ [<code>mat4</code>](#mat4)
-  - [.lookAt(a, from, to, up)](#module_mat4.lookAt) ⇒ [<code>mat4</code>](#mat4)
+  - [.lookAt(a, from, to, [up])](#module_mat4.lookAt) ⇒ [<code>mat4</code>](#mat4)
+  - [.targetTo(a, from, to, [up])](#module_mat4.targetTo) ⇒ [<code>mat4</code>](#mat4)
 
 <a name="module_mat4.create"></a>
 
@@ -1130,18 +1131,33 @@ Creates an orthographic matrix.
 
 <a name="module_mat4.lookAt"></a>
 
-### mat4.lookAt(a, from, to, up) ⇒ [<code>mat4</code>](#mat4)
+### mat4.lookAt(a, from, to, [up]) ⇒ [<code>mat4</code>](#mat4)
 
 Calculates a lookAt matrix from position, target and up vectors.
 
 **Kind**: static method of [<code>mat4</code>](#module_mat4)
 
-| Param | Type                       |
-| ----- | -------------------------- |
-| a     | [<code>mat4</code>](#mat4) |
-| from  | [<code>vec3</code>](#vec3) |
-| to    | [<code>vec3</code>](#vec3) |
-| up    | [<code>vec3</code>](#vec3) |
+| Param | Type                       | Default           |
+| ----- | -------------------------- | ----------------- |
+| a     | [<code>mat4</code>](#mat4) |                   |
+| from  | [<code>vec3</code>](#vec3) |                   |
+| to    | [<code>vec3</code>](#vec3) |                   |
+| [up]  | [<code>vec3</code>](#vec3) | <code>Y_UP</code> |
+
+<a name="module_mat4.targetTo"></a>
+
+### mat4.targetTo(a, from, to, [up]) ⇒ [<code>mat4</code>](#mat4)
+
+Sets a matrix from a vector to another.
+
+**Kind**: static method of [<code>mat4</code>](#module_mat4)
+
+| Param | Type                       | Default           |
+| ----- | -------------------------- | ----------------- |
+| a     | [<code>mat4</code>](#mat4) |                   |
+| from  | [<code>vec3</code>](#vec3) |                   |
+| to    | [<code>vec3</code>](#vec3) |                   |
+| [up]  | [<code>vec3</code>](#vec3) | <code>Y_UP</code> |
 
 <a name="module_quat"></a>
 
@@ -1166,6 +1182,7 @@ Calculates a lookAt matrix from position, target and up vectors.
   - [.fromAxes(a, x, y, z)](#module_quat.fromAxes) ⇒ [<code>quat</code>](#quat)
   - [.fromMat3(a, m)](#module_quat.fromMat3) ⇒ [<code>quat</code>](#quat)
   - [.fromMat4(a, m)](#module_quat.fromMat4) ⇒ [<code>quat</code>](#quat)
+  - [.targetTo(a, eye, target, [up])](#module_quat.targetTo) ⇒ [<code>quat</code>](#quat)
   - [.slerp(a, b, t)](#module_quat.slerp) ⇒ [<code>quat</code>](#quat)
 
 <a name="module_quat.set"></a>
@@ -1394,6 +1411,21 @@ Sets a quaternion to a 4x4 matrix.
 | a     | [<code>quat</code>](#quat) |
 | m     | [<code>mat4</code>](#mat4) |
 
+<a name="module_quat.targetTo"></a>
+
+### quat.targetTo(a, eye, target, [up]) ⇒ [<code>quat</code>](#quat)
+
+Sets a quaternion from a vector to another.
+
+**Kind**: static method of [<code>quat</code>](#module_quat)
+
+| Param  | Type                       | Default           |
+| ------ | -------------------------- | ----------------- |
+| a      | [<code>quat</code>](#quat) |                   |
+| eye    | [<code>vec3</code>](#vec3) |                   |
+| target | [<code>vec3</code>](#vec3) |                   |
+| [up]   | [<code>vec3</code>](#vec3) | <code>Y_UP</code> |
+
 <a name="module_quat.slerp"></a>
 
 ### quat.slerp(a, b, t) ⇒ [<code>quat</code>](#quat)
@@ -1414,6 +1446,7 @@ Spherical linear interpolates between two quaternions.
 
 - [utils](#module_utils)
   - [.EPSILON](#module_utils.EPSILON) : <code>number</code>
+  - [.Y_UP](#module_utils.Y_UP) : [<code>vec3</code>](#vec3)
   - [.lerp(a, b, t)](#module_utils.lerp) ⇒ <code>number</code>
   - [.clamp(n, min, max)](#module_utils.clamp) ⇒ <code>number</code>
   - [.smoothstep(n, min, max)](#module_utils.smoothstep) ⇒ <code>number</code>
@@ -1427,6 +1460,11 @@ Spherical linear interpolates between two quaternions.
 <a name="module_utils.EPSILON"></a>
 
 ### utils.EPSILON : <code>number</code>
+
+**Kind**: static constant of [<code>utils</code>](#module_utils)
+<a name="module_utils.Y_UP"></a>
+
+### utils.Y_UP : [<code>vec3</code>](#vec3)
 
 **Kind**: static constant of [<code>utils</code>](#module_utils)
 <a name="module_utils.lerp"></a>

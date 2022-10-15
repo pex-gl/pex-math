@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+# [4.0.0-alpha.3](https://github.com/pex-gl/pex-math/compare/v4.0.0-alpha.2...v4.0.0-alpha.3) (2022-10-15)
+
+
+### Features
+
+* add mat4.targetTo and quat.targetTo ([2458c43](https://github.com/pex-gl/pex-math/commit/2458c4357cb7f9cb727b115015607c7f7ec27fdc)), closes [#14](https://github.com/pex-gl/pex-math/issues/14)
+
+
+
 # [4.0.0-alpha.2](https://github.com/pex-gl/pex-math/compare/v4.0.0-alpha.1...v4.0.0-alpha.2) (2022-07-07)
 
 
