@@ -104,6 +104,42 @@ export function addScaled(a, i, b, j, s) {
 }
 
 /**
+ * Multiplies a vector with a matrix.
+ * @param {import("./types.js").avec4} a
+ * @param {number} i
+ * @param {import("./types.js").amat4} m
+ * @param {number} j
+ * @returns {import("./types.js").avec4}
+ */
+export function multMat4(a, i, m, j) {
+  const x = a[i * 4];
+  const y = a[i * 4 + 1];
+  const z = a[i * 4 + 2];
+  const w = a[i * 4 + 3];
+  a[i * 4] =
+    m[j * 16 + 0] * x +
+    m[j * 16 + 4] * y +
+    m[j * 16 + 8] * z +
+    m[j * 16 + 12] * w;
+  a[i * 4 + 1] =
+    m[j * 16 + 1] * x +
+    m[j * 16 + 5] * y +
+    m[j * 16 + 9] * z +
+    m[j * 16 + 13] * w;
+  a[i * 4 + 2] =
+    m[j * 16 + 2] * x +
+    m[j * 16 + 6] * y +
+    m[j * 16 + 10] * z +
+    m[j * 16 + 14] * w;
+  a[i * 4 + 3] =
+    m[j * 16 + 3] * x +
+    m[j * 16 + 7] * y +
+    m[j * 16 + 11] * z +
+    m[j * 16 + 15] * w;
+  return a;
+}
+
+/**
  * Linearly interpolates between two vectors.
  * @param {import("./types.js").avec4} a
  * @param {number} i

@@ -96,6 +96,57 @@ export function addScaled(a, i, b, j, s) {
 }
 
 /**
+ * Multiplies a vector by a matrix.
+ * @param {import("./types.js").avec3} a
+ * @param {number} i
+ * @param {import("./types.js").amat4} m
+ * @param {number} j
+ * @returns {import("./types.js").avec3}
+ */
+export function multMat4(a, i, m, j) {
+  const x = a[i * 3];
+  const y = a[i * 3 + 1];
+  const z = a[i * 3 + 2];
+
+  a[i * 3] =
+    m[j * 16 + 0] * x + m[j * 16 + 4] * y + m[j * 16 + 8] * z + m[j * 16 + 12];
+  a[i * 3 + 1] =
+    m[j * 16 + 1] * x + m[j * 16 + 5] * y + m[j * 16 + 9] * z + m[j * 16 + 13];
+  a[i * 3 + 2] =
+    m[j * 16 + 2] * x + m[j * 16 + 6] * y + m[j * 16 + 10] * z + m[j * 16 + 14];
+}
+
+/**
+ * Multiplies a vector by a quaternion.
+ * @param {import("./types.js").avec3} a
+ * @param {number} i
+ * @param {import("./types.js").aquat} q
+ * @param {number} j
+ * @returns {import("./types.js").avec3}
+ */
+export function multQuat(a, i, q, j) {
+  const x = a[i * 3];
+  const y = a[i * 3 + 1];
+  const z = a[i * 3 + 2];
+
+  const qx = q[j * 4];
+  const qy = q[j * 4 + 1];
+  const qz = q[j * 4 + 2];
+  const qw = q[j * 4 + 3];
+
+  const ix = qw * x + qy * z - qz * y;
+  const iy = qw * y + qz * x - qx * z;
+  const iz = qw * z + qx * y - qy * x;
+  const iw = -qx * x - qy * y - qz * z;
+
+  a[i * 3] = ix * qw + iw * -qx + iy * -qz - iz * -qy;
+  a[i * 3 + 1] = iy * qw + iw * -qy + iz * -qx - ix * -qz;
+  a[i * 3 + 2] = iz * qw + iw * -qz + ix * -qy - iy * -qx;
+
+  return a;
+}
+
+/**
  * Calculates the dot product of two vectors.
  * @param {import("./types.js").avec3} a
  * @param {number} i

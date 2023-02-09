@@ -11,6 +11,14 @@
  */
 
 /**
+ * @typedef {TypedArray} amat4
+ */
+
+/**
+ * @typedef {TypedArray} aquat
+ */
+
+/**
  * @typedef {number[]} euler
  */
 
