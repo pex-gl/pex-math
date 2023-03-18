@@ -168,4 +168,19 @@ describe("utils", () => {
     deepEqual(utils.nextPowerOfTwo(2 ** 1 + 1), 2 ** 2);
     deepEqual(utils.nextPowerOfTwo(2 ** 2 + 1), 2 ** 3);
   });
+
+  it("prevPowerOfTwo", () => {
+    deepEqual(utils.prevPowerOfTwo(0), 0);
+    deepEqual(utils.prevPowerOfTwo(1), 0);
+    deepEqual(utils.prevPowerOfTwo(2), 1);
+    deepEqual(utils.prevPowerOfTwo(3), 2);
+
+    deepEqual(utils.prevPowerOfTwo(-0), 0);
+    deepEqual(utils.prevPowerOfTwo(-1), 0);
+    deepEqual(utils.prevPowerOfTwo(-2), 0);
+    deepEqual(utils.prevPowerOfTwo(-3), 0);
+
+    deepEqual(utils.prevPowerOfTwo(2 ** 1 + 1), 2 ** 1);
+    deepEqual(utils.prevPowerOfTwo(2 ** 2 + 1), 2 ** 2);
+  });
 });

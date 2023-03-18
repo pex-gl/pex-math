@@ -99,3 +99,13 @@ export function nextPowerOfTwo(n) {
   n |= n >> 16;
   return n + 1;
 }
+
+/**
+ * Returns the previous power of two.
+ * @param {number} n
+ * @returns {number}
+ */
+export function prevPowerOfTwo(n) {
+  if (n <= 1) return 0;
+  return nextPowerOfTwo(n) / 2;
+}
