@@ -76,15 +76,6 @@ export function toDegrees(radians) {
 }
 
 /**
- * Returns the sign of a number.
- * @param {number} n
- * @returns {number}
- */
-export function sign(n) {
-  return n / Math.abs(n);
-}
-
-/**
  * Check if a number is a power of two
  * @param {number} a
  * @returns {boolean}

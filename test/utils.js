@@ -144,14 +144,6 @@ describe("utils", () => {
     deepEqual(utils.toDegrees(-2 * Math.PI), -360);
   });
 
-  it("sign", () => {
-    deepEqual(utils.sign(1), 1);
-    deepEqual(utils.sign(2), 1);
-    deepEqual(utils.sign(-1), -1);
-    deepEqual(utils.sign(-2), -1);
-    deepEqual(utils.sign(0), NaN);
-  });
-
   it("isPowerOfTwo", () => {
     ok(utils.isPowerOfTwo(2));
     ok(utils.isPowerOfTwo(512));
