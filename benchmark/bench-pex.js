@@ -238,14 +238,14 @@ bench("quat.fromMat3", (b) => {
   run(() => quat.fromMat3(q, m));
   b.end();
 });
-// bench("quat.fromMat4", (b) => {
-//   const q = quat.create();
-//   const m = mat4.create();
+bench("quat.fromMat4", (b) => {
+  const q = quat.create();
+  const m = mat4.create();
 
-//   b.start();
-//   run(() => quat.fromMat4(q, m));
-//   b.end();
-// });
+  b.start();
+  run(() => quat.fromMat4(q, m));
+  b.end();
+});
 bench("quat.fromTo", (b) => {
   const q = quat.create();
   const v = vec3.create();

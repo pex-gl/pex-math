@@ -225,7 +225,13 @@ bench("quat.fromMat3", (b) => {
   run(() => quat.fromMat3(q, m));
   b.end();
 });
-// bench("quat.fromMat4", (b) => {});
+bench("quat.fromMat4", (b) => {
+  const q = quat.create();
+  const m = mat4.create();
+  b.start();
+  run(() => mat4.getRotation(q, m));
+  b.end();
+});
 bench("quat.fromTo", (b) => {
   const q = quat.create();
   const v = vec3.create();
