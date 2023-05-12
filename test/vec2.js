@@ -1,3 +1,4 @@
+import { describe, it } from "node:test";
 import { deepEqual, notStrictEqual, ok } from "node:assert";
 import { vec2 } from "../index.js";
 import { ONE_TWO_VEC2 } from "./common.js";

@@ -1,3 +1,4 @@
+import { describe, it } from "node:test";
 import { deepEqual, notStrictEqual, ok } from "node:assert";
 import { mat4 } from "../index.js";
 import {
@@ -244,18 +245,20 @@ describe("mat4", () => {
       ]
     );
   });
-  it("targetTo() should set a matrix from a vector to another", () => {
-    deepEqual(
-      mat4.targetTo(mat4.create(), Y_UP, ORIGIN, Y_UP),
-      // prettier-ignore
-      [
+  describe("targetTo()", () => {
+    it("should set a matrix from a vector to another", () => {
+      deepEqual(
+        mat4.targetTo(mat4.create(), Y_UP, ORIGIN, Y_UP),
+        // prettier-ignore
+        [
         0, 0, 0, 0,
         0, 0, 0, 0,
         0, 1, 0, 0,
         0, 1, 0, 1
       ]
-    );
-    describe("direction independent from distance", () => {
+      );
+    });
+    it("direction independent from distance", () => {
       deepEqual(
         mat4.targetTo(mat4.create(), Y_UP, [0, -100, 0], Y_UP),
         // prettier-ignore
@@ -267,7 +270,7 @@ describe("mat4", () => {
         ]
       );
     });
-    describe("up", () => {
+    it("up", () => {
       deepEqual(
         mat4.targetTo(mat4.create(), Y_UP, ORIGIN, Y_DOWN),
         // prettier-ignore

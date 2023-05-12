@@ -1,3 +1,4 @@
+import { describe, it } from "node:test";
 import { deepEqual, notStrictEqual, ok } from "node:assert";
 import { vec4 } from "../index.js";
 import { IDENTITY_MAT4, ONE_TWO_THREE_MAT4 } from "./common.js";
@@ -54,7 +55,10 @@ describe("vec4", () => {
       vec4.lerp(vec4.copy(DEFAULT_VEC4), ONE_VEC4, 0.5),
       [0.5, 0.5, 0.5, 1]
     );
-    deepEqual(vec4.lerp([-1, -1, -1, -1], DEFAULT_VEC4, 0.5), [-0.5, -0.5, -0.5, 0]);
+    deepEqual(
+      vec4.lerp([-1, -1, -1, -1], DEFAULT_VEC4, 0.5),
+      [-0.5, -0.5, -0.5, 0]
+    );
   });
   it("toString() should print a vector to a string", () => {
     deepEqual(vec4.toString(DEFAULT_VEC4), "[0, 0, 0, 1]");

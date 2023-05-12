@@ -1,3 +1,4 @@
+import { describe, it } from "node:test";
 import { deepEqual, notStrictEqual, ok } from "node:assert";
 import { mat3 } from "../index.js";
 import {

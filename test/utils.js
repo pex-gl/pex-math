@@ -1,4 +1,5 @@
-import { deepEqual, notStrictEqual, ok } from "node:assert";
+import { describe, it } from "node:test";
+import { deepEqual, ok } from "node:assert";
 import { utils } from "../index.js";
 
 describe("utils", () => {

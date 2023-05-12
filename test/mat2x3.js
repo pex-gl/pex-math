@@ -1,10 +1,7 @@
+import { describe, it } from "node:test";
 import { deepEqual, notStrictEqual, ok } from "node:assert";
 import { mat2x3 } from "../index.js";
-import {
-  ONE_TWO_VEC2,
-  IDENTITY_MAT2X3,
-  deepAlmostEqual,
-} from "./common.js";
+import { ONE_TWO_VEC2, IDENTITY_MAT2X3, deepAlmostEqual } from "./common.js";
 
 const ONE_MAT2X3 = Object.freeze(Array(6).fill(1));
 const ONE_TO_SIX_MAT2X3 = Object.freeze([1, 2, 3, 4, 5, 6]);
