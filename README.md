@@ -73,6 +73,10 @@ const identityMatrix = mat4.create();
 <dd></dd>
 <dt><a href="#avec3">avec3</a> : <code><a href="#TypedArray">TypedArray</a></code></dt>
 <dd></dd>
+<dt><a href="#amat4">amat4</a> : <code><a href="#TypedArray">TypedArray</a></code></dt>
+<dd></dd>
+<dt><a href="#aquat">aquat</a> : <code><a href="#TypedArray">TypedArray</a></code></dt>
+<dd></dd>
 <dt><a href="#euler">euler</a> : <code>Array.&lt;number&gt;</code></dt>
 <dd></dd>
 <dt><a href="#mat2x3">mat2x3</a> : <code>Array.&lt;number&gt;</code></dt>
@@ -107,7 +111,9 @@ const identityMatrix = mat4.create();
   - [.sub(a, i, b, j)](#module_avec3.sub)
   - [.scale(a, i, s)](#module_avec3.scale)
   - [.addScaled(a, i, b, j, s)](#module_avec3.addScaled)
-  - [.dot(a, i, b, j)](#module_avec3.dot)
+  - [.multMat4(a, i, m, j)](#module_avec3.multMat4)
+  - [.multQuat(a, i, q, j)](#module_avec3.multQuat)
+  - [.dot(a, i, b, j)](#module_avec3.dot) ⇒ <code>number</code>
   - [.cross(a, i, b, j)](#module_avec3.cross)
   - [.length(a, i)](#module_avec3.length) ⇒ <code>number</code>
   - [.lengthSq(a, i)](#module_avec3.lengthSq) ⇒ <code>number</code>
@@ -224,9 +230,39 @@ Adds two vectors after scaling the second one.
 | j     | <code>number</code>          |
 | s     | <code>number</code>          |
 
+<a name="module_avec3.multMat4"></a>
+
+### avec3.multMat4(a, i, m, j)
+
+Multiplies a vector by a matrix.
+
+**Kind**: static method of [<code>avec3</code>](#module_avec3)
+
+| Param | Type                         |
+| ----- | ---------------------------- |
+| a     | [<code>avec3</code>](#avec3) |
+| i     | <code>number</code>          |
+| m     | [<code>amat4</code>](#amat4) |
+| j     | <code>number</code>          |
+
+<a name="module_avec3.multQuat"></a>
+
+### avec3.multQuat(a, i, q, j)
+
+Multiplies a vector by a quaternion.
+
+**Kind**: static method of [<code>avec3</code>](#module_avec3)
+
+| Param | Type                         |
+| ----- | ---------------------------- |
+| a     | [<code>avec3</code>](#avec3) |
+| i     | <code>number</code>          |
+| q     | [<code>aquat</code>](#aquat) |
+| j     | <code>number</code>          |
+
 <a name="module_avec3.dot"></a>
 
-### avec3.dot(a, i, b, j)
+### avec3.dot(a, i, b, j) ⇒ <code>number</code>
 
 Calculates the dot product of two vectors.
 
@@ -379,6 +415,7 @@ Prints a vector to a string.
   - [.sub(a, i, b, j)](#module_avec4.sub)
   - [.scale(a, i, s)](#module_avec4.scale)
   - [.addScaled(a, i, b, j, s)](#module_avec4.addScaled)
+  - [.multMat4(a, i, m, j)](#module_avec4.multMat4)
   - [.lerp(a, i, b, j, t)](#module_avec4.lerp)
   - [.toString(a, i, [precision])](#module_avec4.toString) ⇒ <code>string</code>
 
@@ -488,6 +525,21 @@ Adds two vectors after scaling the second one.
 | b     | [<code>avec4</code>](#avec4) |
 | j     | <code>number</code>          |
 | s     | <code>number</code>          |
+
+<a name="module_avec4.multMat4"></a>
+
+### avec4.multMat4(a, i, m, j)
+
+Multiplies a vector with a matrix.
+
+**Kind**: static method of [<code>avec4</code>](#module_avec4)
+
+| Param | Type                         |
+| ----- | ---------------------------- |
+| a     | [<code>avec4</code>](#avec4) |
+| i     | <code>number</code>          |
+| m     | [<code>amat4</code>](#amat4) |
+| j     | <code>number</code>          |
 
 <a name="module_avec4.lerp"></a>
 
@@ -1453,9 +1505,9 @@ Spherical linear interpolates between two quaternions.
   - [.map(n, inStart, inEnd, outStart, outEnd)](#module_utils.map) ⇒ <code>number</code>
   - [.toRadians(degrees)](#module_utils.toRadians) ⇒ [<code>Radians</code>](#Radians)
   - [.toDegrees(radians)](#module_utils.toDegrees) ⇒ [<code>Degrees</code>](#Degrees)
-  - [.sign(n)](#module_utils.sign) ⇒ <code>number</code>
   - [.isPowerOfTwo(a)](#module_utils.isPowerOfTwo) ⇒ <code>boolean</code>
   - [.nextPowerOfTwo(n)](#module_utils.nextPowerOfTwo) ⇒ <code>number</code>
+  - [.prevPowerOfTwo(n)](#module_utils.prevPowerOfTwo) ⇒ <code>number</code>
 
 <a name="module_utils.EPSILON"></a>
 
@@ -1549,18 +1601,6 @@ Transforms radians into degrees.
 | ------- | -------------------------------- |
 | radians | [<code>Radians</code>](#Radians) |
 
-<a name="module_utils.sign"></a>
-
-### utils.sign(n) ⇒ <code>number</code>
-
-Returns the sign of a number.
-
-**Kind**: static method of [<code>utils</code>](#module_utils)
-
-| Param | Type                |
-| ----- | ------------------- |
-| n     | <code>number</code> |
-
 <a name="module_utils.isPowerOfTwo"></a>
 
 ### utils.isPowerOfTwo(a) ⇒ <code>boolean</code>
@@ -1578,6 +1618,18 @@ Check if a number is a power of two
 ### utils.nextPowerOfTwo(n) ⇒ <code>number</code>
 
 Returns the next highest power of two.
+
+**Kind**: static method of [<code>utils</code>](#module_utils)
+
+| Param | Type                |
+| ----- | ------------------- |
+| n     | <code>number</code> |
+
+<a name="module_utils.prevPowerOfTwo"></a>
+
+### utils.prevPowerOfTwo(n) ⇒ <code>number</code>
+
+Returns the previous power of two.
 
 **Kind**: static method of [<code>utils</code>](#module_utils)
 
@@ -2281,6 +2333,16 @@ Prints a vector to a string.
 <a name="avec3"></a>
 
 ## avec3 : [<code>TypedArray</code>](#TypedArray)
+
+**Kind**: global typedef
+<a name="amat4"></a>
+
+## amat4 : [<code>TypedArray</code>](#TypedArray)
+
+**Kind**: global typedef
+<a name="aquat"></a>
+
+## aquat : [<code>TypedArray</code>](#TypedArray)
 
 **Kind**: global typedef
 <a name="euler"></a>
