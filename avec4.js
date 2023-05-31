@@ -109,7 +109,6 @@ export function addScaled(a, i, b, j, s) {
  * @param {number} i
  * @param {import("./types.js").amat4} m
  * @param {number} j
- * @returns {import("./types.js").avec4}
  */
 export function multMat4(a, i, m, j) {
   const x = a[i * 4];
@@ -136,7 +135,6 @@ export function multMat4(a, i, m, j) {
     m[j * 16 + 7] * y +
     m[j * 16 + 11] * z +
     m[j * 16 + 15] * w;
-  return a;
 }
 
 /**

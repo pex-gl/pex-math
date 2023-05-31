@@ -101,7 +101,6 @@ export function addScaled(a, i, b, j, s) {
  * @param {number} i
  * @param {import("./types.js").amat4} m
  * @param {number} j
- * @returns {import("./types.js").avec3}
  */
 export function multMat4(a, i, m, j) {
   const x = a[i * 3];
@@ -122,7 +121,6 @@ export function multMat4(a, i, m, j) {
  * @param {number} i
  * @param {import("./types.js").aquat} q
  * @param {number} j
- * @returns {import("./types.js").avec3}
  */
 export function multQuat(a, i, q, j) {
   const x = a[i * 3];
@@ -142,8 +140,6 @@ export function multQuat(a, i, q, j) {
   a[i * 3] = ix * qw + iw * -qx + iy * -qz - iz * -qy;
   a[i * 3 + 1] = iy * qw + iw * -qy + iz * -qx - ix * -qz;
   a[i * 3 + 2] = iz * qw + iw * -qz + ix * -qy - iy * -qx;
-
-  return a;
 }
 
 /**
@@ -152,6 +148,7 @@ export function multQuat(a, i, q, j) {
  * @param {number} i
  * @param {import("./types.js").avec3} b
  * @param {number} j
+ * @returns {number}
  */
 export function dot(a, i, b, j) {
   return (
