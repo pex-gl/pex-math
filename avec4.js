@@ -1,4 +1,7 @@
 /** @module avec4 */
+import * as vec4 from "./vec4.js";
+
+const TEMP_VEC4 = vec4.create();
 
 /**
  * Sets a vector components.
@@ -10,7 +13,7 @@
  * @param {number} w
  */
 export function set4(a, i, x, y, z, w) {
-  a[i * 4 + 0] = x;
+  a[i * 4] = x;
   a[i * 4 + 1] = y;
   a[i * 4 + 2] = z;
   a[i * 4 + 3] = w;
@@ -116,10 +119,7 @@ export function multMat4(a, i, m, j) {
   const z = a[i * 4 + 2];
   const w = a[i * 4 + 3];
   a[i * 4] =
-    m[j * 16 + 0] * x +
-    m[j * 16 + 4] * y +
-    m[j * 16 + 8] * z +
-    m[j * 16 + 12] * w;
+    m[j * 16] * x + m[j * 16 + 4] * y + m[j * 16 + 8] * z + m[j * 16 + 12] * w;
   a[i * 4 + 1] =
     m[j * 16 + 1] * x +
     m[j * 16 + 5] * y +
@@ -155,6 +155,50 @@ export function lerp(a, i, b, j, t) {
   a[i * 4 + 1] = y + (b[j * 4 + 1] - y) * t;
   a[i * 4 + 2] = z + (b[j * 4 + 2] - z) * t;
   a[i * 4 + 3] = w + (b[j * 4 + 3] - w) * t;
+}
+
+/**
+ * Executes a function once for each array element.
+ * @param {import("./types.js").avec4} a
+ * @param {import("./types.js").iterativeCallback} callbackFn
+ */
+export function forEach(a, callbackFn) {
+  for (let i = 0; i < a.length / 4; i++) {
+    TEMP_VEC4[0] = a[i * 4];
+    TEMP_VEC4[1] = a[i * 4 + 1];
+    TEMP_VEC4[2] = a[i * 4 + 2];
+    TEMP_VEC4[3] = a[i * 4 + 3];
+    callbackFn(TEMP_VEC4, i, a);
+    a[i * 4] = TEMP_VEC4[0];
+    a[i * 4 + 1] = TEMP_VEC4[1];
+    a[i * 4 + 2] = TEMP_VEC4[2];
+    a[i * 4 + 3] = TEMP_VEC4[3];
+  }
+}
+
+/**
+ * Creates a new array populated with the results of calling a provided function on every element in the calling array.
+ * @param {import("./types.js").avec4} a
+ * @param {import("./types.js").iterativeCallback} callbackFn
+ * @returns {import("./types.js").avec4}
+ */
+export function map(a, callbackFn) {
+  const b = new a.constructor(a.length);
+  const element = new a.constructor(4);
+
+  for (let i = 0; i < a.length / 4; i++) {
+    element[0] = a[i * 4];
+    element[1] = a[i * 4 + 1];
+    element[2] = a[i * 4 + 2];
+    element[3] = a[i * 4 + 3];
+    const returnValue = callbackFn(element, i, a);
+    b[i * 4] = returnValue[0];
+    b[i * 4 + 1] = returnValue[1];
+    b[i * 4 + 2] = returnValue[2];
+    b[i * 4 + 3] = returnValue[3];
+  }
+
+  return b;
 }
 
 /**

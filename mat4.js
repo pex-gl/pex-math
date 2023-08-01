@@ -762,7 +762,7 @@ export function lookAt(
   a,
   [eyex, eyey, eyez],
   [targetx, targety, targetz],
-  [upx, upy, upz] = Y_UP
+  [upx, upy, upz] = Y_UP,
 ) {
   if (
     Math.abs(eyex - targetx) < EPSILON &&
@@ -839,7 +839,7 @@ export function targetTo(
   a,
   [eyex, eyey, eyez],
   [targetx, targety, targetz],
-  [upx, upy, upz] = Y_UP
+  [upx, upy, upz] = Y_UP,
 ) {
   let z0 = eyex - targetx;
   let z1 = eyey - targety;

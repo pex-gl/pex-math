@@ -1,4 +1,7 @@
 /** @module avec2 */
+import * as vec2 from "./vec2.js";
+
+const TEMP_VEC2 = vec2.create();
 
 /**
  * Sets a vector components.
@@ -8,7 +11,7 @@
  * @param {number} y
  */
 export function set2(a, i, x, y) {
-  a[i * 2 + 0] = x;
+  a[i * 2] = x;
   a[i * 2 + 1] = y;
 }
 
@@ -196,6 +199,42 @@ export function lerp(a, i, b, j, t) {
 
   a[i * 2] = x + (b[j * 2] - x) * t;
   a[i * 2 + 1] = y + (b[j * 2 + 1] - y) * t;
+}
+
+/**
+ * Executes a function once for each array element.
+ * @param {import("./types.js").avec2} a
+ * @param {import("./types.js").iterativeCallback} callbackFn
+ */
+export function forEach(a, callbackFn) {
+  for (let i = 0; i < a.length / 2; i++) {
+    TEMP_VEC2[0] = a[i * 2];
+    TEMP_VEC2[1] = a[i * 2 + 1];
+    callbackFn(TEMP_VEC2, i, a);
+    a[i * 2] = TEMP_VEC2[0];
+    a[i * 2 + 1] = TEMP_VEC2[1];
+  }
+}
+
+/**
+ * Creates a new array populated with the results of calling a provided function on every element in the calling array.
+ * @param {import("./types.js").avec2} a
+ * @param {import("./types.js").iterativeCallback} callbackFn
+ * @returns {import("./types.js").avec2}
+ */
+export function map(a, callbackFn) {
+  const b = new a.constructor(a.length);
+  const element = new a.constructor(2);
+
+  for (let i = 0; i < a.length / 2; i++) {
+    element[0] = a[i * 2];
+    element[1] = a[i * 2 + 1];
+    const returnValue = callbackFn(element, i, a);
+    b[i * 2] = returnValue[0];
+    b[i * 2 + 1] = returnValue[1];
+  }
+
+  return b;
 }
 
 /**
