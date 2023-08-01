@@ -38,11 +38,10 @@
     "build": "npx snowdev build",
     "dev": "npx snowdev dev",
     "release": "npx snowdev release",
-    "test": "c8 node --test",
+    "test": "node --test --experimental-test-coverage",
     "test:watch": "node --test --watch test"
   },
   "devDependencies": {
-    "c8": "^7.13.0",
     "gl-matrix": "^3.4.3",
     "nanobench": "^2.1.1"
   },
