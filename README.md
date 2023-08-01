@@ -37,6 +37,8 @@ const identityMatrix = mat4.create();
 ## Modules
 
 <dl>
+<dt><a href="#module_avec2">avec2</a></dt>
+<dd></dd>
 <dt><a href="#module_avec3">avec3</a></dt>
 <dd></dd>
 <dt><a href="#module_avec4">avec4</a></dt>
@@ -97,7 +99,293 @@ const identityMatrix = mat4.create();
 <dd></dd>
 <dt><a href="#Radians">Radians</a> : <code>number</code></dt>
 <dd></dd>
+<dt><a href="#iterativeCallback">iterativeCallback</a> : <code>function</code></dt>
+<dd><p>Callback for iterating typed arrays.</p>
+</dd>
 </dl>
+
+<a name="module_avec2"></a>
+
+## avec2
+
+- [avec2](#module_avec2)
+  - [.set2(a, i, x, y)](#module_avec2.set2)
+  - [.set(a, i, b, j)](#module_avec2.set)
+  - [.equals(a, i, b, j)](#module_avec2.equals) ⇒ <code>boolean</code>
+  - [.add(a, i, b, j)](#module_avec2.add)
+  - [.sub(a, i, b, j)](#module_avec2.sub)
+  - [.scale(a, i, s)](#module_avec2.scale)
+  - [.addScaled(a, i, b, j, s)](#module_avec2.addScaled)
+  - [.dot(a, i, b, j)](#module_avec2.dot) ⇒ <code>number</code>
+  - [.length(a, i)](#module_avec2.length) ⇒ <code>number</code>
+  - [.lengthSq(a, i)](#module_avec2.lengthSq) ⇒ <code>number</code>
+  - [.normalize(a, i)](#module_avec2.normalize)
+  - [.distance(a, i, b, j)](#module_avec2.distance) ⇒ <code>number</code>
+  - [.distanceSq(a, i, b, j)](#module_avec2.distanceSq) ⇒ <code>number</code>
+  - [.limit(a, i, len)](#module_avec2.limit)
+  - [.lerp(a, i, b, j, t)](#module_avec2.lerp)
+  - [.forEach(a, callbackFn)](#module_avec2.forEach)
+  - [.map(a, callbackFn)](#module_avec2.map) ⇒ <code>avec2</code>
+  - [.toString(a, i, [precision])](#module_avec2.toString) ⇒ <code>string</code>
+
+<a name="module_avec2.set2"></a>
+
+### avec2.set2(a, i, x, y)
+
+Sets a vector components.
+
+**Kind**: static method of [<code>avec2</code>](#module_avec2)
+
+| Param | Type                |
+| ----- | ------------------- |
+| a     | <code>avec2</code>  |
+| i     | <code>number</code> |
+| x     | <code>number</code> |
+| y     | <code>number</code> |
+
+<a name="module_avec2.set"></a>
+
+### avec2.set(a, i, b, j)
+
+Sets a vector to another vector.
+
+**Kind**: static method of [<code>avec2</code>](#module_avec2)
+
+| Param | Type                |
+| ----- | ------------------- |
+| a     | <code>avec2</code>  |
+| i     | <code>number</code> |
+| b     | <code>avec2</code>  |
+| j     | <code>number</code> |
+
+<a name="module_avec2.equals"></a>
+
+### avec2.equals(a, i, b, j) ⇒ <code>boolean</code>
+
+Compares two vectors.
+
+**Kind**: static method of [<code>avec2</code>](#module_avec2)
+
+| Param | Type                |
+| ----- | ------------------- |
+| a     | <code>avec2</code>  |
+| i     | <code>number</code> |
+| b     | <code>avec2</code>  |
+| j     | <code>number</code> |
+
+<a name="module_avec2.add"></a>
+
+### avec2.add(a, i, b, j)
+
+Adds a vector to another.
+
+**Kind**: static method of [<code>avec2</code>](#module_avec2)
+
+| Param | Type                |
+| ----- | ------------------- |
+| a     | <code>avec2</code>  |
+| i     | <code>number</code> |
+| b     | <code>avec2</code>  |
+| j     | <code>number</code> |
+
+<a name="module_avec2.sub"></a>
+
+### avec2.sub(a, i, b, j)
+
+Subtracts a vector from another.
+
+**Kind**: static method of [<code>avec2</code>](#module_avec2)
+
+| Param | Type                |
+| ----- | ------------------- |
+| a     | <code>avec2</code>  |
+| i     | <code>number</code> |
+| b     | <code>avec2</code>  |
+| j     | <code>number</code> |
+
+<a name="module_avec2.scale"></a>
+
+### avec2.scale(a, i, s)
+
+Scales a vector by a number.
+
+**Kind**: static method of [<code>avec2</code>](#module_avec2)
+
+| Param | Type                |
+| ----- | ------------------- |
+| a     | <code>avec2</code>  |
+| i     | <code>number</code> |
+| s     | <code>number</code> |
+
+<a name="module_avec2.addScaled"></a>
+
+### avec2.addScaled(a, i, b, j, s)
+
+Adds two vectors after scaling the second one.
+
+**Kind**: static method of [<code>avec2</code>](#module_avec2)
+
+| Param | Type                |
+| ----- | ------------------- |
+| a     | <code>avec2</code>  |
+| i     | <code>number</code> |
+| b     | <code>avec2</code>  |
+| j     | <code>number</code> |
+| s     | <code>number</code> |
+
+<a name="module_avec2.dot"></a>
+
+### avec2.dot(a, i, b, j) ⇒ <code>number</code>
+
+Calculates the dot product of two vectors.
+
+**Kind**: static method of [<code>avec2</code>](#module_avec2)
+
+| Param | Type                |
+| ----- | ------------------- |
+| a     | <code>avec2</code>  |
+| i     | <code>number</code> |
+| b     | <code>avec2</code>  |
+| j     | <code>number</code> |
+
+<a name="module_avec2.length"></a>
+
+### avec2.length(a, i) ⇒ <code>number</code>
+
+Calculates the length of a vector.
+
+**Kind**: static method of [<code>avec2</code>](#module_avec2)
+
+| Param | Type                |
+| ----- | ------------------- |
+| a     | <code>avec2</code>  |
+| i     | <code>number</code> |
+
+<a name="module_avec2.lengthSq"></a>
+
+### avec2.lengthSq(a, i) ⇒ <code>number</code>
+
+Calculates the squared length of a vector.
+
+**Kind**: static method of [<code>avec2</code>](#module_avec2)
+
+| Param | Type                |
+| ----- | ------------------- |
+| a     | <code>avec2</code>  |
+| i     | <code>number</code> |
+
+<a name="module_avec2.normalize"></a>
+
+### avec2.normalize(a, i)
+
+Normalises a vector.
+
+**Kind**: static method of [<code>avec2</code>](#module_avec2)
+
+| Param | Type                |
+| ----- | ------------------- |
+| a     | <code>avec2</code>  |
+| i     | <code>number</code> |
+
+<a name="module_avec2.distance"></a>
+
+### avec2.distance(a, i, b, j) ⇒ <code>number</code>
+
+Calculates the distance between two vectors.
+
+**Kind**: static method of [<code>avec2</code>](#module_avec2)
+
+| Param | Type                |
+| ----- | ------------------- |
+| a     | <code>avec2</code>  |
+| i     | <code>number</code> |
+| b     | <code>avec2</code>  |
+| j     | <code>number</code> |
+
+<a name="module_avec2.distanceSq"></a>
+
+### avec2.distanceSq(a, i, b, j) ⇒ <code>number</code>
+
+Calculates the squared distance between two vectors.
+
+**Kind**: static method of [<code>avec2</code>](#module_avec2)
+
+| Param | Type                |
+| ----- | ------------------- |
+| a     | <code>avec2</code>  |
+| i     | <code>number</code> |
+| b     | <code>avec2</code>  |
+| j     | <code>number</code> |
+
+<a name="module_avec2.limit"></a>
+
+### avec2.limit(a, i, len)
+
+Limits a vector to a length.
+
+**Kind**: static method of [<code>avec2</code>](#module_avec2)
+
+| Param | Type                |
+| ----- | ------------------- |
+| a     | <code>avec2</code>  |
+| i     | <code>number</code> |
+| len   | <code>number</code> |
+
+<a name="module_avec2.lerp"></a>
+
+### avec2.lerp(a, i, b, j, t)
+
+Linearly interpolates between two vectors.
+
+**Kind**: static method of [<code>avec2</code>](#module_avec2)
+
+| Param | Type                |
+| ----- | ------------------- |
+| a     | <code>avec2</code>  |
+| i     | <code>number</code> |
+| b     | <code>avec2</code>  |
+| j     | <code>number</code> |
+| t     | <code>number</code> |
+
+<a name="module_avec2.forEach"></a>
+
+### avec2.forEach(a, callbackFn)
+
+Executes a function once for each array element.
+
+**Kind**: static method of [<code>avec2</code>](#module_avec2)
+
+| Param      | Type                                                 |
+| ---------- | ---------------------------------------------------- |
+| a          | <code>avec2</code>                                   |
+| callbackFn | [<code>iterativeCallback</code>](#iterativeCallback) |
+
+<a name="module_avec2.map"></a>
+
+### avec2.map(a, callbackFn) ⇒ <code>avec2</code>
+
+Creates a new array populated with the results of calling a provided function on every element in the calling array.
+
+**Kind**: static method of [<code>avec2</code>](#module_avec2)
+
+| Param      | Type                                                 |
+| ---------- | ---------------------------------------------------- |
+| a          | <code>avec2</code>                                   |
+| callbackFn | [<code>iterativeCallback</code>](#iterativeCallback) |
+
+<a name="module_avec2.toString"></a>
+
+### avec2.toString(a, i, [precision]) ⇒ <code>string</code>
+
+Prints a vector to a string.
+
+**Kind**: static method of [<code>avec2</code>](#module_avec2)
+
+| Param       | Type                | Default        |
+| ----------- | ------------------- | -------------- |
+| a           | <code>avec2</code>  |                |
+| i           | <code>number</code> |                |
+| [precision] | <code>number</code> | <code>4</code> |
 
 <a name="module_avec3"></a>
 
@@ -122,6 +410,8 @@ const identityMatrix = mat4.create();
   - [.distanceSq(a, i, b, j)](#module_avec3.distanceSq) ⇒ <code>number</code>
   - [.limit(a, i, len)](#module_avec3.limit)
   - [.lerp(a, i, b, j, t)](#module_avec3.lerp)
+  - [.forEach(a, callbackFn)](#module_avec3.forEach)
+  - [.map(a, callbackFn)](#module_avec3.map) ⇒ [<code>avec3</code>](#avec3)
   - [.toString(a, i, [precision])](#module_avec3.toString) ⇒ <code>string</code>
 
 <a name="module_avec3.set3"></a>
@@ -389,6 +679,32 @@ Linearly interpolates between two vectors.
 | j     | <code>number</code>          |
 | t     | <code>number</code>          |
 
+<a name="module_avec3.forEach"></a>
+
+### avec3.forEach(a, callbackFn)
+
+Executes a function once for each array element.
+
+**Kind**: static method of [<code>avec3</code>](#module_avec3)
+
+| Param      | Type                                                 |
+| ---------- | ---------------------------------------------------- |
+| a          | [<code>avec3</code>](#avec3)                         |
+| callbackFn | [<code>iterativeCallback</code>](#iterativeCallback) |
+
+<a name="module_avec3.map"></a>
+
+### avec3.map(a, callbackFn) ⇒ [<code>avec3</code>](#avec3)
+
+Creates a new array populated with the results of calling a provided function on every element in the calling array.
+
+**Kind**: static method of [<code>avec3</code>](#module_avec3)
+
+| Param      | Type                                                 |
+| ---------- | ---------------------------------------------------- |
+| a          | [<code>avec3</code>](#avec3)                         |
+| callbackFn | [<code>iterativeCallback</code>](#iterativeCallback) |
+
 <a name="module_avec3.toString"></a>
 
 ### avec3.toString(a, i, [precision]) ⇒ <code>string</code>
@@ -417,6 +733,8 @@ Prints a vector to a string.
   - [.addScaled(a, i, b, j, s)](#module_avec4.addScaled)
   - [.multMat4(a, i, m, j)](#module_avec4.multMat4)
   - [.lerp(a, i, b, j, t)](#module_avec4.lerp)
+  - [.forEach(a, callbackFn)](#module_avec4.forEach)
+  - [.map(a, callbackFn)](#module_avec4.map) ⇒ [<code>avec4</code>](#avec4)
   - [.toString(a, i, [precision])](#module_avec4.toString) ⇒ <code>string</code>
 
 <a name="module_avec4.set4"></a>
@@ -556,6 +874,32 @@ Linearly interpolates between two vectors.
 | b     | [<code>avec4</code>](#avec4) |
 | j     | <code>number</code>          |
 | t     | <code>number</code>          |
+
+<a name="module_avec4.forEach"></a>
+
+### avec4.forEach(a, callbackFn)
+
+Executes a function once for each array element.
+
+**Kind**: static method of [<code>avec4</code>](#module_avec4)
+
+| Param      | Type                                                 |
+| ---------- | ---------------------------------------------------- |
+| a          | [<code>avec4</code>](#avec4)                         |
+| callbackFn | [<code>iterativeCallback</code>](#iterativeCallback) |
+
+<a name="module_avec4.map"></a>
+
+### avec4.map(a, callbackFn) ⇒ [<code>avec4</code>](#avec4)
+
+Creates a new array populated with the results of calling a provided function on every element in the calling array.
+
+**Kind**: static method of [<code>avec4</code>](#module_avec4)
+
+| Param      | Type                                                 |
+| ---------- | ---------------------------------------------------- |
+| a          | [<code>avec4</code>](#avec4)                         |
+| callbackFn | [<code>iterativeCallback</code>](#iterativeCallback) |
 
 <a name="module_avec4.toString"></a>
 
@@ -2395,6 +2739,19 @@ Prints a vector to a string.
 ## Radians : <code>number</code>
 
 **Kind**: global typedef
+<a name="iterativeCallback"></a>
+
+## iterativeCallback : <code>function</code>
+
+Callback for iterating typed arrays.
+
+**Kind**: global typedef
+
+| Param   | Type                         |
+| ------- | ---------------------------- |
+| element | [<code>vec3</code>](#vec3)   |
+| index   | <code>number</code>          |
+| array   | [<code>avec3</code>](#avec3) |
 
 <!-- api-end -->
 
