@@ -1,7 +1,7 @@
 /** @module vec2 */
 
 /**
- * Returns a new vec2 at 0, 0, 0.
+ * Returns a new vec2 at 0, 0.
  * @returns {import("./types.js").vec2}
  */
 export function create() {

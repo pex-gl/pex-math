@@ -61,7 +61,7 @@ describe("mat4", () => {
         0, 1, 0, 0,
         0, 0, 1, 0,
         5, 7, 9, 1
-      ]
+      ],
     );
 
     deepEqual(
@@ -72,7 +72,7 @@ describe("mat4", () => {
         202, 228, 254, 280,
         314, 356, 398, 440,
         426, 484, 542, 600
-      ]
+      ],
     );
   });
   it("invert() should invert a mat4", () => {
@@ -84,7 +84,7 @@ describe("mat4", () => {
         0, 1, 0, 0,
         0, 0, 1, 0,
         -1, -2, -3, 1
-      ]
+      ],
     );
   });
   it("transpose() should transpose a mat4", () => {
@@ -96,7 +96,7 @@ describe("mat4", () => {
         0, 1, 0, 2,
         0, 0, 1, 3,
         0, 0, 0, 1
-      ]
+      ],
     );
   });
   it("translate() should translate a matrix by a vector", () => {
@@ -108,7 +108,7 @@ describe("mat4", () => {
         5, 6, 7, 8,
         9, 10, 11, 12,
         51, 58, 65, 72
-      ]
+      ],
     );
     deepEqual(
       mat4.translate(mat4.copy(IDENTITY_MAT4), ONE_TWO_THREE_VEC3),
@@ -118,7 +118,7 @@ describe("mat4", () => {
         0, 1, 0, 0,
         0, 0, 1, 0,
         1, 2, 3, 1
-      ]
+      ],
     );
   });
   it("rotate() should rotate a matrix by an angle at an axis", () => {
@@ -130,7 +130,7 @@ describe("mat4", () => {
         0, 1, 0, 0,
         1, 0, Math.cos(Math.PI * 0.5), 0,
         0, 0, 0, 1,
-      ]
+      ],
     );
   });
   it("scale() should scale a mat4 by a vector", () => {
@@ -142,7 +142,7 @@ describe("mat4", () => {
         0, 2, 0, 0,
         0, 0, 3, 0,
         1, 2, 3, 1
-      ]
+      ],
     );
 
     deepEqual(
@@ -153,7 +153,7 @@ describe("mat4", () => {
         10, 12, 14, 16,
         27, 30, 33, 36,
         13, 14, 15, 16
-      ]
+      ],
     );
   });
   it("fromQuat() should set matrix to a quaternion", () => {
@@ -165,7 +165,7 @@ describe("mat4", () => {
         0, 1, 0, 0,
         1, 0, 0, 0,
         0, 0, 0, 1
-      ]
+      ],
     );
   });
   it("fromTranslationRotationScale() should set a matrix to the TRS matrix", () => {
@@ -174,16 +174,16 @@ describe("mat4", () => {
         mat4.create(),
         ORIGIN,
         [0, 0, 0, 1],
-        [1, 1, 1]
+        [1, 1, 1],
       ),
-      IDENTITY_MAT4
+      IDENTITY_MAT4,
     );
     deepEqual(
       mat4.fromTranslationRotationScale(
         mat4.create(),
         Y_UP,
         [0, 0, 0, 1],
-        Array(3).fill(2)
+        Array(3).fill(2),
       ),
       // prettier-ignore
       [
@@ -191,7 +191,7 @@ describe("mat4", () => {
         0, 2, 0, 0,
         0, 0, 2, 0,
         0, 1, 0, 1
-      ]
+      ],
     );
   });
   it("fromMat3() should set a 4x4 matrix to a 3x3 matrix", () => {
@@ -206,7 +206,7 @@ describe("mat4", () => {
         0, -1, 0, 0,
         0, 0, 0, -1,
         0, 0, 1, 0
-      ]
+      ],
     );
   });
   it("perspective() should create a perspective matrix", () => {
@@ -218,7 +218,7 @@ describe("mat4", () => {
         0, 1, 0, 0,
         0, 0, -1, -1,
         0, 0, 0, 0
-      ]
+      ],
     );
   });
   it("ortho() should create a ortho matrix", () => {
@@ -230,7 +230,7 @@ describe("mat4", () => {
         0, 1, 0, 0,
         0, 0, -1, 0,
         0, 0, 0, 1
-      ]
+      ],
     );
   });
   it("lookAt() should calculate a lookAt matrix from position, target and up vectors", () => {
@@ -242,7 +242,7 @@ describe("mat4", () => {
         0, 0, 1, 0,
         0, 0, 0, 0,
         0, 0, -1, 1
-      ]
+      ],
     );
   });
   describe("targetTo()", () => {
@@ -255,7 +255,7 @@ describe("mat4", () => {
         0, 0, 0, 0,
         0, 1, 0, 0,
         0, 1, 0, 1
-      ]
+      ],
       );
     });
     it("direction independent from distance", () => {
@@ -267,7 +267,7 @@ describe("mat4", () => {
           0, 0, 0, 0,
           0, 1, 0, 0,
           0, 1, 0, 1
-        ]
+        ],
       );
     });
     it("up", () => {
@@ -279,7 +279,7 @@ describe("mat4", () => {
           0, 0, 0, 0,
           0, 1, 0, 0,
           0, 1, 0, 1
-        ]
+        ],
       );
       deepEqual(
         mat4.targetTo(mat4.create(), Y_UP, ORIGIN, X_UP),
@@ -289,7 +289,7 @@ describe("mat4", () => {
           1, 0, 0, 0,
           0, 1, 0, 0,
           0, 1, 0, 1
-        ]
+        ],
       );
       deepEqual(
         mat4.targetTo(mat4.create(), Y_UP, ORIGIN, X_DOWN),
@@ -299,7 +299,7 @@ describe("mat4", () => {
           -1, 0, 0, 0,
           0, 1, 0, 0,
           0, 1, 0, 1
-        ]
+        ],
       );
       deepEqual(
         mat4.targetTo(mat4.create(), Y_UP, ORIGIN, Z_UP),
@@ -309,7 +309,7 @@ describe("mat4", () => {
           0, 0, 1, 0,
           0, 1, 0, 0,
           0, 1, 0, 1
-        ]
+        ],
       );
       deepEqual(
         mat4.targetTo(mat4.create(), Y_UP, ORIGIN, Z_DOWN),
@@ -319,7 +319,7 @@ describe("mat4", () => {
           0, 0, -1, 0,
           0, 1, 0, 0,
           0, 1, 0, 1
-        ]
+        ],
       );
     });
   });

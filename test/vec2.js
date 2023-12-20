@@ -42,7 +42,7 @@ describe("vec2", () => {
   it("addScaled() should add two vectors after scaling the second one", () => {
     deepEqual(
       vec2.addScaled(vec2.copy(DEFAULT_VEC2), vec2.copy(ONE_VEC2), 2),
-      TWO_VEC2
+      TWO_VEC2,
     );
   });
   it("dot() calculate the dot product of two vectors", () => {
@@ -69,7 +69,7 @@ describe("vec2", () => {
     deepEqual(vec2.normalize(vec2.copy(ONE_VEC2)), ONE_VEC2_NORMALISED);
     deepEqual(
       vec2.normalize(vec2.copy(ONE_TWO_VEC2)),
-      [0.4472135954999579, 0.8944271909999159]
+      [0.4472135954999579, 0.8944271909999159],
     );
   });
   it("distance() calculate the distance between two vectors", () => {

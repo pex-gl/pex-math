@@ -48,7 +48,7 @@ describe("vec3", () => {
   it("addScaled() should add two vectors after scaling the second one", () => {
     deepEqual(
       vec3.addScaled(vec3.copy(DEFAULT_VEC3), vec3.copy(ONE_VEC3), 2),
-      TWO_VEC3
+      TWO_VEC3,
     );
   });
   it("multMat4() should multiply a vector by a matrix", () => {
@@ -56,7 +56,7 @@ describe("vec3", () => {
     deepEqual(vec3.multMat4(vec3.copy(ONE_VEC3), IDENTITY_MAT4), ONE_VEC3);
     deepEqual(
       vec3.multMat4(vec3.copy(ONE_VEC3), ONE_TWO_THREE_MAT4),
-      [2, 3, 4]
+      [2, 3, 4],
     );
   });
   it("multQuat() should multiply a vector by a quaternion", () => {
@@ -79,7 +79,7 @@ describe("vec3", () => {
     deepEqual(vec3.cross(vec3.copy(TWO_VEC3), TWO_VEC3), DEFAULT_VEC3);
     deepEqual(
       vec3.cross(vec3.copy(ONE_TWO_THREE_VEC3), FOUR_FIVE_SIX_VEC3),
-      [-3, 6, -3]
+      [-3, 6, -3],
     );
   });
   it("length() calculate the length of a vector", () => {
@@ -99,14 +99,14 @@ describe("vec3", () => {
     deepEqual(vec3.normalize(vec3.copy(ONE_VEC3)), ONE_VEC3_NORMALISED);
     deepEqual(
       vec3.normalize(vec3.copy(ONE_TWO_THREE_VEC3)),
-      [0.2672612419124244, 0.5345224838248488, 0.8017837257372732]
+      [0.2672612419124244, 0.5345224838248488, 0.8017837257372732],
     );
   });
   it("distance() calculate the distance between two vectors", () => {
     deepEqual(vec3.distance(DEFAULT_VEC3, Y_UP), 1);
     deepEqual(
       vec3.distance(ONE_TWO_THREE_VEC3, FOUR_FIVE_SIX_VEC3),
-      5.196152422706632
+      5.196152422706632,
     );
   });
   it("distanceSq() should calculate the squared distance between two vectors", () => {
@@ -124,7 +124,7 @@ describe("vec3", () => {
   it("lerp() should linearly interpolates between two vectors", () => {
     deepEqual(
       vec3.lerp(vec3.copy(DEFAULT_VEC3), ONE_VEC3, 0.5),
-      [0.5, 0.5, 0.5]
+      [0.5, 0.5, 0.5],
     );
     deepEqual(vec3.lerp([-1, -1, -1], DEFAULT_VEC3, 0.5), [-0.5, -0.5, -0.5]);
   });
