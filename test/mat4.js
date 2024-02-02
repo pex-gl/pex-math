@@ -15,6 +15,7 @@ import {
   ORIGIN,
   Z_UP,
   Z_DOWN,
+  ONE_VEC3,
 } from "./common.js";
 
 const ONE_MAT4 = Object.freeze(Array(16).fill(1));
@@ -174,7 +175,7 @@ describe("mat4", () => {
         mat4.create(),
         ORIGIN,
         [0, 0, 0, 1],
-        [1, 1, 1],
+        ONE_VEC3,
       ),
       IDENTITY_MAT4,
     );
@@ -251,11 +252,11 @@ describe("mat4", () => {
         mat4.targetTo(mat4.create(), Y_UP, ORIGIN, Y_UP),
         // prettier-ignore
         [
-        0, 0, 0, 0,
-        0, 0, 0, 0,
-        0, 1, 0, 0,
-        0, 1, 0, 1
-      ],
+          0, 0, 0, 0,
+          0, 0, 0, 0,
+          0, 1, 0, 0,
+          0, 1, 0, 1
+        ],
       );
     });
     it("direction independent from distance", () => {
@@ -320,6 +321,113 @@ describe("mat4", () => {
           0, 1, 0, 0,
           0, 1, 0, 1
         ],
+      );
+    });
+  });
+  describe("fromDirection()", () => {
+    it("should set a matrix to identity when direction is +Z", () => {
+      deepEqual(mat4.fromDirection(mat4.create(), Z_UP, Y_UP), IDENTITY_MAT4);
+    });
+    it("should set a matrix to y up from a direction", () => {
+      deepEqual(
+        mat4.fromDirection(mat4.create(), Y_UP, Y_UP),
+        // prettier-ignore
+        [
+          0, 0, 0, 0,
+          0, 0, 0, 0,
+          0, 1, 0, 0,
+          0, 0, 0, 1
+        ],
+      );
+    });
+    it("should set a matrix to y down from a direction", () => {
+      deepEqual(
+        mat4.fromDirection(mat4.create(), Y_DOWN, Y_UP),
+        // prettier-ignore
+        [
+          0, 0, 0, 0,
+          0, 0, 0, 0,
+          0, -1, 0, 0,
+          0, 0, 0, 1
+        ],
+      );
+    });
+    it("should set a matrix from a direction", () => {
+      deepAlmostEqual(
+        mat4.fromDirection(mat4.create(), ONE_VEC3, Y_UP),
+        // prettier-ignore
+        [
+           0.7071068,         0, -0.7071068, 0,
+          -0.4082483, 0.8164966, -0.4082483, 0,
+           0.5773503, 0.5773503,  0.5773503, 0,
+           0, 0, 0, 1,
+        ],
+      );
+    });
+    it("direction independent from distance", () => {
+      deepEqual(
+        mat4.fromDirection(mat4.create(), [0, 0, 100], Y_UP),
+        IDENTITY_MAT4,
+      );
+    });
+    it("up", () => {
+      deepEqual(
+        mat4.fromDirection(mat4.create(), Y_UP, Y_DOWN),
+        // prettier-ignore
+        [
+          0, 0, 0, 0,
+          0, 0, 0, 0,
+          0, 1, 0, 0,
+          0, 0, 0, 1
+        ],
+      );
+      deepEqual(
+        mat4.fromDirection(mat4.create(), Y_UP, X_UP),
+        // prettier-ignore
+        [
+          0, 0, 1, 0,
+          1, 0, 0, 0,
+          0, 1, 0, 0,
+          0, 0, 0, 1
+        ],
+      );
+      deepEqual(
+        mat4.fromDirection(mat4.create(), Y_UP, X_DOWN),
+        // prettier-ignore
+        [
+          0, 0, -1, 0,
+          -1, 0, 0, 0,
+          0, 1, 0, 0,
+          0, 0, 0, 1
+        ],
+      );
+      deepEqual(
+        mat4.fromDirection(mat4.create(), Y_UP, Z_UP),
+        // prettier-ignore
+        [
+          -1, 0, 0, 0,
+          0, 0, 1, 0,
+          0, 1, 0, 0,
+          0, 0, 0, 1
+        ],
+      );
+      deepEqual(
+        mat4.fromDirection(mat4.create(), Y_UP, Z_DOWN),
+        // prettier-ignore
+        [
+          1, 0, 0, 0,
+          0, 0, -1, 0,
+          0, 1, 0, 0,
+          0, 0, 0, 1
+        ],
+      );
+    });
+  });
+  describe("fromPointToPoint()", () => {
+    it("should set a matrix to identity when from is origin and to is +Z", () => {
+      deepEqual(
+        mat4.fromPointToPoint(mat4.create(), ORIGIN, Z_UP, Y_UP),
+        IDENTITY_MAT4,
       );
     });
   });

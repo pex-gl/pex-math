@@ -5,16 +5,16 @@ import {
   deepAlmostEqual,
   IDENTITY_MAT4,
   ONE_TWO_THREE_MAT4,
+  ONE_VEC3,
   Y_QUAT,
   Y_UP,
+  Y_DOWN,
+  ONE_TWO_THREE_VEC3,
 } from "./common.js";
 
 const DEFAULT_VEC3 = Object.freeze([0, 0, 0]);
-const Y_DOWN = Object.freeze([0, -1, 0]);
-const ONE_VEC3 = Object.freeze([1, 1, 1]);
 const ONE_VEC3_NORMALISED = Object.freeze(Array(3).fill(0.5773502691896258));
 const TWO_VEC3 = Object.freeze([2, 2, 2]);
-const ONE_TWO_THREE_VEC3 = Object.freeze([1, 2, 3]);
 const FOUR_FIVE_SIX_VEC3 = Object.freeze([4, 5, 6]);
 
 describe("vec3", () => {
