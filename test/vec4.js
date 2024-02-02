@@ -1,7 +1,7 @@
 import { describe, it } from "node:test";
 import { deepEqual, notStrictEqual, ok } from "node:assert";
 import { vec4 } from "../index.js";
-import { IDENTITY_MAT4, ONE_TWO_THREE_MAT4 } from "./common.js";
+import { IDENTITY_MAT4, ONE_TWO_THREE_MAT4, ONE_VEC3 } from "./common.js";
 
 const DEFAULT_VEC4 = Object.freeze([0, 0, 0, 1]);
 const ONE_VEC4 = Object.freeze([1, 1, 1, 1]);
@@ -40,7 +40,7 @@ describe("vec4", () => {
     deepEqual(vec4.addScaled([0, 0, 0, 0], vec4.copy(ONE_VEC4), 2), TWO_VEC4);
   });
   it("fromVec3() should create a vec4 from vec3", () => {
-    deepEqual(vec4.fromVec3(vec4.create(), [1, 1, 1]), ONE_VEC4);
+    deepEqual(vec4.fromVec3(vec4.create(), ONE_VEC3), ONE_VEC4);
   });
   it("multMat4() should multiply a vector by a matrix", () => {
     deepEqual(vec4.multMat4(vec4.create(), IDENTITY_MAT4), DEFAULT_VEC4);

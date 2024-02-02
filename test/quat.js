@@ -247,6 +247,27 @@ describe("quat", () => {
     // Opposite
     deepAlmostEqual(quat.targetTo(quat.create(), X_UP, X_DOWN), Y_QUAT);
   });
+  it("fromDirection() should set a quaternion from a direction", () => {
+    deepEqual(
+      quat.normalize(quat.fromDirection(quat.create(), Z_UP, Y_UP)),
+      IDENTITY_QUAT,
+    );
+    // Right angle
+    deepAlmostEqual(
+      quat.fromDirection(quat.create(), Z_UP, vec3.add(vec3.copy(Z_UP), X_DOWN)),
+      Z_QUAT,
+    );
+    // Opposite
+    deepAlmostEqual(quat.fromDirection(quat.create(), Z_UP, X_DOWN), Z_QUAT);
+  });
+  describe("fromPointToPoint()", () => {
+    it("should set a quat to identity when from is origin and to is +Z", () => {
+      deepEqual(
+        quat.fromPointToPoint(quat.create(), ORIGIN, Z_UP, Y_UP),
+        IDENTITY_QUAT,
+      );
+    });
+  });
   it("slerp() should spherical linear interpolate between two quaternions", () => {
     // Same
     deepEqual(

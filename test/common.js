@@ -30,6 +30,7 @@ export const X_QUAT = Object.freeze([0.7071068, 0, 0, 0.7071068]);
 export const Y_QUAT = Object.freeze([0, 0.7071068, 0, 0.7071068]);
 export const Z_QUAT = Object.freeze([0, 0, 0.7071068, 0.7071068]);
 
+export const ONE_VEC3 = Object.freeze([1, 1, 1]);
 export const ONE_TWO_VEC2 = Object.freeze([1, 2]);
 export const ONE_TWO_THREE_VEC3 = Object.freeze([1, 2, 3]);
 // prettier-ignore
