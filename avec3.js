@@ -1,4 +1,7 @@
 /** @module avec3 */
+import * as vec3 from "./vec3.js";
+
+const TEMP_VEC3 = vec3.create();
 
 /**
  * Sets a vector components.
@@ -9,7 +12,7 @@
  * @param {number} z
  */
 export function set3(a, i, x, y, z) {
-  a[i * 3 + 0] = x;
+  a[i * 3] = x;
   a[i * 3 + 1] = y;
   a[i * 3 + 2] = z;
 }
@@ -101,7 +104,6 @@ export function addScaled(a, i, b, j, s) {
  * @param {number} i
  * @param {import("./types.js").amat4} m
  * @param {number} j
- * @returns {import("./types.js").avec3}
  */
 export function multMat4(a, i, m, j) {
   const x = a[i * 3];
@@ -109,7 +111,7 @@ export function multMat4(a, i, m, j) {
   const z = a[i * 3 + 2];
 
   a[i * 3] =
-    m[j * 16 + 0] * x + m[j * 16 + 4] * y + m[j * 16 + 8] * z + m[j * 16 + 12];
+    m[j * 16] * x + m[j * 16 + 4] * y + m[j * 16 + 8] * z + m[j * 16 + 12];
   a[i * 3 + 1] =
     m[j * 16 + 1] * x + m[j * 16 + 5] * y + m[j * 16 + 9] * z + m[j * 16 + 13];
   a[i * 3 + 2] =
@@ -122,7 +124,6 @@ export function multMat4(a, i, m, j) {
  * @param {number} i
  * @param {import("./types.js").aquat} q
  * @param {number} j
- * @returns {import("./types.js").avec3}
  */
 export function multQuat(a, i, q, j) {
   const x = a[i * 3];
@@ -142,8 +143,6 @@ export function multQuat(a, i, q, j) {
   a[i * 3] = ix * qw + iw * -qx + iy * -qz - iz * -qy;
   a[i * 3 + 1] = iy * qw + iw * -qy + iz * -qx - ix * -qz;
   a[i * 3 + 2] = iz * qw + iw * -qz + ix * -qy - iy * -qx;
-
-  return a;
 }
 
 /**
@@ -152,6 +151,7 @@ export function multQuat(a, i, q, j) {
  * @param {number} i
  * @param {import("./types.js").avec3} b
  * @param {number} j
+ * @returns {number}
  */
 export function dot(a, i, b, j) {
   return (
@@ -293,6 +293,46 @@ export function lerp(a, i, b, j, t) {
   a[i * 3] = x + (b[j * 3] - x) * t;
   a[i * 3 + 1] = y + (b[j * 3 + 1] - y) * t;
   a[i * 3 + 2] = z + (b[j * 3 + 2] - z) * t;
+}
+
+/**
+ * Executes a function once for each array element.
+ * @param {import("./types.js").avec3} a
+ * @param {import("./types.js").iterativeCallback} callbackFn
+ */
+export function forEach(a, callbackFn) {
+  for (let i = 0; i < a.length / 3; i++) {
+    TEMP_VEC3[0] = a[i * 3];
+    TEMP_VEC3[1] = a[i * 3 + 1];
+    TEMP_VEC3[2] = a[i * 3 + 2];
+    callbackFn(TEMP_VEC3, i, a);
+    a[i * 3] = TEMP_VEC3[0];
+    a[i * 3 + 1] = TEMP_VEC3[1];
+    a[i * 3 + 2] = TEMP_VEC3[2];
+  }
+}
+
+/**
+ * Creates a new array populated with the results of calling a provided function on every element in the calling array.
+ * @param {import("./types.js").avec3} a
+ * @param {import("./types.js").iterativeCallback} callbackFn
+ * @returns {import("./types.js").avec3}
+ */
+export function map(a, callbackFn) {
+  const b = new a.constructor(a.length);
+  const element = new a.constructor(3);
+
+  for (let i = 0; i < a.length / 3; i++) {
+    element[0] = a[i * 3];
+    element[1] = a[i * 3 + 1];
+    element[2] = a[i * 3 + 2];
+    const returnValue = callbackFn(element, i, a);
+    b[i * 3] = returnValue[0];
+    b[i * 3 + 1] = returnValue[1];
+    b[i * 3 + 2] = returnValue[2];
+  }
+
+  return b;
 }
 
 /**

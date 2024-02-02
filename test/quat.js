@@ -53,15 +53,15 @@ describe("quat", () => {
     deepEqual(quat.mult(quat.copy(ONE_QUAT), IDENTITY_QUAT), ONE_QUAT);
     deepEqual(
       quat.mult(quat.copy(ONE_QUAT), ONE_TWO_THREE_FOUR_QUAT),
-      [6, 4, 8, -2]
+      [6, 4, 8, -2],
     );
     deepEqual(
       quat.mult(quat.copy(ONE_TWO_THREE_FOUR_QUAT), FIVE_SIX_SEVEN_HEIGHT_QUAT),
-      [24, 48, 48, -6]
+      [24, 48, 48, -6],
     );
     deepEqual(
       quat.mult(quat.copy(FIVE_SIX_SEVEN_HEIGHT_QUAT), ONE_TWO_THREE_FOUR_QUAT),
-      [32, 32, 56, -6]
+      [32, 32, 56, -6],
     );
   });
   it("invert() should invert a quaternion", () => {
@@ -69,7 +69,7 @@ describe("quat", () => {
     deepEqual(quat.invert(quat.copy(ONE_QUAT)), [-0.25, -0.25, -0.25, 0.25]);
     deepAlmostEqual(
       quat.invert(quat.copy(ONE_TWO_THREE_FOUR_QUAT)),
-      [-0.033333, -0.066666, -0.1, 0.133333]
+      [-0.033333, -0.066666, -0.1, 0.133333],
     );
   });
   it("conjugate() should conjugate a quaternion", () => {
@@ -77,7 +77,7 @@ describe("quat", () => {
     deepEqual(quat.conjugate(quat.copy(ONE_QUAT)), [-1, -1, -1, 1]);
     deepEqual(
       quat.conjugate(quat.copy(ONE_TWO_THREE_FOUR_QUAT)),
-      [-1, -2, -3, 4]
+      [-1, -2, -3, 4],
     );
   });
   it("length() should calculate the length of a quaternion", () => {
@@ -96,7 +96,7 @@ describe("quat", () => {
       [
         0.18257418583505536, 0.3651483716701107, 0.5477225575051661,
         0.7302967433402214,
-      ]
+      ],
     );
   });
   it("dot() should calculate the dot product of two vectors", () => {
@@ -107,7 +107,7 @@ describe("quat", () => {
     deepEqual(quat.dot(TWO_QUAT, TWO_QUAT), 16);
     deepEqual(
       quat.dot(ONE_TWO_THREE_FOUR_QUAT, FIVE_SIX_SEVEN_HEIGHT_QUAT),
-      70
+      70,
     );
   });
   it("fromEuler() should set euler angles to a quaternion", () => {
@@ -115,29 +115,29 @@ describe("quat", () => {
     deepAlmostEqual(
       quat.fromEuler(
         quat.create(),
-        [90, 0, 0].map((n) => utils.toRadians(n))
+        [90, 0, 0].map((n) => utils.toRadians(n)),
       ),
-      X_QUAT
+      X_QUAT,
     );
     deepAlmostEqual(
       quat.fromEuler(
         quat.create(),
-        [0, 90, 0].map((n) => utils.toRadians(n))
+        [0, 90, 0].map((n) => utils.toRadians(n)),
       ),
-      Y_QUAT
+      Y_QUAT,
     );
     deepAlmostEqual(
       quat.fromEuler(
         quat.create(),
-        [0, 0, 90].map((n) => utils.toRadians(n))
+        [0, 0, 90].map((n) => utils.toRadians(n)),
       ),
-      Z_QUAT
+      Z_QUAT,
     );
   });
   it("fromAxisAngle() should set the angle at an axis of a quaternion", () => {
     deepAlmostEqual(
       quat.fromAxisAngle(quat.create(), Y_UP_QUAT, Math.PI * 0.5),
-      Y_QUAT
+      Y_QUAT,
     );
   });
   it("fromAxes() should set a quaternion from orthonormal base xyz", () => {
@@ -156,9 +156,9 @@ describe("quat", () => {
           1, 0, 0,
           0, 0, 1,
           0, -1, 0,
-        ]
+        ],
       ),
-      X_QUAT
+      X_QUAT,
     );
     deepAlmostEqual(
       quat.fromMat3(
@@ -168,9 +168,9 @@ describe("quat", () => {
           0, 0, -1,
           0, 1, 0,
           1, 0, 0,
-        ]
+        ],
       ),
-      Y_QUAT
+      Y_QUAT,
     );
     deepAlmostEqual(
       quat.fromMat3(
@@ -180,9 +180,9 @@ describe("quat", () => {
           0, 1, 0,
           -1, 0, 0,
           0, 0, 1,
-        ]
+        ],
       ),
-      Z_QUAT
+      Z_QUAT,
     );
   });
   it("fromMat4() should set a quaternion to a 4x4 matrix", () => {
@@ -196,9 +196,9 @@ describe("quat", () => {
           0, 0, 1, 0,
           0, -1, 0, 0,
           0, 0, 0, 1
-        ]
+        ],
       ),
-      X_QUAT
+      X_QUAT,
     );
     deepAlmostEqual(
       quat.fromMat4(
@@ -209,9 +209,9 @@ describe("quat", () => {
           0, 1, 0, 0,
           1, 0, 0, 0,
           0, 0, 0, 1
-        ]
+        ],
       ),
-      Y_QUAT
+      Y_QUAT,
     );
     deepAlmostEqual(
       quat.fromMat4(
@@ -222,9 +222,9 @@ describe("quat", () => {
           -1, 0, 0, 0,
           0, 0, 1, 0,
           0, 0, 0, 1
-        ]
+        ],
       ),
-      Z_QUAT
+      Z_QUAT,
     );
   });
   it("fromTo() should set a quaternion to represent the shortest rotation from one vector to another", () => {
@@ -237,12 +237,12 @@ describe("quat", () => {
   it("targetTo() should set a quaternion from a vector to another", () => {
     deepEqual(
       quat.normalize(quat.targetTo(quat.create(), Y_UP, Y_UP)),
-      IDENTITY_QUAT
+      IDENTITY_QUAT,
     );
     // Right angle
     deepAlmostEqual(
       quat.targetTo(quat.create(), Y_UP, vec3.add(vec3.copy(Y_UP), X_DOWN)),
-      Y_QUAT
+      Y_QUAT,
     );
     // Opposite
     deepAlmostEqual(quat.targetTo(quat.create(), X_UP, X_DOWN), Y_QUAT);
@@ -251,15 +251,15 @@ describe("quat", () => {
     // Same
     deepEqual(
       quat.slerp(quat.copy(IDENTITY_QUAT), IDENTITY_QUAT, 0),
-      IDENTITY_QUAT
+      IDENTITY_QUAT,
     );
     deepEqual(
       quat.slerp(quat.copy(IDENTITY_QUAT), IDENTITY_QUAT, 0.5),
-      IDENTITY_QUAT
+      IDENTITY_QUAT,
     );
     deepEqual(
       quat.slerp(quat.copy(IDENTITY_QUAT), IDENTITY_QUAT, 1),
-      IDENTITY_QUAT
+      IDENTITY_QUAT,
     );
     deepEqual(quat.slerp(quat.copy(ONE_QUAT), ONE_QUAT, 0), ONE_QUAT);
     deepEqual(quat.slerp(quat.copy(ONE_QUAT), ONE_QUAT, 0.5), ONE_QUAT);
@@ -268,50 +268,50 @@ describe("quat", () => {
       quat.slerp(
         quat.copy(ONE_TWO_THREE_FOUR_QUAT),
         ONE_TWO_THREE_FOUR_QUAT,
-        0
+        0,
       ),
-      ONE_TWO_THREE_FOUR_QUAT
+      ONE_TWO_THREE_FOUR_QUAT,
     );
     deepEqual(
       quat.slerp(
         quat.copy(ONE_TWO_THREE_FOUR_QUAT),
         ONE_TWO_THREE_FOUR_QUAT,
-        0.5
+        0.5,
       ),
-      ONE_TWO_THREE_FOUR_QUAT
+      ONE_TWO_THREE_FOUR_QUAT,
     );
     deepEqual(
       quat.slerp(
         quat.copy(ONE_TWO_THREE_FOUR_QUAT),
         ONE_TWO_THREE_FOUR_QUAT,
-        1
+        1,
       ),
-      ONE_TWO_THREE_FOUR_QUAT
+      ONE_TWO_THREE_FOUR_QUAT,
     );
     //
     deepEqual(
       quat.slerp(
         quat.copy(ONE_TWO_THREE_FOUR_QUAT),
         FIVE_SIX_SEVEN_HEIGHT_QUAT,
-        0
+        0,
       ),
-      ONE_TWO_THREE_FOUR_QUAT
+      ONE_TWO_THREE_FOUR_QUAT,
     );
     deepEqual(
       quat.slerp(
         quat.copy(ONE_TWO_THREE_FOUR_QUAT),
         FIVE_SIX_SEVEN_HEIGHT_QUAT,
-        0.5
+        0.5,
       ),
-      [3, 4, 5, 6]
+      [3, 4, 5, 6],
     );
     deepEqual(
       quat.slerp(
         quat.copy(ONE_TWO_THREE_FOUR_QUAT),
         FIVE_SIX_SEVEN_HEIGHT_QUAT,
-        1
+        1,
       ),
-      FIVE_SIX_SEVEN_HEIGHT_QUAT
+      FIVE_SIX_SEVEN_HEIGHT_QUAT,
     );
   });
 });

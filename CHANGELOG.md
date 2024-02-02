@@ -2,6 +2,31 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+# [4.0.0-alpha.5](https://github.com/pex-gl/pex-math/compare/v4.0.0-alpha.4...v4.0.0-alpha.5) (2023-08-01)
+
+
+### Features
+
+* add avec2 ([cf3298f](https://github.com/pex-gl/pex-math/commit/cf3298f52816ca6e6f35fa2a7cc7756591be01ab))
+* add forEach/map to avec ([13099cd](https://github.com/pex-gl/pex-math/commit/13099cd2edbc5da8ffd171540324a196e288b288))
+
+
+
+# [4.0.0-alpha.4](https://github.com/pex-gl/pex-math/compare/v4.0.0-alpha.3...v4.0.0-alpha.4) (2023-05-31)
+
+
+### Bug Fixes
+
+* remove array returns in avec ([25fe7ba](https://github.com/pex-gl/pex-math/commit/25fe7babacb92128140489d8857f7fd69e36eba6))
+
+
+### Features
+
+* add avec multMat4 and avec3.multQuat ([1a9ea22](https://github.com/pex-gl/pex-math/commit/1a9ea224c3cb9208e904784b3a83379ecd7614ce))
+* add utils.prevPowerOfTwo ([68456d7](https://github.com/pex-gl/pex-math/commit/68456d78ba24230b3f1fe4e1b840aae7b0508dbc))
+
+
+
 # [4.0.0-alpha.3](https://github.com/pex-gl/pex-math/compare/v4.0.0-alpha.2...v4.0.0-alpha.3) (2022-10-15)
 
 

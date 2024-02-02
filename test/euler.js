@@ -14,19 +14,19 @@ describe("euler", () => {
 
     deepEqual(
       euler.fromQuat(euler.create(), X_QUAT),
-      [90, 0, 0].map((n) => utils.toRadians(n))
+      [90, 0, 0].map((n) => utils.toRadians(n)),
     );
     deepEqual(
       euler.fromQuat(euler.create(), Y_QUAT),
-      [0, 90, 0].map((n) => utils.toRadians(n))
+      [0, 90, 0].map((n) => utils.toRadians(n)),
     );
     deepEqual(
       euler.fromQuat(euler.create(), [0.7071068, 0, 0.7071068, 0]),
-      [0, 90, 0].map((n) => utils.toRadians(n))
+      [0, 90, 0].map((n) => utils.toRadians(n)),
     );
     deepEqual(
       euler.fromQuat(euler.create(), Z_QUAT),
-      [0, 0, 90].map((n) => utils.toRadians(n))
+      [0, 0, 90].map((n) => utils.toRadians(n)),
     );
   });
 });

@@ -6,7 +6,7 @@ export function deepAlmostEqual(a, b, epsilon = 0.001) {
     }
     if (Math.abs(a[i] - b[i]) > epsilon) {
       throw new Error(
-        `${a} deepAlmostEqual ${b} (diff=${Math.abs(a[i] - b[i])})`
+        `${a} deepAlmostEqual ${b} (diff=${Math.abs(a[i] - b[i])})`,
       );
     }
   }

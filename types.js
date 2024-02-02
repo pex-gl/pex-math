@@ -58,4 +58,13 @@
  * @typedef {number} Radians
  */
 
+/**
+ * Callback for iterating typed arrays.
+ *
+ * @callback iterativeCallback
+ * @param {vec3} element
+ * @param {number} index
+ * @param {avec3} array
+ */
+
 export {};

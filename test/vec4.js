@@ -47,17 +47,17 @@ describe("vec4", () => {
     deepEqual(vec4.multMat4(vec4.copy(ONE_VEC4), IDENTITY_MAT4), ONE_VEC4);
     deepEqual(
       vec4.multMat4(vec4.copy(ONE_VEC4), ONE_TWO_THREE_MAT4),
-      [2, 3, 4, 1]
+      [2, 3, 4, 1],
     );
   });
   it("lerp() should linearly interpolates between two vectors", () => {
     deepEqual(
       vec4.lerp(vec4.copy(DEFAULT_VEC4), ONE_VEC4, 0.5),
-      [0.5, 0.5, 0.5, 1]
+      [0.5, 0.5, 0.5, 1],
     );
     deepEqual(
       vec4.lerp([-1, -1, -1, -1], DEFAULT_VEC4, 0.5),
-      [-0.5, -0.5, -0.5, 0]
+      [-0.5, -0.5, -0.5, 0],
     );
   });
   it("toString() should print a vector to a string", () => {

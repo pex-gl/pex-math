@@ -50,7 +50,7 @@ describe("mat2x3", () => {
         1, 0,
         0, 1,
         4, 6,
-      ]
+      ],
     );
 
     deepEqual(
@@ -60,7 +60,7 @@ describe("mat2x3", () => {
         7, 10,
         15, 22,
         28, 40,
-      ]
+      ],
     );
   });
   it("translate() should translate a matrix by a vector", () => {
@@ -71,7 +71,7 @@ describe("mat2x3", () => {
         1, 2,
         3, 4,
         12, 16,
-      ]
+      ],
     );
     deepEqual(
       mat2x3.translate(mat2x3.copy(IDENTITY_MAT2X3), ONE_TWO_VEC2),
@@ -80,7 +80,7 @@ describe("mat2x3", () => {
         1, 0,
         0, 1,
         1, 2,
-      ]
+      ],
     );
   });
   it("rotate() should rotate a matrix by an angle", () => {
@@ -91,7 +91,7 @@ describe("mat2x3", () => {
         0, 1,
         -1, 0,
         0, 0,
-      ]
+      ],
     );
     deepAlmostEqual(
       mat2x3.rotate(mat2x3.copy(IDENTITY_MAT2X3), Math.PI),
@@ -100,7 +100,7 @@ describe("mat2x3", () => {
         -1, 0,
         0, -1,
         0, 0,
-      ]
+      ],
     );
   });
   it("scale() should scale a mat2x3 by a vector", () => {
@@ -111,7 +111,7 @@ describe("mat2x3", () => {
         1, 0,
         0, 2,
         1, 2,
-      ]
+      ],
     );
 
     deepEqual(
@@ -121,7 +121,7 @@ describe("mat2x3", () => {
         1, 2,
         6, 8,
         5, 6
-      ]
+      ],
     );
   });
 });

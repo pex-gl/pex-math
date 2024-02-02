@@ -54,7 +54,7 @@ describe("mat3", () => {
         1, 0, 0,
         0, 1, 0,
         4, 6, 1,
-      ]
+      ],
     );
 
     deepEqual(
@@ -64,7 +64,7 @@ describe("mat3", () => {
         30, 36, 42,
         66, 81, 96,
         102, 126, 150
-      ]
+      ],
     );
   });
   it("transpose() should transpose a mat3", () => {
@@ -75,7 +75,7 @@ describe("mat3", () => {
         1, 0, 1,
         0, 1, 2,
         0, 0, 1,
-      ]
+      ],
     );
   });
   it("fromQuat() should set matrix to a quaternion", () => {
@@ -86,7 +86,7 @@ describe("mat3", () => {
         0, 0, -1,
         0, 1, 0,
         1, 0, 0,
-      ]
+      ],
     );
   });
   it("fromMat2x3() should set a 4x4 matrix to a 3x3 matrix", () => {

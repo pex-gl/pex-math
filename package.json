@@ -1,6 +1,6 @@
 {
   "name": "pex-math",
-  "version": "4.0.0-alpha.3",
+  "version": "4.0.0-alpha.5",
   "description": "Array-based vector, quaternion and matrix math with utils for PEX.",
   "keywords": [
     "pex",
@@ -38,17 +38,16 @@
     "build": "npx snowdev build",
     "dev": "npx snowdev dev",
     "release": "npx snowdev release",
-    "test": "c8 node --test",
-    "test:watch": "node --test --watch test"
+    "test": "node --test --experimental-test-coverage",
+    "test:watch": "node --test --watch"
   },
   "devDependencies": {
-    "c8": "^7.13.0",
     "gl-matrix": "^3.4.3",
     "nanobench": "^2.1.1"
   },
   "engines": {
-    "node": ">=16.0.0",
-    "npm": ">=7.0.0"
+    "node": ">=20.0.0",
+    "npm": ">=9.6.4"
   },
   "snowdev": {
     "dependencies": []
