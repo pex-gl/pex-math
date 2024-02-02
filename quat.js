@@ -289,15 +289,27 @@ export function targetTo(a, eye, target, up) {
 }
 
 /**
- * Sets a quaternion from a point to another.
+ * Sets a quaternion from a direction
+ * Note: we assume +Z facing models.
  * @param {import("./types.js").quat} a
- * @param {import("./types.js").vec3} eye
- * @param {import("./types.js").vec3} target
+ * @param {import("./types.js").vec3} direction
  * @param {import("./types.js").vec3} [up=Y_UP]
  * @returns {import("./types.js").quat}
  */
-export function fromPointToPoint(a, eye, target, up) {
-  return fromMat4(a, mat4.fromPointToPoint(TEMP_MAT4, eye, target, up));
+export function fromDirection(a, direction, up) {
+  return fromMat4(a, mat4.fromDirection(TEMP_MAT4, direction, up));
+}
+
+/**
+ * Sets a quaternion from a point to another.
+ * @param {import("./types.js").quat} a
+ * @param {import("./types.js").vec3} from
+ * @param {import("./types.js").vec3} to
+ * @param {import("./types.js").vec3} [up=Y_UP]
+ * @returns {import("./types.js").quat}
+ */
+export function fromPointToPoint(a, from, to, up) {
+  return fromMat4(a, mat4.fromPointToPoint(TEMP_MAT4, from, to, up));
 }
 
 /**

@@ -762,7 +762,7 @@ export function lookAt(
   a,
   [eyex, eyey, eyez],
   [targetx, targety, targetz],
-  [upx, upy, upz] = Y_UP
+  [upx, upy, upz] = Y_UP,
 ) {
   if (
     Math.abs(eyex - targetx) < EPSILON &&
@@ -839,7 +839,7 @@ export function targetTo(
   a,
   [eyex, eyey, eyez],
   [targetx, targety, targetz],
-  [upx, upy, upz] = Y_UP
+  [upx, upy, upz] = Y_UP,
 ) {
   let z0 = eyex - targetx;
   let z1 = eyey - targety;
@@ -887,23 +887,14 @@ export function targetTo(
 }
 
 /**
- * Sets a matrix from a point to another.
+ * Sets a matrix from a direction.
+ * Note: we assume +Z facing models.
  * @param {import("./types.js").mat4} a
- * @param {import("./types.js").vec3} from
- * @param {import("./types.js").vec3} to
+ * @param {import("./types.js").vec3} direction
  * @param {import("./types.js").vec3} [up=Y_UP]
  * @returns {import("./types.js").mat4}
  */
-export function fromPointToPoint(
-  a,
-  [eyex, eyey, eyez],
-  [targetx, targety, targetz],
-  [upx, upy, upz] = Y_UP
-) {
-  let z0 = targetx - eyex;
-  let z1 = targety - eyey;
-  let z2 = targetz - eyez;
-
+export function fromDirection(a, [z0, z1, z2], [upx, upy, upz] = Y_UP) {
   let len = z0 * z0 + z1 * z1 + z2 * z2;
 
   if (len > 0) {
@@ -956,4 +947,21 @@ export function fromPointToPoint(
   a[14] = 0;
   a[15] = 1;
   return a;
+}
+
+/**
+ * Sets a matrix from a point to another.
+ * @param {import("./types.js").mat4} a
+ * @param {import("./types.js").vec3} from
+ * @param {import("./types.js").vec3} to
+ * @param {import("./types.js").vec3} [up=Y_UP]
+ * @returns {import("./types.js").mat4}
+ */
+export function fromPointToPoint(
+  a,
+  [fromX, fromY, fromZ],
+  [toX, toY, toZ],
+  up,
+) {
+  return fromDirection(a, [toX - fromX, toY - fromY, toZ - fromZ], up);
 }
