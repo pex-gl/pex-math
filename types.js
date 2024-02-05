@@ -62,9 +62,9 @@
  * Callback for iterating typed arrays.
  *
  * @callback iterativeCallback
- * @param {vec3} element
+ * @param {vec2|vec3|vec4} element
  * @param {number} index
- * @param {avec3} array
+ * @param {avec2|avec3|avec4} array
  */
 
 export {};
