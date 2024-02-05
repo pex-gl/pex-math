@@ -227,26 +227,6 @@ describe("quat", () => {
       Z_QUAT,
     );
   });
-  it("fromTo() should set a quaternion to represent the shortest rotation from one vector to another", () => {
-    deepEqual(quat.fromTo(quat.create(), Y_UP, Y_UP), IDENTITY_QUAT);
-    // Right angle
-    deepAlmostEqual(quat.fromTo(quat.create(), Y_UP, X_DOWN), Z_QUAT);
-    // Opposite
-    deepAlmostEqual(quat.fromTo(quat.create(), Y_UP, Y_DOWN), [0, 0, 0, 0]);
-  });
-  it("targetTo() should set a quaternion from a vector to another", () => {
-    deepEqual(
-      quat.normalize(quat.targetTo(quat.create(), Y_UP, Y_UP)),
-      IDENTITY_QUAT,
-    );
-    // Right angle
-    deepAlmostEqual(
-      quat.targetTo(quat.create(), Y_UP, vec3.add(vec3.copy(Y_UP), X_DOWN)),
-      Y_QUAT,
-    );
-    // Opposite
-    deepAlmostEqual(quat.targetTo(quat.create(), X_UP, X_DOWN), Y_QUAT);
-  });
   it("fromDirection() should set a quaternion from a direction", () => {
     deepEqual(
       quat.normalize(quat.fromDirection(quat.create(), Z_UP, Y_UP)),

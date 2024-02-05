@@ -257,38 +257,6 @@ export function fromMat4(a, m) {
 }
 
 /**
- * Sets a quaternion to represent the shortest rotation from one vector to another.
- * @param {import("./types.js").quat} a
- * @param {import("./types.js").vec3} v
- * @param {import("./types.js").vec3} w
- * @returns {import("./types.js").quat}
- */
-export const fromTo = (() => {
-  let u = [];
-  return (a, v, w) => {
-    u = vec3.cross(vec3.set(u, v), w);
-    a[0] = u[0];
-    a[1] = u[1];
-    a[2] = u[2];
-    a[3] = 1 + vec3.dot(v, w);
-    normalize(a);
-    return a;
-  };
-})();
-
-/**
- * Sets a quaternion from a vector to another.
- * @param {import("./types.js").quat} a
- * @param {import("./types.js").vec3} eye
- * @param {import("./types.js").vec3} target
- * @param {import("./types.js").vec3} [up=Y_UP]
- * @returns {import("./types.js").quat}
- */
-export function targetTo(a, eye, target, up) {
-  return fromMat4(a, mat4.targetTo(TEMP_MAT4, eye, target, up));
-}
-
-/**
  * Sets a quaternion from a direction
  * Note: we assume +Z facing models.
  * @param {import("./types.js").quat} a

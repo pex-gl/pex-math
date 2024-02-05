@@ -131,13 +131,6 @@ bench("mat4.lookAt", (b) => {
   run(() => mat4.lookAt(m, [0, 4, 2], [0, 0, 0], [0, 1, 0]));
   b.end();
 });
-bench("mat4.targetTo", (b) => {
-  const m = mat4.create();
-
-  b.start();
-  run(() => mat4.targetTo(m, [0, 4, 2], [0, 0, 0], [0, 1, 0]));
-  b.end();
-});
 
 // quat
 bench("quat.create", (b) => {
@@ -246,16 +239,6 @@ bench("quat.fromMat4", (b) => {
   run(() => quat.fromMat4(q, m));
   b.end();
 });
-bench("quat.fromTo", (b) => {
-  const q = quat.create();
-  const v = vec3.create();
-  const w = vec3.create();
-
-  b.start();
-  run(() => quat.fromTo(q, v, w));
-  b.end();
-});
-// bench("quat.targetTo", (b) => {});
 bench("quat.slerp", (b) => {
   const q1 = quat.create();
   const q2 = quat.create();
