@@ -1,6 +1,17 @@
 # Changelog
 
-All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
+All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
+
+# [4.0.0](https://github.com/pex-gl/pex-math/compare/v4.0.0-alpha.5...v4.0.0) (2024-02-05)
+
+
+### Features
+
+* add mat4.quat fromDirection ([f12548a](https://github.com/pex-gl/pex-math/commit/f12548a2ec1f7e96dc9bd5c95ed4abdcbb7eb198))
+* add quat/mat4. fromPointToPoint ([c9c8903](https://github.com/pex-gl/pex-math/commit/c9c8903cab9a6652b178918f842cab573f15d655))
+* remove quat/mat4.targetTo and quat.fromTo ([041313b](https://github.com/pex-gl/pex-math/commit/041313bc04a5be56fe1e9ab77060334bbba8aa28)), closes [#30](https://github.com/pex-gl/pex-math/issues/30) [#31](https://github.com/pex-gl/pex-math/issues/31)
+
+
 
 # [4.0.0-alpha.5](https://github.com/pex-gl/pex-math/compare/v4.0.0-alpha.4...v4.0.0-alpha.5) (2023-08-01)
 
