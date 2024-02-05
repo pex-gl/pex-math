@@ -3,11 +3,15 @@
  */
 
 /**
- * @typedef {TypedArray} avec4
+ * @typedef {TypedArray} avec2
  */
 
 /**
  * @typedef {TypedArray} avec3
+ */
+
+/**
+ * @typedef {TypedArray} avec4
  */
 
 /**

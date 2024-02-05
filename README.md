@@ -71,9 +71,11 @@ const identityMatrix = mat4.create();
 <dl>
 <dt><a href="#TypedArray">TypedArray</a> : <code>Int8Array</code> | <code>Uint8Array</code> | <code>Uint8ClampedArray</code> | <code>Int16Array</code> | <code>Uint16Array</code> | <code>Int32Array</code> | <code>Uint32Array</code> | <code>Float32Array</code> | <code>Float64Array</code> | <code>BigInt64Array</code> | <code>BigUint64Array</code></dt>
 <dd></dd>
-<dt><a href="#avec4">avec4</a> : <code><a href="#TypedArray">TypedArray</a></code></dt>
+<dt><a href="#avec2">avec2</a> : <code><a href="#TypedArray">TypedArray</a></code></dt>
 <dd></dd>
 <dt><a href="#avec3">avec3</a> : <code><a href="#TypedArray">TypedArray</a></code></dt>
+<dd></dd>
+<dt><a href="#avec4">avec4</a> : <code><a href="#TypedArray">TypedArray</a></code></dt>
 <dd></dd>
 <dt><a href="#amat4">amat4</a> : <code><a href="#TypedArray">TypedArray</a></code></dt>
 <dd></dd>
@@ -125,7 +127,7 @@ const identityMatrix = mat4.create();
   - [.limit(a, i, len)](#module_avec2.limit)
   - [.lerp(a, i, b, j, t)](#module_avec2.lerp)
   - [.forEach(a, callbackFn)](#module_avec2.forEach)
-  - [.map(a, callbackFn)](#module_avec2.map) ⇒ <code>avec2</code>
+  - [.map(a, callbackFn)](#module_avec2.map) ⇒ [<code>avec2</code>](#avec2)
   - [.toString(a, i, [precision])](#module_avec2.toString) ⇒ <code>string</code>
 
 <a name="module_avec2.set2"></a>
@@ -136,12 +138,12 @@ Sets a vector components.
 
 **Kind**: static method of [<code>avec2</code>](#module_avec2)
 
-| Param | Type                |
-| ----- | ------------------- |
-| a     | <code>avec2</code>  |
-| i     | <code>number</code> |
-| x     | <code>number</code> |
-| y     | <code>number</code> |
+| Param | Type                         |
+| ----- | ---------------------------- |
+| a     | [<code>avec2</code>](#avec2) |
+| i     | <code>number</code>          |
+| x     | <code>number</code>          |
+| y     | <code>number</code>          |
 
 <a name="module_avec2.set"></a>
 
@@ -151,12 +153,12 @@ Sets a vector to another vector.
 
 **Kind**: static method of [<code>avec2</code>](#module_avec2)
 
-| Param | Type                |
-| ----- | ------------------- |
-| a     | <code>avec2</code>  |
-| i     | <code>number</code> |
-| b     | <code>avec2</code>  |
-| j     | <code>number</code> |
+| Param | Type                         |
+| ----- | ---------------------------- |
+| a     | [<code>avec2</code>](#avec2) |
+| i     | <code>number</code>          |
+| b     | [<code>avec2</code>](#avec2) |
+| j     | <code>number</code>          |
 
 <a name="module_avec2.equals"></a>
 
@@ -166,12 +168,12 @@ Compares two vectors.
 
 **Kind**: static method of [<code>avec2</code>](#module_avec2)
 
-| Param | Type                |
-| ----- | ------------------- |
-| a     | <code>avec2</code>  |
-| i     | <code>number</code> |
-| b     | <code>avec2</code>  |
-| j     | <code>number</code> |
+| Param | Type                         |
+| ----- | ---------------------------- |
+| a     | [<code>avec2</code>](#avec2) |
+| i     | <code>number</code>          |
+| b     | [<code>avec2</code>](#avec2) |
+| j     | <code>number</code>          |
 
 <a name="module_avec2.add"></a>
 
@@ -181,12 +183,12 @@ Adds a vector to another.
 
 **Kind**: static method of [<code>avec2</code>](#module_avec2)
 
-| Param | Type                |
-| ----- | ------------------- |
-| a     | <code>avec2</code>  |
-| i     | <code>number</code> |
-| b     | <code>avec2</code>  |
-| j     | <code>number</code> |
+| Param | Type                         |
+| ----- | ---------------------------- |
+| a     | [<code>avec2</code>](#avec2) |
+| i     | <code>number</code>          |
+| b     | [<code>avec2</code>](#avec2) |
+| j     | <code>number</code>          |
 
 <a name="module_avec2.sub"></a>
 
@@ -196,12 +198,12 @@ Subtracts a vector from another.
 
 **Kind**: static method of [<code>avec2</code>](#module_avec2)
 
-| Param | Type                |
-| ----- | ------------------- |
-| a     | <code>avec2</code>  |
-| i     | <code>number</code> |
-| b     | <code>avec2</code>  |
-| j     | <code>number</code> |
+| Param | Type                         |
+| ----- | ---------------------------- |
+| a     | [<code>avec2</code>](#avec2) |
+| i     | <code>number</code>          |
+| b     | [<code>avec2</code>](#avec2) |
+| j     | <code>number</code>          |
 
 <a name="module_avec2.scale"></a>
 
@@ -211,11 +213,11 @@ Scales a vector by a number.
 
 **Kind**: static method of [<code>avec2</code>](#module_avec2)
 
-| Param | Type                |
-| ----- | ------------------- |
-| a     | <code>avec2</code>  |
-| i     | <code>number</code> |
-| s     | <code>number</code> |
+| Param | Type                         |
+| ----- | ---------------------------- |
+| a     | [<code>avec2</code>](#avec2) |
+| i     | <code>number</code>          |
+| s     | <code>number</code>          |
 
 <a name="module_avec2.addScaled"></a>
 
@@ -225,13 +227,13 @@ Adds two vectors after scaling the second one.
 
 **Kind**: static method of [<code>avec2</code>](#module_avec2)
 
-| Param | Type                |
-| ----- | ------------------- |
-| a     | <code>avec2</code>  |
-| i     | <code>number</code> |
-| b     | <code>avec2</code>  |
-| j     | <code>number</code> |
-| s     | <code>number</code> |
+| Param | Type                         |
+| ----- | ---------------------------- |
+| a     | [<code>avec2</code>](#avec2) |
+| i     | <code>number</code>          |
+| b     | [<code>avec2</code>](#avec2) |
+| j     | <code>number</code>          |
+| s     | <code>number</code>          |
 
 <a name="module_avec2.dot"></a>
 
@@ -241,12 +243,12 @@ Calculates the dot product of two vectors.
 
 **Kind**: static method of [<code>avec2</code>](#module_avec2)
 
-| Param | Type                |
-| ----- | ------------------- |
-| a     | <code>avec2</code>  |
-| i     | <code>number</code> |
-| b     | <code>avec2</code>  |
-| j     | <code>number</code> |
+| Param | Type                         |
+| ----- | ---------------------------- |
+| a     | [<code>avec2</code>](#avec2) |
+| i     | <code>number</code>          |
+| b     | [<code>avec2</code>](#avec2) |
+| j     | <code>number</code>          |
 
 <a name="module_avec2.length"></a>
 
@@ -256,10 +258,10 @@ Calculates the length of a vector.
 
 **Kind**: static method of [<code>avec2</code>](#module_avec2)
 
-| Param | Type                |
-| ----- | ------------------- |
-| a     | <code>avec2</code>  |
-| i     | <code>number</code> |
+| Param | Type                         |
+| ----- | ---------------------------- |
+| a     | [<code>avec2</code>](#avec2) |
+| i     | <code>number</code>          |
 
 <a name="module_avec2.lengthSq"></a>
 
@@ -269,10 +271,10 @@ Calculates the squared length of a vector.
 
 **Kind**: static method of [<code>avec2</code>](#module_avec2)
 
-| Param | Type                |
-| ----- | ------------------- |
-| a     | <code>avec2</code>  |
-| i     | <code>number</code> |
+| Param | Type                         |
+| ----- | ---------------------------- |
+| a     | [<code>avec2</code>](#avec2) |
+| i     | <code>number</code>          |
 
 <a name="module_avec2.normalize"></a>
 
@@ -282,10 +284,10 @@ Normalises a vector.
 
 **Kind**: static method of [<code>avec2</code>](#module_avec2)
 
-| Param | Type                |
-| ----- | ------------------- |
-| a     | <code>avec2</code>  |
-| i     | <code>number</code> |
+| Param | Type                         |
+| ----- | ---------------------------- |
+| a     | [<code>avec2</code>](#avec2) |
+| i     | <code>number</code>          |
 
 <a name="module_avec2.distance"></a>
 
@@ -295,12 +297,12 @@ Calculates the distance between two vectors.
 
 **Kind**: static method of [<code>avec2</code>](#module_avec2)
 
-| Param | Type                |
-| ----- | ------------------- |
-| a     | <code>avec2</code>  |
-| i     | <code>number</code> |
-| b     | <code>avec2</code>  |
-| j     | <code>number</code> |
+| Param | Type                         |
+| ----- | ---------------------------- |
+| a     | [<code>avec2</code>](#avec2) |
+| i     | <code>number</code>          |
+| b     | [<code>avec2</code>](#avec2) |
+| j     | <code>number</code>          |
 
 <a name="module_avec2.distanceSq"></a>
 
@@ -310,12 +312,12 @@ Calculates the squared distance between two vectors.
 
 **Kind**: static method of [<code>avec2</code>](#module_avec2)
 
-| Param | Type                |
-| ----- | ------------------- |
-| a     | <code>avec2</code>  |
-| i     | <code>number</code> |
-| b     | <code>avec2</code>  |
-| j     | <code>number</code> |
+| Param | Type                         |
+| ----- | ---------------------------- |
+| a     | [<code>avec2</code>](#avec2) |
+| i     | <code>number</code>          |
+| b     | [<code>avec2</code>](#avec2) |
+| j     | <code>number</code>          |
 
 <a name="module_avec2.limit"></a>
 
@@ -325,11 +327,11 @@ Limits a vector to a length.
 
 **Kind**: static method of [<code>avec2</code>](#module_avec2)
 
-| Param | Type                |
-| ----- | ------------------- |
-| a     | <code>avec2</code>  |
-| i     | <code>number</code> |
-| len   | <code>number</code> |
+| Param | Type                         |
+| ----- | ---------------------------- |
+| a     | [<code>avec2</code>](#avec2) |
+| i     | <code>number</code>          |
+| len   | <code>number</code>          |
 
 <a name="module_avec2.lerp"></a>
 
@@ -339,13 +341,13 @@ Linearly interpolates between two vectors.
 
 **Kind**: static method of [<code>avec2</code>](#module_avec2)
 
-| Param | Type                |
-| ----- | ------------------- |
-| a     | <code>avec2</code>  |
-| i     | <code>number</code> |
-| b     | <code>avec2</code>  |
-| j     | <code>number</code> |
-| t     | <code>number</code> |
+| Param | Type                         |
+| ----- | ---------------------------- |
+| a     | [<code>avec2</code>](#avec2) |
+| i     | <code>number</code>          |
+| b     | [<code>avec2</code>](#avec2) |
+| j     | <code>number</code>          |
+| t     | <code>number</code>          |
 
 <a name="module_avec2.forEach"></a>
 
@@ -357,12 +359,12 @@ Executes a function once for each array element.
 
 | Param      | Type                                                 |
 | ---------- | ---------------------------------------------------- |
-| a          | <code>avec2</code>                                   |
+| a          | [<code>avec2</code>](#avec2)                         |
 | callbackFn | [<code>iterativeCallback</code>](#iterativeCallback) |
 
 <a name="module_avec2.map"></a>
 
-### avec2.map(a, callbackFn) ⇒ <code>avec2</code>
+### avec2.map(a, callbackFn) ⇒ [<code>avec2</code>](#avec2)
 
 Creates a new array populated with the results of calling a provided function on every element in the calling array.
 
@@ -370,7 +372,7 @@ Creates a new array populated with the results of calling a provided function on
 
 | Param      | Type                                                 |
 | ---------- | ---------------------------------------------------- |
-| a          | <code>avec2</code>                                   |
+| a          | [<code>avec2</code>](#avec2)                         |
 | callbackFn | [<code>iterativeCallback</code>](#iterativeCallback) |
 
 <a name="module_avec2.toString"></a>
@@ -381,11 +383,11 @@ Prints a vector to a string.
 
 **Kind**: static method of [<code>avec2</code>](#module_avec2)
 
-| Param       | Type                | Default        |
-| ----------- | ------------------- | -------------- |
-| a           | <code>avec2</code>  |                |
-| i           | <code>number</code> |                |
-| [precision] | <code>number</code> | <code>4</code> |
+| Param       | Type                         | Default        |
+| ----------- | ---------------------------- | -------------- |
+| a           | [<code>avec2</code>](#avec2) |                |
+| i           | <code>number</code>          |                |
+| [precision] | <code>number</code>          | <code>4</code> |
 
 <a name="module_avec3"></a>
 
@@ -1273,7 +1275,8 @@ Sets a 3x3 matrix to a 4x4 matrix.
   - [.perspective(a, fovy, aspectRatio, near, far)](#module_mat4.perspective) ⇒ [<code>mat4</code>](#mat4)
   - [.ortho(a, left, right, bottom, top, near, far)](#module_mat4.ortho) ⇒ [<code>mat4</code>](#mat4)
   - [.lookAt(a, from, to, [up])](#module_mat4.lookAt) ⇒ [<code>mat4</code>](#mat4)
-  - [.targetTo(a, from, to, [up])](#module_mat4.targetTo) ⇒ [<code>mat4</code>](#mat4)
+  - [.fromDirection(a, direction, [up])](#module_mat4.fromDirection) ⇒ [<code>mat4</code>](#mat4)
+  - [.fromPointToPoint(a, from, to, [up])](#module_mat4.fromPointToPoint) ⇒ [<code>mat4</code>](#mat4)
 
 <a name="module_mat4.create"></a>
 
@@ -1540,11 +1543,26 @@ Calculates a lookAt matrix from position, target and up vectors.
 | to    | [<code>vec3</code>](#vec3) |                   |
 | [up]  | [<code>vec3</code>](#vec3) | <code>Y_UP</code> |
 
-<a name="module_mat4.targetTo"></a>
+<a name="module_mat4.fromDirection"></a>
 
-### mat4.targetTo(a, from, to, [up]) ⇒ [<code>mat4</code>](#mat4)
+### mat4.fromDirection(a, direction, [up]) ⇒ [<code>mat4</code>](#mat4)
 
-Sets a matrix from a vector to another.
+Sets a matrix from a direction.
+Note: we assume +Z facing models.
+
+**Kind**: static method of [<code>mat4</code>](#module_mat4)
+
+| Param     | Type                       | Default           |
+| --------- | -------------------------- | ----------------- |
+| a         | [<code>mat4</code>](#mat4) |                   |
+| direction | [<code>vec3</code>](#vec3) |                   |
+| [up]      | [<code>vec3</code>](#vec3) | <code>Y_UP</code> |
+
+<a name="module_mat4.fromPointToPoint"></a>
+
+### mat4.fromPointToPoint(a, from, to, [up]) ⇒ [<code>mat4</code>](#mat4)
+
+Sets a matrix from a point to another.
 
 **Kind**: static method of [<code>mat4</code>](#module_mat4)
 
@@ -1562,7 +1580,6 @@ Sets a matrix from a vector to another.
 - [quat](#module_quat)
   - [.set](#module_quat.set) ⇒ [<code>quat</code>](#quat)
   - [.equals](#module_quat.equals) ⇒ <code>boolean</code>
-  - [.fromTo](#module_quat.fromTo) ⇒ [<code>quat</code>](#quat)
   - [.toString](#module_quat.toString) ⇒ [<code>quat</code>](#quat)
   - [.create()](#module_quat.create) ⇒ [<code>quat</code>](#quat)
   - [.identity(a)](#module_quat.identity) ⇒ [<code>quat</code>](#quat)
@@ -1578,7 +1595,8 @@ Sets a matrix from a vector to another.
   - [.fromAxes(a, x, y, z)](#module_quat.fromAxes) ⇒ [<code>quat</code>](#quat)
   - [.fromMat3(a, m)](#module_quat.fromMat3) ⇒ [<code>quat</code>](#quat)
   - [.fromMat4(a, m)](#module_quat.fromMat4) ⇒ [<code>quat</code>](#quat)
-  - [.targetTo(a, eye, target, [up])](#module_quat.targetTo) ⇒ [<code>quat</code>](#quat)
+  - [.fromDirection(a, direction, [up])](#module_quat.fromDirection) ⇒ [<code>quat</code>](#quat)
+  - [.fromPointToPoint(a, from, to, [up])](#module_quat.fromPointToPoint) ⇒ [<code>quat</code>](#quat)
   - [.slerp(a, b, t)](#module_quat.slerp) ⇒ [<code>quat</code>](#quat)
 
 <a name="module_quat.set"></a>
@@ -1606,20 +1624,6 @@ Compares two quaternions.
 | ----- | -------------------------- |
 | a     | [<code>quat</code>](#quat) |
 | b     | [<code>quat</code>](#quat) |
-
-<a name="module_quat.fromTo"></a>
-
-### quat.fromTo ⇒ [<code>quat</code>](#quat)
-
-Sets a quaternion to represent the shortest rotation from one vector to another.
-
-**Kind**: static constant of [<code>quat</code>](#module_quat)
-
-| Param | Type                       |
-| ----- | -------------------------- |
-| a     | [<code>quat</code>](#quat) |
-| v     | [<code>vec3</code>](#vec3) |
-| w     | [<code>vec3</code>](#vec3) |
 
 <a name="module_quat.toString"></a>
 
@@ -1807,20 +1811,35 @@ Sets a quaternion to a 4x4 matrix.
 | a     | [<code>quat</code>](#quat) |
 | m     | [<code>mat4</code>](#mat4) |
 
-<a name="module_quat.targetTo"></a>
+<a name="module_quat.fromDirection"></a>
 
-### quat.targetTo(a, eye, target, [up]) ⇒ [<code>quat</code>](#quat)
+### quat.fromDirection(a, direction, [up]) ⇒ [<code>quat</code>](#quat)
 
-Sets a quaternion from a vector to another.
+Sets a quaternion from a direction
+Note: we assume +Z facing models.
 
 **Kind**: static method of [<code>quat</code>](#module_quat)
 
-| Param  | Type                       | Default           |
-| ------ | -------------------------- | ----------------- |
-| a      | [<code>quat</code>](#quat) |                   |
-| eye    | [<code>vec3</code>](#vec3) |                   |
-| target | [<code>vec3</code>](#vec3) |                   |
-| [up]   | [<code>vec3</code>](#vec3) | <code>Y_UP</code> |
+| Param     | Type                       | Default           |
+| --------- | -------------------------- | ----------------- |
+| a         | [<code>quat</code>](#quat) |                   |
+| direction | [<code>vec3</code>](#vec3) |                   |
+| [up]      | [<code>vec3</code>](#vec3) | <code>Y_UP</code> |
+
+<a name="module_quat.fromPointToPoint"></a>
+
+### quat.fromPointToPoint(a, from, to, [up]) ⇒ [<code>quat</code>](#quat)
+
+Sets a quaternion from a point to another.
+
+**Kind**: static method of [<code>quat</code>](#module_quat)
+
+| Param | Type                       | Default           |
+| ----- | -------------------------- | ----------------- |
+| a     | [<code>quat</code>](#quat) |                   |
+| from  | [<code>vec3</code>](#vec3) |                   |
+| to    | [<code>vec3</code>](#vec3) |                   |
+| [up]  | [<code>vec3</code>](#vec3) | <code>Y_UP</code> |
 
 <a name="module_quat.slerp"></a>
 
@@ -2008,7 +2027,7 @@ Returns the previous power of two.
 
 ### vec2.create() ⇒ [<code>vec2</code>](#vec2)
 
-Returns a new vec2 at 0, 0, 0.
+Returns a new vec2 at 0, 0.
 
 **Kind**: static method of [<code>vec2</code>](#module_vec2)
 <a name="module_vec2.copy"></a>
@@ -2669,14 +2688,19 @@ Prints a vector to a string.
 ## TypedArray : <code>Int8Array</code> \| <code>Uint8Array</code> \| <code>Uint8ClampedArray</code> \| <code>Int16Array</code> \| <code>Uint16Array</code> \| <code>Int32Array</code> \| <code>Uint32Array</code> \| <code>Float32Array</code> \| <code>Float64Array</code> \| <code>BigInt64Array</code> \| <code>BigUint64Array</code>
 
 **Kind**: global typedef
-<a name="avec4"></a>
+<a name="avec2"></a>
 
-## avec4 : [<code>TypedArray</code>](#TypedArray)
+## avec2 : [<code>TypedArray</code>](#TypedArray)
 
 **Kind**: global typedef
 <a name="avec3"></a>
 
 ## avec3 : [<code>TypedArray</code>](#TypedArray)
+
+**Kind**: global typedef
+<a name="avec4"></a>
+
+## avec4 : [<code>TypedArray</code>](#TypedArray)
 
 **Kind**: global typedef
 <a name="amat4"></a>
@@ -2747,11 +2771,11 @@ Callback for iterating typed arrays.
 
 **Kind**: global typedef
 
-| Param   | Type                         |
-| ------- | ---------------------------- |
-| element | [<code>vec3</code>](#vec3)   |
-| index   | <code>number</code>          |
-| array   | [<code>avec3</code>](#avec3) |
+| Param   | Type                                                                                         |
+| ------- | -------------------------------------------------------------------------------------------- |
+| element | [<code>vec2</code>](#vec2) \| [<code>vec3</code>](#vec3) \| [<code>vec4</code>](#vec4)       |
+| index   | <code>number</code>                                                                          |
+| array   | [<code>avec2</code>](#avec2) \| [<code>avec3</code>](#avec3) \| [<code>avec4</code>](#avec4) |
 
 <!-- api-end -->
 
