@@ -1,5 +1,4 @@
 /** @module quat */
-import * as vec3 from "./vec3.js";
 import * as vec4 from "./vec4.js";
 import * as mat4 from "./mat4.js";
 import { EPSILON } from "./utils.js";
