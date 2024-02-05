@@ -1,11 +1,22 @@
-module.exports = {
-  mat2x3: require('./mat2x3'),
-  mat3: require('./mat3'),
-  mat4: require('./mat4'),
-  vec2: require('./vec2'),
-  vec3: require('./vec3'),
-  vec4: require('./vec4'),
-  quat: require('./quat'),
-  euler: require('./euler'),
-  utils: require('./utils')
-}
+/**
+ * Re-export vec, avec, mat, quat, euler and utils
+ * @module index
+ */
+
+export * as mat2x3 from "./mat2x3.js";
+export * as mat3 from "./mat3.js";
+export * as mat4 from "./mat4.js";
+
+export * as vec2 from "./vec2.js";
+export * as vec3 from "./vec3.js";
+export * as vec4 from "./vec4.js";
+
+export * as avec2 from "./avec2.js";
+export * as avec3 from "./avec3.js";
+export * as avec4 from "./avec4.js";
+
+export * as quat from "./quat.js";
+
+export * as euler from "./euler.js";
+
+export * as utils from "./utils.js";

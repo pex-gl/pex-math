@@ -1,23 +1,28 @@
-const clamp = require('./utils').clamp
-function create () {
-  return [0, 0, 0]
+/** @module euler */
+
+import { clamp } from "./utils.js";
+
+/**
+ * Create a new euler angles [0, 0, 0]: vec3 array of [x, y, z] rotation [yaw, pitch, roll] in radians.
+ * @returns {import("./types.js").euler}
+ */
+export function create() {
+  return [0, 0, 0];
 }
 
-// assumes XYZ order
-function fromQuat (v, q) {
-  var sqx = q[0] * q[0]
-  var sqy = q[1] * q[1]
-  var sqz = q[2] * q[2]
-  var sqw = q[3] * q[3]
-  v[0] = Math.atan2(2 * (q[0] * q[3] - q[1] * q[2]), (sqw - sqx - sqy + sqz))
-  v[1] = Math.asin(clamp(2 * (q[0] * q[2] + q[1] * q[3]), -1, 1))
-  v[2] = Math.atan2(2 * (q[2] * q[3] - q[0] * q[1]), (sqw + sqx - sqy - sqz))
-  return v
+/**
+ * Creates euler angles from quaternion. Assumes XYZ order of rotations.
+ * @param {import("./types.js").euler} a
+ * @param {import("./types.js").quat} q
+ * @returns {import("./types.js").euler}
+ */
+export function fromQuat(a, q) {
+  const sqx = q[0] * q[0];
+  const sqy = q[1] * q[1];
+  const sqz = q[2] * q[2];
+  const sqw = q[3] * q[3];
+  a[0] = Math.atan2(2 * (q[0] * q[3] - q[1] * q[2]), sqw - sqx - sqy + sqz);
+  a[1] = Math.asin(clamp(2 * (q[0] * q[2] + q[1] * q[3]), -1, 1));
+  a[2] = Math.atan2(2 * (q[2] * q[3] - q[0] * q[1]), sqw + sqx - sqy - sqz);
+  return a;
 }
-
-var Euler = {
-  create: create,
-  fromQuat: fromQuat
-}
-
-module.exports = Euler

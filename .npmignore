@@ -1,4 +1,11 @@
-test
+web_modules
+examples
 docs
-out
+coverage
+test
+.github
+screenshot.*
+index.html
+tsconfig.json
+.editorconfig
 benchmark
