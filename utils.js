@@ -53,8 +53,16 @@ export function smoothstep(n, min, max) {
  * @param {number} outEnd
  * @returns {number}
  */
-export function map(n, inStart, inEnd, outStart, outEnd) {
+export function remap(n, inStart, inEnd, outStart, outEnd) {
   return outStart + ((outEnd - outStart) * (n - inStart)) / (inEnd - inStart);
+}
+
+/**
+ * @deprecated Use "remap()"
+ * @ignore
+ */
+export function map(...args) {
+  return remap(...args);
 }
 
 /**

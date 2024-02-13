@@ -111,12 +111,13 @@ describe("utils", () => {
   it("map", () => {
     // TODO
     deepEqual(utils.map(0.1, 0.1, 0.2, 1, 2), 1);
-    deepEqual(utils.map(0.15, 0.1, 0.2, 1, 2), 1.5);
-    deepEqual(utils.map(0.2, 0.1, 0.2, 1, 2), 2);
+    deepEqual(utils.remap(0.1, 0.1, 0.2, 1, 2), 1);
+    deepEqual(utils.remap(0.15, 0.1, 0.2, 1, 2), 1.5);
+    deepEqual(utils.remap(0.2, 0.1, 0.2, 1, 2), 2);
 
-    deepEqual(utils.map(0.2, 0.1, 0.2, 2, 1), 1);
-    deepEqual(utils.map(0.15, 0.1, 0.2, 2, 1), 1.5);
-    deepEqual(utils.map(0.1, 0.1, 0.2, 2, 1), 2);
+    deepEqual(utils.remap(0.2, 0.1, 0.2, 2, 1), 1);
+    deepEqual(utils.remap(0.15, 0.1, 0.2, 2, 1), 1.5);
+    deepEqual(utils.remap(0.1, 0.1, 0.2, 2, 1), 2);
   });
 
   it("toRadians", () => {
