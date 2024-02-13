@@ -37,6 +37,8 @@ const identityMatrix = mat4.create();
 ## Modules
 
 <dl>
+<dt><a href="#module_pex-math">pex-math</a></dt>
+<dd></dd>
 <dt><a href="#module_avec2">avec2</a></dt>
 <dd></dd>
 <dt><a href="#module_avec3">avec3</a></dt>
@@ -45,9 +47,6 @@ const identityMatrix = mat4.create();
 <dd></dd>
 <dt><a href="#module_euler">euler</a></dt>
 <dd></dd>
-<dt><a href="#module_index">index</a></dt>
-<dd><p>Re-export vec, avec, mat, quat, euler and utils</p>
-</dd>
 <dt><a href="#module_mat2x3">mat2x3</a></dt>
 <dd></dd>
 <dt><a href="#module_mat3">mat3</a></dt>
@@ -106,6 +105,84 @@ const identityMatrix = mat4.create();
 </dd>
 </dl>
 
+<a name="module_pex-math"></a>
+
+## pex-math
+
+- [pex-math](#module_pex-math)
+  - [.mat2x3](#module_pex-math.mat2x3) : [<code>mat2x3</code>](#module_mat2x3)
+  - [.mat3](#module_pex-math.mat3) : [<code>mat3</code>](#module_mat3)
+  - [.mat4](#module_pex-math.mat4) : [<code>mat4</code>](#module_mat4)
+  - [.vec2](#module_pex-math.vec2) : [<code>vec2</code>](#module_vec2)
+  - [.vec3](#module_pex-math.vec3) : [<code>vec3</code>](#module_vec3)
+  - [.vec4](#module_pex-math.vec4) : [<code>vec4</code>](#module_vec4)
+  - [.avec2](#module_pex-math.avec2) : [<code>avec2</code>](#module_avec2)
+  - [.avec3](#module_pex-math.avec3) : [<code>avec3</code>](#module_avec3)
+  - [.avec4](#module_pex-math.avec4) : [<code>avec4</code>](#module_avec4)
+  - [.quat](#module_pex-math.quat) : [<code>quat</code>](#module_quat)
+  - [.euler](#module_pex-math.euler) : [<code>euler</code>](#module_euler)
+  - [.utils](#module_pex-math.utils) : [<code>utils</code>](#module_utils)
+
+<a name="module_pex-math.mat2x3"></a>
+
+### pex-math.mat2x3 : [<code>mat2x3</code>](#module_mat2x3)
+
+**Kind**: static property of [<code>pex-math</code>](#module_pex-math)
+<a name="module_pex-math.mat3"></a>
+
+### pex-math.mat3 : [<code>mat3</code>](#module_mat3)
+
+**Kind**: static property of [<code>pex-math</code>](#module_pex-math)
+<a name="module_pex-math.mat4"></a>
+
+### pex-math.mat4 : [<code>mat4</code>](#module_mat4)
+
+**Kind**: static property of [<code>pex-math</code>](#module_pex-math)
+<a name="module_pex-math.vec2"></a>
+
+### pex-math.vec2 : [<code>vec2</code>](#module_vec2)
+
+**Kind**: static property of [<code>pex-math</code>](#module_pex-math)
+<a name="module_pex-math.vec3"></a>
+
+### pex-math.vec3 : [<code>vec3</code>](#module_vec3)
+
+**Kind**: static property of [<code>pex-math</code>](#module_pex-math)
+<a name="module_pex-math.vec4"></a>
+
+### pex-math.vec4 : [<code>vec4</code>](#module_vec4)
+
+**Kind**: static property of [<code>pex-math</code>](#module_pex-math)
+<a name="module_pex-math.avec2"></a>
+
+### pex-math.avec2 : [<code>avec2</code>](#module_avec2)
+
+**Kind**: static property of [<code>pex-math</code>](#module_pex-math)
+<a name="module_pex-math.avec3"></a>
+
+### pex-math.avec3 : [<code>avec3</code>](#module_avec3)
+
+**Kind**: static property of [<code>pex-math</code>](#module_pex-math)
+<a name="module_pex-math.avec4"></a>
+
+### pex-math.avec4 : [<code>avec4</code>](#module_avec4)
+
+**Kind**: static property of [<code>pex-math</code>](#module_pex-math)
+<a name="module_pex-math.quat"></a>
+
+### pex-math.quat : [<code>quat</code>](#module_quat)
+
+**Kind**: static property of [<code>pex-math</code>](#module_pex-math)
+<a name="module_pex-math.euler"></a>
+
+### pex-math.euler : [<code>euler</code>](#module_euler)
+
+**Kind**: static property of [<code>pex-math</code>](#module_pex-math)
+<a name="module_pex-math.utils"></a>
+
+### pex-math.utils : [<code>utils</code>](#module_utils)
+
+**Kind**: static property of [<code>pex-math</code>](#module_pex-math)
 <a name="module_avec2"></a>
 
 ## avec2
@@ -944,12 +1021,6 @@ Creates euler angles from quaternion. Assumes XYZ order of rotations.
 | ----- | ---------------------------- |
 | a     | [<code>euler</code>](#euler) |
 | q     | [<code>quat</code>](#quat)   |
-
-<a name="module_index"></a>
-
-## index
-
-Re-export vec, avec, mat, quat, euler and utils
 
 <a name="module_mat2x3"></a>
 
@@ -1865,7 +1936,7 @@ Spherical linear interpolates between two quaternions.
   - [.lerp(a, b, t)](#module_utils.lerp) ⇒ <code>number</code>
   - [.clamp(n, min, max)](#module_utils.clamp) ⇒ <code>number</code>
   - [.smoothstep(n, min, max)](#module_utils.smoothstep) ⇒ <code>number</code>
-  - [.map(n, inStart, inEnd, outStart, outEnd)](#module_utils.map) ⇒ <code>number</code>
+  - [.remap(n, inStart, inEnd, outStart, outEnd)](#module_utils.remap) ⇒ <code>number</code>
   - [.toRadians(degrees)](#module_utils.toRadians) ⇒ [<code>Radians</code>](#Radians)
   - [.toDegrees(radians)](#module_utils.toDegrees) ⇒ [<code>Degrees</code>](#Degrees)
   - [.isPowerOfTwo(a)](#module_utils.isPowerOfTwo) ⇒ <code>boolean</code>
@@ -1924,9 +1995,9 @@ Smooth Hermite interpolation between 0 and 1
 | min   | <code>number</code> |
 | max   | <code>number</code> |
 
-<a name="module_utils.map"></a>
+<a name="module_utils.remap"></a>
 
-### utils.map(n, inStart, inEnd, outStart, outEnd) ⇒ <code>number</code>
+### utils.remap(n, inStart, inEnd, outStart, outEnd) ⇒ <code>number</code>
 
 Maps a number from one range to another.
 

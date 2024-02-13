@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+# [4.1.0](https://github.com/pex-gl/pex-math/compare/v4.0.0...v4.1.0) (2024-02-13)
+
+
+### Features
+
+* deprecate map in favor of remap ([e9aa6c5](https://github.com/pex-gl/pex-math/commit/e9aa6c5f278960120eebe33a1050d38355f9e290)), closes [#35](https://github.com/pex-gl/pex-math/issues/35)
+
+
+
 # [4.0.0](https://github.com/pex-gl/pex-math/compare/v4.0.0-alpha.5...v4.0.0) (2024-02-05)
 
 
