@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -47,7 +47,7 @@
       import "./benchmark/bench-gl-matrix.js";
       import "./benchmark/bench-pex.js";
 
-      setTimeout(() => {
+      setTimeout(async () => {
         console.log("[0] = gl-matrix / [1] = pex-math");
         const sortObject = (o) =>
           Object.keys(o)
@@ -55,6 +55,8 @@
             .reduce((r, k) => ((r[k] = o[k]), r), {});
 
         console.table(sortObject(window.benchLogs));
+
+        await import("./benchmark/bench.js");
       }, 3000);
     </script>
   </body>
