@@ -1,0 +1,11 @@
+{
+  "imports": {
+    "es-module-shims": "./es-module-shims.js",
+    "es-module-shims/debug": "./es-module-shims/debug.js",
+    "es-module-shims/wasm": "./es-module-shims/wasm.js",
+    "es-module-shims/typescript-transform": "./es-module-shims/typescript-transform.js",
+    "gl-matrix": "./gl-matrix.js",
+    "nanobench": "./nanobench.js",
+    "pex-gl": "./pex-gl.js"
+  }
+}

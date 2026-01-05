@@ -50,15 +50,14 @@
     "test:watch": "node --test --watch"
   },
   "devDependencies": {
-    "gl-matrix": "^3.4.3",
-    "nanobench": "^2.1.1"
+    "es-module-shims": "^2.8.0",
+    "gl-matrix": "^3.4.4",
+    "nanobench": "^2.1.1",
+    "pex-gl": "^3.0.2"
   },
   "engines": {
     "node": ">=22.0.0",
     "npm": ">=10.5.1",
-    "snowdev": ">=2.5.x"
-  },
-  "snowdev": {
-    "dependencies": []
+    "snowdev": ">=2.7.x"
   }
 }

@@ -5,59 +5,286 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>pex-math by pex-gl (https://github.com/pex-gl)</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Space+Mono:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
     <style>
       :root {
+        --font-heading: "Space Grotesk", sans-serif;
+        --font-mono: "Space Mono", monospace;
+
         --color-dark: #404040;
         --color-light: #f2f2f2;
         --color-accent: #fd5e62;
+        --color-blue-5: #f2f2fe;
+        --color-blue-5-rgba: rgba(0, 1, 242, 0.05);
+
+        --result-size: 200px;
       }
 
       body {
         margin: 0;
         overscroll-behavior: none;
-        font-family: sans-serif;
-        color: var(--color-light);
-        background-color: var(--color-dark);
+        font-family: var(--font-mono);
+        color: var(--color-dark);
+        background-color: var(--color-light);
       }
 
       main {
         padding: 0 20px;
+      }
+
+      .Results {
+        display: grid;
+        grid-gap: 0px;
+        grid-template-columns: repeat(auto-fill, var(--result-size));
+
+        > div {
+          width: var(--result-size);
+
+          > h3 {
+            margin: 0;
+          }
+        }
       }
     </style>
   </head>
   <body>
     <main>
       <h1>pex-math</h1>
-      <p>Open your console</p>
+      <div class="Results"></div>
     </main>
-    <script
-      async
-      src="https://ga.jspm.io/npm:es-module-shims@1.4.4/dist/es-module-shims.js"
-    ></script>
-    <script type="importmap">
-      {
-        "imports": {
-          "nanobench": "./benchmark/utils.js",
-          "gl-matrix": "https://unpkg.com/gl-matrix@3.4.3/esm/index.js"
+    <script async src="web_modules/es-module-shims.js" type="module"></script>
+    <script src="web_modules/import-map.json" type="importmap-shim"></script>
+    <script type="module-shim">
+      import { eases } from "./index.js";
+      import createRenderingContext from "pex-gl";
+
+      const subdivisions = 11;
+
+      const documentStyles = getComputedStyle(document.documentElement);
+      const size = parseInt(documentStyles.getPropertyValue("--result-size"));
+      const width = size;
+      const height = size;
+      const pixelRatio = 1;
+      const margin = size * 0.2;
+      const graphWidth = width - margin * 2;
+      const graphHeight = height - margin * 2;
+
+      const drawLine = (context, x1, y1, x2, y2, w = 1) => {
+        context.save();
+        context.lineWidth = w;
+        context.beginPath();
+        context.moveTo(x1, y1);
+        context.lineTo(x2, y2);
+        context.stroke();
+        context.closePath();
+        context.restore();
+      };
+
+      const drawPolyLine = (context, points, w = 1) => {
+        context.save();
+        context.lineWidth = w;
+        context.beginPath();
+        context.moveTo(...points[0]);
+        for (let i = 1; i < points.length; i++) {
+          context.lineTo(...points[i]);
         }
-      }
-    </script>
+        context.stroke();
+        context.closePath();
+        context.restore();
+      };
 
-    <script type="module">
-      import "./benchmark/bench-gl-matrix.js";
-      import "./benchmark/bench-pex.js";
+      const drawDisk = (context, x, y, r) => {
+        context.beginPath();
+        context.arc(x, y, r, 0, 2 * Math.PI);
+        context.fill();
+        context.closePath();
+      };
 
-      setTimeout(async () => {
-        console.log("[0] = gl-matrix / [1] = pex-math");
-        const sortObject = (o) =>
-          Object.keys(o)
-            .sort()
-            .reduce((r, k) => ((r[k] = o[k]), r), {});
+      const drawText = (context, text, x, y, props = {}) => {
+        context.save();
+        Object.assign(context, props);
+        context.scale(1, -1);
+        context.fillText(text, x, -y);
+        context.restore();
+      };
 
-        console.table(sortObject(window.benchLogs));
+      const draw = (title, ease, easeArgs, newRow) => {
+        const context = createRenderingContext({
+          type: "2d",
+          width,
+          height,
+          pixelRatio,
+        });
+        const canvas = context.canvas;
+        // canvas.style.width = `${width / window.devicePixelRatio}px`;
+        // canvas.style.height = `${height / window.devicePixelRatio}px`;
 
-        await import("./benchmark/bench.js");
-      }, 3000);
+        const containerElement = document.createElement("div");
+        if (newRow) {
+          Object.assign(containerElement.style, { gridColumnStart: 1 });
+        }
+        containerElement.appendChild(canvas);
+        document.querySelector(".Results").appendChild(containerElement);
+
+        // Clear
+        context.fillStyle = documentStyles.getPropertyValue("--color-light");
+        context.fillRect(0, 0, context.canvas.width, context.canvas.height);
+
+        // Draw
+        context.save();
+        context.translate(margin, height - margin);
+        context.scale(1, -1);
+
+        context.fillStyle = documentStyles.getPropertyValue(
+          "--color-blue-5-rgba",
+        );
+        context.fillRect(0, 0, graphWidth, graphHeight);
+
+        context.fillStyle = documentStyles.getPropertyValue("--color-dark");
+
+        context.font = `${size * 0.05}px ${documentStyles.getPropertyValue("--font-heading")}`;
+        drawText(context, title, graphWidth / 2, graphHeight + margin * 0.5, {
+          textAlign: "center",
+        });
+
+        context.font = `${size * 0.035}px ${documentStyles.getPropertyValue("--font-mono")}`;
+        drawLine(context, 0, 0, graphWidth, 0, graphWidth * 0.005);
+        drawLine(context, 0, 0, 0, graphHeight, graphWidth * 0.005);
+
+        const end = 1;
+
+        // Ticks
+        for (let x = 0; x <= 1 + Number.EPSILON; x += 0.5) {
+          const offset = graphWidth * 0.02;
+          const a = x * graphWidth;
+          const text = x.toFixed(2);
+          drawLine(context, a, -offset * 0.5, a, 0, graphWidth * 0.002);
+          drawText(context, text, a, -offset, {
+            textBaseline: "top",
+            textAlign: "center",
+          });
+          drawLine(context, -offset * 0.5, a, 0, a, graphWidth * 0.002);
+
+          if (x > 0) {
+            drawText(context, text, -offset, a, {
+              textBaseline: "middle",
+              textAlign: "right",
+            });
+          }
+        }
+
+        context.strokeStyle = context.fillStyle =
+          documentStyles.getPropertyValue("--color-accent");
+
+        for (let i = 0; i < subdivisions; i++) {
+          const x = i / (subdivisions - 1);
+
+          const y = ease(x, ...easeArgs);
+
+          drawLine(
+            context,
+            x * graphWidth,
+            y * graphHeight,
+            x * graphWidth,
+            0,
+            graphWidth * 0.0005,
+          );
+
+          drawDisk(
+            context,
+            x * graphWidth,
+            y * graphHeight,
+            graphWidth * 0.003,
+          );
+
+          drawText(
+            context,
+            y.toFixed(2),
+            x * graphWidth,
+            y * graphHeight + graphHeight * 0.02,
+            { textBaseline: "bottom", textAlign: "center" },
+          );
+        }
+
+        context.strokeStyle = documentStyles.getPropertyValue("--color-accent");
+
+        const pointsCount = size;
+        drawPolyLine(
+          context,
+          Array.from({ length: pointsCount }, (_, i) => [
+            (i / (pointsCount - 1)) * graphWidth,
+            ease(i / (pointsCount - 1), ...easeArgs) * graphHeight,
+          ]),
+          graphWidth * 0.005,
+        );
+
+        context.restore();
+      };
+      console.log(eases);
+
+      let type;
+      [
+        "sineIn",
+        "sineOut",
+        "sineInOut",
+
+        "quadIn",
+        "quadOut",
+        "quadInOut",
+
+        "cubicIn",
+        "cubicOut",
+        "cubicInOut",
+
+        "quartIn",
+        "quartOut",
+        "quartInOut",
+
+        "quintIn",
+        "quintOut",
+        "quintInOut",
+
+        "expoIn",
+        "expoOut",
+        "expoInOut",
+
+        "circIn",
+        "circOut",
+        "circInOut",
+
+        "backIn",
+        "backOut",
+        "backInOut",
+
+        "elasticIn",
+        "elasticOut",
+        "elasticInOut",
+
+        "bounceIn",
+        "bounceOut",
+        "bounceInOut",
+
+        "stepStart",
+        "stepEnd",
+        "stepNone",
+        "stepBoth",
+
+        "linear",
+      ].forEach((ease) => {
+        const newType = ease.match(/^[a-z]+/)?.[0] || "";
+        draw(
+          ease,
+          eases[ease],
+          ease.startsWith("step") ? [2] : [],
+          type !== newType,
+        );
+        type = newType;
+      });
     </script>
   </body>
 </html>
