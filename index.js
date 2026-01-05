@@ -72,6 +72,13 @@ export * as quat from "./quat.js";
 export * as euler from "./euler.js";
 
 /**
+ * @type {module:eases}
+ * @name eases
+ * @static
+ */
+export * as eases from "./eases.js";
+
+/**
  * @type {module:utils}
  * @name utils
  * @static

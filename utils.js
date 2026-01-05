@@ -6,6 +6,11 @@
 export const EPSILON = 0.000001;
 
 /**
+ * @constant {number}
+ */
+export const HALF_PI = Math.PI * 0.5;
+
+/**
  * @constant {import("./types.js").vec3}
  */
 export const Y_UP = Object.freeze([0, 1, 0]);
