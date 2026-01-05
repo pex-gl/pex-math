@@ -1,5 +1,5 @@
 import bench from "nanobench";
-import { avec3, vec3, quat } from "../index.js";
+import { avec3, vec3, quat, eases } from "../index.js";
 import { run } from "./utils.js";
 import { fromDirection } from "../mat4.js";
 import { Y_UP } from "../utils.js";
@@ -167,6 +167,42 @@ function fromDirectionNoDestructuring(a, dir, up = Y_UP) {
 
     run(() => {
       test(a, [1, 1, 1]);
+    });
+
+    b.end();
+  });
+});
+
+Object.keys(eases).forEach((ease) => {
+  const easeFn = eases[ease];
+  bench(ease, (b) => {
+    b.start();
+
+    run(() => {
+      easeFn(0);
+      easeFn(0.25);
+      easeFn(0.75);
+      easeFn(1);
+    });
+
+    b.end();
+  });
+
+  const bounds = (t) => {
+    if (t === 0) return 0;
+    if (t === 1) return 1;
+  };
+
+  const easeFnWithBounds = (t) => bounds(t) ?? easeFn(t);
+
+  bench(`${ease}WithBounds`, (b) => {
+    b.start();
+
+    run(() => {
+      easeFnWithBounds(0);
+      easeFnWithBounds(0.25);
+      easeFnWithBounds(0.75);
+      easeFnWithBounds(1);
     });
 
     b.end();
