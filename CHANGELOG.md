@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+# [4.2.0](https://github.com/pex-gl/pex-math/compare/v4.1.2...v4.2.0) (2026-01-12)
+
+
+### Features
+
+* add eases ([51e00f9](https://github.com/pex-gl/pex-math/commit/51e00f9793c84ff38d007b0ea900c1e768241cd7)), closes [#38](https://github.com/pex-gl/pex-math/issues/38)
+
+
+
 ## [4.1.2](https://github.com/pex-gl/pex-math/compare/v4.1.1...v4.1.2) (2025-07-11)
 
 

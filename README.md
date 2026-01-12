@@ -45,6 +45,8 @@ const identityMatrix = mat4.create();
 <dd></dd>
 <dt><a href="#module_avec4">avec4</a></dt>
 <dd></dd>
+<dt><a href="#module_eases">eases</a></dt>
+<dd></dd>
 <dt><a href="#module_euler">euler</a></dt>
 <dd></dd>
 <dt><a href="#module_mat2x3">mat2x3</a></dt>
@@ -103,6 +105,12 @@ const identityMatrix = mat4.create();
 <dt><a href="#iterativeCallback">iterativeCallback</a> : <code>function</code></dt>
 <dd><p>Callback for iterating typed arrays.</p>
 </dd>
+<dt><a href="#easeFn">easeFn</a> ⇒ <code>number</code></dt>
+<dd><p>Ease functions signature.</p>
+</dd>
+<dt><a href="#easeStepFn">easeStepFn</a> ⇒ <code>number</code></dt>
+<dd><p>Ease step functions signature.</p>
+</dd>
 </dl>
 
 <a name="module_pex-math"></a>
@@ -121,6 +129,7 @@ const identityMatrix = mat4.create();
   - [.avec4](#module_pex-math.avec4) : [<code>avec4</code>](#module_avec4)
   - [.quat](#module_pex-math.quat) : [<code>quat</code>](#module_quat)
   - [.euler](#module_pex-math.euler) : [<code>euler</code>](#module_euler)
+  - [.eases](#module_pex-math.eases) : [<code>eases</code>](#module_eases)
   - [.utils](#module_pex-math.utils) : [<code>utils</code>](#module_utils)
 
 <a name="module_pex-math.mat2x3"></a>
@@ -176,6 +185,11 @@ const identityMatrix = mat4.create();
 <a name="module_pex-math.euler"></a>
 
 ### pex-math.euler : [<code>euler</code>](#module_euler)
+
+**Kind**: static property of [<code>pex-math</code>](#module_pex-math)
+<a name="module_pex-math.eases"></a>
+
+### pex-math.eases : [<code>eases</code>](#module_eases)
 
 **Kind**: static property of [<code>pex-math</code>](#module_pex-math)
 <a name="module_pex-math.utils"></a>
@@ -994,6 +1008,222 @@ Prints a vector to a string.
 | i           | <code>number</code>          |                |
 | [precision] | <code>number</code>          | <code>4</code> |
 
+<a name="module_eases"></a>
+
+## eases
+
+- [eases](#module_eases)
+  - [.linear()](#module_eases.linear) : [<code>easeFn</code>](#easeFn)
+  - [.sineIn()](#module_eases.sineIn) : [<code>easeFn</code>](#easeFn)
+  - [.sineOut()](#module_eases.sineOut) : [<code>easeFn</code>](#easeFn)
+  - [.sineInOut()](#module_eases.sineInOut) : [<code>easeFn</code>](#easeFn)
+  - [.quadIn()](#module_eases.quadIn) : [<code>easeFn</code>](#easeFn)
+  - [.quadOut()](#module_eases.quadOut) : [<code>easeFn</code>](#easeFn)
+  - [.quadInOut()](#module_eases.quadInOut) : [<code>easeFn</code>](#easeFn)
+  - [.cubicIn()](#module_eases.cubicIn) : [<code>easeFn</code>](#easeFn)
+  - [.cubicOut()](#module_eases.cubicOut) : [<code>easeFn</code>](#easeFn)
+  - [.cubicInOut()](#module_eases.cubicInOut) : [<code>easeFn</code>](#easeFn)
+  - [.quartIn()](#module_eases.quartIn) : [<code>easeFn</code>](#easeFn)
+  - [.quartOut()](#module_eases.quartOut) : [<code>easeFn</code>](#easeFn)
+  - [.quartInOut()](#module_eases.quartInOut) : [<code>easeFn</code>](#easeFn)
+  - [.quintIn()](#module_eases.quintIn) : [<code>easeFn</code>](#easeFn)
+  - [.quintOut()](#module_eases.quintOut) : [<code>easeFn</code>](#easeFn)
+  - [.quintInOut()](#module_eases.quintInOut) : [<code>easeFn</code>](#easeFn)
+  - [.expoIn()](#module_eases.expoIn) : [<code>easeFn</code>](#easeFn)
+  - [.expoOut()](#module_eases.expoOut) : [<code>easeFn</code>](#easeFn)
+  - [.expoInOut()](#module_eases.expoInOut) : [<code>easeFn</code>](#easeFn)
+  - [.circIn()](#module_eases.circIn) : [<code>easeFn</code>](#easeFn)
+  - [.circOut()](#module_eases.circOut) : [<code>easeFn</code>](#easeFn)
+  - [.circInOut()](#module_eases.circInOut) : [<code>easeFn</code>](#easeFn)
+  - [.backIn()](#module_eases.backIn) : [<code>easeFn</code>](#easeFn)
+  - [.backOut()](#module_eases.backOut) : [<code>easeFn</code>](#easeFn)
+  - [.backInOut()](#module_eases.backInOut) : [<code>easeFn</code>](#easeFn)
+  - [.elasticIn()](#module_eases.elasticIn) : [<code>easeFn</code>](#easeFn)
+  - [.elasticOut()](#module_eases.elasticOut) : [<code>easeFn</code>](#easeFn)
+  - [.elasticInOut()](#module_eases.elasticInOut) : [<code>easeFn</code>](#easeFn)
+  - [.bounceIn()](#module_eases.bounceIn) : [<code>easeFn</code>](#easeFn)
+  - [.bounceOut()](#module_eases.bounceOut) : [<code>easeFn</code>](#easeFn)
+  - [.bounceInOut()](#module_eases.bounceInOut) : [<code>easeFn</code>](#easeFn)
+  - [.stepStart()](#module_eases.stepStart) : [<code>easeStepFn</code>](#easeStepFn)
+  - [.stepEnd()](#module_eases.stepEnd) : [<code>easeStepFn</code>](#easeStepFn)
+  - [.stepNone()](#module_eases.stepNone) : [<code>easeStepFn</code>](#easeStepFn)
+  - [.stepBoth()](#module_eases.stepBoth) : [<code>easeStepFn</code>](#easeStepFn)
+
+<a name="module_eases.linear"></a>
+
+### eases.linear() : [<code>easeFn</code>](#easeFn)
+
+**Kind**: static method of [<code>eases</code>](#module_eases)
+<a name="module_eases.sineIn"></a>
+
+### eases.sineIn() : [<code>easeFn</code>](#easeFn)
+
+**Kind**: static method of [<code>eases</code>](#module_eases)
+<a name="module_eases.sineOut"></a>
+
+### eases.sineOut() : [<code>easeFn</code>](#easeFn)
+
+**Kind**: static method of [<code>eases</code>](#module_eases)
+<a name="module_eases.sineInOut"></a>
+
+### eases.sineInOut() : [<code>easeFn</code>](#easeFn)
+
+**Kind**: static method of [<code>eases</code>](#module_eases)
+<a name="module_eases.quadIn"></a>
+
+### eases.quadIn() : [<code>easeFn</code>](#easeFn)
+
+**Kind**: static method of [<code>eases</code>](#module_eases)
+<a name="module_eases.quadOut"></a>
+
+### eases.quadOut() : [<code>easeFn</code>](#easeFn)
+
+**Kind**: static method of [<code>eases</code>](#module_eases)
+<a name="module_eases.quadInOut"></a>
+
+### eases.quadInOut() : [<code>easeFn</code>](#easeFn)
+
+**Kind**: static method of [<code>eases</code>](#module_eases)
+<a name="module_eases.cubicIn"></a>
+
+### eases.cubicIn() : [<code>easeFn</code>](#easeFn)
+
+**Kind**: static method of [<code>eases</code>](#module_eases)
+<a name="module_eases.cubicOut"></a>
+
+### eases.cubicOut() : [<code>easeFn</code>](#easeFn)
+
+**Kind**: static method of [<code>eases</code>](#module_eases)
+<a name="module_eases.cubicInOut"></a>
+
+### eases.cubicInOut() : [<code>easeFn</code>](#easeFn)
+
+**Kind**: static method of [<code>eases</code>](#module_eases)
+<a name="module_eases.quartIn"></a>
+
+### eases.quartIn() : [<code>easeFn</code>](#easeFn)
+
+**Kind**: static method of [<code>eases</code>](#module_eases)
+<a name="module_eases.quartOut"></a>
+
+### eases.quartOut() : [<code>easeFn</code>](#easeFn)
+
+**Kind**: static method of [<code>eases</code>](#module_eases)
+<a name="module_eases.quartInOut"></a>
+
+### eases.quartInOut() : [<code>easeFn</code>](#easeFn)
+
+**Kind**: static method of [<code>eases</code>](#module_eases)
+<a name="module_eases.quintIn"></a>
+
+### eases.quintIn() : [<code>easeFn</code>](#easeFn)
+
+**Kind**: static method of [<code>eases</code>](#module_eases)
+<a name="module_eases.quintOut"></a>
+
+### eases.quintOut() : [<code>easeFn</code>](#easeFn)
+
+**Kind**: static method of [<code>eases</code>](#module_eases)
+<a name="module_eases.quintInOut"></a>
+
+### eases.quintInOut() : [<code>easeFn</code>](#easeFn)
+
+**Kind**: static method of [<code>eases</code>](#module_eases)
+<a name="module_eases.expoIn"></a>
+
+### eases.expoIn() : [<code>easeFn</code>](#easeFn)
+
+**Kind**: static method of [<code>eases</code>](#module_eases)
+<a name="module_eases.expoOut"></a>
+
+### eases.expoOut() : [<code>easeFn</code>](#easeFn)
+
+**Kind**: static method of [<code>eases</code>](#module_eases)
+<a name="module_eases.expoInOut"></a>
+
+### eases.expoInOut() : [<code>easeFn</code>](#easeFn)
+
+**Kind**: static method of [<code>eases</code>](#module_eases)
+<a name="module_eases.circIn"></a>
+
+### eases.circIn() : [<code>easeFn</code>](#easeFn)
+
+**Kind**: static method of [<code>eases</code>](#module_eases)
+<a name="module_eases.circOut"></a>
+
+### eases.circOut() : [<code>easeFn</code>](#easeFn)
+
+**Kind**: static method of [<code>eases</code>](#module_eases)
+<a name="module_eases.circInOut"></a>
+
+### eases.circInOut() : [<code>easeFn</code>](#easeFn)
+
+**Kind**: static method of [<code>eases</code>](#module_eases)
+<a name="module_eases.backIn"></a>
+
+### eases.backIn() : [<code>easeFn</code>](#easeFn)
+
+**Kind**: static method of [<code>eases</code>](#module_eases)
+<a name="module_eases.backOut"></a>
+
+### eases.backOut() : [<code>easeFn</code>](#easeFn)
+
+**Kind**: static method of [<code>eases</code>](#module_eases)
+<a name="module_eases.backInOut"></a>
+
+### eases.backInOut() : [<code>easeFn</code>](#easeFn)
+
+**Kind**: static method of [<code>eases</code>](#module_eases)
+<a name="module_eases.elasticIn"></a>
+
+### eases.elasticIn() : [<code>easeFn</code>](#easeFn)
+
+**Kind**: static method of [<code>eases</code>](#module_eases)
+<a name="module_eases.elasticOut"></a>
+
+### eases.elasticOut() : [<code>easeFn</code>](#easeFn)
+
+**Kind**: static method of [<code>eases</code>](#module_eases)
+<a name="module_eases.elasticInOut"></a>
+
+### eases.elasticInOut() : [<code>easeFn</code>](#easeFn)
+
+**Kind**: static method of [<code>eases</code>](#module_eases)
+<a name="module_eases.bounceIn"></a>
+
+### eases.bounceIn() : [<code>easeFn</code>](#easeFn)
+
+**Kind**: static method of [<code>eases</code>](#module_eases)
+<a name="module_eases.bounceOut"></a>
+
+### eases.bounceOut() : [<code>easeFn</code>](#easeFn)
+
+**Kind**: static method of [<code>eases</code>](#module_eases)
+<a name="module_eases.bounceInOut"></a>
+
+### eases.bounceInOut() : [<code>easeFn</code>](#easeFn)
+
+**Kind**: static method of [<code>eases</code>](#module_eases)
+<a name="module_eases.stepStart"></a>
+
+### eases.stepStart() : [<code>easeStepFn</code>](#easeStepFn)
+
+**Kind**: static method of [<code>eases</code>](#module_eases)
+<a name="module_eases.stepEnd"></a>
+
+### eases.stepEnd() : [<code>easeStepFn</code>](#easeStepFn)
+
+**Kind**: static method of [<code>eases</code>](#module_eases)
+<a name="module_eases.stepNone"></a>
+
+### eases.stepNone() : [<code>easeStepFn</code>](#easeStepFn)
+
+**Kind**: static method of [<code>eases</code>](#module_eases)
+<a name="module_eases.stepBoth"></a>
+
+### eases.stepBoth() : [<code>easeStepFn</code>](#easeStepFn)
+
+**Kind**: static method of [<code>eases</code>](#module_eases)
 <a name="module_euler"></a>
 
 ## euler
@@ -1932,6 +2162,7 @@ Spherical linear interpolates between two quaternions.
 
 - [utils](#module_utils)
   - [.EPSILON](#module_utils.EPSILON) : <code>number</code>
+  - [.HALF_PI](#module_utils.HALF_PI) : <code>number</code>
   - [.Y_UP](#module_utils.Y_UP) : [<code>vec3</code>](#vec3)
   - [.lerp(a, b, t)](#module_utils.lerp) ⇒ <code>number</code>
   - [.clamp(n, min, max)](#module_utils.clamp) ⇒ <code>number</code>
@@ -1946,6 +2177,11 @@ Spherical linear interpolates between two quaternions.
 <a name="module_utils.EPSILON"></a>
 
 ### utils.EPSILON : <code>number</code>
+
+**Kind**: static constant of [<code>utils</code>](#module_utils)
+<a name="module_utils.HALF_PI"></a>
+
+### utils.HALF_PI : <code>number</code>
 
 **Kind**: static constant of [<code>utils</code>](#module_utils)
 <a name="module_utils.Y_UP"></a>
@@ -2847,6 +3083,31 @@ Callback for iterating typed arrays.
 | element | [<code>vec2</code>](#vec2) \| [<code>vec3</code>](#vec3) \| [<code>vec4</code>](#vec4)       |
 | index   | <code>number</code>                                                                          |
 | array   | [<code>avec2</code>](#avec2) \| [<code>avec3</code>](#avec3) \| [<code>avec4</code>](#avec4) |
+
+<a name="easeFn"></a>
+
+## easeFn ⇒ <code>number</code>
+
+Ease functions signature.
+
+**Kind**: global typedef
+
+| Param | Type                | Description       |
+| ----- | ------------------- | ----------------- |
+| t     | <code>number</code> | Interpolant value |
+
+<a name="easeStepFn"></a>
+
+## easeStepFn ⇒ <code>number</code>
+
+Ease step functions signature.
+
+**Kind**: global typedef
+
+| Param  | Type                | Default        | Description       |
+| ------ | ------------------- | -------------- | ----------------- |
+| t      | <code>number</code> |                | Interpolant value |
+| [step] | <code>number</code> | <code>1</code> | Number of steps   |
 
 <!-- api-end -->
 
