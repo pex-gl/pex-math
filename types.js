@@ -71,4 +71,21 @@
  * @param {avec2|avec3|avec4} array
  */
 
+/**
+ * Ease functions signature.
+ *
+ * @callback easeFn
+ * @param {number} t Interpolant value
+ * @returns {number}
+ */
+
+/**
+ * Ease step functions signature.
+ *
+ * @callback easeStepFn
+ * @param {number} t Interpolant value
+ * @param {number} [step=1] Number of steps
+ * @returns {number}
+ */
+
 export {};
