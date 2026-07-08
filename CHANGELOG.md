@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+# [4.3.0](https://github.com/pex-gl/pex-math/compare/v4.2.0...v4.3.0) (2026-07-08)
+
+
+### Features
+
+* add mat4.perspectiveZO/orthoZO/frustumZO for WebGPU ([a2ec04e](https://github.com/pex-gl/pex-math/commit/a2ec04eb97e00a5b2c78f55464e4a6b0afbeac0e)), closes [#40](https://github.com/pex-gl/pex-math/issues/40)
+
+
+
 # [4.2.0](https://github.com/pex-gl/pex-math/compare/v4.1.2...v4.2.0) (2026-01-12)
 
 

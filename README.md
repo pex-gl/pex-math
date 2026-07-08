@@ -1573,8 +1573,11 @@ Sets a 3x3 matrix to a 4x4 matrix.
   - [.fromTranslationRotationScale(a, v, q, s)](#module_mat4.fromTranslationRotationScale) ⇒ [<code>mat4</code>](#mat4)
   - [.fromMat3(a, b)](#module_mat4.fromMat3) ⇒ [<code>mat4</code>](#mat4)
   - [.frustum(a, left, right, bottom, top, near, far)](#module_mat4.frustum) ⇒ [<code>mat4</code>](#mat4)
+  - [.frustumZO(a, left, right, bottom, top, near, far)](#module_mat4.frustumZO) ⇒ [<code>mat4</code>](#mat4)
   - [.perspective(a, fovy, aspectRatio, near, far)](#module_mat4.perspective) ⇒ [<code>mat4</code>](#mat4)
+  - [.perspectiveZO(a, fovy, aspectRatio, near, far)](#module_mat4.perspectiveZO) ⇒ [<code>mat4</code>](#mat4)
   - [.ortho(a, left, right, bottom, top, near, far)](#module_mat4.ortho) ⇒ [<code>mat4</code>](#mat4)
+  - [.orthoZO(a, left, right, bottom, top, near, far)](#module_mat4.orthoZO) ⇒ [<code>mat4</code>](#mat4)
   - [.lookAt(a, from, to, [up])](#module_mat4.lookAt) ⇒ [<code>mat4</code>](#mat4)
   - [.fromDirection(a, direction, [up])](#module_mat4.fromDirection) ⇒ [<code>mat4</code>](#mat4)
   - [.fromPointToPoint(a, from, to, [up])](#module_mat4.fromPointToPoint) ⇒ [<code>mat4</code>](#mat4)
@@ -1781,7 +1784,25 @@ Sets a 4x4 matrix to a 3x3 matrix.
 
 ### mat4.frustum(a, left, right, bottom, top, near, far) ⇒ [<code>mat4</code>](#mat4)
 
-Creates a frustum matrix.
+Creates a frustum matrix with depth mapped to [-1, 1] (WebGL/OpenGL).
+
+**Kind**: static method of [<code>mat4</code>](#module_mat4)
+
+| Param  | Type                       |
+| ------ | -------------------------- |
+| a      | [<code>mat4</code>](#mat4) |
+| left   | <code>number</code>        |
+| right  | <code>number</code>        |
+| bottom | <code>number</code>        |
+| top    | <code>number</code>        |
+| near   | <code>number</code>        |
+| far    | <code>number</code>        |
+
+<a name="module_mat4.frustumZO"></a>
+
+### mat4.frustumZO(a, left, right, bottom, top, near, far) ⇒ [<code>mat4</code>](#mat4)
+
+Creates a frustum matrix with depth mapped to [0, 1] (WebGPU/DirectX/Metal/Vulkan).
 
 **Kind**: static method of [<code>mat4</code>](#module_mat4)
 
@@ -1799,7 +1820,23 @@ Creates a frustum matrix.
 
 ### mat4.perspective(a, fovy, aspectRatio, near, far) ⇒ [<code>mat4</code>](#mat4)
 
-Creates a perspective matrix.
+Creates a perspective matrix with depth mapped to [-1, 1] (WebGL/OpenGL).
+
+**Kind**: static method of [<code>mat4</code>](#module_mat4)
+
+| Param       | Type                             |
+| ----------- | -------------------------------- |
+| a           | [<code>mat4</code>](#mat4)       |
+| fovy        | [<code>Radians</code>](#Radians) |
+| aspectRatio | <code>number</code>              |
+| near        | <code>number</code>              |
+| far         | <code>number</code>              |
+
+<a name="module_mat4.perspectiveZO"></a>
+
+### mat4.perspectiveZO(a, fovy, aspectRatio, near, far) ⇒ [<code>mat4</code>](#mat4)
+
+Creates a perspective matrix with depth mapped to [0, 1] (WebGPU/DirectX/Metal/Vulkan).
 
 **Kind**: static method of [<code>mat4</code>](#module_mat4)
 
@@ -1815,7 +1852,25 @@ Creates a perspective matrix.
 
 ### mat4.ortho(a, left, right, bottom, top, near, far) ⇒ [<code>mat4</code>](#mat4)
 
-Creates an orthographic matrix.
+Creates an orthographic matrix with depth mapped to [-1, 1] (WebGL/OpenGL).
+
+**Kind**: static method of [<code>mat4</code>](#module_mat4)
+
+| Param  | Type                       |
+| ------ | -------------------------- |
+| a      | [<code>mat4</code>](#mat4) |
+| left   | <code>number</code>        |
+| right  | <code>number</code>        |
+| bottom | <code>number</code>        |
+| top    | <code>number</code>        |
+| near   | <code>number</code>        |
+| far    | <code>number</code>        |
+
+<a name="module_mat4.orthoZO"></a>
+
+### mat4.orthoZO(a, left, right, bottom, top, near, far) ⇒ [<code>mat4</code>](#mat4)
+
+Creates an orthographic matrix with depth mapped to [0, 1] (WebGPU/DirectX/Metal/Vulkan).
 
 **Kind**: static method of [<code>mat4</code>](#module_mat4)
 
@@ -2181,12 +2236,12 @@ Spherical linear interpolates between two quaternions.
 **Kind**: static constant of [<code>utils</code>](#module_utils)
 <a name="module_utils.HALF_PI"></a>
 
-### utils.HALF_PI : <code>number</code>
+### utils.HALF\_PI : <code>number</code>
 
 **Kind**: static constant of [<code>utils</code>](#module_utils)
 <a name="module_utils.Y_UP"></a>
 
-### utils.Y_UP : [<code>vec3</code>](#vec3)
+### utils.Y\_UP : [<code>vec3</code>](#vec3)
 
 **Kind**: static constant of [<code>utils</code>](#module_utils)
 <a name="module_utils.lerp"></a>
