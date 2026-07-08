@@ -649,7 +649,7 @@ export function fromMat3(a, b) {
 }
 
 /**
- * Creates a frustum matrix.
+ * Creates a frustum matrix with depth mapped to [-1, 1] (WebGL/OpenGL).
  * @param {import("./types.js").mat4} a
  * @param {number} left
  * @param {number} right
@@ -686,7 +686,44 @@ export function frustum(a, left, right, bottom, top, near, far) {
 }
 
 /**
- * Creates a perspective matrix.
+ * Creates a frustum matrix with depth mapped to [0, 1] (WebGPU/DirectX/Metal/Vulkan).
+ * @param {import("./types.js").mat4} a
+ * @param {number} left
+ * @param {number} right
+ * @param {number} bottom
+ * @param {number} top
+ * @param {number} near
+ * @param {number} far
+ * @returns {import("./types.js").mat4}
+ */
+export function frustumZO(a, left, right, bottom, top, near, far) {
+  const rl = 1 / (right - left);
+  const tb = 1 / (top - bottom);
+  const nf = 1 / (near - far);
+
+  const near2 = near * 2;
+
+  a[0] = near2 * rl;
+  a[1] = a[2] = 0;
+  a[3] = 0;
+  a[4] = 0;
+  a[5] = near2 * tb;
+  a[6] = 0;
+  a[7] = 0;
+  a[8] = (right + left) * rl;
+  a[9] = (top + bottom) * tb;
+  a[10] = far * nf;
+  a[11] = -1;
+  a[12] = 0;
+  a[13] = 0;
+  a[14] = far * near * nf;
+  a[15] = 0;
+
+  return a;
+}
+
+/**
+ * Creates a perspective matrix with depth mapped to [-1, 1] (WebGL/OpenGL).
  * @param {import("./types.js").mat4} a
  * @param {import("./types.js").Radians} fovy
  * @param {number} aspectRatio
@@ -721,7 +758,42 @@ export function perspective(a, fovy, aspectRatio, near, far) {
 }
 
 /**
- * Creates an orthographic matrix.
+ * Creates a perspective matrix with depth mapped to [0, 1] (WebGPU/DirectX/Metal/Vulkan).
+ * @param {import("./types.js").mat4} a
+ * @param {import("./types.js").Radians} fovy
+ * @param {number} aspectRatio
+ * @param {number} near
+ * @param {number} far
+ * @returns {import("./types.js").mat4}
+ */
+export function perspectiveZO(a, fovy, aspectRatio, near, far) {
+  const f = 1 / Math.tan(fovy / 2);
+  const nf = 1 / (near - far);
+
+  a[1] =
+    a[2] =
+    a[3] =
+    a[4] =
+    a[6] =
+    a[7] =
+    a[8] =
+    a[9] =
+    a[12] =
+    a[13] =
+    a[15] =
+      0;
+
+  a[0] = f / aspectRatio;
+  a[5] = f;
+  a[10] = far * nf;
+  a[11] = -1;
+  a[14] = far * near * nf;
+
+  return a;
+}
+
+/**
+ * Creates an orthographic matrix with depth mapped to [-1, 1] (WebGL/OpenGL).
  * @param {import("./types.js").mat4} a
  * @param {number} left
  * @param {number} right
@@ -745,6 +817,36 @@ export function ortho(a, left, right, bottom, top, near, far) {
   a[12] = (left + right) / lr;
   a[13] = (top + bottom) / bt;
   a[14] = (far + near) / nf;
+  a[15] = 1;
+
+  return a;
+}
+
+/**
+ * Creates an orthographic matrix with depth mapped to [0, 1] (WebGPU/DirectX/Metal/Vulkan).
+ * @param {import("./types.js").mat4} a
+ * @param {number} left
+ * @param {number} right
+ * @param {number} bottom
+ * @param {number} top
+ * @param {number} near
+ * @param {number} far
+ * @returns {import("./types.js").mat4}
+ */
+export function orthoZO(a, left, right, bottom, top, near, far) {
+  const lr = left - right;
+  const bt = bottom - top;
+  const nf = near - far;
+
+  a[1] = a[2] = a[3] = a[4] = a[6] = a[7] = a[8] = a[9] = a[11] = 0;
+
+  a[0] = -2 / lr;
+  a[5] = -2 / bt;
+  a[10] = 1 / nf;
+
+  a[12] = (left + right) / lr;
+  a[13] = (top + bottom) / bt;
+  a[14] = near / nf;
   a[15] = 1;
 
   return a;
