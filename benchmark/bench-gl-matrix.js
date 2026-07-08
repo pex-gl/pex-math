@@ -104,11 +104,25 @@ bench("mat4.perspective", (b) => {
   run(() => mat4.perspective(m, Math.PI * 0.5, 1, 0, 1));
   b.end();
 });
+bench("mat4.perspectiveZO", (b) => {
+  const m = mat4.create();
+
+  b.start();
+  run(() => mat4.perspectiveZO(m, Math.PI * 0.5, 1, 0, 1));
+  b.end();
+});
 bench("mat4.ortho", (b) => {
   const m = mat4.create();
 
   b.start();
-  run(() => mat4.perspective(m, -1, 1, -1, 1, -1, 1));
+  run(() => mat4.ortho(m, -1, 1, -1, 1, -1, 1));
+  b.end();
+});
+bench("mat4.orthoZO", (b) => {
+  const m = mat4.create();
+
+  b.start();
+  run(() => mat4.orthoZO(m, -1, 1, -1, 1, -1, 1));
   b.end();
 });
 bench("mat4.lookAt", (b) => {
