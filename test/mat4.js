@@ -234,6 +234,42 @@ describe("mat4", () => {
       ],
     );
   });
+  it("frustumZO() should create a frustum matrix with depth mapped to [0, 1]", () => {
+    deepEqual(
+      mat4.frustumZO(mat4.create(), -1, 1, -1, 1, -1, 1),
+      // prettier-ignore
+      [
+        -1, 0, 0, 0,
+        0, -1, 0, 0,
+        0, 0, -0.5, -1,
+        0, 0, 0.5, 0
+      ],
+    );
+  });
+  it("perspectiveZO() should create a perspective matrix with depth mapped to [0, 1]", () => {
+    deepAlmostEqual(
+      mat4.perspectiveZO(mat4.create(), Math.PI * 0.5, 1, 1, 10),
+      // prettier-ignore
+      [
+        1, 0, 0, 0,
+        0, 1, 0, 0,
+        0, 0, -1.1111, -1,
+        0, 0, -1.1111, 0
+      ],
+    );
+  });
+  it("orthoZO() should create an orthographic matrix with depth mapped to [0, 1]", () => {
+    deepEqual(
+      mat4.orthoZO(mat4.create(), -1, 1, -1, 1, -1, 1),
+      // prettier-ignore
+      [
+        1, 0, 0, 0,
+        0, 1, 0, 0,
+        0, 0, -0.5, 0,
+        0, 0, 0.5, 1
+      ],
+    );
+  });
   it("lookAt() should calculate a lookAt matrix from position, target and up vectors", () => {
     deepEqual(
       mat4.lookAt(mat4.create(), Y_UP, ORIGIN, Y_UP),
