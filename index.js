@@ -84,3 +84,5 @@ export * as eases from "./eases.js";
  * @static
  */
 export * as utils from "./utils.js";
+
+export * from "./types.js";
