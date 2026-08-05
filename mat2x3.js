@@ -5,7 +5,7 @@
  *
  * Row major memory layout:
  *
- * ```
+ * ```txt
  * 0   1
  * 2   3
  * 4   5
@@ -13,7 +13,7 @@
  *
  * Equivalent to the column major OpenGL spec:
  *
- * ```
+ * ```txt
  * 0   3
  * 1   4
  * 2   5
