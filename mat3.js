@@ -23,7 +23,7 @@
  *  m02 m12 m22
  * ```
  *
- * @returns {import("./types.js").mat3}
+ * @returns {import("./types.js").Mat3}
  */
 export function create() {
   // prettier-ignore
@@ -37,8 +37,8 @@ export function create() {
 /**
  * Sets a matrix to the identity matrix.
  *
- * @param {import("./types.js").mat3} a
- * @returns {import("./types.js").mat3}
+ * @param {import("./types.js").Mat3} a
+ * @returns {import("./types.js").Mat3}
  */
 export function identity(a) {
   a[0] = a[4] = a[8] = 1;
@@ -49,8 +49,8 @@ export function identity(a) {
 /**
  * Returns a copy of a matrix.
  *
- * @param {import("./types.js").mat3} a
- * @returns {import("./types.js").mat3}
+ * @param {import("./types.js").Mat3} a
+ * @returns {import("./types.js").Mat3}
  */
 export function copy(a) {
   return a.slice();
@@ -59,9 +59,9 @@ export function copy(a) {
 /**
  * Sets a matrix from another matrix.
  *
- * @param {import("./types.js").mat3} a
- * @param {import("./types.js").mat3} b
- * @returns {import("./types.js").mat3}
+ * @param {import("./types.js").Mat3} a
+ * @param {import("./types.js").Mat3} b
+ * @returns {import("./types.js").Mat3}
  */
 export function set(a, b) {
   a[0] = b[0];
@@ -79,8 +79,8 @@ export function set(a, b) {
 /**
  * Compares two matrices.
  *
- * @param {import("./types.js").mat3} a
- * @param {import("./types.js").mat3} b
+ * @param {import("./types.js").Mat3} a
+ * @param {import("./types.js").Mat3} b
  * @returns {boolean}
  */
 export function equals(a, b) {
@@ -101,9 +101,9 @@ export function equals(a, b) {
 /**
  * Multiplies two matrices.
  *
- * @param {import("./types.js").mat3} a
- * @param {import("./types.js").mat3} b
- * @returns {import("./types.js").mat3}
+ * @param {import("./types.js").Mat3} a
+ * @param {import("./types.js").Mat3} b
+ * @returns {import("./types.js").Mat3}
  */
 export function mult(a, b) {
   const a00 = a[0];
@@ -142,8 +142,8 @@ export function mult(a, b) {
 /**
  * Transposes a matrix.
  *
- * @param {import("./types.js").mat3} a
- * @returns {import("./types.js").mat3}
+ * @param {import("./types.js").Mat3} a
+ * @returns {import("./types.js").Mat3}
  */
 export function transpose(a) {
   const a01 = a[1];
@@ -165,9 +165,9 @@ export function transpose(a) {
 /**
  * Sets matrix to a quaternion.
  *
- * @param {import("./types.js").mat3} a
- * @param {import("./types.js").quat} q
- * @returns {import("./types.js").mat3}
+ * @param {import("./types.js").Mat3} a
+ * @param {import("./types.js").Quat} q
+ * @returns {import("./types.js").Mat3}
  */
 export function fromQuat(a, q) {
   const x = q[0];
@@ -209,9 +209,9 @@ export function fromQuat(a, q) {
 /**
  * Sets a 3x3 matrix from a 2x3 matrix.
  *
- * @param {import("./types.js").mat3} a
- * @param {import("./types.js").mat2x3} b
- * @returns {import("./types.js").mat3}
+ * @param {import("./types.js").Mat3} a
+ * @param {import("./types.js").Mat2x3} b
+ * @returns {import("./types.js").Mat3}
  */
 export function fromMat2x3(a, b) {
   a[0] = b[0];
@@ -229,9 +229,9 @@ export function fromMat2x3(a, b) {
 /**
  * Sets a 3x3 matrix to a 4x4 matrix.
  *
- * @param {import("./types.js").mat3} a
- * @param {import("./types.js").mat4} b
- * @returns {import("./types.js").mat3}
+ * @param {import("./types.js").Mat3} a
+ * @param {import("./types.js").Mat4} b
+ * @returns {import("./types.js").Mat3}
  */
 export function fromMat4(a, b) {
   a[0] = b[0];

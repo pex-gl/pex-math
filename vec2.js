@@ -3,7 +3,7 @@
 /**
  * Returns a new vec2 at 0, 0.
  *
- * @returns {import("./types.js").vec2}
+ * @returns {import("./types.js").Vec2}
  */
 export function create() {
   return [0, 0];
@@ -12,8 +12,8 @@ export function create() {
 /**
  * Returns a copy of a vector.
  *
- * @param {import("./types.js").vec2} a
- * @returns {import("./types.js").vec2}
+ * @param {import("./types.js").Vec2} a
+ * @returns {import("./types.js").Vec2}
  */
 export function copy(a) {
   return a.slice();
@@ -22,9 +22,9 @@ export function copy(a) {
 /**
  * Sets a vector to another vector.
  *
- * @param {import("./types.js").vec2} a
- * @param {import("./types.js").vec2} b
- * @returns {import("./types.js").vec2}
+ * @param {import("./types.js").Vec2} a
+ * @param {import("./types.js").Vec2} b
+ * @returns {import("./types.js").Vec2}
  */
 export function set(a, b) {
   a[0] = b[0];
@@ -35,8 +35,8 @@ export function set(a, b) {
 /**
  * Compares two vectors.
  *
- * @param {import("./types.js").vec2} a
- * @param {import("./types.js").vec2} b
+ * @param {import("./types.js").Vec2} a
+ * @param {import("./types.js").Vec2} b
  * @returns {boolean}
  */
 export function equals(a, b) {
@@ -46,9 +46,9 @@ export function equals(a, b) {
 /**
  * Add a vector to another.
  *
- * @param {import("./types.js").vec2} a
- * @param {import("./types.js").vec2} b
- * @returns {import("./types.js").vec2}
+ * @param {import("./types.js").Vec2} a
+ * @param {import("./types.js").Vec2} b
+ * @returns {import("./types.js").Vec2}
  */
 export function add(a, b) {
   a[0] += b[0];
@@ -59,9 +59,9 @@ export function add(a, b) {
 /**
  * Subtracts a vector from another.
  *
- * @param {import("./types.js").vec2} a
- * @param {import("./types.js").vec2} b
- * @returns {import("./types.js").vec2}
+ * @param {import("./types.js").Vec2} a
+ * @param {import("./types.js").Vec2} b
+ * @returns {import("./types.js").Vec2}
  */
 export function sub(a, b) {
   a[0] -= b[0];
@@ -72,9 +72,9 @@ export function sub(a, b) {
 /**
  * Scales a vector by a number.
  *
- * @param {import("./types.js").vec2} a
+ * @param {import("./types.js").Vec2} a
  * @param {number} s
- * @returns {import("./types.js").vec2}
+ * @returns {import("./types.js").Vec2}
  */
 export function scale(a, s) {
   a[0] *= s;
@@ -85,10 +85,10 @@ export function scale(a, s) {
 /**
  * Adds two vectors after scaling the second one.
  *
- * @param {import("./types.js").vec2} a
- * @param {import("./types.js").vec2} b
+ * @param {import("./types.js").Vec2} a
+ * @param {import("./types.js").Vec2} b
  * @param {number} s
- * @returns {import("./types.js").vec2}
+ * @returns {import("./types.js").Vec2}
  */
 export function addScaled(a, b, s) {
   a[0] += b[0] * s;
@@ -100,8 +100,8 @@ export function addScaled(a, b, s) {
 /**
  * Calculates the dot product of two vectors.
  *
- * @param {import("./types.js").vec2} a
- * @param {import("./types.js").vec2} b
+ * @param {import("./types.js").Vec2} a
+ * @param {import("./types.js").Vec2} b
  * @returns {number}
  */
 export function dot(a, b) {
@@ -111,7 +111,7 @@ export function dot(a, b) {
 /**
  * Calculates the length of a vector.
  *
- * @param {import("./types.js").vec2} a
+ * @param {import("./types.js").Vec2} a
  * @returns {number}
  */
 export function length(a) {
@@ -123,7 +123,7 @@ export function length(a) {
 /**
  * Calculates the squared length of a vector.
  *
- * @param {import("./types.js").vec2} a
+ * @param {import("./types.js").Vec2} a
  * @returns {number}
  */
 export function lengthSq(a) {
@@ -135,8 +135,8 @@ export function lengthSq(a) {
 /**
  * Normalises a vector.
  *
- * @param {import("./types.js").vec2} a
- * @returns {import("./types.js").vec2}
+ * @param {import("./types.js").Vec2} a
+ * @returns {import("./types.js").Vec2}
  */
 export function normalize(a) {
   const x = a[0];
@@ -152,8 +152,8 @@ export function normalize(a) {
 /**
  * Calculates the distance between two vectors.
  *
- * @param {import("./types.js").vec2} a
- * @param {import("./types.js").vec2} b
+ * @param {import("./types.js").Vec2} a
+ * @param {import("./types.js").Vec2} b
  * @returns {number}
  */
 export function distance(a, b) {
@@ -165,8 +165,8 @@ export function distance(a, b) {
 /**
  * Calculates the squared distance between two vectors.
  *
- * @param {import("./types.js").vec2} a
- * @param {import("./types.js").vec2} b
+ * @param {import("./types.js").Vec2} a
+ * @param {import("./types.js").Vec2} b
  * @returns {number}
  */
 export function distanceSq(a, b) {
@@ -178,9 +178,9 @@ export function distanceSq(a, b) {
 /**
  * Limits a vector to a length.
  *
- * @param {import("./types.js").vec2} a
+ * @param {import("./types.js").Vec2} a
  * @param {number} len
- * @returns {import("./types.js").vec2}
+ * @returns {import("./types.js").Vec2}
  */
 export function limit(a, len) {
   const x = a[0];
@@ -201,10 +201,10 @@ export function limit(a, len) {
 /**
  * Linearly interpolates between two vectors.
  *
- * @param {import("./types.js").vec2} a
- * @param {import("./types.js").vec2} b
+ * @param {import("./types.js").Vec2} a
+ * @param {import("./types.js").Vec2} b
  * @param {number} t
- * @returns {import("./types.js").vec2}
+ * @returns {import("./types.js").Vec2}
  */
 export function lerp(a, b, t) {
   const x = a[0];
@@ -219,7 +219,7 @@ export function lerp(a, b, t) {
 /**
  * Prints a vector to a string.
  *
- * @param {import("./types.js").vec2} a
+ * @param {import("./types.js").Vec2} a
  * @param {number} [precision=4]
  * @returns {string}
  */

@@ -8,7 +8,7 @@ const TEMP_MAT4 = mat4.create();
 /**
  * Returns a new quat at 0, 0, 0, 1.
  *
- * @returns {import("./types.js").quat}
+ * @returns {import("./types.js").Quat}
  */
 export function create() {
   return [0, 0, 0, 1];
@@ -17,8 +17,8 @@ export function create() {
 /**
  * Sets a quaternion to the identity quaternion.
  *
- * @param {import("./types.js").quat} a
- * @returns {import("./types.js").quat}
+ * @param {import("./types.js").Quat} a
+ * @returns {import("./types.js").Quat}
  */
 export function identity(a) {
   a[0] = a[1] = a[2] = 0;
@@ -29,8 +29,8 @@ export function identity(a) {
 /**
  * Returns a copy of a quaternion.
  *
- * @param {import("./types.js").quat} a
- * @returns {import("./types.js").quat}
+ * @param {import("./types.js").Quat} a
+ * @returns {import("./types.js").Quat}
  */
 export function copy(a) {
   return a.slice();
@@ -39,17 +39,17 @@ export function copy(a) {
 /**
  * Sets a quaternion to another quaternion.
  *
- * @param {import("./types.js").quat} a
- * @param {import("./types.js").quat} b
- * @returns {import("./types.js").quat}
+ * @param {import("./types.js").Quat} a
+ * @param {import("./types.js").Quat} b
+ * @returns {import("./types.js").Quat}
  */
 export const set = vec4.set;
 
 /**
  * Compares two quaternions.
  *
- * @param {import("./types.js").quat} a
- * @param {import("./types.js").quat} b
+ * @param {import("./types.js").Quat} a
+ * @param {import("./types.js").Quat} b
  * @returns {boolean}
  */
 export const equals = vec4.equals;
@@ -57,9 +57,9 @@ export const equals = vec4.equals;
 /**
  * Multiplies one quaternion by another.
  *
- * @param {import("./types.js").quat} a
- * @param {import("./types.js").quat} b
- * @returns {import("./types.js").quat}
+ * @param {import("./types.js").Quat} a
+ * @param {import("./types.js").Quat} b
+ * @returns {import("./types.js").Quat}
  */
 export function mult(a, b) {
   const ax = a[0];
@@ -82,8 +82,8 @@ export function mult(a, b) {
 /**
  * Inverts a quaternion.
  *
- * @param {import("./types.js").quat} a
- * @returns {import("./types.js").quat}
+ * @param {import("./types.js").Quat} a
+ * @returns {import("./types.js").Quat}
  */
 export function invert(a) {
   let l = dot(a, a);
@@ -99,8 +99,8 @@ export function invert(a) {
 /**
  * Conjugates a quaternion.
  *
- * @param {import("./types.js").quat} a
- * @returns {import("./types.js").quat}
+ * @param {import("./types.js").Quat} a
+ * @returns {import("./types.js").Quat}
  */
 export function conjugate(a) {
   a[0] *= -1;
@@ -112,8 +112,8 @@ export function conjugate(a) {
 /**
  * Calculates the length of a quaternion.
  *
- * @param {import("./types.js").quat} a
- * @returns {import("./types.js").quat}
+ * @param {import("./types.js").Quat} a
+ * @returns {import("./types.js").Quat}
  */
 export function length(a) {
   const x = a[0];
@@ -126,8 +126,8 @@ export function length(a) {
 /**
  * Normalizes a quaternion.
  *
- * @param {import("./types.js").quat} a
- * @returns {import("./types.js").quat}
+ * @param {import("./types.js").Quat} a
+ * @returns {import("./types.js").Quat}
  */
 export function normalize(a) {
   const x = a[0];
@@ -145,9 +145,9 @@ export function normalize(a) {
 /**
  * Calculates the dot product of two quaternions.
  *
- * @param {import("./types.js").quat} a
- * @param {import("./types.js").quat} b
- * @returns {import("./types.js").quat}
+ * @param {import("./types.js").Quat} a
+ * @param {import("./types.js").Quat} b
+ * @returns {import("./types.js").Quat}
  */
 export function dot(a, b) {
   return a[0] * b[0] + a[1] * b[1] + a[2] * b[2] + a[3] * b[3];
@@ -156,9 +156,9 @@ export function dot(a, b) {
 /**
  * Set euler angles to a quaternion. Assumes XYZ rotation order.
  *
- * @param {import("./types.js").quat} a
- * @param {import("./types.js").euler} e
- * @returns {import("./types.js").quat}
+ * @param {import("./types.js").Quat} a
+ * @param {import("./types.js").Euler} e
+ * @returns {import("./types.js").Quat}
  */
 export function fromEuler(a, e) {
   const x = e[0];
@@ -182,10 +182,10 @@ export function fromEuler(a, e) {
 /**
  * Set the angle at an axis of a quaternion.
  *
- * @param {import("./types.js").quat} a
- * @param {import("./types.js").vec3} v
+ * @param {import("./types.js").Quat} a
+ * @param {import("./types.js").Vec3} v
  * @param {import("./types.js").Radians} r
- * @returns {import("./types.js").quat}
+ * @returns {import("./types.js").Quat}
  */
 export function fromAxisAngle(a, v, r) {
   const angle2 = r / 2;
@@ -237,11 +237,11 @@ export function _fromMat39(a, m0, m1, m2, m3, m4, m5, m6, m7, m8) {
 /**
  * Sets a quaternion from orthonormal base xyz.
  *
- * @param {import("./types.js").quat} a
- * @param {import("./types.js").vec3} x
- * @param {import("./types.js").vec3} y
- * @param {import("./types.js").vec3} z
- * @returns {import("./types.js").quat}
+ * @param {import("./types.js").Quat} a
+ * @param {import("./types.js").Vec3} x
+ * @param {import("./types.js").Vec3} y
+ * @param {import("./types.js").Vec3} z
+ * @returns {import("./types.js").Quat}
  */
 export function fromAxes(a, x, y, z) {
   return _fromMat39(a, x[0], x[1], x[2], y[0], y[1], y[2], z[0], z[1], z[2]);
@@ -250,9 +250,9 @@ export function fromAxes(a, x, y, z) {
 /**
  * Sets a quaternion to a 3x3 matrix.
  *
- * @param {import("./types.js").quat} a
- * @param {import("./types.js").mat3} m
- * @returns {import("./types.js").quat}
+ * @param {import("./types.js").Quat} a
+ * @param {import("./types.js").Mat3} m
+ * @returns {import("./types.js").Quat}
  */
 export function fromMat3(a, m) {
   return _fromMat39(a, m[0], m[1], m[2], m[3], m[4], m[5], m[6], m[7], m[8]);
@@ -261,9 +261,9 @@ export function fromMat3(a, m) {
 /**
  * Sets a quaternion to a 4x4 matrix.
  *
- * @param {import("./types.js").quat} a
- * @param {import("./types.js").mat4} m
- * @returns {import("./types.js").quat}
+ * @param {import("./types.js").Quat} a
+ * @param {import("./types.js").Mat4} m
+ * @returns {import("./types.js").Quat}
  */
 export function fromMat4(a, m) {
   return _fromMat39(a, m[0], m[1], m[2], m[4], m[5], m[6], m[8], m[9], m[10]);
@@ -272,10 +272,10 @@ export function fromMat4(a, m) {
 /**
  * Sets a quaternion from a direction Note: we assume +Z facing models.
  *
- * @param {import("./types.js").quat} a
- * @param {import("./types.js").vec3} direction
- * @param {import("./types.js").vec3} [up=Y_UP]
- * @returns {import("./types.js").quat}
+ * @param {import("./types.js").Quat} a
+ * @param {import("./types.js").Vec3} direction
+ * @param {import("./types.js").Vec3} [up=Y_UP]
+ * @returns {import("./types.js").Quat}
  */
 export function fromDirection(a, direction, up) {
   return fromMat4(a, mat4.fromDirection(TEMP_MAT4, direction, up));
@@ -284,11 +284,11 @@ export function fromDirection(a, direction, up) {
 /**
  * Sets a quaternion from a point to another.
  *
- * @param {import("./types.js").quat} a
- * @param {import("./types.js").vec3} from
- * @param {import("./types.js").vec3} to
- * @param {import("./types.js").vec3} [up=Y_UP]
- * @returns {import("./types.js").quat}
+ * @param {import("./types.js").Quat} a
+ * @param {import("./types.js").Vec3} from
+ * @param {import("./types.js").Vec3} to
+ * @param {import("./types.js").Vec3} [up=Y_UP]
+ * @returns {import("./types.js").Quat}
  */
 export function fromPointToPoint(a, from, to, up) {
   return fromMat4(a, mat4.fromPointToPoint(TEMP_MAT4, from, to, up));
@@ -297,10 +297,10 @@ export function fromPointToPoint(a, from, to, up) {
 /**
  * Spherical linear interpolates between two quaternions.
  *
- * @param {import("./types.js").quat} a
- * @param {import("./types.js").quat} b
+ * @param {import("./types.js").Quat} a
+ * @param {import("./types.js").Quat} b
  * @param {number} t
- * @returns {import("./types.js").quat}
+ * @returns {import("./types.js").Quat}
  */
 export function slerp(a, b, t) {
   // http://jsperf.com/quaternion-slerp-implementations
@@ -354,8 +354,8 @@ export function slerp(a, b, t) {
 /**
  * Prints a quaternion to a string.
  *
- * @param {import("./types.js").quat} a
+ * @param {import("./types.js").Quat} a
  * @param {number} precision
- * @returns {import("./types.js").quat}
+ * @returns {import("./types.js").Quat}
  */
 export const toString = vec4.toString;

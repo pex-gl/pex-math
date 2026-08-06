@@ -13,31 +13,31 @@
  *   | BigUint64Array} TypedArray
  */
 
-/** @typedef {TypedArray} avec2 */
+/** @typedef {TypedArray} AVec2 */
 
-/** @typedef {TypedArray} avec3 */
+/** @typedef {TypedArray} AVec3 */
 
-/** @typedef {TypedArray} avec4 */
+/** @typedef {TypedArray} AVec4 */
 
-/** @typedef {TypedArray} amat4 */
+/** @typedef {TypedArray} AMat4 */
 
-/** @typedef {TypedArray} aquat */
+/** @typedef {TypedArray} AQuat */
 
-/** @typedef {number[]} euler */
+/** @typedef {number[]} Euler */
 
-/** @typedef {number[]} mat2x3 */
+/** @typedef {number[]} Mat2x3 */
 
-/** @typedef {number[]} mat3 */
+/** @typedef {number[]} Mat3 */
 
-/** @typedef {number[]} mat4 */
+/** @typedef {number[]} Mat4 */
 
-/** @typedef {number[]} quat */
+/** @typedef {number[]} Quat */
 
-/** @typedef {number[]} vec2 */
+/** @typedef {number[]} Vec2 */
 
-/** @typedef {number[]} vec3 */
+/** @typedef {number[]} Vec3 */
 
-/** @typedef {number[]} vec4 */
+/** @typedef {number[]} Vec4 */
 
 /** @typedef {number} Degrees */
 
@@ -47,9 +47,9 @@
  * Callback for iterating typed arrays.
  *
  * @callback iterativeCallback
- * @param {vec2 | vec3 | vec4} element
+ * @param {Vec2 | Vec3 | Vec4} element
  * @param {number} index
- * @param {avec2 | avec3 | avec4} array
+ * @param {AVec2 | AVec3 | AVec4} array
  */
 
 /**
