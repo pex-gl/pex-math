@@ -70,7 +70,7 @@ const identityMatrix = mat4.create();
 ## Typedefs
 
 <dl>
-<dt><a href="#TypedArray">TypedArray</a> : <code>Int8Array</code> | <code>Uint8Array</code> | <code>Uint8ClampedArray</code> | <code>Int16Array</code> | <code>Uint16Array</code> | <code>Int32Array</code> | <code>Uint32Array</code> | <code>Float32Array</code> | <code>Float64Array</code> | <code>BigInt64Array</code> | <code>BigUint64Array</code></dt>
+<dt><a href="#TypedArray">TypedArray</a> : <code>Int8Array</code> | <code>Uint8Array</code> | <code>Uint8ClampedArray</code> | <code>Int16Array</code> | <code>Uint16Array</code> | <code>Int32Array</code> | <code>Uint32Array</code> | <code>Float16Array</code> | <code>Float32Array</code> | <code>Float64Array</code> | <code>BigInt64Array</code> | <code>BigUint64Array</code></dt>
 <dd></dd>
 <dt><a href="#avec2">avec2</a> : <code><a href="#TypedArray">TypedArray</a></code></dt>
 <dd></dd>
@@ -457,7 +457,8 @@ Executes a function once for each array element.
 
 ### avec2.map(a, callbackFn) ⇒ [<code>avec2</code>](#avec2)
 
-Creates a new array populated with the results of calling a provided function on every element in the calling array.
+Creates a new array populated with the results of calling a provided function
+on every element in the calling array.
 
 **Kind**: static method of [<code>avec2</code>](#module_avec2)
 
@@ -789,7 +790,8 @@ Executes a function once for each array element.
 
 ### avec3.map(a, callbackFn) ⇒ [<code>avec3</code>](#avec3)
 
-Creates a new array populated with the results of calling a provided function on every element in the calling array.
+Creates a new array populated with the results of calling a provided function
+on every element in the calling array.
 
 **Kind**: static method of [<code>avec3</code>](#module_avec3)
 
@@ -985,7 +987,8 @@ Executes a function once for each array element.
 
 ### avec4.map(a, callbackFn) ⇒ [<code>avec4</code>](#avec4)
 
-Creates a new array populated with the results of calling a provided function on every element in the calling array.
+Creates a new array populated with the results of calling a provided function
+on every element in the calling array.
 
 **Kind**: static method of [<code>avec4</code>](#module_avec4)
 
@@ -1236,7 +1239,8 @@ Prints a vector to a string.
 
 ### euler.create() ⇒ [<code>euler</code>](#euler)
 
-Create a new euler angles [0, 0, 0]: vec3 array of [x, y, z] rotation [yaw, pitch, roll] in radians.
+Create a new euler angles [0, 0, 0]: vec3 array of [x, y, z] rotation [yaw,
+pitch, roll] in radians.
 
 **Kind**: static method of [<code>euler</code>](#module_euler)
 <a name="module_euler.fromQuat"></a>
@@ -1271,11 +1275,12 @@ Creates euler angles from quaternion. Assumes XYZ order of rotations.
 
 ### mat2x3.create() ⇒ [<code>mat2x3</code>](#mat2x3)
 
-Returns a 2x3 identity matrix, a short form for a 3x3 matrix with the last row ignored.
+Returns a 2x3 identity matrix, a short form for a 3x3 matrix with the last
+row ignored.
 
 Row major memory layout:
 
-```
+```txt
 0   1
 2   3
 4   5
@@ -1283,7 +1288,7 @@ Row major memory layout:
 
 Equivalent to the column major OpenGL spec:
 
-```
+```txt
 0   3
 1   4
 2   5
@@ -1420,7 +1425,7 @@ Returns a 3x3 identity matrix.
 
 Row major memory layout:
 
-```
+```txt
  0   1   2
  3   4   5
  6   7   8
@@ -1428,7 +1433,7 @@ Row major memory layout:
 
 Equivalent to the column major OpenGL spec:
 
-```
+```txt
   0   3   6
   1   4   7
   2   5   8
@@ -1590,7 +1595,7 @@ Returns a 4x4 identity matrix.
 
 Row major memory layout:
 
-```
+```txt
  0   1   2   3
  4   5   6   7
  8   9  10  11
@@ -1599,7 +1604,7 @@ Row major memory layout:
 
 Equivalent to the column major OpenGL spec:
 
-```
+```txt
  0   4   8  12
  1   5   9  13
  2   6  10  14
@@ -1802,7 +1807,8 @@ Creates a frustum matrix with depth mapped to [-1, 1] (WebGL/OpenGL).
 
 ### mat4.frustumZO(a, left, right, bottom, top, near, far) ⇒ [<code>mat4</code>](#mat4)
 
-Creates a frustum matrix with depth mapped to [0, 1] (WebGPU/DirectX/Metal/Vulkan).
+Creates a frustum matrix with depth mapped to [0, 1]
+(WebGPU/DirectX/Metal/Vulkan).
 
 **Kind**: static method of [<code>mat4</code>](#module_mat4)
 
@@ -1836,7 +1842,8 @@ Creates a perspective matrix with depth mapped to [-1, 1] (WebGL/OpenGL).
 
 ### mat4.perspectiveZO(a, fovy, aspectRatio, near, far) ⇒ [<code>mat4</code>](#mat4)
 
-Creates a perspective matrix with depth mapped to [0, 1] (WebGPU/DirectX/Metal/Vulkan).
+Creates a perspective matrix with depth mapped to [0, 1]
+(WebGPU/DirectX/Metal/Vulkan).
 
 **Kind**: static method of [<code>mat4</code>](#module_mat4)
 
@@ -1870,7 +1877,8 @@ Creates an orthographic matrix with depth mapped to [-1, 1] (WebGL/OpenGL).
 
 ### mat4.orthoZO(a, left, right, bottom, top, near, far) ⇒ [<code>mat4</code>](#mat4)
 
-Creates an orthographic matrix with depth mapped to [0, 1] (WebGPU/DirectX/Metal/Vulkan).
+Creates an orthographic matrix with depth mapped to [0, 1]
+(WebGPU/DirectX/Metal/Vulkan).
 
 **Kind**: static method of [<code>mat4</code>](#module_mat4)
 
@@ -1903,8 +1911,7 @@ Calculates a lookAt matrix from position, target and up vectors.
 
 ### mat4.fromDirection(a, direction, [up]) ⇒ [<code>mat4</code>](#mat4)
 
-Sets a matrix from a direction.
-Note: we assume +Z facing models.
+Sets a matrix from a direction. Note: we assume +Z facing models.
 
 **Kind**: static method of [<code>mat4</code>](#module_mat4)
 
@@ -2171,8 +2178,7 @@ Sets a quaternion to a 4x4 matrix.
 
 ### quat.fromDirection(a, direction, [up]) ⇒ [<code>quat</code>](#quat)
 
-Sets a quaternion from a direction
-Note: we assume +Z facing models.
+Sets a quaternion from a direction Note: we assume +Z facing models.
 
 **Kind**: static method of [<code>quat</code>](#module_quat)
 
@@ -3047,7 +3053,7 @@ Prints a vector to a string.
 
 <a name="TypedArray"></a>
 
-## TypedArray : <code>Int8Array</code> \| <code>Uint8Array</code> \| <code>Uint8ClampedArray</code> \| <code>Int16Array</code> \| <code>Uint16Array</code> \| <code>Int32Array</code> \| <code>Uint32Array</code> \| <code>Float32Array</code> \| <code>Float64Array</code> \| <code>BigInt64Array</code> \| <code>BigUint64Array</code>
+## TypedArray : <code>Int8Array</code> \| <code>Uint8Array</code> \| <code>Uint8ClampedArray</code> \| <code>Int16Array</code> \| <code>Uint16Array</code> \| <code>Int32Array</code> \| <code>Uint32Array</code> \| <code>Float16Array</code> \| <code>Float32Array</code> \| <code>Float64Array</code> \| <code>BigInt64Array</code> \| <code>BigUint64Array</code>
 
 **Kind**: global typedef
 <a name="avec2"></a>

@@ -2,6 +2,7 @@
 
 /**
  * Returns a new vec4 at 0, 0, 0, 1.
+ *
  * @returns {import("./types.js").vec4}
  */
 export function create() {
@@ -10,6 +11,7 @@ export function create() {
 
 /**
  * Returns a copy of a vector.
+ *
  * @param {import("./types.js").vec4} a
  * @returns {import("./types.js").vec4}
  */
@@ -19,6 +21,7 @@ export function copy(a) {
 
 /**
  * Sets a vector to another vector.
+ *
  * @param {import("./types.js").vec4} a
  * @param {import("./types.js").vec4} b
  * @returns {import("./types.js").vec4}
@@ -33,6 +36,7 @@ export function set(a, b) {
 
 /**
  * Compares two vectors.
+ *
  * @param {import("./types.js").vec4} a
  * @param {import("./types.js").vec4} b
  * @returns {boolean}
@@ -43,6 +47,7 @@ export function equals(a, b) {
 
 /**
  * Adds a vector to another.
+ *
  * @param {import("./types.js").vec4} a
  * @param {import("./types.js").vec4} b
  * @returns {import("./types.js").vec4}
@@ -57,6 +62,7 @@ export function add(a, b) {
 
 /**
  * Subtracts a vector from another.
+ *
  * @param {import("./types.js").vec4} a
  * @param {import("./types.js").vec4} b
  * @returns {import("./types.js").vec4}
@@ -71,6 +77,7 @@ export function sub(a, b) {
 
 /**
  * Scales a vector by a number.
+ *
  * @param {import("./types.js").vec4} a
  * @param {number} s
  * @returns {import("./types.js").vec4}
@@ -85,6 +92,7 @@ export function scale(a, s) {
 
 /**
  * Adds two vectors after scaling the second one.
+ *
  * @param {import("./types.js").vec4} a
  * @param {import("./types.js").vec4} b
  * @param {number} s
@@ -101,6 +109,7 @@ export function addScaled(a, b, s) {
 
 /**
  * Create a vec4 from vec3.
+ *
  * @param {import("./types.js").vec4} a
  * @param {import("./types.js").vec3} b
  * @returns {import("./types.js").vec4}
@@ -115,6 +124,7 @@ export function fromVec3(a, b) {
 
 /**
  * Multiplies a vector with a matrix.
+ *
  * @param {import("./types.js").vec4} a
  * @param {import("./types.js").mat4} m
  * @returns {import("./types.js").vec4}
@@ -133,6 +143,7 @@ export function multMat4(a, m) {
 
 /**
  * Linearly interpolates between two vectors.
+ *
  * @param {import("./types.js").vec4} a
  * @param {import("./types.js").vec4} b
  * @param {number} t
@@ -154,6 +165,7 @@ export function lerp(a, b, t) {
 
 /**
  * Prints a vector to a string.
+ *
  * @param {import("./types.js").vec4} a
  * @param {number} [precision=4]
  * @returns {string}

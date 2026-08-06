@@ -5,6 +5,7 @@ const TEMP_VEC4 = vec4.create();
 
 /**
  * Sets a vector components.
+ *
  * @param {import("./types.js").avec4} a
  * @param {number} i
  * @param {number} x
@@ -21,6 +22,7 @@ export function set4(a, i, x, y, z, w) {
 
 /**
  * Sets a vector to another vector.
+ *
  * @param {import("./types.js").avec4} a
  * @param {number} i
  * @param {import("./types.js").avec4} b
@@ -35,6 +37,7 @@ export function set(a, i, b, j) {
 
 /**
  * Compares two vectors.
+ *
  * @param {import("./types.js").avec4} a
  * @param {number} i
  * @param {import("./types.js").avec4} b
@@ -52,6 +55,7 @@ export function equals(a, i, b, j) {
 
 /**
  * Adds a vector to another.
+ *
  * @param {import("./types.js").avec4} a
  * @param {number} i
  * @param {import("./types.js").avec4} b
@@ -66,6 +70,7 @@ export function add(a, i, b, j) {
 
 /**
  * Subtracts a vector from another.
+ *
  * @param {import("./types.js").avec4} a
  * @param {number} i
  * @param {import("./types.js").avec4} b
@@ -80,6 +85,7 @@ export function sub(a, i, b, j) {
 
 /**
  * Scales a vector by a number.
+ *
  * @param {import("./types.js").avec4} a
  * @param {number} i
  * @param {number} s
@@ -93,6 +99,7 @@ export function scale(a, i, s) {
 
 /**
  * Adds two vectors after scaling the second one.
+ *
  * @param {import("./types.js").avec4} a
  * @param {number} i
  * @param {import("./types.js").avec4} b
@@ -108,6 +115,7 @@ export function addScaled(a, i, b, j, s) {
 
 /**
  * Multiplies a vector with a matrix.
+ *
  * @param {import("./types.js").avec4} a
  * @param {number} i
  * @param {import("./types.js").amat4} m
@@ -139,6 +147,7 @@ export function multMat4(a, i, m, j) {
 
 /**
  * Linearly interpolates between two vectors.
+ *
  * @param {import("./types.js").avec4} a
  * @param {number} i
  * @param {import("./types.js").avec4} b
@@ -159,6 +168,7 @@ export function lerp(a, i, b, j, t) {
 
 /**
  * Executes a function once for each array element.
+ *
  * @param {import("./types.js").avec4} a
  * @param {import("./types.js").iterativeCallback} callbackFn
  */
@@ -177,7 +187,9 @@ export function forEach(a, callbackFn) {
 }
 
 /**
- * Creates a new array populated with the results of calling a provided function on every element in the calling array.
+ * Creates a new array populated with the results of calling a provided function
+ * on every element in the calling array.
+ *
  * @param {import("./types.js").avec4} a
  * @param {import("./types.js").iterativeCallback} callbackFn
  * @returns {import("./types.js").avec4}
@@ -203,6 +215,7 @@ export function map(a, callbackFn) {
 
 /**
  * Prints a vector to a string.
+ *
  * @param {import("./types.js").avec4} a
  * @param {number} i
  * @param {number} [precision=4]

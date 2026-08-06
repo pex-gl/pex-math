@@ -1,22 +1,17 @@
 /** @module utils */
 
-/**
- * @constant {number}
- */
+/** @constant {number} */
 export const EPSILON = 0.000001;
 
-/**
- * @constant {number}
- */
+/** @constant {number} */
 export const HALF_PI = Math.PI * 0.5;
 
-/**
- * @constant {import("./types.js").vec3}
- */
+/** @constant {import("./types.js").vec3} */
 export const Y_UP = Object.freeze([0, 1, 0]);
 
 /**
  * Linear interpolation between two numbers.
+ *
  * @param {number} a
  * @param {number} b
  * @param {number} t
@@ -28,6 +23,7 @@ export function lerp(a, b, t) {
 
 /**
  * Clamps a number between two numbers.
+ *
  * @param {number} n
  * @param {number} min
  * @param {number} max
@@ -39,6 +35,7 @@ export function clamp(n, min, max) {
 
 /**
  * Smooth Hermite interpolation between 0 and 1
+ *
  * @param {number} n
  * @param {number} min
  * @param {number} max
@@ -51,6 +48,7 @@ export function smoothstep(n, min, max) {
 
 /**
  * Maps a number from one range to another.
+ *
  * @param {number} n
  * @param {number} inStart
  * @param {number} inEnd
@@ -63,8 +61,8 @@ export function remap(n, inStart, inEnd, outStart, outEnd) {
 }
 
 /**
- * @deprecated Use "remap()"
  * @ignore
+ * @deprecated Use "remap()"
  */
 export function map(...args) {
   return remap(...args);
@@ -72,6 +70,7 @@ export function map(...args) {
 
 /**
  * Transforms degrees into radians.
+ *
  * @param {import("./types.js").Degrees} degrees
  * @returns {import("./types.js").Radians}
  */
@@ -81,6 +80,7 @@ export function toRadians(degrees) {
 
 /**
  * Transforms radians into degrees.
+ *
  * @param {import("./types.js").Radians} radians
  * @returns {import("./types.js").Degrees}
  */
@@ -90,6 +90,7 @@ export function toDegrees(radians) {
 
 /**
  * Check if a number is a power of two
+ *
  * @param {number} a
  * @returns {boolean}
  */
@@ -99,6 +100,7 @@ export function isPowerOfTwo(a) {
 
 /**
  * Returns the next highest power of two.
+ *
  * @param {number} n
  * @returns {number}
  */
@@ -115,6 +117,7 @@ export function nextPowerOfTwo(n) {
 
 /**
  * Returns the previous power of two.
+ *
  * @param {number} n
  * @returns {number}
  */

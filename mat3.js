@@ -11,7 +11,7 @@
  *  6   7   8
  * ```
  *
- *  Equivalent to the column major OpenGL spec:
+ * Equivalent to the column major OpenGL spec:
  *
  * ```txt
  *   0   3   6
@@ -22,6 +22,7 @@
  *  m01 m11 m21
  *  m02 m12 m22
  * ```
+ *
  * @returns {import("./types.js").mat3}
  */
 export function create() {
@@ -35,6 +36,7 @@ export function create() {
 
 /**
  * Sets a matrix to the identity matrix.
+ *
  * @param {import("./types.js").mat3} a
  * @returns {import("./types.js").mat3}
  */
@@ -46,6 +48,7 @@ export function identity(a) {
 
 /**
  * Returns a copy of a matrix.
+ *
  * @param {import("./types.js").mat3} a
  * @returns {import("./types.js").mat3}
  */
@@ -55,6 +58,7 @@ export function copy(a) {
 
 /**
  * Sets a matrix from another matrix.
+ *
  * @param {import("./types.js").mat3} a
  * @param {import("./types.js").mat3} b
  * @returns {import("./types.js").mat3}
@@ -74,6 +78,7 @@ export function set(a, b) {
 
 /**
  * Compares two matrices.
+ *
  * @param {import("./types.js").mat3} a
  * @param {import("./types.js").mat3} b
  * @returns {boolean}
@@ -95,6 +100,7 @@ export function equals(a, b) {
 
 /**
  * Multiplies two matrices.
+ *
  * @param {import("./types.js").mat3} a
  * @param {import("./types.js").mat3} b
  * @returns {import("./types.js").mat3}
@@ -135,6 +141,7 @@ export function mult(a, b) {
 
 /**
  * Transposes a matrix.
+ *
  * @param {import("./types.js").mat3} a
  * @returns {import("./types.js").mat3}
  */
@@ -157,6 +164,7 @@ export function transpose(a) {
 
 /**
  * Sets matrix to a quaternion.
+ *
  * @param {import("./types.js").mat3} a
  * @param {import("./types.js").quat} q
  * @returns {import("./types.js").mat3}
@@ -200,6 +208,7 @@ export function fromQuat(a, q) {
 
 /**
  * Sets a 3x3 matrix from a 2x3 matrix.
+ *
  * @param {import("./types.js").mat3} a
  * @param {import("./types.js").mat2x3} b
  * @returns {import("./types.js").mat3}
@@ -219,6 +228,7 @@ export function fromMat2x3(a, b) {
 
 /**
  * Sets a 3x3 matrix to a 4x4 matrix.
+ *
  * @param {import("./types.js").mat3} a
  * @param {import("./types.js").mat4} b
  * @returns {import("./types.js").mat3}

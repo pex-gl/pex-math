@@ -5,6 +5,7 @@ const TEMP_VEC3 = vec3.create();
 
 /**
  * Sets a vector components.
+ *
  * @param {import("./types.js").avec3} a
  * @param {number} i
  * @param {number} x
@@ -19,6 +20,7 @@ export function set3(a, i, x, y, z) {
 
 /**
  * Sets a vector to another vector.
+ *
  * @param {import("./types.js").avec3} a
  * @param {number} i
  * @param {import("./types.js").avec3} b
@@ -32,6 +34,7 @@ export function set(a, i, b, j) {
 
 /**
  * Compares two vectors.
+ *
  * @param {import("./types.js").avec3} a
  * @param {number} i
  * @param {import("./types.js").avec3} b
@@ -48,6 +51,7 @@ export function equals(a, i, b, j) {
 
 /**
  * Adds a vector to another.
+ *
  * @param {import("./types.js").avec3} a
  * @param {number} i
  * @param {import("./types.js").avec3} b
@@ -61,6 +65,7 @@ export function add(a, i, b, j) {
 
 /**
  * Subtracts a vector from another.
+ *
  * @param {import("./types.js").avec3} a
  * @param {number} i
  * @param {import("./types.js").avec3} b
@@ -74,6 +79,7 @@ export function sub(a, i, b, j) {
 
 /**
  * Scales a vector by a number.
+ *
  * @param {import("./types.js").avec3} a
  * @param {number} i
  * @param {number} s
@@ -86,6 +92,7 @@ export function scale(a, i, s) {
 
 /**
  * Adds two vectors after scaling the second one.
+ *
  * @param {import("./types.js").avec3} a
  * @param {number} i
  * @param {import("./types.js").avec3} b
@@ -100,6 +107,7 @@ export function addScaled(a, i, b, j, s) {
 
 /**
  * Multiplies a vector by a matrix.
+ *
  * @param {import("./types.js").avec3} a
  * @param {number} i
  * @param {import("./types.js").amat4} m
@@ -120,6 +128,7 @@ export function multMat4(a, i, m, j) {
 
 /**
  * Multiplies a vector by a quaternion.
+ *
  * @param {import("./types.js").avec3} a
  * @param {number} i
  * @param {import("./types.js").aquat} q
@@ -147,6 +156,7 @@ export function multQuat(a, i, q, j) {
 
 /**
  * Calculates the dot product of two vectors.
+ *
  * @param {import("./types.js").avec3} a
  * @param {number} i
  * @param {import("./types.js").avec3} b
@@ -163,6 +173,7 @@ export function dot(a, i, b, j) {
 
 /**
  * Calculates the cross product of two vectors.
+ *
  * @param {import("./types.js").avec3} a
  * @param {number} i
  * @param {import("./types.js").avec3} b
@@ -183,6 +194,7 @@ export function cross(a, i, b, j) {
 
 /**
  * Calculates the length of a vector.
+ *
  * @param {import("./types.js").avec3} a
  * @param {number} i
  * @returns {number}
@@ -196,6 +208,7 @@ export function length(a, i) {
 
 /**
  * Calculates the squared length of a vector.
+ *
  * @param {import("./types.js").avec3} a
  * @param {number} i
  * @returns {number}
@@ -209,6 +222,7 @@ export function lengthSq(a, i) {
 
 /**
  * Normalises a vector.
+ *
  * @param {import("./types.js").avec3} a
  * @param {number} i
  */
@@ -227,6 +241,7 @@ export function normalize(a, i) {
 
 /**
  * Calculates the distance between two vectors.
+ *
  * @param {import("./types.js").avec3} a
  * @param {number} i
  * @param {import("./types.js").avec3} b
@@ -242,6 +257,7 @@ export function distance(a, i, b, j) {
 
 /**
  * Calculates the squared distance between two vectors.
+ *
  * @param {import("./types.js").avec3} a
  * @param {number} i
  * @param {import("./types.js").avec3} b
@@ -257,6 +273,7 @@ export function distanceSq(a, i, b, j) {
 
 /**
  * Limits a vector to a length.
+ *
  * @param {import("./types.js").avec3} a
  * @param {number} i
  * @param {number} len
@@ -279,6 +296,7 @@ export function limit(a, i, len) {
 
 /**
  * Linearly interpolates between two vectors.
+ *
  * @param {import("./types.js").avec3} a
  * @param {number} i
  * @param {import("./types.js").avec3} b
@@ -297,6 +315,7 @@ export function lerp(a, i, b, j, t) {
 
 /**
  * Executes a function once for each array element.
+ *
  * @param {import("./types.js").avec3} a
  * @param {import("./types.js").iterativeCallback} callbackFn
  */
@@ -313,7 +332,9 @@ export function forEach(a, callbackFn) {
 }
 
 /**
- * Creates a new array populated with the results of calling a provided function on every element in the calling array.
+ * Creates a new array populated with the results of calling a provided function
+ * on every element in the calling array.
+ *
  * @param {import("./types.js").avec3} a
  * @param {import("./types.js").iterativeCallback} callbackFn
  * @returns {import("./types.js").avec3}
@@ -337,6 +358,7 @@ export function map(a, callbackFn) {
 
 /**
  * Prints a vector to a string.
+ *
  * @param {import("./types.js").avec3} a
  * @param {number} i
  * @param {number} [precision=4]

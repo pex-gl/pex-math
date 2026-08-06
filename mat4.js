@@ -26,6 +26,7 @@ import { EPSILON, Y_UP } from "./utils.js";
  *  m02 m12 m22 m32
  *  m03 m13 m23 m33
  * ```
+ *
  * @returns {import("./types.js").mat4}
  */
 export function create() {
@@ -40,6 +41,7 @@ export function create() {
 
 /**
  * Sets a matrix to the identity matrix.
+ *
  * @param {import("./types.js").mat4} a
  * @returns {import("./types.js").mat4}
  */
@@ -63,6 +65,7 @@ export function identity(a) {
 
 /**
  * Returns a copy of a matrix.
+ *
  * @param {import("./types.js").mat4} a
  * @returns {import("./types.js").mat4}
  */
@@ -72,6 +75,7 @@ export function copy(a) {
 
 /**
  * Sets a matrix from another matrix.
+ *
  * @param {import("./types.js").mat4} a
  * @param {import("./types.js").mat4} b
  * @returns {import("./types.js").mat4}
@@ -98,6 +102,7 @@ export function set(a, b) {
 
 /**
  * Compares two matrices.
+ *
  * @param {import("./types.js").mat4} a
  * @param {import("./types.js").mat4} b
  * @returns {boolean}
@@ -125,6 +130,7 @@ export function equals(a, b) {
 
 /**
  * Multiplies two matrices.
+ *
  * @param {import("./types.js").mat4} a
  * @param {import("./types.js").mat4} b
  * @returns {import("./types.js").mat4}
@@ -188,6 +194,7 @@ export function mult(a, b) {
 
 /**
  * Inverts a matrix.
+ *
  * @param {import("./types.js").mat4} a
  * @returns {import("./types.js").mat4}
  */
@@ -387,6 +394,7 @@ export function invert(a) {
 
 /**
  * Transposes a matrix.
+ *
  * @param {import("./types.js").mat4} a
  * @returns {import("./types.js").mat4}
  */
@@ -425,6 +433,7 @@ export function transpose(a) {
 
 /**
  * Translates a matrix by a vector.
+ *
  * @param {import("./types.js").mat4} a
  * @param {import("./types.js").vec3} v
  * @returns {import("./types.js").mat4}
@@ -440,6 +449,7 @@ export function translate(a, [x, y, z]) {
 
 /**
  * Rotates a matrix by an angle at an axis.
+ *
  * @param {import("./types.js").mat4} a
  * @param {import("./types.js").Radians} r
  * @param {import("./types.js").vec3} v
@@ -502,6 +512,7 @@ export function rotate(a, r, [x, y, z]) {
 
 /**
  * Scales a matrix by a vector.
+ *
  * @param {import("./types.js").mat4} a
  * @param {import("./types.js").vec3} v
  * @returns {import("./types.js").mat4}
@@ -524,6 +535,7 @@ export function scale(a, [x, y, z]) {
 
 /**
  * Sets a matrix to a quaternion.
+ *
  * @param {import("./types.js").mat4} a
  * @param {import("./types.js").quat} q
  * @returns {import("./types.js").mat4}
@@ -570,6 +582,7 @@ export function fromQuat(a, q) {
 
 /**
  * Sets a matrix to the TRS matrix.
+ *
  * @param {import("./types.js").mat4} a
  * @param {import("./types.js").vec3} v
  * @param {import("./types.js").quat} q
@@ -625,6 +638,7 @@ export function fromTranslationRotationScale(a, v, q, s) {
 
 /**
  * Sets a 4x4 matrix to a 3x3 matrix.
+ *
  * @param {import("./types.js").mat4} a
  * @param {import("./types.js").mat3} b
  * @returns {import("./types.js").mat4}
@@ -650,6 +664,7 @@ export function fromMat3(a, b) {
 
 /**
  * Creates a frustum matrix with depth mapped to [-1, 1] (WebGL/OpenGL).
+ *
  * @param {import("./types.js").mat4} a
  * @param {number} left
  * @param {number} right
@@ -686,7 +701,9 @@ export function frustum(a, left, right, bottom, top, near, far) {
 }
 
 /**
- * Creates a frustum matrix with depth mapped to [0, 1] (WebGPU/DirectX/Metal/Vulkan).
+ * Creates a frustum matrix with depth mapped to [0, 1]
+ * (WebGPU/DirectX/Metal/Vulkan).
+ *
  * @param {import("./types.js").mat4} a
  * @param {number} left
  * @param {number} right
@@ -724,6 +741,7 @@ export function frustumZO(a, left, right, bottom, top, near, far) {
 
 /**
  * Creates a perspective matrix with depth mapped to [-1, 1] (WebGL/OpenGL).
+ *
  * @param {import("./types.js").mat4} a
  * @param {import("./types.js").Radians} fovy
  * @param {number} aspectRatio
@@ -758,7 +776,9 @@ export function perspective(a, fovy, aspectRatio, near, far) {
 }
 
 /**
- * Creates a perspective matrix with depth mapped to [0, 1] (WebGPU/DirectX/Metal/Vulkan).
+ * Creates a perspective matrix with depth mapped to [0, 1]
+ * (WebGPU/DirectX/Metal/Vulkan).
+ *
  * @param {import("./types.js").mat4} a
  * @param {import("./types.js").Radians} fovy
  * @param {number} aspectRatio
@@ -794,6 +814,7 @@ export function perspectiveZO(a, fovy, aspectRatio, near, far) {
 
 /**
  * Creates an orthographic matrix with depth mapped to [-1, 1] (WebGL/OpenGL).
+ *
  * @param {import("./types.js").mat4} a
  * @param {number} left
  * @param {number} right
@@ -823,7 +844,9 @@ export function ortho(a, left, right, bottom, top, near, far) {
 }
 
 /**
- * Creates an orthographic matrix with depth mapped to [0, 1] (WebGPU/DirectX/Metal/Vulkan).
+ * Creates an orthographic matrix with depth mapped to [0, 1]
+ * (WebGPU/DirectX/Metal/Vulkan).
+ *
  * @param {import("./types.js").mat4} a
  * @param {number} left
  * @param {number} right
@@ -854,6 +877,7 @@ export function orthoZO(a, left, right, bottom, top, near, far) {
 
 /**
  * Calculates a lookAt matrix from position, target and up vectors.
+ *
  * @param {import("./types.js").mat4} a
  * @param {import("./types.js").vec3} from
  * @param {import("./types.js").vec3} to
@@ -930,8 +954,8 @@ export function lookAt(
 }
 
 /**
- * Sets a matrix from a direction.
- * Note: we assume +Z facing models.
+ * Sets a matrix from a direction. Note: we assume +Z facing models.
+ *
  * @param {import("./types.js").mat4} a
  * @param {import("./types.js").vec3} direction
  * @param {import("./types.js").vec3} [up=Y_UP]
@@ -994,6 +1018,7 @@ export function fromDirection(a, [dir0, dir1, dir2], [upx, upy, upz] = Y_UP) {
 
 /**
  * Sets a matrix from a point to another.
+ *
  * @param {import("./types.js").mat4} a
  * @param {import("./types.js").vec3} from
  * @param {import("./types.js").vec3} to

@@ -1,7 +1,8 @@
 /** @module mat2x3 */
 
 /**
- * Returns a 2x3 identity matrix, a short form for a 3x3 matrix with the last row ignored.
+ * Returns a 2x3 identity matrix, a short form for a 3x3 matrix with the last
+ * row ignored.
  *
  * Row major memory layout:
  *
@@ -22,6 +23,7 @@
  * m01 m11
  * m02 m12
  * ```
+ *
  * @returns {import("./types.js").mat2x3}
  */
 export function create() {
@@ -35,6 +37,7 @@ export function create() {
 
 /**
  * Sets a matrix to the identity matrix.
+ *
  * @param {import("./types.js").mat2x3} a
  * @returns {import("./types.js").mat2x3}
  */
@@ -46,6 +49,7 @@ export function identity(a) {
 
 /**
  * Returns a copy of a matrix.
+ *
  * @param {import("./types.js").mat2x3} a
  * @returns {import("./types.js").mat2x3}
  */
@@ -55,6 +59,7 @@ export function copy(a) {
 
 /**
  * Sets a matrix from another matrix.
+ *
  * @param {import("./types.js").mat2x3} a
  * @param {import("./types.js").mat2x3} b
  * @returns {import("./types.js").mat2x3}
@@ -71,6 +76,7 @@ export function set(a, b) {
 
 /**
  * Compares two matrices.
+ *
  * @param {import("./types.js").mat2x3} a
  * @param {import("./types.js").mat2x3} b
  * @returns {boolean}
@@ -88,6 +94,7 @@ export function equals(a, b) {
 
 /**
  * Multiplies two matrices.
+ *
  * @param {import("./types.js").mat2x3} a
  * @param {import("./types.js").mat2x3} b
  * @returns {import("./types.js").mat2x3}
@@ -119,6 +126,7 @@ export function mult(a, b) {
 
 /**
  * Translates a matrix by a vector.
+ *
  * @param {import("./types.js").mat2x3} a
  * @param {import("./types.js").vec2} v
  * @returns {import("./types.js").mat2x3}
@@ -146,6 +154,7 @@ export function translate(a, v) {
 
 /**
  * Rotates a matrix by an angle.
+ *
  * @param {import("./types.js").mat2x3} a
  * @param {import("./types.js").Radians} rad
  * @returns {import("./types.js").mat2x3}
@@ -169,6 +178,7 @@ export function rotate(a, rad) {
 
 /**
  * Scales a matrix by a vector.
+ *
  * @param {import("./types.js").mat2x3} a
  * @param {import("./types.js").vec2} v
  * @returns {import("./types.js").mat2x3}

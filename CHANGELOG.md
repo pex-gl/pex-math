@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [4.3.1](https://github.com/pex-gl/pex-math/compare/v4.3.0...v4.3.1) (2026-08-06)
+
+
+### Bug Fixes
+
+* add Float16Array to TypedArray ([f24ebd0](https://github.com/pex-gl/pex-math/commit/f24ebd0f576ec798d2eb1bfd8fce3ab2c29c40b0))
+* re-export types ([bc2add4](https://github.com/pex-gl/pex-math/commit/bc2add4ddb06935e8605ca20ce453be6cffe70b1))
+
+
+
 # [4.3.0](https://github.com/pex-gl/pex-math/compare/v4.2.0...v4.3.0) (2026-07-08)
 
 

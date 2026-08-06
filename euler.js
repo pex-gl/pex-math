@@ -3,7 +3,9 @@
 import { clamp } from "./utils.js";
 
 /**
- * Create a new euler angles [0, 0, 0]: vec3 array of [x, y, z] rotation [yaw, pitch, roll] in radians.
+ * Create a new euler angles [0, 0, 0]: vec3 array of [x, y, z] rotation [yaw,
+ * pitch, roll] in radians.
+ *
  * @returns {import("./types.js").euler}
  */
 export function create() {
@@ -12,6 +14,7 @@ export function create() {
 
 /**
  * Creates euler angles from quaternion. Assumes XYZ order of rotations.
+ *
  * @param {import("./types.js").euler} a
  * @param {import("./types.js").quat} q
  * @returns {import("./types.js").euler}
