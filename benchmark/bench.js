@@ -1,8 +1,19 @@
-import bench from "nanobench";
+import { Bench } from "tinybench";
 import { avec3, vec3, quat, eases } from "../index.js";
-import { run } from "./utils.js";
 import { fromDirection } from "../mat4.js";
 import { Y_UP } from "../utils.js";
+import { pairTable, rankGroups } from "./report.js";
+
+// Iteration-bounded (time: 0) rather than time-bounded: at the default 1s
+// budget these sub-100ns operations collect tens of millions of samples per
+// task, and the per-task percentile sort then dominates the whole run.
+const bench = new Bench({
+  name: "pex-math internals",
+  time: 0,
+  iterations: 50_000,
+  warmupTime: 0,
+  warmupIterations: 5000,
+});
 
 const x = 1;
 const y = 2;
@@ -13,33 +24,15 @@ const testLengthHypot = (x, y) => Math.hypot(x, y);
 const testLengthSqrt = (x, y) => Math.sqrt(x * x + y * y);
 const testLengthExp = (x, y) => (x * x + y * y) ** 0.5;
 
-[testLengthHypot, testLengthSqrt, testLengthExp].forEach((test) => {
-  bench(test.name, (b) => {
-    b.start();
-
-    run(() => {
-      test(x, y);
-    });
-
-    b.end();
-  });
-});
+const lengthTests = [testLengthHypot, testLengthSqrt, testLengthExp];
+for (const test of lengthTests) bench.add(test.name, () => test(x, y));
 
 // Divisions
 const testHalfDivideByTwo = (x) => x / 2;
 const testHalfMultiplyByZeroPointFive = (x) => x * 0.5;
 
-[testHalfDivideByTwo, testHalfMultiplyByZeroPointFive].forEach((test) => {
-  bench(test.name, (b) => {
-    b.start();
-
-    run(() => {
-      test(x);
-    });
-
-    b.end();
-  });
-});
+const divisionTests = [testHalfDivideByTwo, testHalfMultiplyByZeroPointFive];
+for (const test of divisionTests) bench.add(test.name, () => test(x));
 
 // Clone
 const testCloneArraySlice = (a) => a.slice();
@@ -49,9 +42,8 @@ const testCloneArrayFrom = (a) => Array.from(a);
 const testCloneArraySpread = (a) => [...a];
 const testCloneArrayConcat = (a) => [].concat(a);
 const testCloneArrayObjectValues = (a) => Object.values(a);
-const testCloneArrayObjectAssign = (a) => Object.assign([], a);
 
-[
+const cloneTests = [
   testCloneArraySlice,
   testCloneArraySliceZero,
   testCloneArrayMap,
@@ -59,20 +51,10 @@ const testCloneArrayObjectAssign = (a) => Object.assign([], a);
   testCloneArraySpread,
   testCloneArrayConcat,
   testCloneArrayObjectValues,
-  // testCloneArrayObjectAssign,
-].forEach((test) => {
-  bench(test.name, (b) => {
-    b.start();
+];
+for (const test of cloneTests) bench.add(test.name, () => test(a));
 
-    run(() => {
-      test(a);
-    });
-
-    b.end();
-  });
-});
-
-// Internals
+// Internals: one pass over a Float32Array of vec3
 const elementLength = 512;
 const rotation = quat.fromAxisAngle(
   quat.create(),
@@ -80,27 +62,17 @@ const rotation = quat.fromAxisAngle(
   Math.PI,
 );
 
-bench("avec3.set3 slice", (b) => {
+bench.add("avec3.set3 slice", () => {
   const a = new Float32Array(elementLength).fill(1);
-
-  b.start();
-  run(() => {
-    for (let i = 0; i < elementLength / 3; i++) {
-      avec3.set3(a, i, ...vec3.multQuat(a.slice(i * 3, i * 3 + 3), rotation));
-    }
-  }, 1e3);
-  b.end();
+  for (let i = 0; i < elementLength / 3; i++) {
+    avec3.set3(a, i, ...vec3.multQuat(a.slice(i * 3, i * 3 + 3), rotation));
+  }
 });
-bench("avec3.set slice", (b) => {
+bench.add("avec3.set slice", () => {
   const a = new Float32Array(elementLength).fill(1);
-
-  b.start();
-  run(() => {
-    for (let i = 0; i < elementLength / 3; i++) {
-      avec3.set(a, i, vec3.multQuat(a.slice(i * 3, i * 3 + 3), rotation), 0);
-    }
-  }, 1e3);
-  b.end();
+  for (let i = 0; i < elementLength / 3; i++) {
+    avec3.set(a, i, vec3.multQuat(a.slice(i * 3, i * 3 + 3), rotation), 0);
+  }
 });
 
 // Destructuring
@@ -161,50 +133,55 @@ function fromDirectionNoDestructuring(a, dir, up = Y_UP) {
   return a;
 }
 
-[fromDirection, fromDirectionNoDestructuring].forEach((test) => {
-  bench(test.name, (b) => {
-    b.start();
+const directionTests = [fromDirection, fromDirectionNoDestructuring];
+for (const test of directionTests)
+  bench.add(test.name, () => test(a, [1, 1, 1]));
 
-    run(() => {
-      test(a, [1, 1, 1]);
-    });
+// Eases
+// const bounds = (t) => {
+//   if (t === 0) return 0;
+//   if (t === 1) return 1;
+// };
 
-    b.end();
-  });
+// const easeNames = Object.keys(eases);
+// for (const ease of easeNames) {
+//   const easeFn = eases[ease];
+//   bench.add(ease, () => {
+//     easeFn(0);
+//     easeFn(0.25);
+//     easeFn(0.75);
+//     easeFn(1);
+//   });
+
+//   const easeFnWithBounds = (t) => bounds(t) ?? easeFn(t);
+//   bench.add(`${ease}WithBounds`, () => {
+//     easeFnWithBounds(0);
+//     easeFnWithBounds(0.25);
+//     easeFnWithBounds(0.75);
+//     easeFnWithBounds(1);
+//   });
+// }
+
+await bench.run();
+
+console.log(bench.name);
+rankGroups({
+  Length: lengthTests.map((test) => bench.getTask(test.name)),
+  Divisions: divisionTests.map((test) => bench.getTask(test.name)),
+  Clone: cloneTests.map((test) => bench.getTask(test.name)),
+  "avec3 set3 vs set": [
+    bench.getTask("avec3.set3 slice"),
+    bench.getTask("avec3.set slice"),
+  ],
+  fromDirection: directionTests.map((test) => bench.getTask(test.name)),
 });
 
-Object.keys(eases).forEach((ease) => {
-  const easeFn = eases[ease];
-  bench(ease, (b) => {
-    b.start();
-
-    run(() => {
-      easeFn(0);
-      easeFn(0.25);
-      easeFn(0.75);
-      easeFn(1);
-    });
-
-    b.end();
-  });
-
-  const bounds = (t) => {
-    if (t === 0) return 0;
-    if (t === 1) return 1;
-  };
-
-  const easeFnWithBounds = (t) => bounds(t) ?? easeFn(t);
-
-  bench(`${ease}WithBounds`, (b) => {
-    b.start();
-
-    run(() => {
-      easeFnWithBounds(0);
-      easeFnWithBounds(0.25);
-      easeFnWithBounds(0.75);
-      easeFnWithBounds(1);
-    });
-
-    b.end();
-  });
-});
+// pairTable(
+//   "Eases: plain vs bounds-guarded",
+//   ["plain", "bounds"],
+//   easeNames.map((ease) => ({
+//     name: ease,
+//     a: bench.getTask(ease),
+//     b: bench.getTask(`${ease}WithBounds`),
+//   })),
+// );

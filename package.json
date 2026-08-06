@@ -37,7 +37,7 @@
   "types": "./types/index.d.ts",
   "sideEffects": false,
   "scripts": {
-    "benchmark": "node benchmark/bench.js && node benchmark/bench-pex.js > pex-math && node benchmark/bench-gl-matrix.js > gl-matrix && nanobench-compare gl-matrix pex-math && rm pex-math && rm gl-matrix",
+    "benchmark": "node benchmark/bench-compare.js && node benchmark/bench.js",
     "build": "npx snowdev build",
     "dev": "npx snowdev dev",
     "release": "npx snowdev release",
@@ -47,8 +47,8 @@
   "devDependencies": {
     "es-module-shims": "^2.8.4",
     "gl-matrix": "^3.4.4",
-    "nanobench": "^2.1.1",
-    "pex-gl": "^3.0.2"
+    "pex-gl": "^3.0.2",
+    "tinybench": "^6.1.2"
   },
   "engines": {
     "node": ">=22.0.0",
