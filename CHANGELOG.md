@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+# [4.4.0](https://github.com/pex-gl/pex-math/compare/v4.3.2...v4.4.0) (2026-08-12)
+
+
+### Features
+
+* add mat4.determinant ([d550d18](https://github.com/pex-gl/pex-math/commit/d550d18c81e4097611cd1d218c1795287a0c572b))
+
+
+
 ## [4.3.2](https://github.com/pex-gl/pex-math/compare/v4.3.1...v4.3.2) (2026-08-06)
 
 

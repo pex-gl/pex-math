@@ -1570,6 +1570,7 @@ Sets a 3x3 matrix to a 4x4 matrix.
   - [.equals(a, b)](#module_mat4.equals) ⇒ <code>boolean</code>
   - [.mult(a, b)](#module_mat4.mult) ⇒ [<code>Mat4</code>](#Mat4)
   - [.invert(a)](#module_mat4.invert) ⇒ [<code>Mat4</code>](#Mat4)
+  - [.determinant(a)](#module_mat4.determinant) ⇒ <code>number</code>
   - [.transpose(a)](#module_mat4.transpose) ⇒ [<code>Mat4</code>](#Mat4)
   - [.translate(a, v)](#module_mat4.translate) ⇒ [<code>Mat4</code>](#Mat4)
   - [.rotate(a, r, v)](#module_mat4.rotate) ⇒ [<code>Mat4</code>](#Mat4)
@@ -1685,6 +1686,18 @@ Multiplies two matrices.
 ### mat4.invert(a) ⇒ [<code>Mat4</code>](#Mat4)
 
 Inverts a matrix.
+
+**Kind**: static method of [<code>mat4</code>](#module_mat4)
+
+| Param | Type                       |
+| ----- | -------------------------- |
+| a     | [<code>Mat4</code>](#Mat4) |
+
+<a name="module_mat4.determinant"></a>
+
+### mat4.determinant(a) ⇒ <code>number</code>
+
+Returns the determinant of a matrix.
 
 **Kind**: static method of [<code>mat4</code>](#module_mat4)
 
