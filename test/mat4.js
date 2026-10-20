@@ -100,6 +100,34 @@ describe("mat4", () => {
     deepEqual(mat4.invert(a), null);
     deepEqual(a, singular);
   });
+  it("determinant() should return the determinant of a mat4", () => {
+    deepEqual(mat4.determinant(IDENTITY_MAT4), 1);
+    deepEqual(mat4.determinant(ONE_MAT4), 0);
+    // Translation doesn't change the determinant
+    deepEqual(
+      mat4.determinant(mat4.scale(mat4.copy(ONE_TWO_THREE_MAT4), [2, 3, 4])),
+      24,
+    );
+    // Full integer matrices, expected values computed by cofactor expansion
+    // prettier-ignore
+    const a = [
+      2, 7, 1, 8,
+      2, 8, 1, 8,
+      4, 5, 9, 0,
+      4, 5, 2, 3
+    ];
+    // prettier-ignore
+    const b = [
+      3, 1, 4, 1,
+      5, 9, 2, 6,
+      5, 3, 5, 8,
+      9, 7, 9, 3
+    ];
+    deepEqual(mat4.determinant(a), -182);
+    deepEqual(mat4.determinant(b), 98);
+    deepEqual(mat4.determinant(mat4.transpose(mat4.copy(a))), -182);
+    deepEqual(mat4.determinant(mat4.mult(mat4.copy(a), b)), -182 * 98);
+  });
   it("transpose() should transpose a mat4", () => {
     deepEqual(
       mat4.transpose(mat4.copy(ONE_TWO_THREE_MAT4)),
@@ -292,6 +320,16 @@ describe("mat4", () => {
         0, 0, 1, 0,
         0, 0, -1, 1
       ],
+    );
+  });
+  it("lookAt() should return identity when position and target are the same", () => {
+    deepEqual(
+      mat4.lookAt(mat4.copy(ONE_TO_SIXTEEN_MAT4), Y_UP, Y_UP, Y_UP),
+      IDENTITY_MAT4,
+    );
+    deepEqual(
+      mat4.lookAt(mat4.copy(ONE_TO_SIXTEEN_MAT4), Y_UP, [0, 1 + 1e-7, 0], Y_UP),
+      IDENTITY_MAT4,
     );
   });
   it("lookAt() should fall back to another up axis when up is parallel to the view direction", () => {
