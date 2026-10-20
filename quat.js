@@ -147,7 +147,7 @@ export function normalize(a) {
  *
  * @param {import("./types.js").Quat} a
  * @param {import("./types.js").Quat} b
- * @returns {import("./types.js").Quat}
+ * @returns {number}
  */
 export function dot(a, b) {
   return a[0] * b[0] + a[1] * b[1] + a[2] * b[2] + a[3] * b[3];
