@@ -74,6 +74,11 @@ describe("eases", () => {
         strictEqual(eases.stepNone(1.1), 1);
       });
 
+      it("should default to n = 2", () => {
+        strictEqual(eases.stepNone(0.25), 0);
+        strictEqual(eases.stepNone(0.75), 1);
+      });
+
       it("should distribute steps evenly excluding endpoints for n = 2", () => {
         strictEqual(eases.stepNone(1 / 2 - Number.EPSILON, 2), 0);
         strictEqual(eases.stepNone(1 / 2 + Number.EPSILON, 2), 1);

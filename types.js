@@ -69,4 +69,13 @@
  * @returns {number}
  */
 
+/**
+ * Ease step function signature without jumps at either end.
+ *
+ * @callback easeStepNoneFn
+ * @param {number} t Interpolant value
+ * @param {number} [step=2] Number of steps, at least 2
+ * @returns {number}
+ */
+
 export {};

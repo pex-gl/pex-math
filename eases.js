@@ -101,7 +101,7 @@ const stepEdges = (t) => {
 
 const stepStart = (t, n = 1) => stepEdges(t) ?? Math.ceil(t * n) / n;
 const stepEnd = (t, n = 1) => stepEdges(t) ?? Math.floor(t * n) / n;
-const stepNone = (t, n = 1) => stepEdges(t) ?? Math.floor(t * n) / (n - 1);
+const stepNone = (t, n = 2) => stepEdges(t) ?? Math.floor(t * n) / (n - 1);
 const stepBoth = (t, n = 1) => stepEdges(t) ?? (Math.floor(t * n) + 0.5) / n;
 
 export {
@@ -138,6 +138,6 @@ export {
   /** @type {import("./types.js").easeFn} \@function */ bounceInOut,
   /** @type {import("./types.js").easeStepFn} \@function */ stepStart,
   /** @type {import("./types.js").easeStepFn} \@function */ stepEnd,
-  /** @type {import("./types.js").easeStepFn} \@function */ stepNone,
+  /** @type {import("./types.js").easeStepNoneFn} \@function */ stepNone,
   /** @type {import("./types.js").easeStepFn} \@function */ stepBoth,
 };
