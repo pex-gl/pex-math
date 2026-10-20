@@ -95,13 +95,13 @@ export function toDegrees(radians) {
 }
 
 /**
- * Check if a number is a power of two
+ * Check if a number is a power of two. Limited to 32-bit integers.
  *
  * @param {number} a
  * @returns {boolean}
  */
 export function isPowerOfTwo(a) {
-  return (a & (a - 1)) === 0;
+  return (a | 0) === a && a > 0 && (a & (a - 1)) === 0;
 }
 
 /**

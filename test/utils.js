@@ -149,11 +149,16 @@ describe("utils", () => {
   it("isPowerOfTwo", () => {
     ok(utils.isPowerOfTwo(2));
     ok(utils.isPowerOfTwo(512));
-    ok(utils.isPowerOfTwo(2 ** 50));
-    ok(utils.isPowerOfTwo(-0));
-    ok(utils.isPowerOfTwo(0));
+    ok(utils.isPowerOfTwo(2 ** 30));
+    ok(utils.isPowerOfTwo(1));
+    ok(utils.isPowerOfTwo(-0) === false);
+    ok(utils.isPowerOfTwo(0) === false);
     ok(utils.isPowerOfTwo(3) === false);
     ok(utils.isPowerOfTwo(-512) === false);
+    ok(utils.isPowerOfTwo(0.5) === false);
+    ok(utils.isPowerOfTwo(2.5) === false);
+    ok(utils.isPowerOfTwo(NaN) === false);
+    ok(utils.isPowerOfTwo(Infinity) === false);
   });
 
   it("nextPowerOfTwo", () => {
