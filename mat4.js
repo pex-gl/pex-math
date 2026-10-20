@@ -1,6 +1,23 @@
 /** @module mat4 */
 import { EPSILON, Y_UP } from "./utils.js";
 
+const TEMP_VEC3 = [0, 0, 0];
+
+// Keeps x = +X for a Y-up view looking straight up or down, continuous with
+// tilting it there from the default orientation.
+function parallelUpXAxis(z0, z1, z2, upx, upy, upz) {
+  const s = upx * z0 + upy * z1 + upz * z2 < 0 ? -1 : 1;
+  if (z0 || z1) {
+    TEMP_VEC3[0] = s * z1;
+    TEMP_VEC3[1] = -s * z0;
+  } else {
+    TEMP_VEC3[0] = 0;
+    TEMP_VEC3[1] = s * z2;
+  }
+  TEMP_VEC3[2] = 0;
+  return TEMP_VEC3;
+}
+
 /**
  * Returns a 4x4 identity matrix.
  *
@@ -193,7 +210,8 @@ export function mult(a, b) {
 }
 
 /**
- * Inverts a matrix. Returns null and leaves the matrix unchanged if it is not invertible.
+ * Inverts a matrix. Returns null and leaves the matrix unchanged if it is not
+ * invertible.
  *
  * @param {import("./types.js").Mat4} a
  * @returns {import("./types.js").Mat4 | null}
@@ -346,7 +364,8 @@ export function translate(a, [x, y, z]) {
 }
 
 /**
- * Rotates a matrix by an angle at an axis. Returns null and leaves the matrix unchanged if the axis length is below EPSILON.
+ * Rotates a matrix by an angle at an axis. Returns null and leaves the matrix
+ * unchanged if the axis length is near zero.
  *
  * @param {import("./types.js").Mat4} a
  * @param {import("./types.js").Radians} r
@@ -774,7 +793,8 @@ export function orthoZO(a, left, right, bottom, top, near, far) {
 }
 
 /**
- * Calculates a lookAt matrix from position, target and up vectors.
+ * Calculates a view matrix (world to camera) from position, target and up
+ * vectors. To orient an object toward a target, use fromPointToPoint.
  *
  * @param {import("./types.js").Mat4} a
  * @param {import("./types.js").Vec3} from
@@ -810,6 +830,14 @@ export function lookAt(
   let x2 = upx * z1 - upy * z0;
 
   len = Math.sqrt(x0 * x0 + x1 * x1 + x2 * x2);
+
+  if (!len) {
+    const x = parallelUpXAxis(z0, z1, z2, upx, upy, upz);
+    x0 = x[0];
+    x1 = x[1];
+    x2 = x[2];
+    len = Math.sqrt(x0 * x0 + x1 * x1 + x2 * x2);
+  }
 
   if (len) {
     len = 1 / len;
@@ -874,6 +902,14 @@ export function fromDirection(a, [dir0, dir1, dir2], [upx, upy, upz] = Y_UP) {
   let x2 = upx * dir1 - upy * dir0;
 
   len = x0 * x0 + x1 * x1 + x2 * x2;
+
+  if (!len) {
+    const x = parallelUpXAxis(dir0, dir1, dir2, upx, upy, upz);
+    x0 = x[0];
+    x1 = x[1];
+    x2 = x[2];
+    len = x0 * x0 + x1 * x1 + x2 * x2;
+  }
 
   if (len > 0) {
     len = 1 / Math.sqrt(len);

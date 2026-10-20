@@ -284,14 +284,44 @@ describe("mat4", () => {
   });
   it("lookAt() should calculate a lookAt matrix from position, target and up vectors", () => {
     deepEqual(
+      mat4.lookAt(mat4.create(), Z_UP, ORIGIN, Y_UP),
+      // prettier-ignore
+      [
+        1, 0, 0, 0,
+        0, 1, 0, 0,
+        0, 0, 1, 0,
+        0, 0, -1, 1
+      ],
+    );
+  });
+  it("lookAt() should fall back to another up axis when up is parallel to the view direction", () => {
+    // Looking down: x stays +X, screen up is -Z
+    deepEqual(
       mat4.lookAt(mat4.create(), Y_UP, ORIGIN, Y_UP),
       // prettier-ignore
       [
-        0, 0, 0, 0,
+        1, 0, 0, 0,
         0, 0, 1, 0,
-        0, 0, 0, 0,
+        0, -1, 0, 0,
         0, 0, -1, 1
       ],
+    );
+    // Looking up: x stays +X, screen up is +Z
+    deepEqual(
+      mat4.lookAt(mat4.create(), Y_DOWN, ORIGIN, Y_UP),
+      // prettier-ignore
+      [
+        1, 0, 0, 0,
+        0, 0, -1, 0,
+        0, 1, 0, 0,
+        0, 0, -1, 1
+      ],
+    );
+  });
+  it("lookAt() should keep a small up vector that isn't parallel to the view direction", () => {
+    deepEqual(
+      mat4.lookAt(mat4.create(), Z_UP, ORIGIN, [0, 1e-7, 0]),
+      mat4.lookAt(mat4.create(), Z_UP, ORIGIN, Y_UP),
     );
   });
   it("lookAt() should calculate a lookAt matrix with a non axis-aligned up vector", () => {
@@ -320,8 +350,8 @@ describe("mat4", () => {
         mat4.fromDirection(mat4.create(), Y_UP, Y_UP),
         // prettier-ignore
         [
-          0, 0, 0, 0,
-          0, 0, 0, 0,
+          1, 0, 0, 0,
+          0, 0, -1, 0,
           0, 1, 0, 0,
           0, 0, 0, 1
         ],
@@ -332,9 +362,27 @@ describe("mat4", () => {
         mat4.fromDirection(mat4.create(), Y_DOWN, Y_UP),
         // prettier-ignore
         [
-          0, 0, 0, 0,
-          0, 0, 0, 0,
+          1, 0, 0, 0,
+          0, 0, 1, 0,
           0, -1, 0, 0,
+          0, 0, 0, 1
+        ],
+      );
+    });
+    it("should match the near-parallel orientation when up is parallel to the direction", () => {
+      deepAlmostEqual(
+        mat4.fromDirection(mat4.create(), Y_UP, Y_UP),
+        mat4.fromDirection(mat4.create(), [0, 1, 1e-9], Y_UP),
+      );
+    });
+    it("should fall back to the X axis when direction and up are along Z", () => {
+      deepEqual(
+        mat4.fromDirection(mat4.create(), Z_UP, Z_UP),
+        // prettier-ignore
+        [
+          0, 1, 0, 0,
+          -1, 0, 0, 0,
+          0, 0, 1, 0,
           0, 0, 0, 1
         ],
       );
@@ -362,8 +410,8 @@ describe("mat4", () => {
         mat4.fromDirection(mat4.create(), Y_UP, Y_DOWN),
         // prettier-ignore
         [
-          0, 0, 0, 0,
-          0, 0, 0, 0,
+          -1, 0, 0, 0,
+          0, 0, 1, 0,
           0, 1, 0, 0,
           0, 0, 0, 1
         ],

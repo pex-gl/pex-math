@@ -53,9 +53,8 @@ const operations = [];
 
 // Register a pex/gl-matrix pair of tasks for an operation, tracked so the two
 // can be reported side by side once the bench has run. In-place operations
-// pass a reset so every iteration starts from the same input, outside the
-// timed section: otherwise values drift (scale/translate overflow, slerp
-// converges to its target and takes the linear branch).
+// pass a reset, run outside the timed section, so values don't drift (scale
+// overflows, slerp converges to its target).
 const compare = (name, factory) => {
   const { pex, glMatrix, reset } = factory();
   const options = reset && { beforeEach: reset };

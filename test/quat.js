@@ -247,6 +247,10 @@ describe("quat", () => {
     );
     // Opposite
     deepAlmostEqual(quat.fromDirection(quat.create(), Z_UP, X_DOWN), Z_QUAT);
+    // Up parallel to the direction
+    const q = quat.fromDirection(quat.create(), Y_UP, Y_UP);
+    deepAlmostEqual([quat.length(q)], [1]);
+    deepAlmostEqual(vec3.multQuat([...Z_UP], q), Y_UP);
   });
   describe("fromPointToPoint()", () => {
     it("should set a quat to identity when from is origin and to is +Z", () => {
