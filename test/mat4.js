@@ -306,6 +306,11 @@ describe("mat4", () => {
       ],
     );
   });
+  it("rotate() should return null and leave the mat4 unchanged for a zero-length axis", () => {
+    const a = mat4.copy(ONE_TWO_THREE_MAT4);
+    deepEqual(mat4.rotate(a, Math.PI / 2, ORIGIN), null);
+    deepEqual(a, ONE_TWO_THREE_MAT4);
+  });
   describe("fromDirection()", () => {
     it("should set a matrix to identity when direction is +Z", () => {
       deepEqual(mat4.fromDirection(mat4.create(), Z_UP, Y_UP), IDENTITY_MAT4);

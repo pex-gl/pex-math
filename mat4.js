@@ -346,12 +346,12 @@ export function translate(a, [x, y, z]) {
 }
 
 /**
- * Rotates a matrix by an angle at an axis.
+ * Rotates a matrix by an angle at an axis. Returns null and leaves the matrix unchanged if the axis length is below EPSILON.
  *
  * @param {import("./types.js").Mat4} a
  * @param {import("./types.js").Radians} r
  * @param {import("./types.js").Vec3} v
- * @returns {import("./types.js").Mat4}
+ * @returns {import("./types.js").Mat4 | null}
  */
 export function rotate(a, r, [x, y, z]) {
   let len = Math.sqrt(x * x + y * y + z * z);
