@@ -40,3 +40,23 @@ export const ONE_TWO_THREE_MAT4 = Object.freeze([
   0, 0, 1, 0,
   1, 2, 3, 1
 ]);
+
+// avec helpers: a value is stored at an index between sentinels (9), so offset
+// mistakes and writes past the value show up.
+const SENTINEL = 9;
+
+export function avecWith(v, index) {
+  const a = new Float64Array(v.length * (index + 2)).fill(SENTINEL);
+  a.set(v, v.length * index);
+  return a;
+}
+
+export function avecAt(a, index, size) {
+  return Array.from(a.subarray(index * size, (index + 1) * size));
+}
+
+export function avecSentinelsIntact(a, index, size) {
+  return a.every(
+    (n, k) => (k >= index * size && k < (index + 1) * size) || n === SENTINEL,
+  );
+}
