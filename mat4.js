@@ -962,9 +962,9 @@ export function lookAt(
 
   if (len) {
     len = 1 / len;
-    x0 *= len;
-    x1 *= len;
-    x2 *= len;
+    y0 *= len;
+    y1 *= len;
+    y2 *= len;
   }
 
   a[0] = x0;

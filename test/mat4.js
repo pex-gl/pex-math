@@ -282,6 +282,18 @@ describe("mat4", () => {
       ],
     );
   });
+  it("lookAt() should calculate a lookAt matrix with a non axis-aligned up vector", () => {
+    deepAlmostEqual(
+      mat4.lookAt(mat4.create(), [0, 0, 5], ORIGIN, [1, 1, 0]),
+      // prettier-ignore
+      [
+        Math.SQRT1_2, Math.SQRT1_2, 0, 0,
+        -Math.SQRT1_2, Math.SQRT1_2, 0, 0,
+        0, 0, 1, 0,
+        0, 0, -5, 1
+      ],
+    );
+  });
   describe("fromDirection()", () => {
     it("should set a matrix to identity when direction is +Z", () => {
       deepEqual(mat4.fromDirection(mat4.create(), Z_UP, Y_UP), IDENTITY_MAT4);
