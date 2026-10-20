@@ -113,7 +113,7 @@ export function conjugate(a) {
  * Calculates the length of a quaternion.
  *
  * @param {import("./types.js").Quat} a
- * @returns {import("./types.js").Quat}
+ * @returns {number}
  */
 export function length(a) {
   const x = a[0];
@@ -355,7 +355,7 @@ export function slerp(a, b, t) {
  * Prints a quaternion to a string.
  *
  * @param {import("./types.js").Quat} a
- * @param {number} precision
- * @returns {import("./types.js").Quat}
+ * @param {number} [precision=4]
+ * @returns {string}
  */
 export const toString = vec4.toString;
