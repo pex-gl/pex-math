@@ -95,14 +95,15 @@ const bounceInOut = (t) =>
 // Steps
 // https://drafts.csswg.org/css-easing-2/#step-easing-functions
 const stepEdges = (t) => {
-  if (t <= 0) return 0;
+  if (t < 0) return 0;
   if (t >= 1) return 1;
 };
 
-const stepStart = (t, n = 1) => stepEdges(t) ?? Math.ceil(t * n) / n;
+const stepStart = (t, n = 1) => stepEdges(t) ?? (Math.floor(t * n) + 1) / n;
 const stepEnd = (t, n = 1) => stepEdges(t) ?? Math.floor(t * n) / n;
 const stepNone = (t, n = 2) => stepEdges(t) ?? Math.floor(t * n) / (n - 1);
-const stepBoth = (t, n = 1) => stepEdges(t) ?? (Math.floor(t * n) + 0.5) / n;
+const stepBoth = (t, n = 1) =>
+  stepEdges(t) ?? (Math.floor(t * n) + 1) / (n + 1);
 
 export {
   /** @type {import("./types.js").easeFn} \@function */ linear,
