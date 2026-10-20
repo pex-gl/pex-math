@@ -1,7 +1,5 @@
 /** @module euler */
 
-import { clamp } from "./utils.js";
-
 /**
  * Create a new euler angles [0, 0, 0]: vec3 array of [x, y, z] rotation [yaw,
  * pitch, roll] in radians.
@@ -20,12 +18,39 @@ export function create() {
  * @returns {import("./types.js").Euler}
  */
 export function fromQuat(a, q) {
-  const sqx = q[0] * q[0];
-  const sqy = q[1] * q[1];
-  const sqz = q[2] * q[2];
-  const sqw = q[3] * q[3];
-  a[0] = Math.atan2(2 * (q[0] * q[3] - q[1] * q[2]), sqw - sqx - sqy + sqz);
-  a[1] = Math.asin(clamp(2 * (q[0] * q[2] + q[1] * q[3]), -1, 1));
-  a[2] = Math.atan2(2 * (q[2] * q[3] - q[0] * q[1]), sqw + sqx - sqy - sqz);
+  const x = q[0];
+  const y = q[1];
+  const z = q[2];
+  const w = q[3];
+
+  const xx = x * x;
+  const yy = y * y;
+  const zz = z * z;
+  const ww = w * w;
+
+  // Matrix entries scaled by |q|², cancelled by atan2: q needn't be unit.
+  const m02 = 2 * (x * z + y * w);
+  const m10 = 2 * (x * y + z * w);
+  const m11 = ww - xx + yy - zz;
+  const m20 = 2 * (x * z - y * w);
+  const m21 = 2 * (y * z + x * w);
+  const m22 = ww - xx - yy + zz;
+  const sxcy = 2 * (x * w - y * z);
+  const cy = Math.sqrt(sxcy * sxcy + m22 * m22);
+
+  // Mike Day, "Extracting Euler Angles from a Rotation Matrix" (2014): atan2
+  // keeps y precise near ±π/2, and solving z from x keeps both consistent in
+  // gimbal lock.
+  a[1] = Math.atan2(m02, cy);
+
+  if (cy) {
+    a[0] = Math.atan2(sxcy, m22);
+    a[2] = Math.atan2(m22 * m10 + sxcy * m20, m22 * m11 + sxcy * m21);
+  } else {
+    // x is arbitrary in exact gimbal lock
+    a[0] = 0;
+    a[2] = Math.atan2(m10, m11);
+  }
+
   return a;
 }
