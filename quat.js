@@ -183,7 +183,7 @@ export function fromEuler(a, e) {
  * Set the angle at an axis of a quaternion.
  *
  * @param {import("./types.js").Quat} a
- * @param {import("./types.js").Vec3} v
+ * @param {import("./types.js").Vec3} v Normalized axis
  * @param {import("./types.js").Radians} r
  * @returns {import("./types.js").Quat}
  */
@@ -194,7 +194,7 @@ export function fromAxisAngle(a, v, r) {
   a[1] = v[1] * sin2;
   a[2] = v[2] * sin2;
   a[3] = Math.cos(angle2);
-  return normalize(a);
+  return a;
 }
 
 /** @private */

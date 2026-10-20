@@ -139,6 +139,14 @@ describe("quat", () => {
       quat.fromAxisAngle(quat.create(), Y_UP_QUAT, Math.PI * 0.5),
       Y_QUAT,
     );
+    deepAlmostEqual(
+      quat.fromAxisAngle(
+        quat.create(),
+        vec3.normalize([1, 1, 1]),
+        (Math.PI * 2) / 3,
+      ),
+      [0.5, 0.5, 0.5, 0.5],
+    );
   });
   it("fromAxes() should set a quaternion from orthonormal base xyz", () => {
     deepEqual(quat.fromAxes(quat.create(), X_UP, Y_UP, Z_UP), IDENTITY_QUAT);
