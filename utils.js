@@ -68,6 +68,12 @@ export function map(...args) {
   return remap(...args);
 }
 
+/** @private */
+export function _truncate(n, precision) {
+  const scale = 10 ** precision;
+  return Math.trunc(Number((n * scale).toPrecision(15))) / scale;
+}
+
 /**
  * Transforms degrees into radians.
  *

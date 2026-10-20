@@ -96,5 +96,6 @@ describe("vec2", () => {
     deepEqual(vec2.toString(DEFAULT_VEC2), "[0, 0]");
     deepEqual(vec2.toString(ONE_VEC2), "[1, 1]");
     deepEqual(vec2.toString(ONE_VEC2_NORMALISED, 2), "[0.7, 0.7]");
+    deepEqual(vec2.toString([-0.7071, 0.57], 2), "[-0.7, 0.57]");
   });
 });

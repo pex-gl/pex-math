@@ -1,5 +1,6 @@
 /** @module avec2 */
 import * as vec2 from "./vec2.js";
+import { _truncate } from "./utils.js";
 
 const TEMP_VEC2 = vec2.create();
 
@@ -264,7 +265,5 @@ export function map(a, callbackFn) {
  * @returns {string}
  */
 export function toString(a, i, precision = 4) {
-  const scale = 10 ** precision;
-  // prettier-ignore
-  return `[${Math.floor(a[i * 2] * scale) / scale}, ${Math.floor(a[i * 2 + 1] * scale) / scale}]`;
+  return `[${_truncate(a[i * 2], precision)}, ${_truncate(a[i * 2 + 1], precision)}]`;
 }

@@ -1,5 +1,6 @@
 /** @module avec4 */
 import * as vec4 from "./vec4.js";
+import { _truncate } from "./utils.js";
 
 const TEMP_VEC4 = vec4.create();
 
@@ -222,7 +223,5 @@ export function map(a, callbackFn) {
  * @returns {string}
  */
 export function toString(a, i, precision = 4) {
-  const scale = 10 ** precision;
-  // prettier-ignore
-  return `[${Math.floor(a[i * 4] * scale) / scale}, ${Math.floor(a[i * 4 + 1] * scale) / scale}, ${Math.floor(a[i * 4 + 2] * scale) / scale}, ${Math.floor(a[i * 4 + 3] * scale) / scale}]`;
+  return `[${_truncate(a[i * 4], precision)}, ${_truncate(a[i * 4 + 1], precision)}, ${_truncate(a[i * 4 + 2], precision)}, ${_truncate(a[i * 4 + 3], precision)}]`;
 }

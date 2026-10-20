@@ -132,5 +132,6 @@ describe("vec3", () => {
     deepEqual(vec3.toString(DEFAULT_VEC3), "[0, 0, 0]");
     deepEqual(vec3.toString(ONE_VEC3), "[1, 1, 1]");
     deepEqual(vec3.toString(ONE_VEC3_NORMALISED, 2), "[0.57, 0.57, 0.57]");
+    deepEqual(vec3.toString([0.57, -0.00001, -1.23456]), "[0.57, 0, -1.2345]");
   });
 });

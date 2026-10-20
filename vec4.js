@@ -1,4 +1,5 @@
 /** @module vec4 */
+import { _truncate } from "./utils.js";
 
 /**
  * Returns a new vec4 at 0, 0, 0, 1.
@@ -171,7 +172,5 @@ export function lerp(a, b, t) {
  * @returns {string}
  */
 export function toString(a, precision = 4) {
-  const scale = 10 ** precision;
-  // prettier-ignore
-  return `[${Math.floor(a[0] * scale) / scale}, ${Math.floor(a[1] * scale) / scale}, ${Math.floor(a[2] * scale) / scale}, ${Math.floor(a[3] * scale) / scale}]`;
+  return `[${_truncate(a[0], precision)}, ${_truncate(a[1], precision)}, ${_truncate(a[2], precision)}, ${_truncate(a[3], precision)}]`;
 }

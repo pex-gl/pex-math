@@ -1,4 +1,5 @@
 /** @module vec3 */
+import { _truncate } from "./utils.js";
 
 /**
  * Returns a new vec3 at 0, 0, 0.
@@ -308,7 +309,5 @@ export function lerp(a, b, t) {
  * @returns {string}
  */
 export function toString(a, precision = 4) {
-  const scale = 10 ** precision;
-  // prettier-ignore
-  return `[${Math.floor(a[0] * scale) / scale}, ${Math.floor(a[1] * scale) / scale}, ${Math.floor(a[2] * scale) / scale}]`;
+  return `[${_truncate(a[0], precision)}, ${_truncate(a[1], precision)}, ${_truncate(a[2], precision)}]`;
 }

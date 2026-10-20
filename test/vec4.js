@@ -64,5 +64,6 @@ describe("vec4", () => {
     deepEqual(vec4.toString(DEFAULT_VEC4), "[0, 0, 0, 1]");
     deepEqual(vec4.toString(ONE_VEC4), "[1, 1, 1, 1]");
     deepEqual(vec4.toString(ONE_VEC4_NORMALISED, 2), "[0.5, 0.5, 0.5, 0.5]");
+    deepEqual(vec4.toString([-0.5, 0.29, -0.00001, 1], 2), "[-0.5, 0.29, 0, 1]");
   });
 });
