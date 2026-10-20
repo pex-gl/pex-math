@@ -1,8 +1,8 @@
 /** @module euler */
 
 /**
- * Create a new euler angles [0, 0, 0]: vec3 array of [x, y, z] rotation [yaw,
- * pitch, roll] in radians.
+ * Returns new euler angles at 0, 0, 0: rotations in radians around the x, y and
+ * z axes (pitch, yaw and roll with Y up).
  *
  * @returns {import("./types.js").Euler}
  */
