@@ -88,6 +88,18 @@ describe("mat4", () => {
       ],
     );
   });
+  it("invert() should return null and leave a singular mat4 unchanged", () => {
+    // prettier-ignore
+    const singular = [
+      1, 2, 3, 4,
+      2, 4, 6, 8,
+      0, 1, 0, 1,
+      3, 1, 4, 1
+    ];
+    const a = mat4.copy(singular);
+    deepEqual(mat4.invert(a), null);
+    deepEqual(a, singular);
+  });
   it("transpose() should transpose a mat4", () => {
     deepEqual(
       mat4.transpose(mat4.copy(ONE_TWO_THREE_MAT4)),

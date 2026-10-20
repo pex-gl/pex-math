@@ -193,201 +193,65 @@ export function mult(a, b) {
 }
 
 /**
- * Inverts a matrix.
+ * Inverts a matrix. Returns null and leaves the matrix unchanged if it is not invertible.
  *
  * @param {import("./types.js").Mat4} a
- * @returns {import("./types.js").Mat4}
+ * @returns {import("./types.js").Mat4 | null}
  */
 export function invert(a) {
   const a00 = a[0];
-  const a10 = a[1];
-  const a20 = a[2];
-  const a30 = a[3];
-  const a01 = a[4];
+  const a01 = a[1];
+  const a02 = a[2];
+  const a03 = a[3];
+  const a10 = a[4];
   const a11 = a[5];
-  const a21 = a[6];
-  const a31 = a[7];
-  const a02 = a[8];
-  const a12 = a[9];
+  const a12 = a[6];
+  const a13 = a[7];
+  const a20 = a[8];
+  const a21 = a[9];
   const a22 = a[10];
-  const a32 = a[11];
-  const a03 = a[12];
-  const a13 = a[13];
-  const a23 = a[14];
+  const a23 = a[11];
+  const a30 = a[12];
+  const a31 = a[13];
+  const a32 = a[14];
   const a33 = a[15];
 
-  const a22a33 = a22 * a33;
-  const a32a23 = a32 * a23;
-  const a21a33 = a21 * a33;
-  const a31a23 = a31 * a23;
-  const a21a32 = a21 * a32;
-  const a31a22 = a31 * a22;
-  const a20a33 = a20 * a33;
-  const a30a23 = a30 * a23;
-  const a20a32 = a20 * a32;
-  const a30a22 = a30 * a22;
-  const a20a31 = a20 * a31;
-  const a30a21 = a30 * a21;
+  const b00 = a00 * a11 - a01 * a10;
+  const b01 = a00 * a12 - a02 * a10;
+  const b02 = a00 * a13 - a03 * a10;
+  const b03 = a01 * a12 - a02 * a11;
+  const b04 = a01 * a13 - a03 * a11;
+  const b05 = a02 * a13 - a03 * a12;
+  const b06 = a20 * a31 - a21 * a30;
+  const b07 = a20 * a32 - a22 * a30;
+  const b08 = a20 * a33 - a23 * a30;
+  const b09 = a21 * a32 - a22 * a31;
+  const b10 = a21 * a33 - a23 * a31;
+  const b11 = a22 * a33 - a23 * a32;
 
-  const a00a11 = a00 * a11;
-  const a01a10 = a01 * a10;
-  const a02a10 = a02 * a10;
-  const a03a10 = a03 * a10;
-
-  const a12a33 = a12 * a33;
-  const a32a13 = a32 * a13;
-  const a00a31 = a00 * a31;
-  const a03a11 = a03 * a11;
-  const a12a23 = a12 * a23;
-  const a22a13 = a22 * a13;
-  const a02a11 = a02 * a11;
-  const a21a13 = a21 * a13;
-  const a21a12 = a21 * a12;
-  const a02a30 = a02 * a30;
-  const a03a30 = a03 * a30;
-  const a02a20 = a02 * a20;
-  const a03a20 = a03 * a20;
-  const a01a30 = a01 * a30;
-  const a01a20 = a01 * a20;
-
-  a[0] =
-    a11 * a22a33 -
-    a11 * a32a23 -
-    a12 * a21a33 +
-    a12 * a31a23 +
-    a13 * a21a32 -
-    a13 * a31a22;
-  a[4] =
-    -a01 * a22a33 +
-    a01 * a32a23 +
-    a02 * a21a33 -
-    a02 * a31a23 -
-    a03 * a21a32 +
-    a03 * a31a22;
-  a[8] =
-    a01 * a12a33 -
-    a01 * a32a13 -
-    a02a11 * a33 +
-    a02 * a31 * a13 +
-    a03a11 * a32 -
-    a03 * a31 * a12;
-  a[12] =
-    -a01 * a12a23 +
-    a01 * a22a13 +
-    a02a11 * a23 -
-    a02 * a21a13 -
-    a03a11 * a22 +
-    a03 * a21a12;
-
-  a[1] =
-    -a10 * a22a33 +
-    a10 * a32a23 +
-    a12 * a20a33 -
-    a12 * a30a23 -
-    a13 * a20a32 +
-    a13 * a30a22;
-  a[5] =
-    a00 * a22a33 -
-    a00 * a32a23 -
-    a02 * a20a33 +
-    a02 * a30a23 +
-    a03 * a20a32 -
-    a03 * a30a22;
-  a[9] =
-    -a00 * a12a33 +
-    a00 * a32a13 +
-    a02a10 * a33 -
-    a02a30 * a13 -
-    a03a10 * a32 +
-    a03a30 * a12;
-  a[13] =
-    a00 * a12a23 -
-    a00 * a22a13 -
-    a02a10 * a23 +
-    a02a20 * a13 +
-    a03a10 * a22 -
-    a03a20 * a12;
-
-  a[2] =
-    a10 * a21a33 -
-    a10 * a31a23 -
-    a11 * a20a33 +
-    a11 * a30a23 +
-    a13 * a20a31 -
-    a13 * a30a21;
-  a[6] =
-    -a00 * a21a33 +
-    a00 * a31a23 +
-    a01 * a20a33 -
-    a01 * a30a23 -
-    a03 * a20a31 +
-    a03 * a30a21;
-  a[10] =
-    a00a11 * a33 -
-    a00a31 * a13 -
-    a01a10 * a33 +
-    a01a30 * a13 +
-    a03a10 * a31 -
-    a03a30 * a11;
-  a[14] =
-    -a00a11 * a23 +
-    a00 * a21a13 +
-    a01a10 * a23 -
-    a01a20 * a13 -
-    a03a10 * a21 +
-    a03a20 * a11;
-
-  a[3] =
-    -a10 * a21a32 +
-    a10 * a31a22 +
-    a11 * a20a32 -
-    a11 * a30a22 -
-    a12 * a20a31 +
-    a12 * a30a21;
-  a[7] =
-    a00 * a21a32 -
-    a00 * a31a22 -
-    a01 * a20a32 +
-    a01 * a30a22 +
-    a02 * a20a31 -
-    a02 * a30a21;
-  a[11] =
-    -a00a11 * a32 +
-    a00a31 * a12 +
-    a01a10 * a32 -
-    a01a30 * a12 -
-    a02a10 * a31 +
-    a02a30 * a11;
-  a[15] =
-    a00a11 * a22 -
-    a00 * a21a12 -
-    a01a10 * a22 +
-    a01a20 * a12 +
-    a02a10 * a21 -
-    a02a20 * a11;
-
-  let det = a00 * a[0] + a10 * a[4] + a20 * a[8] + a30 * a[12];
+  let det =
+    b00 * b11 - b01 * b10 + b02 * b09 + b03 * b08 - b04 * b07 + b05 * b06;
 
   if (!det) return null;
 
   det = 1 / det;
 
-  a[0] *= det;
-  a[1] *= det;
-  a[2] *= det;
-  a[3] *= det;
-  a[4] *= det;
-  a[5] *= det;
-  a[6] *= det;
-  a[7] *= det;
-  a[8] *= det;
-  a[9] *= det;
-  a[10] *= det;
-  a[11] *= det;
-  a[12] *= det;
-  a[13] *= det;
-  a[14] *= det;
-  a[15] *= det;
+  a[0] = (a11 * b11 - a12 * b10 + a13 * b09) * det;
+  a[1] = (a02 * b10 - a01 * b11 - a03 * b09) * det;
+  a[2] = (a31 * b05 - a32 * b04 + a33 * b03) * det;
+  a[3] = (a22 * b04 - a21 * b05 - a23 * b03) * det;
+  a[4] = (a12 * b08 - a10 * b11 - a13 * b07) * det;
+  a[5] = (a00 * b11 - a02 * b08 + a03 * b07) * det;
+  a[6] = (a32 * b02 - a30 * b05 - a33 * b01) * det;
+  a[7] = (a20 * b05 - a22 * b02 + a23 * b01) * det;
+  a[8] = (a10 * b10 - a11 * b08 + a13 * b06) * det;
+  a[9] = (a01 * b08 - a00 * b10 - a03 * b06) * det;
+  a[10] = (a30 * b04 - a31 * b02 + a33 * b00) * det;
+  a[11] = (a21 * b02 - a20 * b04 - a23 * b00) * det;
+  a[12] = (a11 * b07 - a10 * b09 - a12 * b06) * det;
+  a[13] = (a00 * b09 - a01 * b07 + a02 * b06) * det;
+  a[14] = (a31 * b01 - a30 * b03 - a32 * b00) * det;
+  a[15] = (a20 * b03 - a21 * b01 + a22 * b00) * det;
 
   return a;
 }
