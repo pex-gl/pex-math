@@ -7,7 +7,9 @@ export const EPSILON = 0.000001;
 export const HALF_PI = Math.PI * 0.5;
 
 /** @constant {import("./types.js").Vec3} */
-export const Y_UP = Object.freeze([0, 1, 0]);
+export const Y_UP = /** @type {import("./types.js").Vec3} */ (
+  Object.freeze([0, 1, 0])
+);
 
 /**
  * Linear interpolation between two numbers.
