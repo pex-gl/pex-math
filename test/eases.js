@@ -21,6 +21,37 @@ describe("eases", () => {
     }
   });
 
+  describe("bounceOut", () => {
+    const d1 = 2.75;
+
+    it("should rise quadratically before the first bounce", () => {
+      ok(Math.abs(0.25 - eases.bounceOut(0.5 / d1)) < 1e-12);
+    });
+
+    it("should stay within 0 and 1", () => {
+      for (let i = 0; i <= 1000; i++) {
+        const value = eases.bounceOut(i / 1000);
+        ok(value >= 0 && value <= 1 + 1e-12);
+      }
+    });
+
+    it("should touch 1 between bounces", () => {
+      for (const t of [1 / d1, 2 / d1, 2.5 / d1]) {
+        ok(Math.abs(1 - eases.bounceOut(t)) < 1e-12);
+      }
+    });
+
+    it("should bounce back to decreasing heights", () => {
+      for (const [t, height] of [
+        [1.5 / d1, 0.75],
+        [2.25 / d1, 0.9375],
+        [2.625 / d1, 0.984375],
+      ]) {
+        ok(Math.abs(height - eases.bounceOut(t)) < 1e-12);
+      }
+    });
+  });
+
   describe("step functions", () => {
     describe("stepStart", () => {
       it("should return 0 for t < 0", () => {
