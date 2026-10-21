@@ -1,6 +1,6 @@
 import { describe, it } from "node:test";
 import { deepEqual, notStrictEqual, ok } from "node:assert";
-import { quat, utils, vec3 } from "../index.js";
+import { mat3, mat4, quat, utils, vec3 } from "../index.js";
 import {
   deepAlmostEqual,
   IDENTITY_MAT3,
@@ -25,6 +25,10 @@ const ONE_QUAT_NORMALISED = Object.freeze(Array(4).fill(0.5));
 const TWO_QUAT = Object.freeze([2, 2, 2, 2]);
 const ONE_TWO_THREE_FOUR_QUAT = Object.freeze([1, 2, 3, 4]);
 const FIVE_SIX_SEVEN_HEIGHT_QUAT = Object.freeze([5, 6, 7, 8]);
+
+// q and -q are the same rotation
+const deepAlmostEqualRotation = (a, b, epsilon) =>
+  deepAlmostEqual(quat.dot(a, b) < 0 ? a.map((n) => -n) : a, b, epsilon);
 
 describe("quat", () => {
   it("create() should return a new quat", () => {
@@ -71,6 +75,8 @@ describe("quat", () => {
       quat.invert(quat.copy(ONE_TWO_THREE_FOUR_QUAT)),
       [-0.033333, -0.066666, -0.1, 0.133333],
     );
+    // A zero quaternion has no inverse and stays zero instead of NaN
+    deepEqual(quat.invert([0, 0, 0, 0]), [0, 0, 0, 0]);
   });
   it("conjugate() should conjugate a quaternion", () => {
     deepEqual(quat.conjugate(quat.copy(IDENTITY_QUAT)), IDENTITY_QUAT);
@@ -153,6 +159,50 @@ describe("quat", () => {
     deepAlmostEqual(quat.fromAxes(quat.create(), X_UP, Z_UP, Y_DOWN), X_QUAT);
     deepAlmostEqual(quat.fromAxes(quat.create(), Z_DOWN, Y_UP, X_UP), Y_QUAT);
     deepAlmostEqual(quat.fromAxes(quat.create(), Y_UP, X_DOWN, Z_UP), Z_QUAT);
+  });
+  it("fromMat3(), fromMat4() and fromAxes() should handle any rotation", () => {
+    // A small rotation (positive trace), then large rotations around axes
+    // mostly along X, Y and Z (negative trace, largest diagonal entry on that
+    // axis). Off-axis components make every matrix entry contribute.
+    for (const [axis, angle] of [
+      [[1, 2, 3], 0.5],
+      [[1, 0.3, 0.2], 2.8],
+      [[0.2, 1, 0.3], 2.8],
+      [[0.3, 0.2, 1], 2.8],
+    ]) {
+      const q = quat.fromAxisAngle(quat.create(), vec3.normalize(axis), angle);
+      const m3 = mat3.fromQuat(mat3.create(), q);
+      deepAlmostEqualRotation(
+        quat.fromMat4(quat.create(), mat4.fromQuat(mat4.create(), q)),
+        q,
+        1e-12,
+      );
+      deepAlmostEqualRotation(quat.fromMat3(quat.create(), m3), q, 1e-12);
+      deepAlmostEqualRotation(
+        quat.fromAxes(
+          quat.create(),
+          m3.slice(0, 3),
+          m3.slice(3, 6),
+          m3.slice(6, 9),
+        ),
+        q,
+        1e-12,
+      );
+    }
+  });
+  it("fromMat3() should pick a stable branch for 180° rotations", () => {
+    // Other branches divide by zero for these
+    for (const q of [
+      [1, 0, 0, 0],
+      [0, 1, 0, 0],
+      [0, 0, 1, 0],
+    ]) {
+      deepAlmostEqualRotation(
+        quat.fromMat3(quat.create(), mat3.fromQuat(mat3.create(), q)),
+        q,
+        1e-12,
+      );
+    }
   });
   it("fromMat3() should set a quaternion to a 3x3 matrix", () => {
     deepEqual(quat.fromMat3(quat.create(), IDENTITY_MAT3), IDENTITY_QUAT);
@@ -242,7 +292,11 @@ describe("quat", () => {
     );
     // Right angle
     deepAlmostEqual(
-      quat.fromDirection(quat.create(), Z_UP, vec3.add(vec3.copy(Z_UP), X_DOWN)),
+      quat.fromDirection(
+        quat.create(),
+        Z_UP,
+        vec3.add(vec3.copy(Z_UP), X_DOWN),
+      ),
       Z_QUAT,
     );
     // Opposite
@@ -326,5 +380,38 @@ describe("quat", () => {
       ),
       FIVE_SIX_SEVEN_HEIGHT_QUAT,
     );
+  });
+  it("slerp() should interpolate along the shortest arc", () => {
+    // Halfway to 90° around Y is 45° around Y
+    deepAlmostEqual(quat.slerp(quat.copy(IDENTITY_QUAT), Y_QUAT, 0.5), [
+      0,
+      Math.sin(Math.PI / 8),
+      0,
+      Math.cos(Math.PI / 8),
+    ]);
+
+    // a · (a⁻¹b)^t, built from the relative rotation axis and angle
+    const a = quat.normalize([0.1, 0.4, -0.3, 0.85]);
+    const b = quat.normalize([-0.6, 0.2, 0.5, 0.4]);
+    const relative = quat.mult(quat.conjugate(quat.copy(a)), b);
+    const angle = 2 * Math.acos(relative[3]);
+    const axis = vec3.normalize(relative.slice(0, 3));
+    for (const t of [0, 0.3, 0.5, 1]) {
+      const expected = quat.mult(
+        quat.copy(a),
+        quat.fromAxisAngle(quat.create(), axis, t * angle),
+      );
+      deepAlmostEqual(quat.slerp(quat.copy(a), b, t), expected, 1e-12);
+      // -b is the same rotation as b, in the opposite hemisphere
+      deepAlmostEqual(
+        quat.slerp(
+          quat.copy(a),
+          b.map((n) => -n),
+          t,
+        ),
+        expected,
+        1e-12,
+      );
+    }
   });
 });
