@@ -354,7 +354,11 @@ export function transpose(a) {
  * @param {import("./types.js").Vec3} v
  * @returns {import("./types.js").Mat4}
  */
-export function translate(a, [x, y, z]) {
+export function translate(a, v) {
+  const x = v[0];
+  const y = v[1];
+  const z = v[2];
+
   a[12] += a[0] * x + a[4] * y + a[8] * z;
   a[13] += a[1] * x + a[5] * y + a[9] * z;
   a[14] += a[2] * x + a[6] * y + a[10] * z;
@@ -372,7 +376,11 @@ export function translate(a, [x, y, z]) {
  * @param {import("./types.js").Vec3} v
  * @returns {import("./types.js").Mat4 | null}
  */
-export function rotate(a, r, [x, y, z]) {
+export function rotate(a, r, v) {
+  let x = v[0];
+  let y = v[1];
+  let z = v[2];
+
   let len = Math.sqrt(x * x + y * y + z * z);
 
   if (len < EPSILON) {
@@ -434,7 +442,11 @@ export function rotate(a, r, [x, y, z]) {
  * @param {import("./types.js").Vec3} v
  * @returns {import("./types.js").Mat4}
  */
-export function scale(a, [x, y, z]) {
+export function scale(a, v) {
+  const x = v[0];
+  const y = v[1];
+  const z = v[2];
+
   a[0] *= x;
   a[1] *= x;
   a[2] *= x;
@@ -802,12 +814,17 @@ export function orthoZO(a, left, right, bottom, top, near, far) {
  * @param {import("./types.js").Vec3} [up=Y_UP]
  * @returns {import("./types.js").Mat4}
  */
-export function lookAt(
-  a,
-  [eyex, eyey, eyez],
-  [targetx, targety, targetz],
-  [upx, upy, upz] = Y_UP,
-) {
+export function lookAt(a, from, to, up = Y_UP) {
+  const eyex = from[0];
+  const eyey = from[1];
+  const eyez = from[2];
+  const targetx = to[0];
+  const targety = to[1];
+  const targetz = to[2];
+  const upx = up[0];
+  const upy = up[1];
+  const upz = up[2];
+
   if (
     Math.abs(eyex - targetx) < EPSILON &&
     Math.abs(eyey - targety) < EPSILON &&
@@ -887,7 +904,14 @@ export function lookAt(
  * @param {import("./types.js").Vec3} [up=Y_UP]
  * @returns {import("./types.js").Mat4}
  */
-export function fromDirection(a, [dir0, dir1, dir2], [upx, upy, upz] = Y_UP) {
+export function fromDirection(a, direction, up = Y_UP) {
+  let dir0 = direction[0];
+  let dir1 = direction[1];
+  let dir2 = direction[2];
+  let upx = up[0];
+  let upy = up[1];
+  let upz = up[2];
+
   let len = dir0 * dir0 + dir1 * dir1 + dir2 * dir2;
 
   if (len > 0) {
@@ -959,11 +983,9 @@ export function fromDirection(a, [dir0, dir1, dir2], [upx, upy, upz] = Y_UP) {
  * @param {import("./types.js").Vec3} [up=Y_UP]
  * @returns {import("./types.js").Mat4}
  */
-export function fromPointToPoint(
-  a,
-  [fromX, fromY, fromZ],
-  [toX, toY, toZ],
-  up,
-) {
-  return fromDirection(a, [toX - fromX, toY - fromY, toZ - fromZ], up);
+export function fromPointToPoint(a, from, to, up) {
+  TEMP_VEC3[0] = to[0] - from[0];
+  TEMP_VEC3[1] = to[1] - from[1];
+  TEMP_VEC3[2] = to[2] - from[2];
+  return fromDirection(a, TEMP_VEC3, up);
 }

@@ -222,6 +222,15 @@ compare("mat4.lookAt", () => {
     glMatrix: () => glMat4.lookAt(g, EYE, TARGET, utils.Y_UP),
   };
 });
+// targetTo faces -Z and adds the eye translation but does the same work.
+compare("mat4.fromPointToPoint", () => {
+  const m = from(MAT4);
+  const g = from(MAT4);
+  return {
+    pex: () => mat4.fromPointToPoint(m, EYE, TARGET, utils.Y_UP),
+    glMatrix: () => glMat4.targetTo(g, EYE, TARGET, utils.Y_UP),
+  };
+});
 
 // quat
 compare("quat.create", () => ({
