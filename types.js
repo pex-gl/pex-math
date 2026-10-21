@@ -8,9 +8,7 @@
  *   | Uint32Array
  *   | Float16Array
  *   | Float32Array
- *   | Float64Array
- *   | BigInt64Array
- *   | BigUint64Array} TypedArray
+ *   | Float64Array} TypedArray
  */
 
 /** @typedef {TypedArray} AVec2 */
@@ -50,6 +48,8 @@
  * @param {Vec2 | Vec3 | Vec4} element
  * @param {number} index
  * @param {AVec2 | AVec3 | AVec4} array
+ * @returns {Vec2 | Vec3 | Vec4 | void} The mapped element for map, ignored by
+ *   forEach
  */
 
 /**
