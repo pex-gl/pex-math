@@ -863,18 +863,9 @@ export function lookAt(a, from, to, up = Y_UP) {
     x2 *= len;
   }
 
-  let y0 = z1 * x2 - z2 * x1;
-  let y1 = z2 * x0 - z0 * x2;
-  let y2 = z0 * x1 - z1 * x0;
-
-  len = Math.sqrt(y0 * y0 + y1 * y1 + y2 * y2);
-
-  if (len) {
-    len = 1 / len;
-    y0 *= len;
-    y1 *= len;
-    y2 *= len;
-  }
+  const y0 = z1 * x2 - z2 * x1;
+  const y1 = z2 * x0 - z0 * x2;
+  const y2 = z0 * x1 - z1 * x0;
 
   a[0] = x0;
   a[1] = y0;
@@ -945,15 +936,6 @@ export function fromDirection(a, direction, up = Y_UP) {
   upx = dir1 * x2 - dir2 * x1;
   upy = dir2 * x0 - dir0 * x2;
   upz = dir0 * x1 - dir1 * x0;
-
-  len = upx * upx + upy * upy + upz * upz;
-
-  if (len > 0) {
-    len = 1 / Math.sqrt(len);
-    upx *= len;
-    upy *= len;
-    upz *= len;
-  }
 
   a[0] = x0;
   a[1] = x1;
