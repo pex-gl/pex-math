@@ -70,7 +70,7 @@ const identityMatrix = mat4.create();
 ## Typedefs
 
 <dl>
-<dt><a href="#TypedArray">TypedArray</a> : <code>Int8Array</code> | <code>Uint8Array</code> | <code>Uint8ClampedArray</code> | <code>Int16Array</code> | <code>Uint16Array</code> | <code>Int32Array</code> | <code>Uint32Array</code> | <code>Float16Array</code> | <code>Float32Array</code> | <code>Float64Array</code> | <code>BigInt64Array</code> | <code>BigUint64Array</code></dt>
+<dt><a href="#TypedArray">TypedArray</a> : <code>Int8Array</code> | <code>Uint8Array</code> | <code>Uint8ClampedArray</code> | <code>Int16Array</code> | <code>Uint16Array</code> | <code>Int32Array</code> | <code>Uint32Array</code> | <code>Float16Array</code> | <code>Float32Array</code> | <code>Float64Array</code></dt>
 <dd></dd>
 <dt><a href="#AVec2">AVec2</a> : <code><a href="#TypedArray">TypedArray</a></code></dt>
 <dd></dd>
@@ -102,7 +102,7 @@ const identityMatrix = mat4.create();
 <dd></dd>
 <dt><a href="#Radians">Radians</a> : <code>number</code></dt>
 <dd></dd>
-<dt><a href="#iterativeCallback">iterativeCallback</a> : <code>function</code></dt>
+<dt><a href="#iterativeCallback">iterativeCallback</a> ⇒ <code><a href="#Vec2">Vec2</a></code> | <code><a href="#Vec3">Vec3</a></code> | <code><a href="#Vec4">Vec4</a></code> | <code>void</code></dt>
 <dd><p>Callback for iterating typed arrays.</p>
 </dd>
 <dt><a href="#easeFn">easeFn</a> ⇒ <code>number</code></dt>
@@ -110,6 +110,9 @@ const identityMatrix = mat4.create();
 </dd>
 <dt><a href="#easeStepFn">easeStepFn</a> ⇒ <code>number</code></dt>
 <dd><p>Ease step functions signature.</p>
+</dd>
+<dt><a href="#easeStepNoneFn">easeStepNoneFn</a> ⇒ <code>number</code></dt>
+<dd><p>Ease step function signature without jumps at either end.</p>
 </dd>
 </dl>
 
@@ -1049,7 +1052,7 @@ Prints a vector to a string.
   - [.bounceInOut()](#module_eases.bounceInOut) : [<code>easeFn</code>](#easeFn)
   - [.stepStart()](#module_eases.stepStart) : [<code>easeStepFn</code>](#easeStepFn)
   - [.stepEnd()](#module_eases.stepEnd) : [<code>easeStepFn</code>](#easeStepFn)
-  - [.stepNone()](#module_eases.stepNone) : [<code>easeStepFn</code>](#easeStepFn)
+  - [.stepNone()](#module_eases.stepNone) : [<code>easeStepNoneFn</code>](#easeStepNoneFn)
   - [.stepBoth()](#module_eases.stepBoth) : [<code>easeStepFn</code>](#easeStepFn)
 
 <a name="module_eases.linear"></a>
@@ -1219,7 +1222,7 @@ Prints a vector to a string.
 **Kind**: static method of [<code>eases</code>](#module_eases)
 <a name="module_eases.stepNone"></a>
 
-### eases.stepNone() : [<code>easeStepFn</code>](#easeStepFn)
+### eases.stepNone() : [<code>easeStepNoneFn</code>](#easeStepNoneFn)
 
 **Kind**: static method of [<code>eases</code>](#module_eases)
 <a name="module_eases.stepBoth"></a>
@@ -1239,8 +1242,8 @@ Prints a vector to a string.
 
 ### euler.create() ⇒ [<code>Euler</code>](#Euler)
 
-Create a new euler angles [0, 0, 0]: vec3 array of [x, y, z] rotation [yaw,
-pitch, roll] in radians.
+Returns new euler angles at 0, 0, 0: rotations in radians around the x, y and
+z axes (pitch, yaw and roll with Y up).
 
 **Kind**: static method of [<code>euler</code>](#module_euler)
 <a name="module_euler.fromQuat"></a>
@@ -1569,11 +1572,11 @@ Sets a 3x3 matrix to a 4x4 matrix.
   - [.set(a, b)](#module_mat4.set) ⇒ [<code>Mat4</code>](#Mat4)
   - [.equals(a, b)](#module_mat4.equals) ⇒ <code>boolean</code>
   - [.mult(a, b)](#module_mat4.mult) ⇒ [<code>Mat4</code>](#Mat4)
-  - [.invert(a)](#module_mat4.invert) ⇒ [<code>Mat4</code>](#Mat4)
+  - [.invert(a)](#module_mat4.invert) ⇒ [<code>Mat4</code>](#Mat4) \| <code>null</code>
   - [.determinant(a)](#module_mat4.determinant) ⇒ <code>number</code>
   - [.transpose(a)](#module_mat4.transpose) ⇒ [<code>Mat4</code>](#Mat4)
   - [.translate(a, v)](#module_mat4.translate) ⇒ [<code>Mat4</code>](#Mat4)
-  - [.rotate(a, r, v)](#module_mat4.rotate) ⇒ [<code>Mat4</code>](#Mat4)
+  - [.rotate(a, r, v)](#module_mat4.rotate) ⇒ [<code>Mat4</code>](#Mat4) \| <code>null</code>
   - [.scale(a, v)](#module_mat4.scale) ⇒ [<code>Mat4</code>](#Mat4)
   - [.fromQuat(a, q)](#module_mat4.fromQuat) ⇒ [<code>Mat4</code>](#Mat4)
   - [.fromTranslationRotationScale(a, v, q, s)](#module_mat4.fromTranslationRotationScale) ⇒ [<code>Mat4</code>](#Mat4)
@@ -1683,9 +1686,10 @@ Multiplies two matrices.
 
 <a name="module_mat4.invert"></a>
 
-### mat4.invert(a) ⇒ [<code>Mat4</code>](#Mat4)
+### mat4.invert(a) ⇒ [<code>Mat4</code>](#Mat4) \| <code>null</code>
 
-Inverts a matrix.
+Inverts a matrix. Returns null and leaves the matrix unchanged if it is not
+invertible.
 
 **Kind**: static method of [<code>mat4</code>](#module_mat4)
 
@@ -1732,9 +1736,10 @@ Translates a matrix by a vector.
 
 <a name="module_mat4.rotate"></a>
 
-### mat4.rotate(a, r, v) ⇒ [<code>Mat4</code>](#Mat4)
+### mat4.rotate(a, r, v) ⇒ [<code>Mat4</code>](#Mat4) \| <code>null</code>
 
-Rotates a matrix by an angle at an axis.
+Rotates a matrix by an angle at an axis. Returns null and leaves the matrix
+unchanged if the axis length is near zero.
 
 **Kind**: static method of [<code>mat4</code>](#module_mat4)
 
@@ -1909,7 +1914,8 @@ Creates an orthographic matrix with depth mapped to [0, 1]
 
 ### mat4.lookAt(a, from, to, [up]) ⇒ [<code>Mat4</code>](#Mat4)
 
-Calculates a lookAt matrix from position, target and up vectors.
+Calculates a view matrix (world to camera) from position, target and up
+vectors. To orient an object toward a target, use fromPointToPoint.
 
 **Kind**: static method of [<code>mat4</code>](#module_mat4)
 
@@ -1956,16 +1962,16 @@ Sets a matrix from a point to another.
 - [quat](#module_quat)
   - [.set](#module_quat.set) ⇒ [<code>Quat</code>](#Quat)
   - [.equals](#module_quat.equals) ⇒ <code>boolean</code>
-  - [.toString](#module_quat.toString) ⇒ [<code>Quat</code>](#Quat)
+  - [.toString](#module_quat.toString) ⇒ <code>string</code>
   - [.create()](#module_quat.create) ⇒ [<code>Quat</code>](#Quat)
   - [.identity(a)](#module_quat.identity) ⇒ [<code>Quat</code>](#Quat)
   - [.copy(a)](#module_quat.copy) ⇒ [<code>Quat</code>](#Quat)
   - [.mult(a, b)](#module_quat.mult) ⇒ [<code>Quat</code>](#Quat)
   - [.invert(a)](#module_quat.invert) ⇒ [<code>Quat</code>](#Quat)
   - [.conjugate(a)](#module_quat.conjugate) ⇒ [<code>Quat</code>](#Quat)
-  - [.length(a)](#module_quat.length) ⇒ [<code>Quat</code>](#Quat)
+  - [.length(a)](#module_quat.length) ⇒ <code>number</code>
   - [.normalize(a)](#module_quat.normalize) ⇒ [<code>Quat</code>](#Quat)
-  - [.dot(a, b)](#module_quat.dot) ⇒ [<code>Quat</code>](#Quat)
+  - [.dot(a, b)](#module_quat.dot) ⇒ <code>number</code>
   - [.fromEuler(a, e)](#module_quat.fromEuler) ⇒ [<code>Quat</code>](#Quat)
   - [.fromAxisAngle(a, v, r)](#module_quat.fromAxisAngle) ⇒ [<code>Quat</code>](#Quat)
   - [.fromAxes(a, x, y, z)](#module_quat.fromAxes) ⇒ [<code>Quat</code>](#Quat)
@@ -2003,16 +2009,16 @@ Compares two quaternions.
 
 <a name="module_quat.toString"></a>
 
-### quat.toString ⇒ [<code>Quat</code>](#Quat)
+### quat.toString ⇒ <code>string</code>
 
 Prints a quaternion to a string.
 
 **Kind**: static constant of [<code>quat</code>](#module_quat)
 
-| Param     | Type                       |
-| --------- | -------------------------- |
-| a         | [<code>Quat</code>](#Quat) |
-| precision | <code>number</code>        |
+| Param       | Type                       | Default        |
+| ----------- | -------------------------- | -------------- |
+| a           | [<code>Quat</code>](#Quat) |                |
+| [precision] | <code>number</code>        | <code>4</code> |
 
 <a name="module_quat.create"></a>
 
@@ -2084,7 +2090,7 @@ Conjugates a quaternion.
 
 <a name="module_quat.length"></a>
 
-### quat.length(a) ⇒ [<code>Quat</code>](#Quat)
+### quat.length(a) ⇒ <code>number</code>
 
 Calculates the length of a quaternion.
 
@@ -2108,7 +2114,7 @@ Normalizes a quaternion.
 
 <a name="module_quat.dot"></a>
 
-### quat.dot(a, b) ⇒ [<code>Quat</code>](#Quat)
+### quat.dot(a, b) ⇒ <code>number</code>
 
 Calculates the dot product of two quaternions.
 
@@ -2140,11 +2146,11 @@ Set the angle at an axis of a quaternion.
 
 **Kind**: static method of [<code>quat</code>](#module_quat)
 
-| Param | Type                             |
-| ----- | -------------------------------- |
-| a     | [<code>Quat</code>](#Quat)       |
-| v     | [<code>Vec3</code>](#Vec3)       |
-| r     | [<code>Radians</code>](#Radians) |
+| Param | Type                             | Description     |
+| ----- | -------------------------------- | --------------- |
+| a     | [<code>Quat</code>](#Quat)       |                 |
+| v     | [<code>Vec3</code>](#Vec3)       | Normalized axis |
+| r     | [<code>Radians</code>](#Radians) |                 |
 
 <a name="module_quat.fromAxes"></a>
 
@@ -2349,7 +2355,7 @@ Transforms radians into degrees.
 
 ### utils.isPowerOfTwo(a) ⇒ <code>boolean</code>
 
-Check if a number is a power of two
+Check if a number is a power of two. Limited to 32-bit integers.
 
 **Kind**: static method of [<code>utils</code>](#module_utils)
 
@@ -3066,7 +3072,7 @@ Prints a vector to a string.
 
 <a name="TypedArray"></a>
 
-## TypedArray : <code>Int8Array</code> \| <code>Uint8Array</code> \| <code>Uint8ClampedArray</code> \| <code>Int16Array</code> \| <code>Uint16Array</code> \| <code>Int32Array</code> \| <code>Uint32Array</code> \| <code>Float16Array</code> \| <code>Float32Array</code> \| <code>Float64Array</code> \| <code>BigInt64Array</code> \| <code>BigUint64Array</code>
+## TypedArray : <code>Int8Array</code> \| <code>Uint8Array</code> \| <code>Uint8ClampedArray</code> \| <code>Int16Array</code> \| <code>Uint16Array</code> \| <code>Int32Array</code> \| <code>Uint32Array</code> \| <code>Float16Array</code> \| <code>Float32Array</code> \| <code>Float64Array</code>
 
 **Kind**: global typedef
 <a name="AVec2"></a>
@@ -3146,11 +3152,13 @@ Prints a vector to a string.
 **Kind**: global typedef
 <a name="iterativeCallback"></a>
 
-## iterativeCallback : <code>function</code>
+## iterativeCallback ⇒ [<code>Vec2</code>](#Vec2) \| [<code>Vec3</code>](#Vec3) \| [<code>Vec4</code>](#Vec4) \| <code>void</code>
 
 Callback for iterating typed arrays.
 
 **Kind**: global typedef
+**Returns**: [<code>Vec2</code>](#Vec2) \| [<code>Vec3</code>](#Vec3) \| [<code>Vec4</code>](#Vec4) \| <code>void</code> - The mapped element for map, ignored by
+forEach
 
 | Param   | Type                                                                                         |
 | ------- | -------------------------------------------------------------------------------------------- |
@@ -3182,6 +3190,19 @@ Ease step functions signature.
 | ------ | ------------------- | -------------- | ----------------- |
 | t      | <code>number</code> |                | Interpolant value |
 | [step] | <code>number</code> | <code>1</code> | Number of steps   |
+
+<a name="easeStepNoneFn"></a>
+
+## easeStepNoneFn ⇒ <code>number</code>
+
+Ease step function signature without jumps at either end.
+
+**Kind**: global typedef
+
+| Param  | Type                | Default        | Description                 |
+| ------ | ------------------- | -------------- | --------------------------- |
+| t      | <code>number</code> |                | Interpolant value           |
+| [step] | <code>number</code> | <code>2</code> | Number of steps, at least 2 |
 
 <!-- api-end -->
 

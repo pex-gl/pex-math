@@ -2,6 +2,29 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+# [4.5.0](https://github.com/pex-gl/pex-math/compare/v4.4.0...v4.5.0) (2026-10-21)
+
+### Bug Fixes
+
+* **eases:** align stepStart and stepBoth with CSS easing spec ([9e9b71a](https://github.com/pex-gl/pex-math/commit/9e9b71ab44ece824db11322c8fbe0a25a2165351))
+* **eases:** default stepNone to 2 steps ([0f4a6f0](https://github.com/pex-gl/pex-math/commit/0f4a6f07f8f2f396b82880f9e64317842f30402b))
+* **euler:** compute fromQuat angles accurately in and near gimbal lock ([7fd1bcc](https://github.com/pex-gl/pex-math/commit/7fd1bcc9bd744f206b1a8a7c77b9ff203dca48fa))
+* **mat3:** compare only the 9 entries in equals ([4c29a44](https://github.com/pex-gl/pex-math/commit/4c29a4496c0b99ab070a2f22c9a380944fdcd03f))
+* **mat4:** leave matrix unchanged when invert fails ([a7f219f](https://github.com/pex-gl/pex-math/commit/a7f219ffdc9606b6bdab97545044972a4c6ba86e))
+* **mat4:** use a fallback axis in lookAt and fromDirection when up is parallel to the view direction ([4ff1a2a](https://github.com/pex-gl/pex-math/commit/4ff1a2af54237ea479cb161e6e55675095f8c6b0)), closes [#34](https://github.com/pex-gl/pex-math/issues/34) [#34](https://github.com/pex-gl/pex-math/issues/34) [#36](https://github.com/pex-gl/pex-math/issues/36)
+* normalise y axis instead of x in lookAt ([1487af5](https://github.com/pex-gl/pex-math/commit/1487af55e1a298f0357d36b8e9cfaf2c914d748e))
+* **quat:** require a normalized axis in fromAxisAngle ([76bf0ea](https://github.com/pex-gl/pex-math/commit/76bf0ea05468bff149e27af942574e900e04afdb))
+* truncate toString values toward zero without float error ([345392c](https://github.com/pex-gl/pex-math/commit/345392c1e7d218ce06fc6317ca31570f9ef458a9))
+* **types:** drop BigInt arrays from TypedArray and type iterativeCallback return ([fd8c5f3](https://github.com/pex-gl/pex-math/commit/fd8c5f388e68023ac812087654feb27d68330144))
+* update quat.dot return type ([c085bc2](https://github.com/pex-gl/pex-math/commit/c085bc2e9b220f1053b9acff6ec8ff4355d342c5))
+* **utils:** return isPowerOfTwo true only for positive integer powers of two ([cc375cd](https://github.com/pex-gl/pex-math/commit/cc375cd2a6c97967a271d82457ae0de0226aa686))
+* **utils:** type Y_UP as Vec3 so it can be passed to vector parameters ([f2c72a4](https://github.com/pex-gl/pex-math/commit/f2c72a44dd1fc9a13b8c6c576d8089b66a9a1ca0))
+
+### Performance Improvements
+
+* **mat4:** read vector parameters by index instead of destructuring ([3d2803c](https://github.com/pex-gl/pex-math/commit/3d2803cdb45b1cbe4ca54646ad32ca9815ade340))
+* **mat4:** skip normalizing the third axis in lookAt and fromDirection ([961886f](https://github.com/pex-gl/pex-math/commit/961886f97336c394dcb31faab59a1ceab3b869a9))
+
 # [4.4.0](https://github.com/pex-gl/pex-math/compare/v4.3.2...v4.4.0) (2026-08-12)
 
 
